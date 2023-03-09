@@ -5,6 +5,42 @@ body{
     height: 100vh;
 }
 
+.rectangulo{
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo1{
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo2{
+    background-color: #151515;
+    width: 69px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: -35px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
 .bg-custom {
     background-color: #D2CA03;
     z-index: 2;
