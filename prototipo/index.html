@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Bootsrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <title>Home</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="fixed-top">
+            <div class="rectangulo"></div>
+            <div class="rectangulo1"></div>
+            <div class="rectangulo2"></div>
+        </div>
+        <nav class="navbar navbar-expand-lg bg-custom navbar-light fixed-top">
+            <div class="container-fluid ms-5">
+                <a class="navbar-brand ms-3" href="./index.html">ONYX</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Workouts
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="./html/ejercicios.html">Catalogo de ejercicios</a>
+                                </li>
+                                <li><a class="dropdown-item" href="./html/entrenamientos.html">Catalogo de
+                                        entrenamientos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./html/dietas.html">Dietas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./html/bitacora.html">Bitácora</a>
+                        </li>
+                        <form class="d-flex justify-self-center ms-5" role="search">
+                            <input class="me-2 rounded-pill search-bar text-white text-center ms-5" type="search"
+                                placeholder="Search for anything" aria-label="Search">
+                        </form>
+                    </ul>
+                    <a class="nav-link active text-dark" aria-current="page" href="./html/login.html"><strong>Log
+                            in</strong></a>
+                    <a aria-current="page" href="./html/register.html"><button type="button"
+                            class="btn btn-light rounded-pill">Sign up</button></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container-fluid bg-image"></div>
+        <div class="container banner-text">
+            <div class="row">
+                <div class="col">   
+                    <h1 class="header">Sigue tus <br> entrenamientos <br> y dietas en un <br> solo lugar </h1>
+                    <h2 class="subHeader">Lo que es medible es <br> perfeccionable</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row mb-3">
+                <div class="col">
+                    <h2 id="faq" class="text-center">Sobre Nostros</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-center">Onyx es una plataforma que te permite llevar un control de tus entrenamientos y
+                        dietas, así como llevar un registro de tu progreso.</p>
+                </div>
+            </div> 
+            <div class="row">
+
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row mb-3">
+                <div class="col">
+                    <h2 id="faq" class="text-center">Preguntas Frecuentes</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button rounded-pill" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    ¿Qué es Onyx?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Onyx es una plataforma que te permite llevar un control de tus entrenamientos y
+                                    dietas, así
+                                    como
+                                    llevar un registro de tu progreso.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed rounded-pill" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo">
+                                    ¿Cómo funciona?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Para comenzar a utilizar Onyx, debes registrarte en la plataforma, una vez hecho
+                                    esto, podrás
+                                    comenzar a crear tus propios entrenamientos y dietas, así como llevar un registro de
+                                    tu
+                                    progreso.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed rounded-pill" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                    ¿Qué puedo hacer en Onyx?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    En Onyx podrás crear tus propios entrenamientos y dietas, así como llevar un
+                                    registro de tu
+                                    progreso.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class=" bg-footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col mt-3">
+                    <h5>Navegacion</h5>
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="./html/ejercicios.html">Catalogo de ejercicios</a></li>
+                        <li><a href="./html/entrenamientos.html">Catalogo de entrenamientos</a></li>
+                        <li><a href="./html/dietas.html">Dietas</a></li>
+                        <li><a href="./html/bitacora.html">Bitácora</a></li>
+                    </ul>
+                </div>
+                <div class="col mt-3">
+                    <h5>Contacto</h5>
+                    <ul>
+                        <li><a href="mailto:a01709449@tec.mx">Correo</a></li>
+                        <li><a href="https://www.instagram.com/onyxgymapp/">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/onyxgymapp">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+
+            <div class="row">
+                <div class="col">
+                    <p class="text-center">© 2023 Onyx. All rights reserved.</p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
