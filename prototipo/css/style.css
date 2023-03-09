@@ -93,3 +93,46 @@ body{
     font-weight: 700;
     color: #D2CA03;
 }
+
+.FAQ{
+    background-color: #151515;
+    height: 100vh;
+}
+
+.accordion{
+    color: #FFFFFF;
+    margin: 100px;;
+}
+
+.accordion-item{
+    background-color: #151515;
+    color: #FFFFFF;
+}
+
+.accordion-button{
+    background-color: #D2CA03;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.accordion-button:hover{
+    background-color: #151515;
+    color: #FFFFFF;
+}
+
+.accordion-button:focus{
+    background-color: #D2CA03;
+    color: #FFFFFF;
+}
+
+.accordion-button:not(.collapsed){
+    background-color: #D2CA03;
+    color: #FFFFFF;
+}
+
+
+
+
+
+
+
