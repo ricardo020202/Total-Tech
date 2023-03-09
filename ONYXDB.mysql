@@ -1,0 +1,135 @@
+CREATE DATABASE Onyx;
+USE Onyx;
+
+CREATE TABLE privilegio(
+    id_cu INT NOT NULL PRIMARY KEY,
+    nombreCu VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE rol(
+    id_rol INT NOT NULL PRIMARY KEY,
+    status VARCHAR(100) NOT NULL,
+    nombreRol VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE rol_privilegio(
+    id_rol INT NOT NULL,
+    id_cu INT NOT NULL,
+    PRIMARY KEY (id_rol, id_cu),
+    FOREIGN KEY (id_rol) REFERENCES rol(id_rol),
+    FOREIGN KEY (id_cu) REFERENCES privilegio(id_cu)
+);
+
+CREATE TABLE usuario(
+    email VARCHAR(30) NOT NULL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    contraseña VARCHAR(15) NOT NULL,
+    telefono VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE rol_usuario ( 
+    id_rol INT NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    fecha DATE NOT NULL,
+    PRIMARY KEY (id_rol, email),
+    FOREIGN KEY (id_rol) REFERENCES rol(id_rol),
+    FOREIGN KEY (email) REFERENCES usuario(email)
+);
+
+CREATE TABLE admin(
+    email VARCHAR(30) NOT NULL PRIMARY KEY,
+    FOREIGN KEY (email) REFERENCES usuario(email)
+);
+
+CREATE TABLE cliente(
+    email VARCHAR(30) NOT NULL PRIMARY KEY,
+    peso INT NOT NULL,
+    estatura INT NOT NULL,
+    altura INT NOT NULL,
+    edad INT NOT NULL,
+    nivel_actividad INT NOT NULL,
+    objetivo VARCHAR (20) NOT NULL,
+    sexo VARCHAR (1) NOT NULL,
+    pr_BenchPress INT NOT NULL,
+    pr_PesoMuerto INT NOT NULL,
+    pr_Sentadillas INT NOT NULL,
+    FOREIGN KEY (email) REFERENCES usuario(email)
+);
+
+CREATE TABLE talla(
+    id_medida INT NOT NULL PRIMARY KEY,
+    extremidad INT NOT NULL,
+    medida INT NOT NULL,
+    fecha DATE NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    FOREIGN KEY (email) REFERENCES cliente(email)
+);
+
+CREATE TABLE bitacora(
+    id_bitacora INT NOT NULL PRIMARY KEY,
+    fecha DATE NOT NULL,
+    contenido VARCHAR(2500) NOT NULL,
+    entreno VARCHAR(200) NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    FOREIGN KEY (email) REFERENCES cliente(email)
+);
+
+CREATE TABLE programa (
+    id_programa INT NOT NULL PRIMARY KEY,
+    frecuencia INT NOT NULL,
+    descripcion_programa VARCHAR(200) NOT NULL,
+    nombre_programa VARCHAR(20) NOT NULL 
+);
+
+CREATE TABLE ejercicio(
+    id_ejercicio INT NOT NULL PRIMARY KEY,
+    categoria VARCHAR(20) NOT NULL,
+    nivel_intensidad VARCHAR(20) NOT NULL,
+    referencia_visual VARCHAR(100) NOT NULL,
+    descripcion_ejercicio VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE programa_ejercicio(
+    id_programa INT NOT NULL,
+    id_ejercicio INT NOT NULL,
+    PRIMARY KEY (id_programa, id_ejercicio),
+    FOREIGN KEY (id_programa) REFERENCES programa(id_programa),
+    FOREIGN KEY (id_ejercicio) REFERENCES ejercicio(id_ejercicio)
+);
+
+CREATE TABLE dieta(
+    id_dieta INT NOT NULL PRIMARY KEY,
+    no_calorias INT NOT NULL,
+    proteinas INT NOT NULL,
+    grasas INT NOT NULL,
+    carbohidratos INT NOT NULL,
+    micronutrientes VARCHAR(20) NOT NULL,
+    macronutrientes VARCHAR(20) NOT NULL,
+    nombre_dieta VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE alimento(
+    id_alimento INT NOT NULL PRIMARY KEY,
+    unidad VARCHAR(20) NOT NULL,
+    cantidad INT NOT NULL,
+    descripcion_alimento VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE dieta_alimento(
+    id_dieta INT NOT NULL,
+    id_alimento INT NOT NULL,
+    PRIMARY KEY (id_dieta, id_alimento),
+    FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta),
+    FOREIGN KEY (id_alimento) REFERENCES alimento(id_alimento)
+);
+
+CREATE TABLE programa_dieta_cliente(
+    id_programa INT NOT NULL,
+    id_dieta INT NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id_programa, id_dieta, email),
+    FOREIGN KEY (id_programa) REFERENCES programa(id_programa),
+    FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta),
+    FOREIGN KEY (email) REFERENCES cliente(email)
+);
