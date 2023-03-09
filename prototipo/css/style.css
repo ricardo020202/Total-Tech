@@ -149,12 +149,12 @@ body {
 }
 
 .accordion-button:focus{
-    background-color: #D2CA03;
+    background-color: rgb(43, 43, 43);
     color: #FFFFFF;
 }
 
 .accordion-button:not(.collapsed){
-    background-color: #D2CA03;
+    background-color: rgb(43, 43, 43);
     color: #FFFFFF;
 }
 
