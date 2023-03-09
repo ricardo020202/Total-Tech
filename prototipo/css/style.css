@@ -1,0 +1,158 @@
+body {
+    background-color: #151515;
+    font-family: 'DM Sans', sans-serif;
+    color: #FFFFFF;
+    height: 100vh;
+}
+
+.rectangulo {
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo1 {
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo2 {
+    background-color: #151515;
+    width: 69px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: -35px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.bg-custom {
+    background-color: #D2CA03;
+    z-index: 2;
+}
+
+.text-custom {
+    color: #D2CA03;
+}
+
+.navbar-brand {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.nav-item {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.search-bar {
+    background-color: black;
+    width: 336px;
+    height: 35px;
+}
+
+.bg-image {
+    background-image: url(../assets/cover.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    filter: blur(5px);
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: start;
+    color: #FFFFFF;
+    z-index: 1;
+}
+
+.header {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.subHeader {
+    font-weight: 700;
+    color: #D2CA03;
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 55px;
+        left: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        width: 75%;
+        height: 100%;
+        background-color: #D2CA03;
+    }
+
+    .navbar-collapse.collapsing {
+        left: -75%;
+        transition: height 0s ease;
+    }
+
+    .navbar-collapse.show {
+        left: 0;
+        transition: left 300ms ease-in-out;
+    }
+
+    .navbar-toggler.collapsed~.navbar-collapse {
+        transition: left 500ms ease-in-out;
+    }
+}
+.FAQ{
+    background-color: #151515;
+    height: 100vh;
+}
+
+.accordion{
+    color: #FFFFFF;
+    margin: 100px;;
+}
+
+.accordion-item{
+    background-color: #151515;
+    color: #FFFFFF;
+}
+
+.accordion-button{
+    background-color: #D2CA03;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.accordion-button:hover{
+    background-color: #151515;
+    color: #FFFFFF;
+}
+
+.accordion-button:focus{
+    background-color: #D2CA03;
+    color: #FFFFFF;
+}
+
+.accordion-button:not(.collapsed){
+    background-color: #D2CA03;
+    color: #FFFFFF;
+}
