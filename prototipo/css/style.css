@@ -46,6 +46,11 @@ body {
     z-index: 2;
 }
 
+.bg-footer {
+    background-color: black;
+    z-index: 2;
+}
+
 .text-custom {
     color: #D2CA03;
 }
@@ -120,15 +125,11 @@ body {
     .navbar-toggler.collapsed~.navbar-collapse {
         transition: left 500ms ease-in-out;
     }
-}
-.FAQ{
-    background-color: #151515;
-    height: 100vh;
+    
 }
 
 .accordion{
     color: #FFFFFF;
-    margin: 100px;;
 }
 
 .accordion-item{
@@ -137,7 +138,7 @@ body {
 }
 
 .accordion-button{
-    background-color: #D2CA03;
+    background-color: rgb(43, 43, 43);
     color: #FFFFFF;
     font-weight: 700;
 }
@@ -154,5 +155,10 @@ body {
 
 .accordion-button:not(.collapsed){
     background-color: #D2CA03;
+    color: #FFFFFF;
+}
+
+li{
+    list-style: none;
     color: #FFFFFF;
 }
