@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Adminstrador | Dashboard</title>
+    <title>Adminstrador | Workouts</title>
 </head>
 
 <body>
@@ -84,12 +84,12 @@
                 <li>
                     <p class="admin-rol">Admin</p>
                 </li>
-                <li class="mt-5">
+                <li class="mt-5 activo rounded">
                     <a href="./adminDashboard.html" class="nav-link text-white">
                         <img src="../assets/home-lg-alt 1.png" alt="" class="mx-2"> Home
                     </a>
                 </li>
-                <li class="activo rounded">
+                <li>
                     <a href="./adminDietas.html" class="nav-link text-white">
                         <img src="../assets/bookmark 1 (1).png" alt="" class="mx-2"> Dietas
                     </a>
@@ -112,96 +112,52 @@
     </aside>
 
     <main>
-        <div class="table-responsive">
-            <table class="table-active">
-                <thead class="table-header">
-                    <tr>
-                        <th scope="col">ID Ejercio</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Nivel de intensidad</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
-                        <td class="crud button">
-                            <button type="button" class="btn btn-primary">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr><tr>
-                        <th scope="row">2</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
-                        <td>
-                            <button type="button" class="btn btn-primary">Editar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    
-
-                    
-                </tbody>
-            </table>
+        <div class="spacer"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body text-dark bg-users">
+                            <img src="../assets/graduation-cap 1.png" alt="">
+                            <h5 class="card-title">Users</h5>
+                            <p class="number card-text text-end">243</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <a href="./adminDietas.html">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body text-dark bg-dietas">
+                                <img src="../assets/Vector.png" alt="">
+                                <h5 class="card-title">Dietas</h5>
+                                <p class="number card-text text-end">13</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="./adminWorkouts.html">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body text-dark bg-workouts">
+                                <img src="../assets/iconoir_gym (1).png" alt="">
+                                <h5 class="card-title">Workouts</h5>
+                                <p class="number card-text text-end">10</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="./adminUsers">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body text-dark bg-users1">
+                                <img src="../assets/Vector (1).png" alt="">
+                                <h5 class="card-title">Users</h5>
+                                <p class="number card-text text-end">3</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 

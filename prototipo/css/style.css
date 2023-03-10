@@ -125,40 +125,40 @@ body {
     .navbar-toggler.collapsed~.navbar-collapse {
         transition: left 500ms ease-in-out;
     }
-    
+
 }
 
-.accordion{
+.accordion {
     color: #FFFFFF;
 }
 
-.accordion-item{
+.accordion-item {
     background-color: #151515;
     color: #FFFFFF;
 }
 
-.accordion-button{
+.accordion-button {
     background-color: rgb(43, 43, 43);
     color: #FFFFFF;
     font-weight: 700;
 }
 
-.accordion-button:hover{
+.accordion-button:hover {
     background-color: #151515;
     color: #FFFFFF;
 }
 
-.accordion-button:focus{
+.accordion-button:focus {
     background-color: rgb(43, 43, 43);
     color: #FFFFFF;
 }
 
-.accordion-button:not(.collapsed){
+.accordion-button:not(.collapsed) {
     background-color: rgb(43, 43, 43);
     color: #FFFFFF;
 }
 
-li{
+li {
     list-style: none;
     color: #FFFFFF;
 }
@@ -177,17 +177,17 @@ li{
     position: absolute;
     top: 12%;
     left: 85%;
-  }
-  
-  .buttonChido:hover {
+}
+
+.buttonChido:hover {
     transform: translateY(-4px) translateX(-2px);
     box-shadow: 2px 5px 0 0 white;
-  };
-  
-  .buttonChido:active {
+}
+
+.buttonChido:active {
     transform: translateY(2px) translateX(1px);
     box-shadow: 0 0 0 0 black;
-  };
+}
 
 .spacer {
     height: 100px;

@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Adminstrador | Workouts</title>
+    <title>Adminstrador | Dashboard</title>
 </head>
 
 <body>
@@ -85,17 +85,17 @@
                     <p class="admin-rol">Admin</p>
                 </li>
                 <li class="mt-5 activo rounded">
-                    <a href="./adminDasboard.html" class="nav-link text-white">
+                    <a href="#" class="nav-link text-white">
                         <img src="../assets/home-lg-alt 1.png" alt="" class="mx-2"> Home
                     </a>
                 </li>
                 <li>
-                    <a href="./adminDietas.html" class="nav-link text-white">
+                    <a href="#" class="nav-link text-white">
                         <img src="../assets/bookmark 1 (1).png" alt="" class="mx-2"> Dietas
                     </a>
                 </li>
                 <li>
-                    <a href="./adminWorkouts.html" class="nav-link text-white">
+                    <a href="#" class="nav-link text-white">
                         <img src="../assets/iconoir_gym.png" alt="" class="mx-2"> Workouts
                     </a>
                 </li>
@@ -112,52 +112,108 @@
     </aside>
 
     <main>
-        <div class="spacer"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body text-dark bg-users">
-                            <img src="../assets/graduation-cap 1.png" alt="">
-                            <h5 class="card-title">Users</h5>
-                            <p class="number card-text text-end">243</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <a href="./adminDietas.html">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body text-dark bg-dietas">
-                                <img src="../assets/Vector.png" alt="">
-                                <h5 class="card-title">Dietas</h5>
-                                <p class="number card-text text-end">13</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="./adminWorkouts.html">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body text-dark bg-workouts">
-                                <img src="../assets/iconoir_gym (1).png" alt="">
-                                <h5 class="card-title">Workouts</h5>
-                                <p class="number card-text text-end">10</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="./adminUsers">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body text-dark bg-users1">
-                                <img src="../assets/Vector (1).png" alt="">
-                                <h5 class="card-title">Users</h5>
-                                <p class="number card-text text-end">3</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+        <!-- table in bootstrap with headers "iddieta", "name", "number of calories", "fat percentage", "carbs", and "protein"
+        each row has a button to edit and delete de row -->
+        <div class="table-responsive">
+            <table class="table-active">
+                <thead class="table-header">
+                    <tr>
+                        <th scope="col">ID Dieta</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Calorias</th>
+                        <th scope="col">Grasa</th>
+                        <th scope="col">Carbohidratos</th>
+                        <th scope="col">Proteinas</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 

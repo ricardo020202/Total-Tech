@@ -243,19 +243,22 @@ a{
     text-decoration: none;
 }
 
-main {
-    margin-left: 280px;
+/* ================= ADMIN DIETA ================= */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 300px;
+    margin-top: 150px;
+    text-align: center;
 }
 
-.btn-custom {
-    background-color: #D2CA03;
-    color: black;
-    border-radius: 10em;
-    font-size: 17px;
-    font-weight: 600;
-    padding: 1em 2em;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border: 1px solid black;
-    box-shadow: 0 0 0 0 black;
+tbody{
+    background-color: #F0F9FF;
+    color: #000000;
+}
+
+td, th {
+    border-top: #151515 5px solid;
+    border-bottom: #151515 5px solid;
+    padding: 10px;
 }
