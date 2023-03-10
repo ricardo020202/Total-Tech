@@ -199,4 +199,55 @@ li {
     border: solid;
     border-radius: 10px;
     border-bottom: 1px solid black;
+    height: 70%;
+    width: 95%;
+    position: absolute;
+    left: 2%;
 }	
+
+.card-container {
+height: 485px; /* Altura del contenedor */
+overflow-y: auto; /* Desplazamiento vertical */
+color:#000000;
+}
+
+.card {
+background-color: #f1f1f1;
+border: 1px solid #ddd;
+border-radius: 4px;
+padding: 20px;
+margin-bottom: 20px;
+box-sizing: border-box;
+transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.createButton {
+    border: 2px solid #000000;
+    background-color: #D2CA03;
+    border-radius: 0.9em;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+    position: absolute;
+    right: 10%;
+    top: 90%;
+    
+   }
+   
+   .createButton span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+   
+   .createButton:hover {
+    background-color: #b2ac06;
+   }
+  
