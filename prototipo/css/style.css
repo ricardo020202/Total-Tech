@@ -205,7 +205,7 @@ li {
 }
 
 .card-container {
-  height: 485px; /* Altura del contenedor */
+  height: 100%; /* Altura del contenedor */
   overflow-y: auto; /* Desplazamiento vertical */
   color: #000000;
 }
