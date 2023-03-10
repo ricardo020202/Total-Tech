@@ -242,3 +242,7 @@ button:active {
 a{
     text-decoration: none;
 }
+
+main {
+    margin-left: 280px;
+}
