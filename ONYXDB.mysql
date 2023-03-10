@@ -74,7 +74,7 @@ CREATE TABLE programa (
     id_programa INT NOT NULL,
     frecuencia INT NOT NULL,
     descripcion_programa VARCHAR(200) NOT NULL,
-    nombre_programa VARCHAR(20) NOT NULL 
+    nombre_programa VARCHAR(100) NOT NULL 
 
 );
 
