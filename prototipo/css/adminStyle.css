@@ -246,3 +246,16 @@ a{
 main {
     margin-left: 280px;
 }
+
+.btn-custom {
+    background-color: #D2CA03;
+    color: black;
+    border-radius: 10em;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 1em 2em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    box-shadow: 0 0 0 0 black;
+}
