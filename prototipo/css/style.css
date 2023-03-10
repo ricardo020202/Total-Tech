@@ -205,7 +205,7 @@ li {
 }
 
 .card-container {
-  height: 485px; /* Altura del contenedor */
+  height: 100%; /* Altura del contenedor */
   overflow-y: auto; /* Desplazamiento vertical */
   color: #000000;
 }
@@ -248,3 +248,21 @@ li {
 .createButton:hover {
   background-color: #b2ac06;
 }
+
+.overlay { 
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target{
+    visibility: visible;
+    opacity: 1;
+  }
+
