@@ -157,6 +157,18 @@ INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pab
 INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('clara.hernandez@gmail.com','Clara','Hernández','VbNmL0','+52(55)1234-5678');
 INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('oscar.ortega@hotmail.com','Óscar','Ortega','PoiUy6','+34 913333333');
 INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('sofia.estrada@yahoo.com','Sofía','Estrada','NmLkJ9','+1 (650)765-4321');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('luisa.mendez@yahoo.com','Luisa','Méndez','L0pKj8','+34 917 777 777'); 
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('david.fernandez@hotmail.com','David','Fernández','ZxAsD5','+1 (408) 111-2222');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('juan.rodriguez@gmail.com','Juan','Rodríguez','aBc123','+34 912 345 678');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('ana.perez@hotmail.com','Ana','Pérez','qWe456','+34 910 111 222');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('carlos.sanchez@yahoo.com','Carlos','Sánchez','zXc789','+34 913 456 789');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('laura.garcia@gmail.com','Laura','García','sEd123','+34 916 777 888');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pedro.lopez@hotmail.com','Pedro','López','dFg456','+34 918 222 333');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.martin@yahoo.com','María','Martín','gHi789','+34 914 777 555');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('jose.fernandez@hotmail.com','José','Fernández','jKl123','+34 915 444 555');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('lucia.gonzalez@gmail.com','Lucía','González','mNo456','+34 919 555 666');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pablo.ruiz@yahoo.com','Pablo','Ruiz','pQr789','+34 917 444 777');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('clara.hernandez@hotmail.com','Clara','Hernández','tUv123','+34 914 222 777');
 
 /*INSERTS - ALIMENTO*/
 
@@ -181,6 +193,8 @@ INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, 
 INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('laura.hernandez@yahoo.com','58','165','24','Bajo','Perder Peso','Femenino','40','70','30');
 INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('daniel.lopez@hotmail.com','80','182','29','Alto','Ganar Fuerza','Masculino','95','140','75');
 INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carmen.perez@gmail.com','62','170','28','Moderado','Perder Grasa','Femenino','45','75','30');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('oscar.ortega@hotmail.com','80','175','35','Moderado','Ganar Masa Muscular','Masculino','90','130','80');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('sofia.estrada@yahoo.com','57','163','27','Bajo','Perder Peso','Femenino','40','65','30');
 
 /*INSERTS - DIETA*/
 
@@ -242,3 +256,15 @@ INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('010','Espalda',
 INSERT INTO admin(email) VALUES ('maria.gomez@gmail.com');
 INSERT INTO admin(email) VALUES ('sofia.estrada@yahoo.com');
 INSERT INTO admin(email) VALUES ('rcortese@tec.mx');
+INSERT INTO admin(email) VALUES ('luisa.mendez@yahoo.com');
+INSERT INTO admin(email) VALUES ('david.fernandez@hotmail.com');
+INSERT INTO admin(email) VALUES ('juan.rodriguez@gmail.com');
+INSERT INTO admin(email) VALUES ('ana.perez@hotmail.com');
+INSERT INTO admin(email) VALUES ('carlos.sanchez@yahoo.com');
+INSERT INTO admin(email) VALUES ('laura.garcia@gmail.com');
+INSERT INTO admin(email) VALUES ('pedro.lopez@hotmail.com');
+INSERT INTO admin(email) VALUES ('maria.martin@yahoo.com');
+INSERT INTO admin(email) VALUES ('jose.fernandez@hotmail.com');
+INSERT INTO admin(email) VALUES ('lucia.gonzalez@gmail.com');
+INSERT INTO admin(email) VALUES ('pablo.ruiz@yahoo.com');
+INSERT INTO admin(email) VALUES ('clara.hernandez@hotmail.com');
