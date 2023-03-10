@@ -262,3 +262,16 @@ td, th {
     border-bottom: #151515 5px solid;
     padding: 10px;
 }
+
+
+.dashboard{
+    margin-left: 280px;
+}
+
+.dietas{
+    width: 97%;
+}
+
+.workouts{
+    width: 99%;
+}
