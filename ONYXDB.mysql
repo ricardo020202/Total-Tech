@@ -43,7 +43,7 @@ CREATE TABLE admin(
 );
 
 CREATE TABLE cliente(
-    email VARCHAR(20) NOT NULL,
+    email VARCHAR(30) NOT NULL,
     peso INT NOT NULL,
     altura DOUBLE NOT NULL,
     edad INT NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE bitacora(
     fecha DATE NOT NULL,
     contenido VARCHAR(2500) NOT NULL,
     entreno VARCHAR(200) NOT NULL,
-    email VARCHAR(20) NOT NULL
+    email VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE programa (
@@ -99,7 +99,7 @@ CREATE TABLE dieta(
     carbohidratos INT NOT NULL,
     micronutrientes VARCHAR(20) NOT NULL,
     macronutrientes VARCHAR(20) NOT NULL,
-    nombre_dieta VARCHAR(30) NOT NULL
+    nombre_dieta VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE alimento(
@@ -117,7 +117,7 @@ CREATE TABLE dieta_alimento(
 CREATE TABLE programa_dieta_cliente(
     id_programa INT NOT NULL,
     id_dieta INT NOT NULL,
-    email VARCHAR(20) NOT NULL
+    email VARCHAR(30) NOT NULL
 );
 
 /*INSERTS - EJERCICIO*/
