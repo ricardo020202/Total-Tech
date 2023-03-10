@@ -84,18 +84,18 @@
                 <li>
                     <p class="admin-rol">Admin</p>
                 </li>
-                <li class="mt-5">
-                    <a href="./adminDasboard.html" class="nav-link text-white">
+                <li class="mt-5 activo rounded">
+                    <a href="#" class="nav-link text-white">
                         <img src="../assets/home-lg-alt 1.png" alt="" class="mx-2"> Home
                     </a>
                 </li>
-                <li class="activo rounded">
-                    <a href="./adminDietas.html" class="nav-link text-white">
+                <li>
+                    <a href="#" class="nav-link text-white">
                         <img src="../assets/bookmark 1 (1).png" alt="" class="mx-2"> Dietas
                     </a>
                 </li>
                 <li>
-                    <a href="./adminWorkouts.html" class="nav-link text-white">
+                    <a href="#" class="nav-link text-white">
                         <img src="../assets/iconoir_gym.png" alt="" class="mx-2"> Workouts
                     </a>
                 </li>
@@ -112,38 +112,41 @@
     </aside>
 
     <main>
+        <!-- table in bootstrap with headers "iddieta", "name", "number of calories", "fat percentage", "carbs", and "protein"
+        each row has a button to edit and delete de row -->
         <div class="table-responsive">
             <table class="table-active">
                 <thead class="table-header">
                     <tr>
-                        <th scope="col">ID Ejercio</th>
+                        <th scope="col">ID Dieta</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Nivel de intensidad</th>
-                        <th scope="col">Categoría</th>
+                        <th scope="col">Calorias</th>
+                        <th scope="col">Grasa</th>
+                        <th scope="col">Carbohidratos</th>
+                        <th scope="col">Proteinas</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
-                        <td class="crud button">
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
                         </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
                         <th scope="row">2</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -151,11 +154,11 @@
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -163,11 +166,11 @@
                     </tr>
                     <tr>
                         <th scope="row">4</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -175,11 +178,11 @@
                     </tr>
                     <tr>
                         <th scope="row">5</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -187,19 +190,28 @@
                     </tr>
                     <tr>
                         <th scope="row">6</th>
-                        <td>Bench Press </td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
                         </td>
                     </tr>
-                    
-
-                    
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Pollo </td>
+                        <td>60</td>
+                        <td>7.72</td>
+                        <td>0</td>
+                        <td>30</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
