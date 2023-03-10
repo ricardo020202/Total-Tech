@@ -1,9 +1,3 @@
-/* Proyecto ONYX - Tecnologico de Monterrey - Campus Queretaro - 2023 */
-/* BASE DE DATOS DE ONYX */
-/* Creado por el equipo de desarrollo de bases de datos de Total-Tech*/
-/*Mike Tena*/
-/*Pablo Arreola*/
-
 DROP DATABASE onyx;
 CREATE DATABASE Onyx;
 USE Onyx;
@@ -29,7 +23,7 @@ CREATE TABLE usuario(
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     contraseña VARCHAR(15) NOT NULL,
-    telefono VARCHAR(15) NOT NULL
+    telefono VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE rol_usuario ( 
@@ -43,9 +37,9 @@ CREATE TABLE admin(
 );
 
 CREATE TABLE cliente(
-    email VARCHAR(20) NOT NULL,
+    email VARCHAR(30) NOT NULL,
     peso INT NOT NULL,
-    altura DOUBLE NOT NULL,
+    altura INT NOT NULL,
     edad INT NOT NULL,
     nivel_actividad varchar(30) NOT NULL,
     objetivo VARCHAR (20) NOT NULL,
@@ -57,9 +51,10 @@ CREATE TABLE cliente(
 
 CREATE TABLE talla(
     id_medida INT NOT NULL,
-    extremidad VARCHAR(50) NOT NULL,
+    extremidad INT NOT NULL,
     medida INT NOT NULL,
-    fecha DATE NOT NULL
+    fecha DATE NOT NULL,
+    email VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE bitacora(
@@ -67,7 +62,7 @@ CREATE TABLE bitacora(
     fecha DATE NOT NULL,
     contenido VARCHAR(2500) NOT NULL,
     entreno VARCHAR(200) NOT NULL,
-    email VARCHAR(20) NOT NULL
+    email VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE programa (
@@ -75,7 +70,6 @@ CREATE TABLE programa (
     frecuencia INT NOT NULL,
     descripcion_programa VARCHAR(200) NOT NULL,
     nombre_programa VARCHAR(20) NOT NULL 
-
 );
 
 CREATE TABLE ejercicio(
@@ -99,7 +93,7 @@ CREATE TABLE dieta(
     carbohidratos INT NOT NULL,
     micronutrientes VARCHAR(20) NOT NULL,
     macronutrientes VARCHAR(20) NOT NULL,
-    nombre_dieta VARCHAR(30) NOT NULL
+    nombre_dieta VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE alimento(
@@ -120,8 +114,6 @@ CREATE TABLE programa_dieta_cliente(
     email VARCHAR(20) NOT NULL
 );
 
-/*INSERTS - EJERCICIO*/
-
 INSERT INTO ejercicio(id_ejercicio, categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('0002','push','novato','pecho','favorece el desarrollo de la musculatura pectoral a través del movimiento de empuje con carga');
 INSERT INTO ejercicio(id_ejercicio, categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('0003','pull','principiante','espalda','favorece el desarrollo de la musculatura de la espalda a través del movimiento de tracción con carga');
 INSERT INTO ejercicio(id_ejercicio, categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('0004','full-body','intermedio','cuerpo completo','favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares');
@@ -131,8 +123,6 @@ INSERT INTO ejercicio(id_ejercicio, categoria, nivel_intensidad, referencia_visu
 INSERT INTO ejercicio(id_ejercicio, categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('0008','pull','novato','bíceps','favorece el desarrollo de la musculatura del bíceps a través del movimiento de tracción con carga');
 INSERT INTO ejercicio(id_ejercicio, categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('0009','push','principiante','hombros','favorece el desarrollo de la musculatura de los hombros a través del movimiento de empuje con carga');
 INSERT INTO ejercicio(id_ejercicio, categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('0010','full-body','intermedio','cuerpo completo','favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares');
-
-/*INSERTS - ROL*/
 
 INSERT INTO rol(id_rol, statusRol, nombreRol) VALUES ('001','on','administrador');
 INSERT INTO rol(id_rol, statusRol, nombreRol) VALUES ('002','on','cliente');
@@ -145,20 +135,28 @@ INSERT INTO rol(id_rol, statusRol, nombreRol) VALUES ('008','off','cliente');
 INSERT INTO rol(id_rol, statusRol, nombreRol) VALUES ('009','on','administrador');
 INSERT INTO rol(id_rol, statusRol, nombreRol) VALUES ('010','off','cliente');
 
-/*INSERTS - USUARIO*/
-
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.gomez@gmail.com','María','Gómez','M3kHd8','+1 (555)123-4567');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('jose.martinez@yahoo.com','José','Martínez','GhT1w7','+52(33)987-6543');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('lucia.perez@hotmail.com','Lucía','Pérez','XcVbN9','+34 911111111');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('juan.sanchez@gmail.com','Juan','Sánchez','AsDfG1','+1 (408)765-4321');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('carlos.lopez@gmail.com','Carlos','López','QwErT7','+52 (55)5555-5555');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('ana.ramirez@hotmail.com','Ana','Ramírez','ZxTyU2','+34 912222222');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pablo.flores@yahoo.com','Pablo','Flores','KjHgF4','+1 (415)123-4567');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('clara.hernandez@gmail.com','Clara','Hernández','VbNmL0','+52(55)1234-5678');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('oscar.ortega@hotmail.com','Óscar','Ortega','PoiUy6','+34 913333333');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('sofia.estrada@yahoo.com','Sofía','Estrada','NmLkJ9','+1 (650)765-4321');
-
-/*INSERTS - ALIMENTO*/
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.gomez@gmail.com','María','Gómez','M3kHd8','+1 (555) 123-4567');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('jose.martinez@yahoo.com','José','Martínez','GhT1w7','+52 (33) 987-6543');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('lucia.perez@hotmail.com','Lucía','Pérez','XcVbN9','+34 911 111 111');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('juan.sanchez@gmail.com','Juan','Sánchez','AsDfG1','+1 (408) 765-4321');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('carlos.lopez@gmail.com','Carlos','López','QwErT7','+52 (55) 5555-5555');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('ana.ramirez@hotmail.com','Ana','Ramírez','ZxTyU2','+34 912 222 222');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pablo.flores@yahoo.com','Pablo','Flores','KjHgF4','+1 (415) 123-4567');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('clara.hernandez@gmail.com','Clara','Hernández','VbNmL0','+52 (55) 1234-5678');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('oscar.ortega@hotmail.com','Óscar','Ortega','PoiUy6','+34 913 333 333');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('sofia.estrada@yahoo.com','Sofía','Estrada','NmLkJ9','+1 (650) 765-4321');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('luisa.mendez@yahoo.com','Luisa','Méndez','L0pKj8','+34 917 777 777'); 
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('david.fernandez@hotmail.com','David','Fernández','ZxAsD5','+1 (408) 111-2222');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('juan.rodriguez@gmail.com','Juan','Rodríguez','aBc123','+34 912 345 678');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('ana.perez@hotmail.com','Ana','Pérez','qWe456','+34 910 111 222');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('carlos.sanchez@yahoo.com','Carlos','Sánchez','zXc789','+34 913 456 789');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('laura.garcia@gmail.com','Laura','García','sEd123','+34 916 777 888');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pedro.lopez@hotmail.com','Pedro','López','dFg456','+34 918 222 333');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.martin@yahoo.com','María','Martín','gHi789','+34 914 777 555');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('jose.fernandez@hotmail.com','José','Fernández','jKl123','+34 915 444 555');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('lucia.gonzalez@gmail.com','Lucía','González','mNo456','+34 919 555 666');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pablo.ruiz@yahoo.com','Pablo','Ruiz','pQr789','+34 917 444 777');
+INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('clara.hernandez@hotmail.com','Clara','Hernández','tUv123','+34 914 222 777');
 
 INSERT INTO alimento(id_alimento, unidad, cantidad, descripcion_alimento) VALUES ('0002','1','200','Pollo asado sin piel');
 INSERT INTO alimento(id_alimento, unidad, cantidad, descripcion_alimento) VALUES ('0003','2','250','Ensalada César con pollo a la parrilla');
@@ -171,18 +169,30 @@ INSERT INTO alimento(id_alimento, unidad, cantidad, descripcion_alimento) VALUES
 INSERT INTO alimento(id_alimento, unidad, cantidad, descripcion_alimento) VALUES ('0010','2','100','Papa cocida sin piel');
 INSERT INTO alimento(id_alimento, unidad, cantidad, descripcion_alimento) VALUES ('0011','3','150','Mango fresco cortado');
 
-/*INSERTS - CLIENTE*/
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('maria.gomez@gmail.com','80','175','35','Moderado','Ganar Masa Muscular','Masculino','90','130','80');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('jose.martinez@yahoo.com','57','163','27','Bajo','Perder Peso','Femenino','40','65','30');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('lucia.perez@hotmail.com','90','182','29','Alto','Ganar Fuerza','Masculino','100','150','70');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('juan.sanchez@gmail.com','55','160','30','Moderado','Perder Grasa','Femenino','35','60','25');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carlos.lopez@gmail.com','75','178','32','Alto','Ganar Masa Muscular','Masculino','85','120','65');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('ana.ramirez@hotmail.com','58','165','24','Bajo','Perder Peso','Femenino','40','70','30');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('pablo.flores@yahoo.com','80','182','29','Alto','Ganar Fuerza','Masculino','95','140','75');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('clara.hernandez@gmail.com','62','170','28','Moderado','Perder Grasa','Femenino','45','75','30');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('oscar.ortega@hotmail.com','80','175','35','Moderado','Ganar Masa Muscular','Masculino','90','130','80');
+INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('sofia.estrada@yahoo.com','57','163','27','Bajo','Perder Peso','Femenino','40','65','30');
 
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('juan.lopez@gmail.com','80','175','35','Moderado','Ganar Masa Muscular','Masculino','90','130','80');
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('maria.rodriguez@yahoo.com','57','163','27','Bajo','Perder Peso','Femenino','40','65','30');
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carlos.martinez@gmail.com','90','182','29','Alto','Ganar Fuerza','Masculino','100','150','70');
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('ana.gonzalez@hotmail.com','55','160','30','Moderado','Perder Grasa','Femenino','35','60','25');
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('jose.perez@gmail.com','75','178','32','Alto','Ganar Masa Muscular','Masculino','85','120','65');
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('laura.hernandez@yahoo.com','58','165','24','Bajo','Perder Peso','Femenino','40','70','30');
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('daniel.lopez@hotmail.com','80','182','29','Alto','Ganar Fuerza','Masculino','95','140','75');
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carmen.perez@gmail.com','62','170','28','Moderado','Perder Grasa','Femenino','45','75','30');
+INSERT INTO admin(email) VALUES ('luisa.mendez@yahoo.com');
+INSERT INTO admin(email) VALUES ('david.fernandez@hotmail.com');
+INSERT INTO admin(email) VALUES ('juan.rodriguez@gmail.com');
+INSERT INTO admin(email) VALUES ('ana.perez@hotmail.com');
+INSERT INTO admin(email) VALUES ('carlos.sanchez@yahoo.com');
+INSERT INTO admin(email) VALUES ('laura.garcia@gmail.com');
+INSERT INTO admin(email) VALUES ('pedro.lopez@hotmail.com');
+INSERT INTO admin(email) VALUES ('maria.martin@yahoo.com');
+INSERT INTO admin(email) VALUES ('jose.fernandez@hotmail.com');
+INSERT INTO admin(email) VALUES ('lucia.gonzalez@gmail.com');
+INSERT INTO admin(email) VALUES ('pablo.ruiz@yahoo.com');
+INSERT INTO admin(email) VALUES ('clara.hernandez@hotmail.com');
 
-/*INSERTS - DIETA*/
 
 INSERT INTO `dieta`(`id_dieta`, `no_calorias`, `proteinas`, `grasas`, `carbohidratos`, `micronutrientes`, `macronutrientes`, `nombre_dieta`) VALUES ('001','1300','250','43','75','Vitamina A','Grasa','Spaghetti'); 
 INSERT INTO dieta(id_dieta, no_calorias, proteinas, grasas, carbohidratos, micronutrientes, macronutrientes, nombre_dieta) VALUES ('002','1200','60','10','130','Vitamina C','Grasa','Ensalada de Quinoa');
@@ -193,11 +203,7 @@ INSERT INTO dieta(id_dieta, no_calorias, proteinas, grasas, carbohidratos, micro
 INSERT INTO dieta(id_dieta, no_calorias, proteinas, grasas, carbohidratos, micronutrientes, macronutrientes, nombre_dieta) VALUES ('007','1600','80','30','120','Cromo','Carbohidrato','Ensalada de salmón y espinacas');
 INSERT INTO dieta(id_dieta, no_calorias, proteinas, grasas, carbohidratos, micronutrientes, macronutrientes, nombre_dieta) VALUES ('008','2000','80','50','150','Vitamina E','Grasa','Batido de frutas y verduras');
 
-/*INSERTS - DIETA_ALIMENTO*/
-
-INSERT INTO dieta_alimento(id_dieta,id_alimento) VALUES('3','2');
-
-/*INSERTS - BITACORA*/
+INSERT INTO `dieta_alimento`(`id_dieta`, `id_alimento`) VALUES ('3','2');
 
 INSERT INTO `bitacora`(`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`) VALUES ('1','2023-03-10','Realicé una sesión de entrenamiento con mi entrenador personal.','Entrenamiento de fuerza en el gimnasio','maria.gomez@gmail.com');
 INSERT INTO `bitacora`(`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`) VALUES ('2','2023-03-10','Realicé una caminata al aire libre en el parque.','Caminata al aire libre','jose.martinez@yahoo.com');
@@ -209,36 +215,3 @@ INSERT INTO `bitacora`(`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`) 
 INSERT INTO `bitacora`(`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`) VALUES ('8','2023-03-10','Realicé una caminata al aire libre en el parque.','Caminata al aire libre','clara.hernandez@gmail.com');
 INSERT INTO `bitacora`(`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`) VALUES ('9','2023-03-10','Realicé una sesión de entrenamiento con mi entrenador personal.','Entrenamiento de fuerza en el gimnasio','oscar.ortega@hotmail.com');
 INSERT INTO `bitacora`(`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`) VALUES ('10','2023-03-10','Realicé una sesión de entrenamiento en casa.','Entrenamiento de cardio en casa','sofia.estrada@yahoo.com');
-
-/*INSERTS - PROGRAMA*/
-
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('001','4','Programa de fuerza','Programa de fuerza para principiantes');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('002','3','Programa de hipertrofia','Programa de entrenamiento para aumentar el tamaño muscular');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('003','5','Programa de resistencia','Programa de entrenamiento para mejorar la capacidad aeróbica');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('004','6','Programa de fuerza y resistencia','Programa de entrenamiento para mejorar la fuerza y la resistencia muscular');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('005','4','Programa de flexibilidad','Programa de entrenamiento para mejorar la movilidad y flexibilidad muscular');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('006','5','Programa de pérdida de peso','Programa de entrenamiento para reducir el peso corporal y quemar grasa');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('007','3','Programa de entrenamiento funcional','Programa de entrenamiento para mejorar la coordinación, la estabilidad y el equilibrio muscular');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('008','4','Programa de entrenamiento en casa','Programa de entrenamiento para realizar en casa sin necesidad de equipamiento especial');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('009','5','Programa de entrenamiento en grupo','Programa de entrenamiento para realizar en grupo y motivarse mutuamente');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('010','6','Programa de entrenamiento de alta intensidad','Programa de entrenamiento de corta duración y alta intensidad para mejorar la resistencia y el rendimiento cardiovascular');
-INSERT INTO programa(id_programa, frecuencia, nombre_programa, descripcion_programa) VALUES ('011','3','Programa de entrenamiento para corredores','Programa de entrenamiento específico para corredores y mejorar su rendimiento en carreras');
-
-/*INSERTS -  TALLA*/
-
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('001','Brazo','30','2023-03-10');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('002','Brazo','36','2023-03-10');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('003','Pierna','56','2023-03-10');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('004','Pierna','61','2023-03-11');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('005','Cintura','85','2023-03-11');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('006','Cadera','100','2023-03-11');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('007','Brazo','33','2023-03-11');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('008','Brazo','27','2023-03-11');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('009','Pecho','95','2023-03-11');
-INSERT INTO talla(id_medida, extremidad, medida, fecha) VALUES ('010','Espalda','40','2023-03-11');
-
-/*INSERTS - ADMINS*/
-
-INSERT INTO admin(email) VALUES ('maria.gomez@gmail.com');
-INSERT INTO admin(email) VALUES ('sofia.estrada@yahoo.com');
-INSERT INTO admin(email) VALUES ('rcortese@tec.mx');
