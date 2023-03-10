@@ -190,7 +190,7 @@ li{
 }
 
 #btnstart:hover{
-    background-color: #222222;
+    background-color: #2a2a2a;
     color: #FFFFFF;
 }
 
@@ -217,6 +217,15 @@ li{
 #orderbybtn
 {
     background-color:#ffffff;
+    color: #000000;
+    border-radius: 30px;
+    margin: 20px;
+}
+
+
+#orderbybtn:hover
+{
+    background-color:#D2CA03;
     color: #000000;
     border-radius: 30px;
     margin: 20px;
