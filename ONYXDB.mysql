@@ -29,7 +29,7 @@ CREATE TABLE usuario(
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     contraseña VARCHAR(15) NOT NULL,
-    telefono VARCHAR(15) NOT NULL
+    telefono VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE rol_usuario ( 
