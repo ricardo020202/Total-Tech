@@ -192,3 +192,11 @@ li {
 .spacer {
     height: 100px;
 }
+
+.containerBitacora {
+    padding: 1%;
+    background-color: grey;
+    border: solid;
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+}	
