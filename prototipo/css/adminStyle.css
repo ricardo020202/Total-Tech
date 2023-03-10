@@ -242,24 +242,3 @@ button:active {
 a{
     text-decoration: none;
 }
-
-/* ================= ADMIN DIETA ================= */
-table {
-    width: 80%;
-    border-collapse: collapse;
-    margin-left: 300px;
-    margin-top: 150px;
-    text-align: center;
-}
-
-tbody{
-    background-color: #F0F9FF;
-    color: #000000;
-}
-
-td, th {
-    border-top: #151515 5px solid;
-    border-bottom: #151515 5px solid;
-    padding: 10px;
-    /*redondear bordes*/
-}
