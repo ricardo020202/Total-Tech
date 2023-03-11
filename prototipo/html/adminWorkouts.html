@@ -131,17 +131,73 @@
     </aside>
 
     <main class="workouts">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-dark">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo entrenamiento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-dark">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Frecuencia</label>
+                                <input type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Descripcion</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Ejercicio 1</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Ejercicio 2</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Ejercicio 3</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <button type="submit" class="btn bg-custom">Submit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-custom">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table-active">
                 <thead class="table-header">
                     <tr>
+                        <th scope="col">Entrenamientos</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"><button type="button" class="btn bg-custom" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Nuevo
+                            </button>
+                        </th>
+                    </tr>
+                    <tr>
                         <th scope="col">ID Ejercio</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Nivel de intensidad</th>
-                        <th scope="col">Categoría</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Frecuencia</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -150,9 +206,9 @@
                         <td>Bench Press </td>
                         <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum
                             deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>3 dias a la semana</td>
+                        <td></td>
+                        <td></td>
                         <td class="crud button">
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -163,9 +219,9 @@
                         <td>Bench Press </td>
                         <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum
                             deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>3 dias a la semana</td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -176,9 +232,9 @@
                         <td>Bench Press </td>
                         <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum
                             deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>3 dias a la semana</td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -189,9 +245,9 @@
                         <td>Bench Press </td>
                         <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum
                             deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>3 dias a la semana</td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -202,9 +258,9 @@
                         <td>Bench Press </td>
                         <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum
                             deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>3 dias a la semana</td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>
@@ -215,9 +271,9 @@
                         <td>Bench Press </td>
                         <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste optio similique culpa illum
                             deleniti</td>
-                        <td>Pecho</td>
-                        <td>3</td>
-                        <td>Fuerza</td>
+                        <td>3 dias a la semana</td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <button type="button" class="btn btn-primary">Editar</button>
                             <button type="button" class="btn btn-danger">Eliminar</button>

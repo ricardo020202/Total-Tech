@@ -125,108 +125,79 @@ body {
     .navbar-toggler.collapsed~.navbar-collapse {
         transition: left 500ms ease-in-out;
     }
-    
+
 }
 
-.accordion{
+.accordion {
     color: #FFFFFF;
 }
 
-.accordion-item{
+.accordion-item {
     background-color: #151515;
     color: #FFFFFF;
 }
 
-.accordion-button{
+.accordion-button {
     background-color: rgb(43, 43, 43);
     color: #FFFFFF;
     font-weight: 700;
 }
 
-.accordion-button:hover{
+.accordion-button:hover {
     background-color: #151515;
     color: #FFFFFF;
 }
 
-.accordion-button:focus{
+.accordion-button:focus {
     background-color: rgb(43, 43, 43);
     color: #FFFFFF;
 }
 
-.accordion-button:not(.collapsed){
+.accordion-button:not(.collapsed) {
     background-color: rgb(43, 43, 43);
     color: #FFFFFF;
 }
 
-li{
+li {
     list-style: none;
     color: #FFFFFF;
 }
 
-.card{
+.card {
     margin: 30px;
     background-color: #151515;
     border-radius: 20px;
 }
 
-.container{
-    background-color: #1d1d1d;
+.container {
     border-radius: 30px;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-#titulopagina{
+#titulopagina {
     margin: 20px;
 }
 
-#btnstart{
+#btnstart {
     background-color: #D2CA03;
     color: #000000;
     margin: 10px;
     border-radius: 40px;
-    width: 65%;    
+    width: 65%;
 }
 
 #btnstart:hover{
-    background-color: #2a2a2a;
+    background-color: #222222;
     color: #FFFFFF;
 }
 
-.masinfo
-{
+.masinfo {
     color: #D2CA03;
     font-size: 12px;
 }
 
-.masinfo:hover
-{
+.masinfo:hover {
     color: #ffffff;
-}
-
-.spacer {
-    height: 100px;
-}
-
-#orderby
-{
-    float:right;
-}
-
-#orderbybtn
-{
-    background-color:#ffffff;
-    color: #000000;
-    border-radius: 30px;
-    margin: 20px;
-}
-
-
-#orderbybtn:hover
-{
-    background-color:#D2CA03;
-    color: #000000;
-    border-radius: 30px;
-    margin: 20px;
 }

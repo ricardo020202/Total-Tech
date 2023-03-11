@@ -46,6 +46,11 @@ body {
   z-index: 2;
 }
 
+.bg-custom1 {
+  background-color: #151515;
+  z-index: 2;
+}
+
 .bg-footer {
   background-color: black;
   z-index: 2;
@@ -122,7 +127,7 @@ body {
     transition: left 300ms ease-in-out;
   }
 
-  .navbar-toggler.collapsed ~ .navbar-collapse {
+  .navbar-toggler.collapsed~.navbar-collapse {
     transition: left 500ms ease-in-out;
   }
 }
@@ -205,8 +210,10 @@ li {
 }
 
 .card-container {
-  height: 485px; /* Altura del contenedor */
-  overflow-y: auto; /* Desplazamiento vertical */
+  height: 100%;
+  /* Altura del contenedor */
+  overflow-y: auto;
+  /* Desplazamiento vertical */
   color: #000000;
 }
 
@@ -247,4 +254,42 @@ li {
 
 .createButton:hover {
   background-color: #b2ac06;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+a {
+  color: #d2ca03;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b2ac06;
+}
+
+.ig{
+  width: 40px;
+}
+
+.fb{
+  width: 60px;
+}
+
+.tw{
+  width: 45px;
 }
