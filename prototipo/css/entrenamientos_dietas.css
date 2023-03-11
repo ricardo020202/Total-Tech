@@ -188,7 +188,7 @@ li {
     width: 65%;
 }
 
-#btnstart:hover{
+#btnstart:hover {
     background-color: #222222;
     color: #FFFFFF;
 }
@@ -200,4 +200,25 @@ li {
 
 .masinfo:hover {
     color: #ffffff;
+}
+
+a {
+    color: #d2ca03;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #b2ac06;
+}
+
+.ig {
+    width: 40px;
+}
+
+.fb {
+    width: 60px;
+}
+
+.tw {
+    width: 45px;
 }
