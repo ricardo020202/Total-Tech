@@ -1,0 +1,65 @@
+Tablas correspondientes (Modelo relacional):
+Privilegios( Id_cu, nombreCu)
+	PK(Id_cu)
+
+Rol( Id_rol, nombre, status)
+	PK(Id_rol)
+
+Rol - Privilegios(Id_rol, Id_cu)
+	PK(Id_rol, Id_cu)
+	FK(Id_rol) REFERENCES Rol(Id_rol)
+FK(Id_cu) REFERENCES Función(Id_cu)
+
+Usuario(email, nombre, apellido, contraseña, teléfono)
+	PK(email)
+
+Rol - Usuario(Id_rol, email, fecha, status)
+	PK(Id_rol, email)
+	FK(Id_rol) REFERENCES Rol(Id_rol)
+FK(email) REFERENCES Usuario(email)
+
+
+
+Administrador(email)
+	PK(email)
+	FK(email) REFERENCES usuario(email)
+
+Cliente(email, peso, altura, edad, nivel_de_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadilla)
+	PK(email)
+	FK(email) REFERENCES usuario(email)
+
+Talla(Id_medida, extremidad, medida, fecha, email)
+	PK(Id_medida)
+	FK(email) REFERENCES usuario(email)
+
+Bitácora(id_bitacora, entreno, contenido, fecha, email) 
+	PK(id_bitacora)
+FK(email) REFERENCES usuario(email)
+
+Programa(Id_programa, frecuencia, nombre, descripción)
+	PK(Id_programa)
+
+Ejercicio(Id_ejercicio, categoria, nivel_de_intensidad, referencia_visual, descripción)
+	PK(Id_ejercicio)
+
+Programa - Ejercicio(Id_programa, Id_ejercicio)
+	PK(Id_programa, Id_ejercicio)
+FK(Id_programa) REFERENCES Programa(Id_programa)
+FK(Id_ejercicio) REFERENCES Ejercicio(Id_ejercicio)
+
+Dieta(Id_dieta, nombre, numero_de_calorias, proteinas, grasas, carbohidratos, micronutrientes, macronutrientes)
+	PK(Id_dieta)
+
+Alimento(Id_alimento, descripcion , unidad, cantidad)
+	PK(Id_alimento)
+
+Dieta - Alimento(Id_dieta, Id_alimento)
+	PK(Id_dieta, Id_alimento)
+FK(Id_dieta) REFERENCES Dieta(Id_dieta)
+FK(Id_alimento) REFERENCES Alimento(Id_alimento)
+
+Programa - Dieta - Cliente(Id_programa, Id_dieta, email)
+	PK(Id_programa, Id_dieta, id_cliente)
+FK(Id_programa) REFERENCES Programa(Id_programa)
+FK(Id_dieta) REFERENCES Dieta(Id_dieta)
+FK(email) REFERENCES Usuario(email)
