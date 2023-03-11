@@ -127,7 +127,7 @@ body {
     transition: left 300ms ease-in-out;
   }
 
-  .navbar-toggler.collapsed ~ .navbar-collapse {
+  .navbar-toggler.collapsed~.navbar-collapse {
     transition: left 500ms ease-in-out;
   }
 }
@@ -210,8 +210,10 @@ li {
 }
 
 .card-container {
-  height: 100%; /* Altura del contenedor */
-  overflow-y: auto; /* Desplazamiento vertical */
+  height: 100%;
+  /* Altura del contenedor */
+  overflow-y: auto;
+  /* Desplazamiento vertical */
   color: #000000;
 }
 
@@ -254,7 +256,7 @@ li {
   background-color: #b2ac06;
 }
 
-.overlay { 
+.overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -266,8 +268,28 @@ li {
   opacity: 0;
 }
 
-.overlay:target{
-    visibility: visible;
-    opacity: 1;
-  }
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
 
+a {
+  color: #d2ca03;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b2ac06;
+}
+
+.ig{
+  width: 40px;
+}
+
+.fb{
+  width: 60px;
+}
+
+.tw{
+  width: 45px;
+}
