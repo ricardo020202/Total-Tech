@@ -46,6 +46,11 @@ body {
   z-index: 2;
 }
 
+.bg-custom1 {
+  background-color: #151515;
+  z-index: 2;
+}
+
 .bg-footer {
   background-color: black;
   z-index: 2;
