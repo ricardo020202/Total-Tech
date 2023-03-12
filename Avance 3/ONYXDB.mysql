@@ -345,6 +345,7 @@ INSERT INTO programa_ejercicio(id_programa, id_ejercicio) VALUES (2,4);
 
 /* DEFINICION DE LAS LLAVES FORANEAS */
 
+
 ALTER TABLE rol_privilegio ADD CONSTRAINT fk_rol_privilegio_rol FOREIGN KEY (id_rol) REFERENCES rol(id_rol);
 ALTER TABLE rol_privilegio ADD CONSTRAINT fk_rol_privilegio_privilegio FOREIGN KEY (id_cu) REFERENCES privilegio(id_cu);
 ALTER TABLE rol_usuario ADD CONSTRAINT fk_rol_usuario_rol FOREIGN KEY (id_rol) REFERENCES rol(id_rol);
