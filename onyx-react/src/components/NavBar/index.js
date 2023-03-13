@@ -33,7 +33,6 @@ const NavBar = ({ toggle }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
                         <NavDropdown title="Workouts" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Catálogo de Ejercicios</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Catálogo de Entrenamientos</NavDropdown.Item>
@@ -58,7 +57,7 @@ const NavBar = ({ toggle }) => {
                     />
                 </Form>
                 <Nav.Link href="login">Login</Nav.Link>
-                <Nav.Link href="register"><Button type="button" variant='light'>Sign Up</Button></Nav.Link>
+                <Nav.Link href="register"><Button type="button" variant='light rounded-pill'>Sign Up</Button></Nav.Link>
 
             </Container>
         </Navbar>
