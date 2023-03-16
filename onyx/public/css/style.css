@@ -1,7 +1,7 @@
 body {
     background-color: #151515;
-    font-family: 'DM Sans', sans-serif;
-    color: #FFFFFF;
+    font-family: "DM Sans", sans-serif;
+    color: #ffffff;
     height: 100vh;
 }
 
@@ -42,7 +42,12 @@ body {
 }
 
 .bg-custom {
-    background-color: #D2CA03;
+    background-color: #d2ca03;
+    z-index: 2;
+}
+
+.bg-custom1 {
+    background-color: #151515;
     z-index: 2;
 }
 
@@ -52,16 +57,16 @@ body {
 }
 
 .text-custom {
-    color: #D2CA03;
+    color: #d2ca03;
 }
 
 .navbar-brand {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: bold;
 }
 
 .nav-item {
-    font-family: 'DM Sans', sans-serif;
+    font-family: "DM Sans", sans-serif;
 }
 
 .search-bar {
@@ -85,7 +90,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: start;
-    color: #FFFFFF;
+    color: #ffffff;
     z-index: 1;
 }
 
@@ -96,7 +101,7 @@ body {
 
 .subHeader {
     font-weight: 700;
-    color: #D2CA03;
+    color: #d2ca03;
 }
 
 @media (max-width: 992px) {
@@ -109,7 +114,7 @@ body {
         padding-bottom: 15px;
         width: 75%;
         height: 100%;
-        background-color: #D2CA03;
+        background-color: #d2ca03;
     }
 
     .navbar-collapse.collapsing {
@@ -125,46 +130,45 @@ body {
     .navbar-toggler.collapsed~.navbar-collapse {
         transition: left 500ms ease-in-out;
     }
-
 }
 
 .accordion {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .accordion-item {
     background-color: #151515;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .accordion-button {
     background-color: rgb(43, 43, 43);
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 700;
 }
 
 .accordion-button:hover {
     background-color: #151515;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .accordion-button:focus {
     background-color: rgb(43, 43, 43);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .accordion-button:not(.collapsed) {
     background-color: rgb(43, 43, 43);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 li {
     list-style: none;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .buttonChido {
-    background-color: #D2CA03;
+    background-color: #d2ca03;
     color: black;
     border-radius: 10em;
     font-size: 17px;
@@ -173,105 +177,119 @@ li {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     border: 1px solid black;
-    box-shadow: 0 0 0 0 black;
+    box-shadow: 0 0 0 0 white;
     position: absolute;
-    top: 20%;
+    top: 12%;
     left: 85%;
 }
 
-button:hover {
+.buttonChido:hover {
     transform: translateY(-4px) translateX(-2px);
-    box-shadow: 2px 5px 0 0 black;
+    box-shadow: 2px 5px 0 0 white;
 }
 
-
-button:active {
+.buttonChido:active {
     transform: translateY(2px) translateX(1px);
     box-shadow: 0 0 0 0 black;
-}
-
-
-.sidebar {
-    background-color: #383838;
-    color: #FFFFFF;
-    width: 280px;
-    height: 100vh;
-    position: fixed;
-}
-
-.admin-rol {
-    font-size: 13px;
-    color: #D2CA03;
-}
-
-.side-link:active{
-    background-color: #D2CA03;
-    color: black;
-}
-
-.activo{
-    background-color: #D2CA03;
-    color: black;
 }
 
 .spacer {
     height: 100px;
 }
 
-.bg-users {
-    background-color: #F0F9FF;
+.containerBitacora {
+    padding: 1%;
+    background-color: grey;
+    border: solid;
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+    height: 70%;
+    width: 95%;
+    position: absolute;
+    left: 2%;
 }
 
-.bg-dietas {
-    background-color: #FEF6FB;
-}
-
-.bg-workouts {
-    background-color: #FEFBEC;
-}
-
-.bg-users1{
-    background-color: #FEAF00;
-}
-
-.number {
-    font-size: 50px;
-    font-weight: 700;
-}
-
-a{
-    text-decoration: none;
-}
-
-/* ================= ADMIN DIETA ================= */
-table {
-    width: 80%;
-    border-collapse: collapse;
-    margin-left: 300px;
-    margin-top: 150px;
-    text-align: center;
-}
-
-tbody{
-    background-color: #F0F9FF;
+.card-container {
+    height: 100%;
+    /* Altura del contenedor */
+    overflow-y: auto;
+    /* Desplazamiento vertical */
     color: #000000;
 }
 
-td, th {
-    border-top: #151515 5px solid;
-    border-bottom: #151515 5px solid;
-    padding: 10px;
+.card {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
 }
 
-
-.dashboard{
-    margin-left: 280px;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.dietas{
-    width: 97%;
+.createButton {
+    border: 2px solid #000000;
+    background-color: #d2ca03;
+    border-radius: 0.9em;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+    position: absolute;
+    right: 10%;
+    top: 90%;
 }
 
-.workouts{
-    width: 99%;
+.createButton span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+}
+
+.createButton:hover {
+    background-color: #b2ac06;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+a {
+    color: #d2ca03;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #b2ac06;
+}
+
+.ig {
+    width: 40px;
+}
+
+.fb {
+    width: 60px;
+}
+
+.tw {
+    width: 45px;
 }
