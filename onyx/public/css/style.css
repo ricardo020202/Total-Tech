@@ -5,6 +5,10 @@ body {
     height: 100vh;
 }
 
+nav {
+    height: 55px;
+}
+
 .rectangulo {
     background-color: #151515;
     width: 90px;
