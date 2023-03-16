@@ -35,7 +35,7 @@ const NavBar = ({ toggle }) => {
                         <Nav.Link href="#home">Home</Nav.Link>
                         <NavDropdown title="Workouts" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Catálogo de Ejercicios</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Catálogo de Entrenamientos</NavDropdown.Item>
+                            <NavDropdown.Item href="/catEntrenamientos">Catálogo de Entrenamientos</NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Alimentación" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Dietas para ti</NavDropdown.Item>

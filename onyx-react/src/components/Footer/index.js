@@ -52,7 +52,7 @@ const Footer = () => {
                     </Container>
                     <Container className="row">
                         <Container className="col">
-                            <p className="text-center">
+                            <p className="text-center rights">
                                 © 2023 Onyx. All rights reserved.
                             </p>
                         </Container>
