@@ -6,4 +6,6 @@ const onyxController = require("../controllers/onyx");
 
 router.get("/", onyxController.getHome);
 
+router.get("/admindashboard", onyxController.getAdminDashboard);
+
 module.exports = router;
