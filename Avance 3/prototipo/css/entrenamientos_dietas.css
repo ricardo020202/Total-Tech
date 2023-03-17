@@ -238,3 +238,7 @@ a:hover {
     height: 200px;
     object-fit: cover;
 }
+
+.icon {
+    width: 20px;
+}
