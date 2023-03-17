@@ -93,7 +93,6 @@
         <br>
         <br>
         <h2 id="titulopagina" style="margin-left: 3%">Bitácora</h2>
-        <div class="containerBitacora">
             <div class="card-container">
                 <div id="calendario">
                     <div id="anterior" onclick="mesantes()"></div>
@@ -111,8 +110,9 @@
                     <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
                     <div id="buscafecha">
                       <form action="#" name="buscar">
-                        <p>Buscar ... MES
+                        <p>Buscar:       MES
                           <select name="buscames">
+                            <option hidden selected>Selecciona un mes</option>
                             <option value="0">Enero</option>
                             <option value="1">Febrero</option>
                             <option value="2">Marzo</option>
@@ -126,15 +126,15 @@
                             <option value="10">Noviembre</option>
                             <option value="11">Diciembre</option>
                           </select>
-                        ... AÑO ...
+                             , AÑO     ,
                           <input type="text" name="buscaanno" maxlength="4" size="4" />
-                        ... 
+                             
                           <input type="button" value="BUSCAR" onclick="mifecha()" />
                         </p>
                       </form>
                     </div>
             </div>
-          </div>
+
           <br>
           <button class="createButton">
             <span>
