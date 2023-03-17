@@ -196,6 +196,12 @@ li {
 .spacer {
   height: 100px;
 }
+.bitspacer {
+  height: 55px;
+}
+.calspacer {
+  height: 5px;
+}
 
 .containerBitacora {
   padding: 1%;
@@ -203,9 +209,9 @@ li {
   border: solid;
   border-radius: 10px;
   border-bottom: 1px solid black;
-  height: 70%;
-  width: 95%;
-  position: absolute;
+  height: 50%;
+  width: 70%;
+  position: relative;
   left: 2%;
 }
 
@@ -239,9 +245,9 @@ li {
   padding: 0.8em 1.2em 0.8em 1em;
   transition: all ease-in-out 0.2s;
   font-size: 16px;
-  position: absolute;
-  right: 10%;
-  top: 90%;
+  position: relative;
+  float: right;
+  margin-right: 4%;
 }
 
 .createButton span {
@@ -311,3 +317,34 @@ a:hover {
 .datos {
   width: 50%;
 }
+
+/* CSS de calendario */
+* { margin: auto; }
+/*cabecera de la página*/
+/*div principal del calendario*/
+#calendario { border: 4px double black ; max-width: 536px; 
+              background-color:#fffafa; text-align: center; }
+/*tabla del calendario*/
+#diasc { border: 1px solid black; border-collapse: 
+         separate; border-spacing: 4px; }
+#diasc th,#diasc td { font: normal 16pt arial; width: 70px; height: 38px; cursor: default; }
+#diasc th { color: #000000; background-color: #d2ca03 }
+#diasc td { color: #492736; background-color: #9bf5ff }
+/*línea de la fecha actual*/
+#fechaactual { font: bold 16pt arial; padding: 0.4em }
+#fechaactual i { cursor: pointer ; }
+#fechaactual i:hover { color: #b2ac06; text-decoration: none; }
+/*formulario de busqueda de fechas*/
+#buscafecha { background-color: #d2ca03; color: #000000; padding: 5px }
+#buscafecha select, #buscafecha input  { background-color: #ffffff; 
+            color: #000000; font: bold 12pt arial;  }
+#buscafecha [type=text]  { text-align: center; }
+#buscafecha  [type=button] { cursor: pointer; }
+/*cabecera del calendario*/ 
+#anterior { float: left; width: 100px; font: bold 16pt arial;
+          padding: 0.5em 0.1em; cursor: pointer ; }
+#posterior { float: right; width: 100px; font: bold 16pt arial; 
+          padding: 0.5em 0.1em; cursor: pointer ;}
+#anterior:hover {color: #b2ac06; text-decoration: none;}
+#posterior:hover {color: #b2ac06; text-decoration: none;}
+#titulos { font: normal 20pt "arial black"; padding: 0.2em; }
