@@ -93,57 +93,57 @@
         <br>
         <br>
         <h2 id="titulopagina" style="margin-left: 3%">Bitácora</h2>
-            <div class="card-container">
-                <div id="calendario">
-                    <div id="anterior" onclick="mesantes()"></div>
-                    <div id="posterior" onclick="mesdespues()"></div>
-                    <h2 id="titulos"></h2>
-                    <table id="diasc">
-                      <tr id="fila0"><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
-                      <tr id="fila1"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                      <tr id="fila2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                      <tr id="fila3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                      <tr id="fila4"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                      <tr id="fila5"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                      <tr id="fila6"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    </table>
-                    <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
-                    <div id="buscafecha">
-                      <form action="#" name="buscar">
-                        <p>Buscar:       MES
-                          <select name="buscames">
-                            <option hidden selected>Selecciona un mes</option>
-                            <option value="0">Enero</option>
-                            <option value="1">Febrero</option>
-                            <option value="2">Marzo</option>
-                            <option value="3">Abril</option>
-                            <option value="4">Mayo</option>
-                            <option value="5">Junio</option>
-                            <option value="6">Julio</option>
-                            <option value="7">Agosto</option>
-                            <option value="8">Septiembre</option>
-                            <option value="9">Octubre</option>
-                            <option value="10">Noviembre</option>
-                            <option value="11">Diciembre</option>
-                          </select>
-                             , AÑO     ,
-                          <input type="text" name="buscaanno" maxlength="4" size="4" />
-                             
-                          <input type="button" value="BUSCAR" onclick="mifecha()" />
+        <div class="card-container">
+            <div id="calendario">
+                <div id="anterior" onclick="mesantes()"></div>
+                <div id="posterior" onclick="mesdespues()"></div>
+                <h2 id="titulos"></h2>
+                <table id="diasc">
+                    <tr id="fila0"><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+                    <tr id="fila1"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila4"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila5"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila6"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </table>
+                <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
+                <div id="buscafecha">
+                    <form action="#" name="buscar">
+                        <p>Buscar: MES
+                            <select name="buscames">
+                                <option hidden selected>Selecciona un mes</option>
+                                <option value="0">Enero</option>
+                                <option value="1">Febrero</option>
+                                <option value="2">Marzo</option>
+                                <option value="3">Abril</option>
+                                <option value="4">Mayo</option>
+                                <option value="5">Junio</option>
+                                <option value="6">Julio</option>
+                                <option value="7">Agosto</option>
+                                <option value="8">Septiembre</option>
+                                <option value="9">Octubre</option>
+                                <option value="10">Noviembre</option>
+                                <option value="11">Diciembre</option>
+                            </select>
+                            , AÑO ,
+                            <input type="text" name="buscaanno" maxlength="4" size="4" />
+
+                            <input type="button" value="BUSCAR" onclick="mifecha()" />
                         </p>
-                      </form>
-                    </div>
+                    </form>
+                </div>
             </div>
 
-          <br>
-          <button class="createButton">
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
-                </svg> Create
-            </span>
-        </button>
+            <br>
+            <button class="createButton">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
+                    </svg> Create
+                </span>
+            </button>
     </main>
 
     <!-- JS Bootstrap -->
