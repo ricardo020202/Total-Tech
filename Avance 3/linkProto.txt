@@ -1,0 +1,8 @@
+githuib pages: https://ricardo020202.github.io/prototipo-ONYX/
+
+Rutas Para admin:
+
+- /html/adminDashboard.html
+- /html/adminWorkouts.html
+- /html/adminDietas.html
+- /html/adminUsers.html
