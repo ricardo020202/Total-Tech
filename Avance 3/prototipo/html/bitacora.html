@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS Bootsrap -->
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
@@ -15,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Bitácora</title>
 
     <!-- Calendario -->
@@ -88,11 +90,10 @@
     </header>
 
     <main>
-        <br>
-        <br>
-        <br>
-        <br>
+
+        <div class="bitspacer"></div>
         <h2 id="titulopagina" style="margin-left: 3%">Bitácora</h2>
+        <div class="calspacer"></div>
         <div class="card-container">
             <div id="calendario">
                 <div id="anterior" onclick="mesantes()"></div>
@@ -129,14 +130,14 @@
                             , AÑO ,
                             <input type="text" name="buscaanno" maxlength="4" size="4" />
 
-                            <input type="button" value="BUSCAR" onclick="mifecha()" />
+                            <input type="button" value="BUSCAR" onclick="mifecha()" style="background-color: rgb(186, 186, 186);" />
                         </p>
                     </form>
                 </div>
             </div>
-
-            <br>
-            <button class="createButton">
+            <div class="container"></div>
+            <!-- Boton modal para popup -->
+            <button type="button" class="createButton" data-toggle="modal" data-target="#myModal">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                         <path fill="none" d="M0 0h24v24H0z"></path>
@@ -144,6 +145,32 @@
                     </svg> Create
                 </span>
             </button>
+
+            <!-- Modal -->
+
+            
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+            
     </main>
 
     <!-- JS Bootstrap -->

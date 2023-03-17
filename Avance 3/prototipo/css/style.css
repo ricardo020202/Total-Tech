@@ -196,6 +196,12 @@ li {
 .spacer {
   height: 100px;
 }
+.bitspacer {
+  height: 55px;
+}
+.calspacer {
+  height: 5px;
+}
 
 .containerBitacora {
   padding: 1%;
@@ -239,9 +245,9 @@ li {
   padding: 0.8em 1.2em 0.8em 1em;
   transition: all ease-in-out 0.2s;
   font-size: 16px;
-  position: absolute;
-  right: 10%;
-  top: 90%;
+  position: relative;
+  float: right;
+  margin-right: 4%;
 }
 
 .createButton span {
@@ -303,7 +309,7 @@ a:hover {
 /*tabla del calendario*/
 #diasc { border: 1px solid black; border-collapse: 
          separate; border-spacing: 4px; }
-#diasc th,#diasc td { font: normal 16pt arial; width: 70px; height: 38px; cursor: pointer; }
+#diasc th,#diasc td { font: normal 16pt arial; width: 70px; height: 38px; cursor: default; }
 #diasc th { color: #000000; background-color: #d2ca03 }
 #diasc td { color: #492736; background-color: #9bf5ff }
 /*línea de la fecha actual*/
