@@ -297,3 +297,17 @@ a:hover {
 .icon {
   width: 20px;
 }
+
+.graphs {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-custom {
+  background-color: #D2CA03;
+  color: #000000;
+}
+
+.datos {
+  width: 50%;
+}
