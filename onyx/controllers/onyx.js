@@ -4,6 +4,31 @@ exports.getHome = (req, res, next) => {
     res.render('home', { pagetitle: 'Onyx'});
 };
 
-exports.getAdminDashboard = (req, res, next) => {
-    res.render('admindashboard', { pagetitle: 'Onyx'});
+// exports.getAdminDashboard = (req, res, next) => {
+//     res.render('admindashboard', { pagetitle: 'Onyx'});
+// }
+
+
+exports.getCatEjercicios = (req, res, next) => {
+    res.render('catEjercicios', { pagetitle: 'Catálogo de Ejercicios'});    
+}
+
+exports.getCatEntrenamientos = (req, res, next) => {
+    res.render('catEntrenamientos', { pagetitle: 'Catálogo de Entrenamientos'});    
+}
+
+exports.getDietasparaTi = (req, res, next) => {
+    res.render('dietasParaTi', { pagetitle: 'Dietas para ti'});    
+}
+
+exports.getDietas = (req, res, next) => {
+    res.render('dietas', { pagetitle: 'Dietas'});    
+}
+
+exports.getBitacora = (req, res, next) => {
+    res.render('bitacora', { pagetitle: 'Bitácora'});    
+}
+
+exports.getFavoritos = (req, res, next) => {
+    res.render('favoritos', { pagetitle: 'Favoritos'});    
 }
