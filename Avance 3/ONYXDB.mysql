@@ -54,7 +54,6 @@ FOREIGN KEY(email) REFERENCES usuario(email)
 
 CREATE TABLE cliente(
 email VARCHAR(30) NOT NULL,
-peso INT NOT NULL,
 altura DOUBLE NOT NULL,
 edad INT NOT NULL,
 nivel_actividad varchar(30) NOT NULL,
@@ -182,16 +181,16 @@ INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('cla
 
 /*INSERTS - CLIENTE*/
 
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('maria.gomez@gmail.com',80,175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('jose.martinez@yahoo.com',57,163,27,'Bajo','Perder Peso','Femenino',40,65,30);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('lucia.perez@hotmail.com',90,182,29,'Alto','Ganar Fuerza','Masculino',100,150,70);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('juan.sanchez@gmail.com',55,160,30,'Moderado','Perder Grasa','Femenino',35,60,25);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carlos.lopez@gmail.com',75,178,32,'Alto','Ganar Masa Muscular','Masculino',85,120,65);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('ana.ramirez@hotmail.com',58,165,24,'Bajo','Perder Peso','Femenino',40,70,30);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('pablo.flores@yahoo.com',80,182,29,'Alto','Ganar Fuerza','Masculino',95,140,75);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('clara.hernandez@gmail.com',62,170,28,'Moderado','Perder Grasa','Femenino',45,75,30);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('oscar.ortega@hotmail.com',80,175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('sofia.estrada@yahoo.com',57,163,27,'Bajo','Perder Peso','Femenino',40,65,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('maria.gomez@gmail.com',175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('jose.martinez@yahoo.com',163,27,'Bajo','Perder Peso','Femenino',40,65,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('lucia.perez@hotmail.com',182,29,'Alto','Ganar Fuerza','Masculino',100,150,70);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('juan.sanchez@gmail.com',160,30,'Moderado','Perder Grasa','Femenino',35,60,25);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carlos.lopez@gmail.com',178,32,'Alto','Ganar Masa Muscular','Masculino',85,120,65);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('ana.ramirez@hotmail.com',165,24,'Bajo','Perder Peso','Femenino',40,70,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('pablo.flores@yahoo.com',182,29,'Alto','Ganar Fuerza','Masculino',95,140,75);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('clara.hernandez@gmail.com',170,28,'Moderado','Perder Grasa','Femenino',45,75,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('oscar.ortega@hotmail.com',175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('sofia.estrada@yahoo.com',163,27,'Bajo','Perder Peso','Femenino',40,65,30);
 
 
 /*INSERTS - EJERCICIO*/
