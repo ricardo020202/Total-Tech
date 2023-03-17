@@ -17,8 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Bitácora</title>
 
-
-
+    <!-- Calendario -->
+    <script type="text/javascript" src="../js/calendario.js"></script>
 
 
 </head>
@@ -95,45 +95,44 @@
         <h2 id="titulopagina" style="margin-left: 3%">Bitácora</h2>
         <div class="containerBitacora">
             <div class="card-container">
-                <a href="#popup" style="text-decoration:none; color: black">
-                    <div class="card">
-                    <h3>Tarjeta 1</h3>
-                    <p style="position: absolute; right: 5%;">Fecha</p>
-                    <p>Contenido de la tarjeta 1</p>
+                <div id="calendario">
+                    <div id="anterior" onclick="mesantes()"></div>
+                    <div id="posterior" onclick="mesdespues()"></div>
+                    <h2 id="titulos"></h2>
+                    <table id="diasc">
+                      <tr id="fila0"><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+                      <tr id="fila1"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                      <tr id="fila2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                      <tr id="fila3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                      <tr id="fila4"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                      <tr id="fila5"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                      <tr id="fila6"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    </table>
+                    <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
+                    <div id="buscafecha">
+                      <form action="#" name="buscar">
+                        <p>Buscar ... MES
+                          <select name="buscames">
+                            <option value="0">Enero</option>
+                            <option value="1">Febrero</option>
+                            <option value="2">Marzo</option>
+                            <option value="3">Abril</option>
+                            <option value="4">Mayo</option>
+                            <option value="5">Junio</option>
+                            <option value="6">Julio</option>
+                            <option value="7">Agosto</option>
+                            <option value="8">Septiembre</option>
+                            <option value="9">Octubre</option>
+                            <option value="10">Noviembre</option>
+                            <option value="11">Diciembre</option>
+                          </select>
+                        ... AÑO ...
+                          <input type="text" name="buscaanno" maxlength="4" size="4" />
+                        ... 
+                          <input type="button" value="BUSCAR" onclick="mifecha()" />
+                        </p>
+                      </form>
                     </div>
-                </a>
-                
-                <a href="#popup" style="text-decoration:none; color: black">
-                <div class="card">
-                    <h3>Tarjeta 2</h3>
-                    <p style="position: absolute; right: 5%;">Fecha</p>
-                    <p>Contenido de la tarjeta 2</p>
-                </div>
-                </a>
-                
-                <a href="#popup" style="text-decoration:none; color: black">
-                <div class="card">
-                    <h3>Tarjeta 3</h3>
-                    <p style="position: absolute; right: 5%;">Fecha</p>
-                    <p>Contenido de la tarjeta 3</p>
-                </div>
-                </a>
-                
-                <a href="#popup" style="text-decoration:none; color: black">
-                <div class="card">
-                    <h3>Tarjeta 4</h3>
-                    <p style="position: absolute; right: 5%;">Fecha</p>
-                    <p>Contenido de la tarjeta 4</p>
-                </div>
-                </a>
-                
-                <a href="#popup" style="text-decoration:none; color: black">
-                <div class="card">
-                    <h3>Tarjeta 5</h3>
-                    <p style="position: absolute; right: 5%;">Fecha</p>
-                    <p>Contenido de la tarjeta 5</p>
-                </div>
-                </a>
             </div>
           </div>
           <br>
