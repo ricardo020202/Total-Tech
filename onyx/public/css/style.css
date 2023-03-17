@@ -1,0 +1,483 @@
+body {
+    background-color: #151515;
+    font-family: "DM Sans", sans-serif;
+    color: #ffffff;
+    height: 100vh;
+}
+
+.rectangulo {
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo1 {
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo2 {
+    background-color: #151515;
+    width: 69px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: -35px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.bg-custom {
+    background-color: #d2ca03;
+    z-index: 2;
+}
+
+.bg-custom1 {
+    background-color: #151515;
+    z-index: 2;
+}
+
+.bg-footer {
+    background-color: black;
+    z-index: 2;
+}
+
+.text-custom {
+    color: #d2ca03;
+}
+
+.navbar-brand {
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+}
+
+.nav-item {
+    font-family: "DM Sans", sans-serif;
+}
+
+.search-bar {
+    background-color: black;
+    width: 336px;
+    height: 35px;
+}
+
+.bg-image {
+    background-image: url(../assets/cover.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    filter: blur(5px);
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: start;
+    color: #ffffff;
+    z-index: 1;
+}
+
+.header {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.subHeader {
+    font-weight: 700;
+    color: #d2ca03;
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 55px;
+        left: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        width: 75%;
+        height: 100%;
+        background-color: #d2ca03;
+    }
+
+    .navbar-collapse.collapsing {
+        left: -75%;
+        transition: height 0s ease;
+    }
+
+    .navbar-collapse.show {
+        left: 0;
+        transition: left 300ms ease-in-out;
+    }
+
+    .navbar-toggler.collapsed~.navbar-collapse {
+        transition: left 500ms ease-in-out;
+    }
+}
+
+.accordion {
+    color: #ffffff;
+}
+
+.accordion-item {
+    background-color: #151515;
+    color: #ffffff;
+}
+
+.accordion-button {
+    background-color: rgb(43, 43, 43);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.accordion-button:hover {
+    background-color: #151515;
+    color: #ffffff;
+}
+
+.accordion-button:focus {
+    background-color: rgb(43, 43, 43);
+    color: #ffffff;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgb(43, 43, 43);
+    color: #ffffff;
+}
+
+li {
+    list-style: none;
+    color: #ffffff;
+}
+
+.buttonChido {
+    background-color: #d2ca03;
+    color: black;
+    border-radius: 10em;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 1em 2em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    top: 12%;
+    left: 85%;
+}
+
+.buttonChido:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 white;
+}
+
+.buttonChido:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 black;
+}
+
+.spacer {
+    height: 100px;
+}
+
+.bitspacer {
+    height: 55px;
+}
+
+.calspacer {
+    height: 5px;
+}
+
+.containerBitacora {
+    padding: 1%;
+    background-color: grey;
+    border: solid;
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+    height: 50%;
+    width: 70%;
+    position: relative;
+    left: 2%;
+}
+
+.card-container {
+    height: 100%;
+    /* Altura del contenedor */
+    overflow-y: auto;
+    /* Desplazamiento vertical */
+    color: #000000;
+}
+
+.card {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.createButton {
+    border: 2px solid #000000;
+    background-color: #d2ca03;
+    border-radius: 0.9em;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+    position: relative;
+    float: right;
+    margin-right: 4%;
+}
+
+.createButton span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+}
+
+.createButton:hover {
+    background-color: #b2ac06;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+a {
+    color: #d2ca03;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #b2ac06;
+}
+
+.ig {
+    width: 40px;
+}
+
+.fb {
+    width: 60px;
+}
+
+.tw {
+    width: 45px;
+}
+
+.icon {
+    width: 20px;
+}
+
+.graphs {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-custom {
+    background-color: #D2CA03;
+    color: #000000;
+}
+
+.datos {
+    width: 50%;
+}
+
+/* CSS de calendario */
+* {
+    margin: auto;
+}
+
+/*cabecera de la página*/
+/*div principal del calendario*/
+#calendario {
+    border: 4px double black;
+    max-width: 536px;
+    background-color: #fffafa;
+    text-align: center;
+}
+
+/*tabla del calendario*/
+#diasc {
+    border: 1px solid black;
+    border-collapse:
+        separate;
+    border-spacing: 4px;
+}
+
+#diasc th,
+#diasc td {
+    font: normal 16pt arial;
+    width: 70px;
+    height: 38px;
+    cursor: default;
+}
+
+#diasc th {
+    color: #000000;
+    background-color: #d2ca03
+}
+
+#diasc td {
+    color: #492736;
+    background-color: #9bf5ff
+}
+
+/*línea de la fecha actual*/
+#fechaactual {
+    font: bold 16pt arial;
+    padding: 0.4em
+}
+
+#fechaactual i {
+    cursor: pointer;
+}
+
+#fechaactual i:hover {
+    color: #b2ac06;
+    text-decoration: none;
+}
+
+/*formulario de busqueda de fechas*/
+#buscafecha {
+    background-color: #d2ca03;
+    color: #000000;
+    padding: 5px
+}
+
+#buscafecha select,
+#buscafecha input {
+    background-color: #ffffff;
+    color: #000000;
+    font: bold 12pt arial;
+}
+
+#buscafecha [type=text] {
+    text-align: center;
+}
+
+#buscafecha [type=button] {
+    cursor: pointer;
+}
+
+/*cabecera del calendario*/
+#anterior {
+    float: left;
+    width: 100px;
+    font: bold 16pt arial;
+    padding: 0.5em 0.1em;
+    cursor: pointer;
+}
+
+#posterior {
+    float: right;
+    width: 100px;
+    font: bold 16pt arial;
+    padding: 0.5em 0.1em;
+    cursor: pointer;
+}
+
+#anterior:hover {
+    color: #b2ac06;
+    text-decoration: none;
+}
+
+#posterior:hover {
+    color: #b2ac06;
+    text-decoration: none;
+}
+
+#titulos {
+    font: normal 20pt "arial black";
+    padding: 0.2em;
+}
+
+/* ENTRENAMIENTOS Y DIETAS */
+.cards {
+    margin: 30px;
+    background-color: #151515;
+    border-radius: 20px;
+}
+
+.card-img-top{
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#btnstart {
+    background-color: #D2CA03;
+    color: #000000;
+    margin: 10px;
+    border-radius: 40px;
+    width: 65%;
+}
+#btnstart:hover {
+    background-color: #222222;
+    color: #FFFFFF;
+}
+.masinfo {
+    color: #D2CA03;
+    font-size: 12px;
+}
+
+.masinfo:hover {
+    color: #FFFFFF;
+}
+
+/*card body center*/
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    /*size of the image*/
+    width: 100%;
+    height: 100%;
+    /*to make the image responsive*/
+    object-fit: cover;
+    /*to make the image responsive*/
+    object-position: center;
+    
+}
