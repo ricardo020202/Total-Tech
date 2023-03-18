@@ -20,7 +20,7 @@ exports.getCatEntrenamientos = (req, res, next) => {
 
         response.render('catEntrenamientos', { 
             programas: rows,
-            //! pagetitle: 'Catálogo de Entrenamientos', le dejo esto??
+            pagetitle: 'Catálogo de Entrenamientos',
             ultimo_programa: request.session.ultimo_programa || '',
             isLoggedIn: request.session.isLoggedIn || false,
             privilegios: request.session.privilegios || [],
