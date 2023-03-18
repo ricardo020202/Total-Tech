@@ -1,3 +1,4 @@
+const Programa = require("../models/programa");
 
 
 exports.getHome = (req, res, next) => {
@@ -8,13 +9,24 @@ exports.getHome = (req, res, next) => {
 //     res.render('admindashboard', { pagetitle: 'Onyx'});
 // }
 
-
 exports.getCatEjercicios = (req, res, next) => {
     res.render('catEjercicios', { pagetitle: 'Catálogo de Ejercicios'});    
 }
 
 exports.getCatEntrenamientos = (req, res, next) => {
-    res.render('catEntrenamientos', { pagetitle: 'Catálogo de Entrenamientos'});    
+
+    Programa.fetchAll().then(([rows,fieldData]) => {
+        console.log(rows);
+
+        response.render('catEntrenamientos', { 
+            lost_founds: rows,
+            //! pagetitle: 'Catálogo de Entrenamientos', le dejo esto??
+            ultimo_programa: request.session.ultimo_programa || '',
+            isLoggedIn: request.session.isLoggedIn || false,
+            privilegios: request.session.privilegios || [],
+        });
+
+    }).catch(error => {console.log(error);});
 }
 
 exports.getDietasparaTi = (req, res, next) => {

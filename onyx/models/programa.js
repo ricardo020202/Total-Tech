@@ -15,4 +15,15 @@ module.exports = class Programa {
     static fetchAll() {
         return db.execute('SELECT * FROM programa');
     }
+
+    static fetch(id)
+    {
+        let query = `SELECT * FROM programa`;
+        if(id != 0)
+        {
+            query += ` WHERE id = ?`
+            return db.execute(query, [id]);
+        }   
+        return db.execute(query);  
+    }
 }
