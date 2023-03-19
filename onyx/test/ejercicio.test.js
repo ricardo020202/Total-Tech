@@ -5,13 +5,7 @@ const db = require('../util/database');
 // Test Ejercicio model methods fetchById, deleteById, fetchAll and save conected to database
 
 describe('Ejercicio model', () => {
-    let mockDb;
 
-    beforeEach(() => {
-      // Create a mock database object
-      mockDb = new Db();
-      mockDb.execute = jest.fn();
-    });
 
     test('Save method should save a new Ejercicio', async () => {
         // Create an instance of Ejercicio with some sample data
@@ -27,7 +21,7 @@ describe('Ejercicio model', () => {
         // Call the save() method on the Ejercicio instance
         const insertedEjercicio = await ejercicio.save();
 
-        console.log(insertedEjercicio);
+        // console.log(insertedEjercicio);
         // Retrieve the inserted data from the database using a SELECT query
         // show the inserted data
 
