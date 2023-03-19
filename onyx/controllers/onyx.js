@@ -1,5 +1,20 @@
+<<<<<<< HEAD
 const Programa = require("../models/programa");
+=======
+const EjercicioModel = require('../models/ejercicio');
+>>>>>>> models
 
+exports.getCatEjercicios = (req, res, next) => {
+    EjercicioModel.fetchAll()
+        .then(([rows, fieldData]) => {
+            res.render('catEjercicios', {
+                ejercicio: rows,
+                pagetitle: 'Catálogo de Ejercicios',
+                path: '/catEjercicios'
+            });
+        })
+        .catch(err => console.log(err));
+};
 
 exports.getHome = (req, res, next) => {
     res.render('home', { pagetitle: 'Onyx'});
@@ -9,9 +24,16 @@ exports.getHome = (req, res, next) => {
 //     res.render('admindashboard', { pagetitle: 'Onyx'});
 // }
 
+<<<<<<< HEAD
 exports.getCatEjercicios = (req, res, next) => {
     res.render('catEjercicios', { pagetitle: 'Catálogo de Ejercicios'});    
 }
+=======
+
+// exports.getCatEjercicios = (req, res, next) => {
+//     res.render('catEjercicios', { pagetitle: 'Catálogo de Ejercicios'});    
+// }
+>>>>>>> models
 
 exports.getCatEntrenamientos = (req, res, next) => {
 
