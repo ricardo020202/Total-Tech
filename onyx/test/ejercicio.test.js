@@ -45,7 +45,9 @@ test('update exercise', async () => {
 
 // Delete an exercise from the database
 test('delete exercise by ID', async () => {
-    const result = await Ejercicio.deleteById(1);
+    // Delete the exercise with ID n
+    // If you run the code find the ID of the exercise you want to delete
+    const result = await Ejercicio.deleteById(42);
     expect(result[0].affectedRows).toBe(1);
 });
 
