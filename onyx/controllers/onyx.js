@@ -16,14 +16,10 @@ exports.getHome = (req, res, next) => {
     res.render('home', { pagetitle: 'Onyx'});
 };
 
-// exports.getAdminDashboard = (req, res, next) => {
-//     res.render('admindashboard', { pagetitle: 'Onyx'});
-// }
+exports.getAdminDashboard = (req, res, next) => {
+    res.render('admindashboard', { pagetitle: 'Onyx'});
+}
 
-
-// exports.getCatEjercicios = (req, res, next) => {
-//     res.render('catEjercicios', { pagetitle: 'Catálogo de Ejercicios'});    
-// }
 
 exports.getCatEntrenamientos = (req, res, next) => {
     res.render('catEntrenamientos', { pagetitle: 'Catálogo de Entrenamientos'});    
