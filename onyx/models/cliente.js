@@ -3,24 +3,37 @@ const db = require('../util/database');
 module.exports = class Cliente {
     constructor(cliente) {
         this.email = cliente.email;
-        this.peso = cliente.peso;
         this.altura = cliente.altura;
         this.edad = cliente.edad;
-        this.nivelDeActividad = cliente.nivelDeActividad;
+        this.nivel_actividad = cliente.nivel_actividad;
         this.objetivo = cliente.objetivo;
         this.sexo = cliente.sexo;
-        this.PRbenchPress = cliente.PRbenchPress;
-        this.PRpesoMuerto = cliente.PRpesoMuerto;
-        this.PRsentadilla = cliente.PRsentadilla;
+        this.pr_BenchPress = cliente.pr_BenchPress;
+        this.pr_PesoMuerto = cliente.pr_PesoMuerto;
+        this.pr_Sentadillas = cliente.pr_Sentadillas;
     }
 
     save() {
-        return db.execute('INSERT INTO cliente (email, peso, altura, edad, nivelDeActividad, objetivo, sexo, PRbenchPress, PRpesoMuerto, PRsentadilla) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [this.email, this.peso, this.altura, this.edad, this.nivelDeActividad, this.objetivo, this.sexo, this.PRbenchPress, this.PRpesoMuerto, this.PRsentadilla]
+        return db.execute('INSERT INTO cliente (email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [this.email, this.altura, this.edad, this.nivel_actividad, this.objetivo, this.sexo, this.pr_BenchPress, this.pr_PesoMuerto, this.pr_Sentadillas]
         );
     }
 
     static fetchAll() {
         return db.execute('SELECT * FROM cliente');
+    }
+
+    static fetchOne(email) {
+        return db.execute('SELECT * FROM cliente WHERE email = ?', [email]);
+    }
+
+    update() {
+        return db.execute('UPDATE cliente SET altura = ?, edad = ?, nivel_actividad = ?, objetivo = ?, sexo = ?, pr_BenchPress = ?, pr_PesoMuerto = ?, pr_Sentadillas = ? WHERE email = ?',
+            [this.altura, this.edad, this.nivel_actividad, this.objetivo, this.sexo, this.pr_BenchPress, this.pr_PesoMuerto, this.pr_Sentadillas, this.email]
+        );
+    }
+
+    static deletebyEmail(email) {
+        return db.execute('DELETE FROM cliente WHERE email = ?', [email]);
     }
 }

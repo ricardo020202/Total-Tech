@@ -1,7 +1,6 @@
 // Test Ejercicio model
 const Ejercicio = require("../models/ejercicio");
 const db = require('../util/database');
-;
 
 describe('Ejercicio model', () => {
 
