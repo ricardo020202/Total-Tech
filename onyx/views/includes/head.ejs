@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
- 
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
@@ -21,7 +21,9 @@
     <!-- JS Calendar -->
     <script type="text/javascript" src="../js/calendario.js"></script>
 
-    <title><%= pagetitle%></title>
+    <title>
+        <%= pagetitle%>
+    </title>
 </head>
 
 <body>
@@ -41,7 +43,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0 ms-2">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/onyx">Home</a>
                         </li>
@@ -75,22 +77,30 @@
                             <a class="nav-link" href="/onyx/bitacora">Bitácora</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/onyx/">Dashboard</a>
+                            <a class="nav-link" href="/onyx/dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/onyx/favoritos">Favoritos</a>
                         </li>
-                        <form class="d-flex justify-self-center ms-5" role="search">
-                            <input class="me-2 rounded-pill search-bar text-white text-center ms-5" type="search"
-                                placeholder="Search for anything" aria-label="Search">
-                        </form>
                     </ul>
-                    <a class="nav-link active text-dark" aria-current="page" href="./html/user.html"><img
-                        src="../assets/user.png" alt="" class="icon"></a>
-                    <a class="nav-link active text-dark" aria-current="page" href="/users/login"><strong>Log
-                            in</strong></a>
-                    <a aria-current="page" href="/users/signUp"><button type="button"
-                            class="btn btn-light rounded-pill">Sign up</button></a>
+                    <form class="" role="search">
+                        <input class=" rounded-pill search-bar text-white text-center ms-auto" type="search"
+                            placeholder="Search for anything" aria-label="Search">
+                    </form>
+                    <% if (user){ %>
+                        <a class="nav-link active text-dark" aria-current="page" href="/html/user.html">
+                            <p class="text-dark my-auto">
+                                Hola <strong><%= user %></strong>
+                            </p>
+                        </a>
+                        <a class="btn btn-light rounded-pill text-dark" aria-current="page"
+                            href="/users/logout"><strong>Log out</strong></a>
+                    <%} else { %>
+                        <a class="nav-link active text-dark" aria-current="page" href="/users/login"><strong>Log
+                                in</strong></a>
+                        <a class="btn btn-light rounded-pill text-dark" aria-current="page"
+                                href="/users/signUp"><strong>Sign up</strong></a>
+                    <% } %>
                 </div>
             </div>
         </nav>

@@ -54,6 +54,7 @@ exports.post_login = (request, response, next) => {
                 if (doMatch) {
                     request.session.isLoggedIn = true;
                     request.session.user = rows[0].nombre;
+                    request.session.email = rows[0].email;
                     user.getPrivilegios(rows[0].email)
                     .then(([consulta_privilegios, fieldData]) => {
                         console.log(consulta_privilegios);
