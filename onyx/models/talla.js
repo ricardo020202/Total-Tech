@@ -19,4 +19,8 @@ module.exports = class Talla {
     static fetch(email){
         return db.execute('SELECT * FROM talla WHERE email = ?', [email]);
     }
+
+    static fetchExtremidad(email, extremidad){
+        return db.execute('SELECT * FROM talla WHERE email = ? AND extremidad = ?', [email, extremidad]);
+    }
 }

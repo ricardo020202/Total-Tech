@@ -6,38 +6,96 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div id="graph"></div>
+            
         </div>
-        <div class="col">
-            <div id="graph2"></div>
+        <div class="col" id="graph">
+
         </div>
     </div>
 </div>
 
 <script>
 	graph = document.getElementById('graph');
-	const brazo = {
+    const pecho = {
         x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-        y: <%= JSON.stringify(medida) %>,
+        y: <%= JSON.stringify(pecho) %>,
         type: 'scatter',
+        name: 'Pecho'
+    };
+	const brazoIzq = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(brazoizq) %>,
+        type: 'scatter',
+        name: 'Brazo Izquierdo'
+    };
+    const brazoDer = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(brazoder) %>,
+        type: 'scatter',
+        name: 'Brazo Derecho'
+    };
+    const cintura = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(cintura) %>,
+        type: 'scatter',
+        name: 'Cintura'
+    };
+    const cadera = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(cadera) %>,
+        type: 'scatter',
+        name: 'Cadera'
+    };
+    const piernaIzq = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(piernaizq) %>,
+        type: 'scatter',
+        name: 'Pierna Izquierda'
+    };
+    const piernaDer = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(piernader) %>,
+        type: 'scatter',
+        name: 'Pierna Derecha'
+    };
+    const pantorillaIzq = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(pantorrillaizq) %>,
+        type: 'scatter',
+        name: 'Pantorilla Izquierda'
+    };
+    const pantorillaDer = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(pantorrillader) %>,
+        type: 'scatter',
+        name: 'Pantorilla Derecha'
+    };
+    const cuello = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(cuello) %>,
+        type: 'scatter',
+        name: 'Cuello'
+    };
+    const peso = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(peso) %>,
+        type: 'scatter',
+        name: 'Peso'
     };
     const layout = {
-        title: 'Grafica de brazo',
+        autosize: true,
+        title: 'Medidas generales de <%= user%>',
         xaxis: {
             title: 'Fecha(mes)',
-            showgrid: false,
             zeroline: false
         },
         yaxis: {
             title: 'Medida(cm)',
-            showline: false,
-            range: [0, 100]
         },
         paper_bgcolor: "rgb(17,17,17)",
         plot_bgcolor: "rgb(17,17,17)",
     };
-    const data = [brazo];
-    const graphOptions = {filename: "basic-line", fileopt: "overwrite"};
+    const data = [pecho, brazoIzq, brazoDer, cintura, cadera, piernaIzq, piernaDer, pantorillaIzq, pantorillaDer, cuello, peso];
     Plotly.newPlot( graph, data, layout, { theme: "plotly_dark" });
 </script>
 
