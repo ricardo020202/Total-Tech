@@ -10,7 +10,7 @@ describe("Bitacora model", () => {
             fecha: new Date(),
             contenido: "Test",
             entreno: "test",
-            email: "dante@123.com",
+            email: "dante@123.com", // must exist in usuario table
         });
         const result = await bitacora.save();
         expect(result[0].affectedRows).toBe(1);

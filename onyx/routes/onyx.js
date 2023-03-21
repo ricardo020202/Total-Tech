@@ -21,4 +21,6 @@ router.get('/favoritos', onyxController.getFavoritos);
 
 router.get('/dashboard', onyxController.getDashboard);
 
+router.get('/calendario', onyxController.getCalendario);
+
 module.exports = router;

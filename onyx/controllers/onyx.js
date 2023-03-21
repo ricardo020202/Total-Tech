@@ -65,6 +65,13 @@ exports.getFavoritos = (req, res, next) => {
     });    
 }
 
+exports.getCalendario = (req, res, next) => {
+    res.render('calendario', {
+        pagetitle: 'Calendario',
+        user: req.session.user || '',
+    });
+}
+
 exports.getDashboard = (req, res, next) => {
     TallaModel.fetchExtremidad(req.session.email, 'pecho')
         .then(([rows, fieldData]) => {
