@@ -19,4 +19,6 @@ router.get('/bitacora', onyxController.getBitacora);
 router.get('/favoritos', onyxController.getFavoritos);
 // router.get("/admindashboard", onyxController.getAdminDashboard);
 
+router.get('/dashboard', onyxController.getDashboard);
+
 module.exports = router;

@@ -1,0 +1,44 @@
+<%- include('includes/head.ejs') %>
+
+<script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
+
+<div class="spacer"></div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="graph"></div>
+        </div>
+        <div class="col">
+            <div id="graph2"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+	graph = document.getElementById('graph');
+	const brazo = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        y: <%= JSON.stringify(medida) %>,
+        type: 'scatter',
+    };
+    const layout = {
+        title: 'Grafica de brazo',
+        xaxis: {
+            title: 'Fecha(mes)',
+            showgrid: false,
+            zeroline: false
+        },
+        yaxis: {
+            title: 'Medida(cm)',
+            showline: false,
+            range: [0, 100]
+        },
+        paper_bgcolor: "rgb(17,17,17)",
+        plot_bgcolor: "rgb(17,17,17)",
+    };
+    const data = [brazo];
+    const graphOptions = {filename: "basic-line", fileopt: "overwrite"};
+    Plotly.newPlot( graph, data, layout, { theme: "plotly_dark" });
+</script>
+
+<%- include('includes/foot.ejs') %>

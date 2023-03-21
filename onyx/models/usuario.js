@@ -3,11 +3,11 @@ const bcrypt = require('bcryptjs');
 
 module.exports = class Usuario {
     constructor(usuario) {
-        this.email = usuario.email || '';
-        this.nombre = usuario.nombre || '';
-        this.apellido = usuario.apellido || '';
-        this.contraseña = usuario.contraseña || '';
-        this.telefono = usuario.telefono || '';
+        this.email = usuario.email;
+        this.nombre = usuario.nombre;
+        this.apellido = usuario.apellido;
+        this.contraseña = usuario.contraseña;
+        this.telefono = usuario.telefono;
     }
 
     save() {

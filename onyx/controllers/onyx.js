@@ -1,4 +1,5 @@
 const EjercicioModel = require('../models/ejercicio');
+const TallaModel = require('../models/talla');
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -62,3 +63,16 @@ exports.getFavoritos = (req, res, next) => {
         user: req.session.user || '',
     });    
 }
+
+exports.getDashboard = (req, res, next) => {
+    TallaModel.fetch(req.session.email)
+        .then(([rows, fieldData]) => {;
+            res.render('dashboard', {
+                pagetitle: 'Dashboard',
+                user: req.session.user || '',
+                medida: rows.map(row => row.medida),
+                fecha: rows.map(row => row.fecha),
+            });
+        })
+        .catch(err => console.log(err));
+};

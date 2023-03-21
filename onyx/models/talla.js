@@ -15,4 +15,8 @@ module.exports = class Talla {
     static fetchAll() {
         return db.execute('SELECT * FROM talla');
     }
+
+    static fetch(email){
+        return db.execute('SELECT * FROM talla WHERE email = ?', [email]);
+    }
 }
