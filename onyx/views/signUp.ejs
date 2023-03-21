@@ -1,0 +1,61 @@
+<%- include('includes/head.ejs') %>
+    <div class="spacer"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <form action="/users/signUp" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                    <div class="p-5 rounded-5 text-dark shadow rounded bg-custom-login" style="width: 25rem">
+                        <div class="d-flex justify-content-center">
+                            <img src="../assets/login-icon.svg" alt="login-icon" style="height: 7rem; width: auto;" />
+                        </div>
+                        <div class="text-center fs-1 fw-bold">Sign up</div>
+                        <div class="input-group mt-4">
+                            <div class="input-group-text bg-custom1">
+                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="text" placeholder="Nombre" name="nombre"/>
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="text" placeholder="Apellido" name="apellido"/>
+                        </div>
+                        <div class="input-group mt-4">
+                            <div class="input-group-text bg-custom1">
+                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="email" placeholder="Correo" name="email"/>
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="/assets/password-icon.svg" alt="password-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="password" placeholder="Contraseña" name="password"/>
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="tel" placeholder="Numero de telefono" name="telefono"/>
+                        </div>
+                        <button class="btn bg-custom1 text-white w-100 mt-4 fw-semibold shadow-sm" type="submit" name="action">
+                            Registrarme
+                        </button>
+                        <div class="p-3">
+                            <div class="border-bottom text-center" style="height: 0.9rem">
+                                <span class="bg-white px-3">o</span>
+                            </div>
+                        </div>
+                        <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm bg-custom1">
+                            <img src="/assets/google-icon.svg" alt="google-icon" style="height: 1.6rem; width: auto;" />
+                            <div class="fw-semibold text-white">Registrate con Google</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('includes/foot.ejs') %>

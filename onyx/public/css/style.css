@@ -46,6 +46,10 @@ body {
     z-index: 2;
 }
 
+.bg-custom-login {
+    background-color: #d2ca03;
+}
+
 .bg-custom1 {
     background-color: #151515;
     z-index: 2;
@@ -480,4 +484,10 @@ img {
     /*to make the image responsive*/
     object-position: center;
     
+}
+
+.ejercicio-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15%;
 }

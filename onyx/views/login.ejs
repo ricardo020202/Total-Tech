@@ -1,0 +1,58 @@
+<%- include('includes/head.ejs') %>
+
+    <div class="spacer"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <form action="/users/login" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                    <div class="p-5 rounded-5 text-dark shadow rounded bg-custom-login" style="width: 25rem">
+                        <div class="d-flex justify-content-center">
+                            <img src="/assets/login-icon.svg" alt="login-icon" style="height: 7rem; width: auto" />
+                        </div>
+                        <div class="text-center fs-1 fw-bold">Login</div>
+                        <div class="input-group mt-4">
+                            <div class="input-group-text bg-custom1">
+                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="text" placeholder="Correo" name="email"/>
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="/assets/password-icon.svg" alt="password-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="password" placeholder="Contraseña" name="password"/>
+                        </div>
+                        <div class="d-flex justify-content-around mt-1">
+                            <div class="d-flex align-items-center gap-1">
+                                <input class="form-check-input" type="checkbox" />
+                                <div class="pt-1" style="font-size: 0.9rem">Recuerdame</div>
+                            </div>
+                            <div class="pt-1">
+                                <a href="#" class="text-decoration-none text-white fw-semibold fst-italic"
+                                    style="font-size: 0.9rem">Olvidaste tu contraseña?</a>
+                            </div>
+                        </div>
+                        <button class="btn bg-custom1 text-white w-100 mt-4 fw-semibold shadow-sm" type="submit" name="action">
+                            Login
+                        </button>
+                        <div class="d-flex gap-1 justify-content-center mt-1">
+                            <div>No tienes una cuenta?</div>
+                            <a href="/users/signUp" class="text-decoration-none text-white fw-semibold">Registrate</a>
+                        </div>
+                        <div class="p-3">
+                            <div class="border-bottom text-center" style="height: 0.9rem">
+                                <span class="bg-white px-3">o</span>
+                            </div>
+                        </div>
+                        <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm bg-custom1">
+                            <img src="/assets/google-icon.svg" alt="google-icon" style="height: 1.6rem; width: auto;" />
+                            <div class="fw-semibold text-secondary">Inicia sesion con Google</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('includes/foot.ejs') %>
