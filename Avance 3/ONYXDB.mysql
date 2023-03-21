@@ -32,7 +32,7 @@ CREATE TABLE usuario(
     email VARCHAR(30) NOT NULL,
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
-    contraseña VARCHAR(15) NOT NULL,
+    contraseña VARCHAR(400) NOT NULL,
     telefono VARCHAR(30) NOT NULL,
     PRIMARY KEY (email)
 );
