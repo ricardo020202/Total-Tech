@@ -544,7 +544,7 @@ img {
    */
 
 .wrapper {
-    width: 85%;
+    width: 75%;
 
     border-radius: 10px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
@@ -665,7 +665,7 @@ header .current-date {
     transition: 0.3s;
     /* esquina inferior derecha */
     position: absolute;
-    bottom: 0;
+
     right: 20%;
     margin: 20px;
 }
