@@ -1,140 +1,54 @@
 <%- include('includes/head.ejs') %>
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
 
-    <div class="bitspacer"></div>
-    <h2 id="titulopagina" style="margin-left: 3%">Bitácora</h2>
-    <div class="calspacer"></div>
-    <div class="card-container">
-        <div id="calendario">
-            <div id="anterior" onclick="mesantes()"></div>
-            <div id="posterior" onclick="mesdespues()"></div>
-            <h2 id="titulos"></h2>
-            <table id="diasc">
-                <tr id="fila0">
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr id="fila1">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr id="fila2">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr id="fila3">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr id="fila4">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr id="fila5">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr id="fila6">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
-            <div id="buscafecha">
-                <form action="#" name="buscar">
-                    <p>Buscar: MES
-                        <select name="buscames">
-                            <option hidden selected>Selecciona un mes</option>
-                            <option value="0">Enero</option>
-                            <option value="1">Febrero</option>
-                            <option value="2">Marzo</option>
-                            <option value="3">Abril</option>
-                            <option value="4">Mayo</option>
-                            <option value="5">Junio</option>
-                            <option value="6">Julio</option>
-                            <option value="7">Agosto</option>
-                            <option value="8">Septiembre</option>
-                            <option value="9">Octubre</option>
-                            <option value="10">Noviembre</option>
-                            <option value="11">Diciembre</option>
-                        </select>
-                        , AÑO ,
-                        <input type="text" name="buscaanno" maxlength="4" size="4" />
-
-                        <input type="button" value="BUSCAR" onclick="mifecha()"
-                            style="background-color: rgb(186, 186, 186);" />
-                    </p>
-                </form>
-            </div>
-        </div>
-        <div class="container"></div>
-        <!-- Boton modal para popup -->
-        <button type="button" class="createButton" data-toggle="modal" data-target="#myModal">
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
-                </svg> Create
-            </span>
-        </button>
-
-        <!-- Modal -->
-
-
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+<div class="container">
+    <div class="container mt-5">
+        <br />
+        <br />
+        <h1 class="fw-bold text-start">Bitácora</h1>
+        <p class="lead text-start">
+            Aquí podras ver que día realizaste ejercicio y como te sentiste ese
+            dia, además llevar un control de tus entrenamietos
+        </p>
     </div>
 
-    <%- include('includes/foot.ejs') %>
+    <!-- calendario de bitacora -->
+    <div class="wrapper">
+        <header>
+            <p class="current-date"></p>
+            <div class="icons">
+                <span id="prev" class="material-symbols-rounded"
+                    >chevron_left</span
+                >
+                <span id="next" class="material-symbols-rounded"
+                    >chevron_right</span
+                >
+            </div>
+        </header>
+        <div class="calendar">
+            <ul class="weeks">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+            </ul>
+            <ul class="days"></ul>
+        </div>
+
+        <!-- button for add event in the right -->
+        <div class="add-event">
+            <a href="/onyx/nuevabitacora">
+              <button class="btn btn-primary" id="add-event">
+                <span class="material-symbols-rounded">add</span>
+            </button>
+          </a>
+        </div>
+    </div>
+</div>
+<%- include('includes/foot.ejs') %>

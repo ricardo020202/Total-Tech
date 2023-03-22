@@ -21,6 +21,10 @@ router.get('/favoritos', onyxController.getFavoritos);
 
 router.get('/dashboard', onyxController.getDashboard);
 
-router.get('/calendario', onyxController.getCalendario);
+router.get('/bitacora', onyxController.getBitacora);
+
+router.get('/nuevabitacora', onyxController.getNuevaBitacora);
+
+router.post('/nuevabitacora', onyxController.postNuevaBitacora);
 
 module.exports = router;
