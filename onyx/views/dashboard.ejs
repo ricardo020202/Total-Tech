@@ -7,7 +7,6 @@
         <div class="row mb-5">
             <h2 class="text-center">
                 Reporte de progreso de <span style="color: #D2CA03;">
-                    <%= user %>
                 </span>
             </h2>
         </div>
@@ -59,6 +58,7 @@
             pantorillaIzq, pantorillaDer, cuello, peso];
         Plotly.newPlot(graph, data, layout, { theme: "plotly_dark" });
         graph = document.getElementById('graph');
+
     </script>
 
     <%- include('includes/foot.ejs') %>

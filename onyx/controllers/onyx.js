@@ -73,49 +73,57 @@ exports.getCalendario = (req, res, next) => {
 }
 
 exports.getDashboard = (req, res, next) => {
-    const extremidades = [
-        'pecho',
-        'brazo_izquierdo',
-        'brazo_derecho',
-        'peso',
-        'cintura',
-        'cadera',
-        'pierna_izquierda',
-        'pierna_derecha',
-        'pantorrilla_izquierda',
-        'pantorrilla_derecha',
-        'cuello'
-    ];
+    const extremidades = ['pecho', 'brazo_izquierdo', 'brazo_derecho',
+        'peso', 'cintura', 'cadera', 'pierna_izquierda',
+        'pierna_derecha', 'pantorrilla_izquierda',
+        'pantorrilla_derecha', 'cuello'];
 
     const promises = extremidades.map(extremidad =>
         TallaModel.fetchExtremidad(req.session.email, extremidad)
-            .then(([rows, fieldData]) => rows.map(row => row.medida))
+            .then(([rows, fieldData]) => {
+                const medidas = rows.map(row => row.medida);
+                const fechas = rows.map(row => row.fecha);
+                return { medidas, fechas };
+            })
             .catch(err => {
                 console.log(`Error fetching ${extremidad}: ${err}`);
-                return [];
+                return { medidas: [], fechas: [] };
             })
     );
 
     Promise.all(promises)
         .then(resultados => {
             extremidades.forEach((extremidad, i) => {
-                req.session[extremidad] = resultados[i];
+                req.session[extremidad] = resultados[i].medidas;
+                req.session[`${extremidad}_fecha`] = resultados[i].fechas;
             });
             res.render('dashboard', {
                 pagetitle: 'Dashboard',
                 user: req.session.user || '',
                 pecho: req.session.pecho || '',
+                pecho_fecha: req.session.pecho_fecha || '',
                 brazoI: req.session.brazo_izquierdo || '',
+                brazoI_fecha: req.session.brazo_izquierdo_fecha || '',
                 brazoD: req.session.brazo_derecho || '',
+                brazoD_fecha: req.session.brazo_derecho_fecha || '',
                 peso: req.session.peso || '',
+                peso_fecha: req.session.peso_fecha || '',
                 cintura: req.session.cintura || '',
+                cintura_fecha: req.session.cintura_fecha || '',
                 cadera: req.session.cadera || '',
+                cadera_fecha: req.session.cadera_fecha || '',
                 piernaI: req.session.pierna_izquierda || '',
+                piernaI_fecha: req.session.pierna_izquierda_fecha || '',
                 piernaD: req.session.pierna_derecha || '',
+                piernaD_fecha: req.session.pierna_derecha_fecha || '',
                 pantorrillaI: req.session.pantorrilla_izquierda || '',
+                pantorrillaI_fecha: req.session.pantorrilla_izquierda_fecha || '',
                 pantorrillaD: req.session.pantorrilla_derecha || '',
+                pantorrillaD_fecha: req.session.pantorrilla_derecha_fecha || '',
                 cuello: req.session.cuello || '',
+                cuello_fecha: req.session.cuello_fecha || '',
             });
+            console.log(req.session.pecho_fecha);
         })
         .catch(err => console.log(err));
 };
