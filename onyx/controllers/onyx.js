@@ -16,14 +16,14 @@ exports.getCatEjercicios = (req, res, next) => {
 };
 
 exports.getHome = (req, res, next) => {
-    res.render('home', { 
+    res.render('home', {
         pagetitle: 'Onyx',
         user: req.session.user || '',
     });
 };
 
 exports.getAdminDashboard = (req, res, next) => {
-    res.render('admindashboard', { 
+    res.render('admindashboard', {
         pagetitle: 'Onyx',
         user: req.session.user || '',
     });
@@ -31,38 +31,38 @@ exports.getAdminDashboard = (req, res, next) => {
 
 
 exports.getCatEntrenamientos = (req, res, next) => {
-    res.render('catEntrenamientos', { 
+    res.render('catEntrenamientos', {
         pagetitle: 'Catálogo de Entrenamientos',
         user: req.session.user || '',
-    });    
+    });
 }
 
 exports.getDietasparaTi = (req, res, next) => {
-    res.render('dietasParaTi', { 
+    res.render('dietasParaTi', {
         pagetitle: 'Dietas para ti',
         user: req.session.user || '',
-    });    
+    });
 }
 
 exports.getDietas = (req, res, next) => {
-    res.render('dietas', { 
+    res.render('dietas', {
         pagetitle: 'Dietas',
         user: req.session.user || '',
-    });    
+    });
 }
 
 exports.getBitacora = (req, res, next) => {
-    res.render('bitacora', { 
+    res.render('bitacora', {
         pagetitle: 'Bitácora',
         user: req.session.user || '',
-    });    
+    });
 }
 
 exports.getFavoritos = (req, res, next) => {
-    res.render('favoritos', { 
+    res.render('favoritos', {
         pagetitle: 'Favoritos',
         user: req.session.user || '',
-    });    
+    });
 }
 
 exports.getCalendario = (req, res, next) => {
@@ -73,87 +73,47 @@ exports.getCalendario = (req, res, next) => {
 }
 
 exports.getDashboard = (req, res, next) => {
-    TallaModel.fetchExtremidad(req.session.email, 'pecho')
-        .then(([rows, fieldData]) => {
-            req.session.pecho = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
+    const extremidades = [
+        'pecho',
+        'brazo_izquierdo',
+        'brazo_derecho',
+        'peso',
+        'cintura',
+        'cadera',
+        'pierna_izquierda',
+        'pierna_derecha',
+        'pantorrilla_izquierda',
+        'pantorrilla_derecha',
+        'cuello'
+    ];
 
-    TallaModel.fetchExtremidad(req.session.email, 'brazo_izquierdo')
-        .then(([rows, fieldData]) => {
-            req.session.brazoizq = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
+    const promises = extremidades.map(extremidad =>
+        TallaModel.fetchExtremidad(req.session.email, extremidad)
+            .then(([rows, fieldData]) => rows.map(row => row.medida))
+            .catch(err => {
+                console.log(`Error fetching ${extremidad}: ${err}`);
+                return [];
+            })
+    );
 
-    TallaModel.fetchExtremidad(req.session.email, 'brazo_derecho')
-        .then(([rows, fieldData]) => {
-            req.session.brazoder = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'peso')
-        .then(([rows, fieldData]) => {
-            req.session.peso = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'cintura')
-        .then(([rows, fieldData]) => {
-            req.session.cintura = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'cadera')
-        .then(([rows, fieldData]) => {
-            req.session.cadera = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'pierna_izquierda')
-        .then(([rows, fieldData]) => {
-            req.session.piernaizq = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'pierna_derecha')
-        .then(([rows, fieldData]) => {
-            req.session.piernader = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'pantorrilla_izquierda')
-        .then(([rows, fieldData]) => {
-            req.session.pantorrillaizq = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'pantorrilla_derecha')
-        .then(([rows, fieldData]) => {
-            req.session.pantorrillader = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetchExtremidad(req.session.email, 'cuello')
-        .then(([rows, fieldData]) => {
-            req.session.cuello = rows.map(row => row.medida);
-        })
-        .catch(err => console.log(err));
-
-    TallaModel.fetch(req.session.email)
-        .then(([rows, fieldData]) => {;
+    Promise.all(promises)
+        .then(resultados => {
+            extremidades.forEach((extremidad, i) => {
+                req.session[extremidad] = resultados[i];
+            });
             res.render('dashboard', {
                 pagetitle: 'Dashboard',
                 user: req.session.user || '',
                 pecho: req.session.pecho || '',
-                brazoizq: req.session.brazoizq || '',
-                brazoder: req.session.brazoder || '',
+                brazoI: req.session.brazo_izquierdo || '',
+                brazoD: req.session.brazo_derecho || '',
                 peso: req.session.peso || '',
                 cintura: req.session.cintura || '',
                 cadera: req.session.cadera || '',
-                piernaizq: req.session.piernaizq || '',
-                piernader: req.session.piernader || '',
-                pantorrillaizq: req.session.pantorrillaizq || '',
-                pantorrillader: req.session.pantorrillader || '',
+                piernaI: req.session.pierna_izquierda || '',
+                piernaD: req.session.pierna_derecha || '',
+                pantorrillaI: req.session.pantorrilla_izquierda || '',
+                pantorrillaD: req.session.pantorrilla_derecha || '',
                 cuello: req.session.cuello || '',
             });
         })
