@@ -545,7 +545,7 @@ img {
 
    .wrapper{
     width: 85%;
-    background: #fff;
+
     border-radius: 10px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.12);
   }
@@ -554,7 +554,7 @@ img {
     align-items: center;
     padding: 25px 30px 10px;
     justify-content: space-between;
-    color: #000;
+    color: #fff;
     font-weight: 1000;
     font-size: 1.5rem;
   }
@@ -596,7 +596,7 @@ img {
     margin-bottom: 20px;
   }
   .calendar li{
-    color: #333;
+    color: #fff;
     width: calc(100% / 7);
     font-size: 1.07rem;
   }
