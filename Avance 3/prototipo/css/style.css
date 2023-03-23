@@ -348,3 +348,7 @@ a:hover {
 #anterior:hover {color: #b2ac06; text-decoration: none;}
 #posterior:hover {color: #b2ac06; text-decoration: none;}
 #titulos { font: normal 20pt "arial black"; padding: 0.2em; }
+
+.posAb {
+  position: absolute;
+}
