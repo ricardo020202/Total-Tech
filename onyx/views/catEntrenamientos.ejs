@@ -22,29 +22,29 @@
 
     </div>
 
-    <% if (Programas.length > 0) { %>
         <div class="container text-center">
-            <% for (let programa of Programas) { %>
             <div class="row align-items-start">
+                <% for (let i=0; i < programa.length; i++) { %>
                 <div class="col">
                     <div class="cards" style="width: 18rem;">
-                        <!--<img style="object-fit: cover;" src="<%= programa.imagen%>"
-                            class="card-img-top" alt="..."> -->
+                        <img style="object-fit: cover;" src="<%= programa[i].imagen_programa%>"
+                            class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title"><%= programa.nombre_programa%></h5>
-                            <p class="card-text"><%= programa.descripcion_programa%></p>
-                            <p class="card-text"><%= programa.frequencia%></p>
+                            <h5 class="card-title"><%= programa[i].nombre_programa%></h5>
+                            <p class="card-text"><%= programa[i].descripcion_programa%></p>
+                            <p class="card-text"><%= programa[i].frequencia%></p>
+                            <!-- que va a hacer el boton start -->
                             <a href="#" id="btnstart" class="btn btn-primary">START</a>
                             <br>
+                            <!--quitar el más info, no? -->
                             <a href="#" class="masinfo">MAS INFORMACIÓN</a>
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
-            <% } %>
+            
         </div>
-    <% } else { %>
-        <h1>Aun No Hay Entrenamientos</h1>
-    <% } %>   
+
 </div>
 <%- include('includes/foot.ejs') %>
