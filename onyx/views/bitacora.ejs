@@ -14,6 +14,14 @@
             dia, además llevar un control de tus entrenamietos
         </p>
     </div>
+    <!-- button for add event in the right -->
+    <div class="add-event">
+        <a href="/onyx/nuevabitacora">
+            <button class="btn btn-primary" id="add-event">
+                <span class="material-symbols-rounded">add</span>
+            </button>
+        </a>
+    </div>
 
     <!-- calendario de bitacora -->
     <!-- two columns -->
@@ -44,14 +52,6 @@
                     <ul class="days"></ul>
                 </div>
 
-                <!-- button for add event in the right -->
-                <div class="add-event">
-                    <a href="/onyx/nuevabitacora">
-                        <button class="btn btn-primary" id="add-event">
-                            <span class="material-symbols-rounded">add</span>
-                        </button>
-                    </a>
-                </div>
             </div>
         </div>
         <div class="col-md-6">
@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= bitacora[i].entreno %></h5>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            <%= bitacora[i].fecha %>
+                            <%= new Date(bitacora[i].fecha).toDateString() %>
                         </h6>
                         <p class="card-text"><%= bitacora[i].contenido %></p>
                         <a href="#" class="card-link">Another link</a>
