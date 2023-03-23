@@ -38,18 +38,19 @@ exports.getCatEntrenamientos = (req, res, next) => {
     });
 };
 
-exports.getDietasparaTi = (req, res, next) => {
-    res.render("dietasParaTi", {
-        pagetitle: "Dietas para ti",
-        user: req.session.user || "",
-    });
-};
+exports.getDieta = (req, res, next) => {
 
-exports.getDietas = (req, res, next) => {
-    res.render("dietas", {
-        pagetitle: "Dietas",
-        user: req.session.user || "",
-    });
+    DietasModel.fetchAll()
+    .then(([rows, fieldData]) => {
+        res.render('dietas', {
+            dietas: rows,
+            pagetitle: 'Catálogo de Dietas',
+            user: req.session.user || '',
+            path: '/dietas'
+        });
+    })
+    .catch(err => console.log(err)); 
+
 };
 
 exports.getBitacora = (req, res, next) => {
