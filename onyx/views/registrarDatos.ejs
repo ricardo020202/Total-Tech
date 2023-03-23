@@ -12,7 +12,7 @@
     </div> 
 
     <div class="container">
-        <form class="row g-3">
+        <form class="row g-3" action="/onyx/datos-iniciales" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="col-md-6">
             <label for="inputHeight" class="form-label">Altura</label>
@@ -29,7 +29,7 @@
             <div class="col-md-6">
                 <label for="inputGender" class="form-label">Sexo</label>
                 <select id="inputGender" class="form-select">
-                <option selected>Choose...</option>
+                <option selected disabled>Elige uno...</option>
                 <option value="Femenino">Femenino</option>
                 <option value="Masculino">Masculino</option>
                 </select>
@@ -37,7 +37,7 @@
             <div class="col-md-6">
                 <label for="inputGoal" class="form-label">Objetivo</label>
                 <select id="inputGoal" class="form-select">
-                <option selected>Choose...</option>
+                <option selected disabled>Elige uno...</option>
                 <option value="Perder Peso">Perder Peso</option>
                 <option value="Perder Grasa">Perder Grasa</option>
                 <option value="Ganar Fuerza">Ganar Fuerza</option>
@@ -47,7 +47,7 @@
             <div class="col-md-6">
             <label for="inputActivity" class="form-label">Nivel de actividad</label>
             <select id="inputActivity" class="form-select">
-                <option selected>Choose...</option>
+                <option selected disabled>Elige uno...</option>
                 <option value="Bajo">Bajo</option>
                 <option value="Moderado">Moderado</option>
                 <option value="Alto">Alto</option>
@@ -56,8 +56,7 @@
             <div class="col-12">
             <button type="submit" class="btn btn-custom" id="registrarDatos">Registrar</button>
             </div>
-        </form>
-        
+        </form>  
     </div>
 
 <%- include('includes/foot.ejs') %>
