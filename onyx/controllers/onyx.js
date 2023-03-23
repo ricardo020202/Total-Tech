@@ -52,13 +52,6 @@ exports.getDietas = (req, res, next) => {
     });
 };
 
-exports.getBitacora = (req, res, next) => {
-    res.render("bitacora", {
-        pagetitle: "Bitácora",
-        user: req.session.user || "",
-    });
-};
-
 exports.getFavoritos = (req, res, next) => {
     res.render("favoritos", {
         pagetitle: "Favoritos",
@@ -67,10 +60,16 @@ exports.getFavoritos = (req, res, next) => {
 };
 // ========== Rutas Bitacora ==========
 exports.getBitacora = (req, res, next) => {
-    res.render("bitacora", {
-        pagetitle: "bitacora",
-        user: req.session.user || "",
-    });
+    Bitacora.fetchAll()
+        .then(([rows, fieldData]) => {
+            res.render("bitacora", {
+                pagetitle: "Bitacora",
+                user: req.session.user || "",
+                bitacora: rows.filter((row) => row.email === req.session.email), // Filtrar bitacora por email
+                path: "/bitacora",
+            });
+        })
+        .catch((err) => console.log(err));
 };
 
 exports.getNuevaBitacora = (req, res, next) => {

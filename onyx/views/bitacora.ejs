@@ -56,21 +56,24 @@
         </div>
         <div class="col-md-6">
             <div class="container">
+                <% for (let i=0; i < bitacora.length; i++) { %>
                 <!-- tarjetas con los eventos -->
-                <div class="cards text-center" style="width: 18rem">
+                <div
+                    class="cards text-center <% if (i === 0) { %>active<% } %>"
+                    style="width: 18rem"
+                >
                     <div class="card-body">
-                        <h5 class="card-title">Nombre del evento</h5>
+                        <h5 class="card-title"><%= bitacora[i].entreno %></h5>
                         <h6 class="card-subtitle mb-2 text-muted">
-                            Fecha
+                            <%= bitacora[i].fecha %>
                         </h6>
-                        <p class="card-text">
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                        </p>
+                        <p class="card-text"><%= bitacora[i].contenido %></p>
                         <a href="#" class="card-link">Another link</a>
                     </div>
                 </div>
+                <% } %>
+            </div>
         </div>
     </div>
+    <%- include('includes/foot.ejs') %>
 </div>
-<%- include('includes/foot.ejs') %>
