@@ -1,5 +1,6 @@
 const EjercicioModel = require("../models/ejercicio");
 const EntrenamientoModel = require("../models/programa");
+const DietasModel = require("../models/dietas");
 const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
