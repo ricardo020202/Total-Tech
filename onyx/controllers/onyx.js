@@ -32,24 +32,47 @@ exports.getAdminDashboard = (req, res, next) => {
 };
 
 exports.getCatEntrenamientos = (req, res, next) => {
-    res.render("catEntrenamientos", {
-        pagetitle: "Catálogo de Entrenamientos",
-        user: req.session.user || "",
-    });
+    EntrenamientoModel.fetchAll()
+    .then(([rows, fieldData]) => {
+        res.render('catEntrenamientos', {
+            programa: rows,
+            pagetitle: 'Catálogo de Entrenamientos',
+            user: req.session.user || '',
+            path: '/catEntrenamientos'
+        });
+    })
+    .catch(err => console.log(err));
+  
+    /*
+    Programa.fetchAll().then(([rows,fieldData]) => {
+        console.log(rows);
+
+        response.render('catEntrenamientos', { 
+            programas: rows,
+            pagetitle: 'Catálogo de Entrenamientos',
+            path: '/catEntrenamientos',
+            ultimo_programa: request.session.ultimo_programa || '',
+            isLoggedIn: request.session.isLoggedIn || false,
+            privilegios: request.session.privilegios || [],
+        });
+
+    }).catch(error => {console.log(error);});
+    */
 };
 
-exports.getDietasparaTi = (req, res, next) => {
-    res.render("dietasParaTi", {
-        pagetitle: "Dietas para ti",
-        user: req.session.user || "",
-    });
-};
+exports.getDieta = (req, res, next) => {
 
-exports.getDietas = (req, res, next) => {
-    res.render("dietas", {
-        pagetitle: "Dietas",
-        user: req.session.user || "",
-    });
+    DietasModel.fetchAll()
+    .then(([rows, fieldData]) => {
+        res.render('dietas', {
+            dietas: rows,
+            pagetitle: 'Catálogo de Dietas',
+            user: req.session.user || '',
+            path: '/dietas'
+        });
+    })
+    .catch(err => console.log(err)); 
+
 };
 
 exports.getFavoritos = (req, res, next) => {
