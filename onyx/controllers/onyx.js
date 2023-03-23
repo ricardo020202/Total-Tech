@@ -190,12 +190,20 @@ exports.getDashboard = (req, res, next) => {
 
 
 exports.getDatosIniciales = (req, res, next) => {
-    res.render("datosIniciales", {
-        pagetitle: "Datos Iniciales",
-        user: req.session.user || "",
-        cliente: req.session.cliente || "",
-        csrfToken: req.csrfToken(),
-    });
+    Cliente.fetchOne(req.session.email)
+        .then(([rows, fieldData]) => { 
+            if(rows.length === 0) {
+                return res.redirect("/onyx/registrar-datos-iniciales");
+            }
+            else {
+                res.render("datosIniciales", {
+                    pagetitle: "Datos Iniciales",
+                    user: req.session.user || "",
+                    cliente: rows[0], 
+                });
+            }    
+        })
+        .catch((err) => console.log(err));
 };
 
 
@@ -209,18 +217,17 @@ exports.getRegistrarDatosIniciales = (req, res, next) => {
 
 exports.postRegistrarDatosIniciales = (req, res, next) => {
     const cliente = new Cliente({
+        email: req.session.email, 
         altura: req.body.inputHeight,
         edad: req.body.inputAge,
         nivel_actividad: req.body.inputActivity,
         objetivo: req.body.inputGoal,
         sexo: req.body.inputGender,
-        nombre: req.body.inputName,
-        peso: req.body.inputWeight,
-        email: req.session.email,    
+        //peso: req.body.inputWeight,   
     });
 
 cliente
-    .update()
+    .save()
     .then(([rows, fieldData]) => {
         res.redirect("/onyx/datos-iniciales");
     })

@@ -10,28 +10,21 @@
             </p>
         </div>
     </div> 
-    <br><br>
-
-    <% if (cliente) { %>
-        <div class="container">
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <h2>Altura: <%= cliente.altura %></h2>
-                </div>
+    <br>
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <h3>Altura: <%= cliente.altura %></h3>
+                <h3>Edad: <%= cliente.edad %></h3>
+                <h3>Actividad: <%= cliente.nivel_actividad %></h3>
+                <h3>Objetivo: <%= cliente.objetivo %></h3>
+                <h3>Sexo: <%= cliente.sexo %></h3>
+                <h3>Bench Press: <%= cliente.pr_BenchPress %></h3>
+                <h3>Peso Muerto: <%= cliente.pr_PesoMuerto %></h3>
+                <h3>Sentadillas: <%= cliente.pr_Sentadillas %></h3>
             </div>
         </div>
-          
-    <% } else { %>
-
-        <div class="container">
-            <div class="container mt-5">
-                <br>
-                <br>
-                <h2 class="fw-bold text-start">No hay registros</h2>
-            </div>
-        </div> 
-    <% } %>   
-
+    </div>
     <br><br>
 
 <%- include('includes/foot.ejs') %>

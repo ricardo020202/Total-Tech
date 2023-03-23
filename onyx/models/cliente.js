@@ -3,14 +3,14 @@ const db = require('../util/database');
 module.exports = class Cliente {
     constructor(cliente) {
         this.email = cliente.email;
-        this.altura = cliente.altura;
-        this.edad = cliente.edad;
-        this.nivel_actividad = cliente.nivel_actividad;
-        this.objetivo = cliente.objetivo;
-        this.sexo = cliente.sexo;
-        this.pr_BenchPress = cliente.pr_BenchPress || 0;
-        this.pr_PesoMuerto = cliente.pr_PesoMuerto || 0;
-        this.pr_Sentadillas = cliente.pr_Sentadillas || 0;
+        this.altura = cliente.altura || 170;
+        this.edad = cliente.edad || 18;
+        this.nivel_actividad = cliente.nivel_actividad || "Bajo";
+        this.objetivo = cliente.objetivo || "Perder Peso";
+        this.sexo = cliente.sexo || "Masculino";
+        this.pr_BenchPress = cliente.pr_BenchPress || 1;
+        this.pr_PesoMuerto = cliente.pr_PesoMuerto || 1;
+        this.pr_Sentadillas = cliente.pr_Sentadillas || 1;
     }
 
     save() {

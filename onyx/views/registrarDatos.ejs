@@ -12,10 +12,10 @@
     </div> 
 
     <div class="container">
-        <form class="row g-3" action="/onyx/datos-iniciales" method="POST">
+        <form class="row g-3" action="/onyx/registrar-datos-iniciales" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="col-md-6">
-            <label for="inputHeight" class="form-label">Altura</label>
+            <label for="inputHeight" class="form-label">Altura (cm)</label>
             <input type="number" class="form-control" id="inputHeight">
             </div>
             <div class="col-md-6">
