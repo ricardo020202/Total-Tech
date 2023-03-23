@@ -186,3 +186,12 @@ exports.getDashboard = (req, res, next) => {
         })
         .catch((err) => console.log(err));
 };
+
+
+exports.getDatosIniciales = (req, res, next) => {
+    res.render("datos", {
+        pagetitle: "Datos Iniciales",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};

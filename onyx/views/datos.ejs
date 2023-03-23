@@ -1,0 +1,63 @@
+<%- include('includes/head.ejs') %>
+
+    <div class="container">
+        <div class="container mt-5">
+            <br>
+            <br>
+            <h1 class="fw-bold text-start">Registro de datos iniciales</h1>
+            <p class="lead text-start">
+                Llena todos los campos para hacer un plan a tu medida
+            </p>
+        </div>
+    </div> 
+
+    <div class="container">
+        <form class="row g-3">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <div class="col-md-6">
+            <label for="inputHeight" class="form-label">Altura</label>
+            <input type="number" class="form-control" id="inputHeight">
+            </div>
+            <div class="col-md-6">
+            <label for="inputWeight" class="form-label">Peso</label>
+            <input type="number" class="form-control" id="inputWeight">
+            </div>
+            <div class="col-6">
+            <label for="inputAge" class="form-label">Edad</label>
+            <input type="number" class="form-control" id="inputAge">
+            </div>
+            <div class="col-md-6">
+                <label for="inputGender" class="form-label">Sexo</label>
+                <select id="inputGender" class="form-select">
+                <option selected>Choose...</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputGoal" class="form-label">Objetivo</label>
+                <select id="inputGoal" class="form-select">
+                <option selected>Choose...</option>
+                <option value="Perder Peso">Perder Peso</option>
+                <option value="Perder Grasa">Perder Grasa</option>
+                <option value="Ganar Fuerza">Ganar Fuerza</option>
+                <option value="Ganar Masa Muscular">Ganar Masa Muscular</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+            <label for="inputActivity" class="form-label">Nivel de actividad</label>
+            <select id="inputActivity" class="form-select">
+                <option selected>Choose...</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Moderado">Moderado</option>
+                <option value="Alto">Alto</option>
+            </select>
+            </div>
+            <div class="col-12">
+            <button type="submit" class="btn btn-custom" id="registrarDatos">Registrar</button>
+            </div>
+        </form>
+        
+    </div>
+
+<%- include('includes/foot.ejs') %>
