@@ -1,3 +1,4 @@
+// const Bitacora = require("../../models/bitacora");
 const daysTag = document.querySelector(".days"),
     currentDate = document.querySelector(".current-date"),
     prevNextIcon = document.querySelectorAll(".icons span");
@@ -48,7 +49,7 @@ const renderCalendar = () => {
             currYear === new Date().getFullYear()
                 ? "active"
                 : "";
-        liTag += `<li class="${isToday}">${i}</li>`;
+        liTag += `<li class="${isToday}" data-day="${i}">${i}</li>`;
     }
 
     for (let i = lastDayofMonth; i < 6; i++) {
@@ -57,6 +58,23 @@ const renderCalendar = () => {
     }
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
+    // select a day from calendar
+
+    const days = document.querySelectorAll(".days li");
+    days.forEach((dayElement) => {
+        dayElement.addEventListener("click", (e) => {
+            console.log(dayElement.innerText);
+
+            // show bitacora for the selected day
+            const day = dayElement.innerText;
+            const month = currMonth + 1;
+            const year = currYear;
+            const fecha = `${year}-${month}-${day}`;
+            console.log(fecha);
+        });
+        
+    });  
+    
 };
 renderCalendar();
 

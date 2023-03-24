@@ -44,4 +44,8 @@ module.exports = class Bitacora {
             id_bitacora,
         ]);
     }
+
+    static fetchByDate(fecha) {
+        return db.execute("SELECT * FROM bitacora WHERE fecha = ?", [fecha]);
+    }
 };

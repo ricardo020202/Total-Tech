@@ -14,6 +14,5 @@ describe("Bitacora model", () => {
         });
         const result = await bitacora.save();
         expect(result[0].affectedRows).toBe(1);
-        db.end();
     });
 });
