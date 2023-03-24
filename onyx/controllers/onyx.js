@@ -220,9 +220,9 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         email: req.session.email, 
         altura: req.body.inputHeight,
         edad: req.body.inputAge,
-        nivel_actividad: req.body.inputActivity,
-        objetivo: req.body.inputGoal,
-        sexo: req.body.inputGender,
+        nivel_actividad: req.body.inputActivity.value,
+        objetivo: req.body.inputGoal.value,
+        sexo: req.body.inputGender.value,
         //peso: req.body.inputWeight,   
     });
 
