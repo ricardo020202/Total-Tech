@@ -28,4 +28,10 @@ router.get('/nuevabitacora', onyxController.getNuevaBitacora);
 
 router.post('/nuevabitacora', onyxController.postNuevaBitacora);
 
+router.get('/datos-iniciales', onyxController.getDatosIniciales);
+
+router.get('/registrar-datos-iniciales', onyxController.getRegistrarDatosIniciales);
+
+router.post('/registrar-datos-iniciales', onyxController.postRegistrarDatosIniciales);
+
 module.exports = router;

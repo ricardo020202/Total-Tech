@@ -5,6 +5,7 @@ const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
+const Cliente = require("../models/cliente");
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -188,4 +189,58 @@ exports.getDashboard = (req, res, next) => {
         .catch((err) => {
             console.log(err);
         });
+};
+
+
+exports.getDatosIniciales = (req, res, next) => {
+    Cliente.fetchOne(req.session.email)
+        .then(([rows, fieldData]) => { 
+            if(rows.length === 0) {
+                return res.redirect("/onyx/registrar-datos-iniciales");
+            }
+            else {
+                res.render("datosIniciales", {
+                    pagetitle: "Datos Iniciales",
+                    user: req.session.user || "",
+                    cliente: rows[0], 
+                });
+            }    
+        })
+        .catch((err) => console.log(err));
+};
+
+
+exports.getRegistrarDatosIniciales = (req, res, next) => {
+    res.render("registrarDatos", {
+        pagetitle: "Registrar Datos Iniciales",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postRegistrarDatosIniciales = (req, res, next) => {
+    const cliente = new Cliente({
+        email: req.session.email, 
+        altura: req.body.inputHeight,
+        edad: req.body.inputAge,
+        nivel_actividad: req.body.inputActivity,
+        objetivo: req.body.inputGoal,
+        sexo: req.body.inputGender,
+        //peso: req.body.inputWeight,   
+    });
+    
+    cliente
+    .save()
+    .then(([rows, fieldData]) => {
+            res.redirect("/onyx/datos-iniciales"); 
+    })
+    .catch((err) => {
+        console.log(err);
+        cliente
+        .update()
+        .then(([rows, fieldData]) => {
+            res.redirect("/onyx/datos-iniciales"); 
+        })
+    })
+    
 };

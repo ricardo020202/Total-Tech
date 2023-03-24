@@ -1,0 +1,35 @@
+<%- include('includes/head.ejs') %>
+    
+    <div class="container">
+        <div class="container mt-5">
+            <br>
+            <br>
+            <h1 class="fw-bold text-start">Datos iniciales</h1>
+            <p class="lead text-start">
+                Estos son los datos que registraste previamente:
+            </p>
+        </div>
+    </div> 
+    <br>
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-md-10">
+                <h4>Altura: <%= cliente.altura %></h4>
+                <h4>Edad: <%= cliente.edad %></h4>
+                <h4>Actividad: <%= cliente.nivel_actividad %></h4>
+                <h4>Objetivo: <%= cliente.objetivo %></h4>
+                <h4>Sexo: <%= cliente.sexo %></h4>
+                <h4>Bench Press: <%= cliente.pr_BenchPress %></h4>
+                <h4>Peso Muerto: <%= cliente.pr_PesoMuerto %></h4>
+                <h4>Sentadillas: <%= cliente.pr_Sentadillas %></h4>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="container">
+        <div class="col-md-10">
+            <a class="btn btn-custom" href="/onyx/registrar-datos-iniciales" role="button">Modificar datos</a>
+        </div>
+    </div>
+
+<%- include('includes/foot.ejs') %>
