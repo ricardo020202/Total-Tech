@@ -223,6 +223,9 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         nivel_actividad: req.body.inputActivity,
         objetivo: req.body.inputGoal,
         sexo: req.body.inputGender,
+        pr_BenchPress: req.body.inputBenchPress,
+        pr_PesoMuerto: req.body.inputPesoMuerto,
+        pr_Sentadillas: req.body.inputSentadillas,
         //peso: req.body.inputWeight,   
     });
     
