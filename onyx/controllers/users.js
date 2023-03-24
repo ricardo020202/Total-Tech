@@ -1,4 +1,5 @@
 const user = require("../models/usuario");
+const cliente = require("../models/cliente");
 const bcrypt = require("bcryptjs");
 
 exports.get_signup = (request, response, next) => {
@@ -66,7 +67,16 @@ exports.post_login = (request, response, next) => {
                                     request.session.privilegios = privilegios;
 
                                     return request.session.save((error) => {
-                                        response.redirect("/onyx/");
+                                        cliente.fetchOne(request.session.email)
+                                        .then(([rows, fieldData]) => { 
+                                            if(rows.length === 0) {
+                                                return response.redirect("/onyx/registrar-datos-iniciales");
+                                            }
+                                            else {
+                                                response.redirect("/onyx/");
+                                            }    
+                                        })
+                                        .catch((err) => console.log(err));
                                     });
                                 })
                                 .catch((error) => {
