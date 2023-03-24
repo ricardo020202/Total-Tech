@@ -8,9 +8,9 @@ module.exports = class Cliente {
         this.nivel_actividad = cliente.nivel_actividad || "Bajo";
         this.objetivo = cliente.objetivo || "Perder Peso";
         this.sexo = cliente.sexo || "Masculino";
-        this.pr_BenchPress = cliente.pr_BenchPress || 1;
-        this.pr_PesoMuerto = cliente.pr_PesoMuerto || 1;
-        this.pr_Sentadillas = cliente.pr_Sentadillas || 1;
+        this.pr_BenchPress = cliente.pr_BenchPress || 0;
+        this.pr_PesoMuerto = cliente.pr_PesoMuerto || 0;
+        this.pr_Sentadillas = cliente.pr_Sentadillas || 0;
     }
 
     save() {
