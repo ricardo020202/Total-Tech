@@ -144,7 +144,10 @@ exports.getDashboard = (req, res, next) => {
                 return { medidas, fechas };
             })
             .catch((err) => {
-                console.log(`Error fetching ${extremidad}: ${err}`);
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
                 return { medidas: [], fechas: [] };
             })
     );
@@ -175,13 +178,14 @@ exports.getDashboard = (req, res, next) => {
                 piernaD: req.session.pierna_derecha || "",
                 piernaD_fecha: req.session.pierna_derecha_fecha || "",
                 pantorrillaI: req.session.pantorrilla_izquierda || "",
-                pantorrillaI_fecha:
-                    req.session.pantorrilla_izquierda_fecha || "",
+                pantorrillaI_fecha: req.session.pantorrilla_izquierda_fecha || "",
                 pantorrillaD: req.session.pantorrilla_derecha || "",
                 pantorrillaD_fecha: req.session.pantorrilla_derecha_fecha || "",
                 cuello: req.session.cuello || "",
                 cuello_fecha: req.session.cuello_fecha || "",
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            console.log(err);
+        });
 };
