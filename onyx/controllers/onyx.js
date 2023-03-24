@@ -19,12 +19,12 @@ exports.getCatEjercicios = (req, res, next) => {
         .catch((err) => console.log(err));
 };
 
-exports.getHome = (req, res, next) => {
-    res.render("home", {
-        pagetitle: "Onyx",
-        user: req.session.user || "",
-    });
-};
+// exports.getHome = (req, res, next) => {
+//     res.render("home", {
+//         pagetitle: "Onyx",
+//         user: req.session.user || "",
+//     });
+// };
 
 exports.getAdminDashboard = (req, res, next) => {
     res.render("admindashboard", {
@@ -182,7 +182,6 @@ exports.getDashboard = (req, res, next) => {
                 cuello: req.session.cuello || "",
                 cuello_fecha: req.session.cuello_fecha || "",
             });
-            console.log(req.session.pecho_fecha);
         })
         .catch((err) => console.log(err));
 };
