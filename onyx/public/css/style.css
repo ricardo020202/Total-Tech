@@ -691,3 +691,13 @@ header .current-date {
     background: #fff;
     color: #000000
 }
+
+thead {
+    background-color: #D2CA03;
+    color: #000000
+}
+
+tbody {
+    background-color: #FFFFFF;
+    color: #000000
+}

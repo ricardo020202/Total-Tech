@@ -26,6 +26,9 @@ app.use(csrfProtection);
 const userRoutes = require('./routes/users');
 app.use('/users',userRoutes);
 
+const noRegRoutes = require("./routes/noRegistrados");
+app.use('/onyx',noRegRoutes);
+
 const onyxRoutes = require("./routes/onyx");
 app.use('/onyx', isAuth, onyxRoutes);
 

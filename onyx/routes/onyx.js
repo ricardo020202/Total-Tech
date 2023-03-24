@@ -4,7 +4,7 @@ const path = require("path");
 
 const onyxController = require("../controllers/onyx");
 
-router.get("/", onyxController.getHome);
+// router.get("/", onyxController.getHome);
 
 router.get('/catejercicios', onyxController.getCatEjercicios);
 
