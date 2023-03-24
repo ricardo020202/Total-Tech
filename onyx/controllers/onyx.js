@@ -225,11 +225,19 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         sexo: req.body.inputGender,
         //peso: req.body.inputWeight,   
     });
+    
     cliente
     .save()
     .then(([rows, fieldData]) => {
             res.redirect("/onyx/datos-iniciales"); 
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+        console.log(err);
+        cliente
+        .update()
+        .then(([rows, fieldData]) => {
+            res.redirect("/onyx/datos-iniciales"); 
+        })
+    })
     
 };
