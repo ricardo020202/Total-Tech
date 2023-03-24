@@ -15,4 +15,5 @@ Página web de la empresa Onyx
 ## Colaboradores
 
 - Dante Pérez
+- Erik Cabrera
 
