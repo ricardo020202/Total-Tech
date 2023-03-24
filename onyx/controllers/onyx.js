@@ -226,10 +226,18 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         //peso: req.body.inputWeight,   
     });
 
-cliente
-    .save()
-    .then(([rows, fieldData]) => {
-        res.redirect("/onyx/datos-iniciales");
-    })
-    .catch((err) => console.log(err));
+    if (Cliente.fetchOne(cliente.email)) {
+        cliente
+        .update().then(([rows, fieldData]) => {
+            res.redirect("/onyx/datos-iniciales"); 
+        })
+        .catch((err) => console.log(err));
+    }
+    else {
+        cliente
+        .save().then(([rows, fieldData]) => {
+            res.redirect("/onyx/datos-iniciales"); 
+        })
+        .catch((err) => console.log(err));
+    };
 };
