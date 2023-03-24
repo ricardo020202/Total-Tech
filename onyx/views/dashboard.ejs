@@ -1,4 +1,4 @@
-<%- include('includes/head.ejs') %>
+3<%- include('includes/head.ejs') %>
 
     <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
 
@@ -7,6 +7,7 @@
         <div class="row mb-5">
             <h2 class="text-center">
                 Reporte de progreso de <span style="color: #D2CA03;">
+                    <%= user %>
                 </span>
             </h2>
         </div>
@@ -15,12 +16,192 @@
 
             </div>
         </div>
+        <div class="spacer"></div>
+        <div class="row">
+            <h3 class="text-center">Historico de medidas</h3>
+            <div class="col d-flex justify-content-center mt-3">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="bg-custom">
+                                Categoria
+                            </th>
+                            <th scope="col">
+                                Actual
+                            </th>
+                            <th scope="col">
+                                Maxima
+                            </th>
+                            <th scope="col">
+                                Minima
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-dark">
+                        <tr>
+                            <th scope="row">
+                                Pecho
+                            </th>
+                            <td>
+                                <%= pecho[pecho.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...pecho) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...pecho) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Brazo Izquierdo
+                            </th>
+                            <td>
+                                <%= brazoI[brazoI.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...brazoI) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...brazoI) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Brazo Derecho
+                            </th>
+                            <td>
+                                <%= brazoD[brazoD.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...brazoD) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...brazoD) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Cintura
+                            </th>
+                            <td>
+                                <%= cintura[cintura.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...cintura) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...cintura) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Cadera
+                            </th>
+                            <td>
+                                <%= cadera[cadera.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...cadera) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...cadera) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pierna Izquierda
+                            </th>
+                            <td>
+                                <%= piernaI[piernaI.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...piernaI) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...piernaI) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pierna Derecha
+                            </th>
+                            <td>
+                                <%= piernaD[piernaD.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...piernaD) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...piernaD) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pantorrilla Izquierda
+                            </th>
+                            <td>
+                                <%= pantorrillaI[pantorrillaI.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...pantorrillaI) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...pantorrillaI) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pantorrilla Derecha
+                            </th>
+                            <td>
+                                <%= pantorrillaD[pantorrillaD.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...pantorrillaD) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...pantorrillaD) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Cuello
+                            </th>
+                            <td>
+                                <%= cuello[cuello.length - 1] %> cm
+                            </td>
+                            <td>
+                                <%= Math.max(...cuello) %> cm
+                            </td>
+                            <td>
+                                <%= Math.min(...cuello) %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Peso
+                            </th>
+                            <td>
+                                <%= peso[peso.length - 1] %> kg
+                            </td>
+                            <td>
+                                <%= Math.max(...peso) %> kg
+                            </td>
+                            <td>
+                                <%= Math.min(...peso) %> kg
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
-        function createTrace(data, name) {
+        function createTrace(data, name, date) {
             return {
-                x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                x: date,
                 y: data,
                 type: 'scatter',
                 name: name
