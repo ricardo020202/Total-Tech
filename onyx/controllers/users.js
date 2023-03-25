@@ -24,7 +24,49 @@ exports.post_signup = (request, response, next) => {
         .then(([rows, fieldData]) => {
             request.session.mensaje = "Usuario registrado.";
 
-            response.redirect("/users/login");
+            // Loguear al usuario recién registrado
+            user.fetch(request.body.email)
+                .then(([rows, fieldData]) => {
+                    if (rows.length > 0) {
+                        bcrypt
+                            .compare(request.body.password, rows[0].contraseña)
+                            .then((doMatch) => {
+                                if (doMatch) {
+                                    request.session.isLoggedIn = true;
+                                    request.session.user = rows[0].nombre;
+                                    request.session.email = rows[0].email;
+                                    user.getPrivilegios(rows[0].email)
+                                        .then(([consulta_privilegios, fieldData]) => {
+                                            console.log(consulta_privilegios);
+                                            const privilegios = [];
+                                            for (let privilegio of consulta_privilegios) {
+                                                privilegios.push(privilegio.nombrecu);
+                                            }
+                                            console.log(privilegios);
+                                            request.session.privilegios = privilegios;
+
+                                            return request.session.save((error) => {
+                                                response.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
+                                            });
+                                        })
+                                        .catch((error) => {
+                                            console.log(error);
+                                        });
+                                } else {
+                                    request.session.mensaje = "Usuario y/o contraseña incorrecta.";
+                                    response.redirect("/users/login");
+                                    console.log(rows);
+                                }
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    } else {
+                        request.session.mensaje = "Usuario no registrado.";
+                        response.redirect("/users/login");
+                    }
+                })
+                .catch((error) => console.log(error));
         })
         .catch((error) => console.log(error));
 };
