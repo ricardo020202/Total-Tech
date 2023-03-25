@@ -247,6 +247,6 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         .then(([rows, fieldData]) => {
             res.redirect("/onyx/datos-iniciales"); 
         })
-    })
+    });
     
 };
