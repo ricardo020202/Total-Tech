@@ -86,13 +86,16 @@ exports.getFavoritos = (req, res, next) => {
 };
 // ========== Rutas Bitacora ==========
 exports.getBitacora = (req, res, next) => {
-    Bitacora.fetchAll()
+    // receive fecha from calendar in script.js when user clicks on a date in the calendar and send it to the server
+    // if no date is received, then the current date is used
+    const fecha = req.query.fecha || new Date().toISOString().split("T")[0];
+    Bitacora.fetchByDate(req.session.email, fecha)
         .then(([rows, fieldData]) => {
             res.render("bitacora", {
                 pagetitle: "Bitacora",
                 user: req.session.user || "",
-                bitacora: rows.filter((row) => row.email === req.session.email), // Filtrar bitacora por email
-                path: "/bitacora",
+                bitacora: rows.filter((row) => row.email === req.session.email),
+                fecha: fecha,
             });
         })
         .catch((err) => console.log(err));
