@@ -34,12 +34,12 @@ router.get('/registrar-datos-iniciales', onyxController.getRegistrarDatosInicial
 
 router.post('/registrar-datos-iniciales', onyxController.postRegistrarDatosIniciales);
 
-router.get('/tallas', onyxController.getTallas);
+// router.get('/tallas', onyxController.getTallas);
 
-router.post('/tallas', onyxController.postTallas);
+// router.post('/tallas', onyxController.postTallas);
 
-router.get('/modificar-tallas', onyxController.getTallas);
+// router.get('/modificar-tallas', onyxController.getTallas);
 
-router.post('/modificar-tallas', onyxController.postTallas);
+// router.post('/modificar-tallas', onyxController.postTallas);
 
 module.exports = router;
