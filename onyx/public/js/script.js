@@ -67,6 +67,10 @@ const renderCalendar = () => {
 
             // show bitacora for the selected day
             const day = dayElement.innerText;
+            if (dayElement.classList.contains("inactive")) {
+                // if clicked day is not from current month then return
+                return;
+            }
             const month = currMonth + 1;
             const year = currYear;
             const fecha = `${year}-${month}-${day}`;
