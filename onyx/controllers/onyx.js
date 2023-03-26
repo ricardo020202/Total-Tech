@@ -84,11 +84,16 @@ exports.getFavoritos = (req, res, next) => {
         user: req.session.user || "",
     });
 };
+ 
 // ========== Rutas Bitacora ==========
 exports.getBitacora = (req, res, next) => {
     // receive fecha from calendar in script.js when user clicks on a date in the calendar and send it to the server
     // if no date is received, then the current date is used
-    const fecha = req.query.fecha || new Date().toISOString().split("T")[0];
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    const fecha = `${year}-${month}-${day}`;
     Bitacora.fetchByDate(req.session.email, fecha)
         .then(([rows, fieldData]) => {
             res.render("bitacora", {
