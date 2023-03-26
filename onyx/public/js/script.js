@@ -71,6 +71,8 @@ const renderCalendar = () => {
             const year = currYear;
             const fecha = `${year}-${month}-${day}`;
             console.log(fecha);
+
+            window.location.href = `/onyx/bitacora/${fecha}`;
         });
         
     });  
