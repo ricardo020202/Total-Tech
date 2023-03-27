@@ -47,6 +47,19 @@ module.exports = class Dieta {
         return db.execute('SELECT * FROM dieta WHERE id_dieta = ?', [id_dieta]);
     }
 
+    static fetchByCal(numcal)
+    {
+        if (numcal  == '')
+        {
+            return db.execute('SELECT * FROM dieta');
+        }
+        else
+        {
+            return db.execute('SELECT * FROM dieta WHERE no_calorias = ? ', [numcal]);
+        }
+        
+    }
+
     update() {
         return db.execute(
             'UPDATE dieta SET nombre_dieta = ?, no_calorias = ?, proteinas = ?, carbohidratos = ?, grasas = ?, fibra_total = ?, ceniza = ?, calcio = ?, fosforo = ?, hierro = ?, tiamina = ?, riboflavina = ?, niacina = ?, vitamina_c = ?, vitamina_a = ?, ac_graso_mono = ?, ac_graso_poli = ?, ac_graso_saturado = ?, colesterol = ?, potasio = ?, sodio = ?, zinc = ?, magnesio = ?, vit_b6 = ?, vit_b12 = ?, ac_folico = ?, folato = ?'
