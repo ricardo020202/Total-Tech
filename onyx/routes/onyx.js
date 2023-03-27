@@ -21,7 +21,7 @@ router.get('/favoritos', onyxController.getFavoritos);
 
 router.get("/admindashboard", onyxController.getAdminDashboard);
 
-router.get("onyx/admindashboard/userprivileges",onyxController.getAdminDashboardPrivileges);
+router.get("/admindashboard/userprivileges",onyxController.getAdminDashboardPrivileges);
 
 router.get('/dashboard', onyxController.getDashboard);
 
