@@ -21,8 +21,11 @@ exports.getCatEjercicios = (req, res, next) => {
 };
 
 exports.getAdminDashboardPrivileges=(req, res, next) => {
-    res.render("adminDashboardPriviliges");
-}
+    res.render("adminDashboardPriviliges",{
+        pagetitle: "adminDashboardPriviliges",
+
+    });
+    }
 
 // exports.getHome = (req, res, next) => {
 //     res.render("home", {
