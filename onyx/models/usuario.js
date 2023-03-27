@@ -41,3 +41,6 @@ module.exports = class Usuario {
         `, [email]);
     }   
 }
+
+//SELECT medida FROM talla;
+//SELECT extremidad, medida FROM talla;

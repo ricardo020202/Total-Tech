@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row mb-5">
             <h2 class="text-center">
-                Reporte de progreso de <span style="color: #D2CA03;">
+                <span style="color: #D2CA03;">
                 </span>
             </h2>
         </div>
@@ -16,49 +16,102 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function createTrace(data, name) {
-            return {
-                x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                y: data,
-                type: 'scatter',
-                name: name
-            };
+    <title>Consulta de tallas</title>
+    <style>
+        .chart-container {
+            position: relative;
+            margin: 0 auto;
+            width: 50%;
+            height: 0;
+            padding-bottom: 50%;
         }
 
-        const pecho = createTrace(<%= JSON.stringify(pecho) %>, 'Pecho');
-        const brazoIzq = createTrace(<%= JSON.stringify(brazoI) %>, 'Brazo Izquierdo');
-        const brazoDer = createTrace(<%= JSON.stringify(brazoD) %>, 'Brazo Derecho');
-        const cintura = createTrace(<%= JSON.stringify(cintura) %>, 'Cintura');
-        const cadera = createTrace(<%= JSON.stringify(cadera) %>, 'Cadera');
-        const piernaIzq = createTrace(<%= JSON.stringify(piernaI) %>, 'Pierna Izquierda');
-        const piernaDer = createTrace(<%= JSON.stringify(piernaD) %>, 'Pierna Derecha');
-        const pantorillaIzq = createTrace(<%= JSON.stringify(pantorrillaI) %>, 'Pantorilla Izquierda');
-        const pantorillaDer = createTrace(<%= JSON.stringify(pantorrillaD) %>, 'Pantorilla Derecha');
-        const cuello = createTrace(<%= JSON.stringify(cuello) %>, 'Cuello');
-        const peso = createTrace(<%= JSON.stringify(peso) %>, 'Peso');
+        .chart {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-        const layout = {
-            autosize: true,
-            title: 'Medidas generales de <%= user%>',
-            xaxis: {
-                title: 'Fecha(mes)',
-                zeroline: false
-            },
-            yaxis: {
-                title: 'Medida',
-            },
-            paper_bgcolor: "rgb(17,17,17)",
-            plot_bgcolor: "rgb(17,17,17)",
-            height: 600,
-            width: 900,
-        };
-        const data = [pecho, brazoIzq, brazoDer, cintura, cadera, piernaIzq, piernaDer,
-            pantorillaIzq, pantorillaDer, cuello, peso];
-        Plotly.newPlot(graph, data, layout, { theme: "plotly_dark" });
-        graph = document.getElementById('graph');
+        .chart canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-    </script>
+        .chart text {
+            dominant-baseline: central;
+            text-anchor: middle;
+            fill: #fff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+
+<h1 style="text-align:center;">Consulta de tallas</h1>
+
+<div class="chart-container">
+    <div class="chart">
+        <canvas id="myChart"></canvas>
+        <div id="chart-data" style="display:none;">
+            {
+                "labels": ["Pecho", "Brazo Izquierdo", "Brazo Derecho", "Cintura", "Peso", "Cadera", "Pierna Izquierda", "Pierna Derecha", "Pantorrilla Izquierda", "Pantorrilla Derecha", "Cuello"],
+                "colors": ["#CC6666", "#66CCCC", "#FFCC66", "#9999CC", "#66CC66", "#FF9999", "#FF99CC", "#CCCC99", "#FFCC99", "#99CCFF", "#CC99FF"],
+                "desired": [38, 30, 30, 80, 70, 100, 50, 50, 40, 40, 40],
+                "current": [32, 27, 28, 76, 72, 97, 47, 48, 36, 37, 38]
+            }
+            
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        var data = JSON.parse(document.getElementById('chart-data').innerHTML);
+
+        var backgroundColors = [];
+        var hoverBackgroundColors = [];
+
+        for (var i = 0; i < data.labels.length; i++) {
+            backgroundColors.push(data.colors[i]);
+            hoverBackgroundColors.push(data.colors[i] + '33'); // Add some opacity for the hover effect
+        }
+
+        var chart = new Chart(document.getElementById('myChart'), {
+            type: 'pie',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    backgroundColor: backgroundColors,
+                    hoverBackgroundColor: hoverBackgroundColors,
+                    data: data.current
+                }, {
+                    backgroundColor: backgroundColors.map(function(color) { return color + '99'; }), // Desired color is a lighter version of the actual color
+                    hoverBackgroundColor: backgroundColors.map(function(color) { return color + 'CC'; }), // Add some opacity for the hover effect
+                    data: data.desired
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                }
+            }
+        });
+    });
+</script>
+
+
+    
+
+    
 
     <%- include('includes/foot.ejs') %>
