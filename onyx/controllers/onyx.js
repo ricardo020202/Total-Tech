@@ -46,26 +46,13 @@ exports.getCatEntrenamientos = (req, res, next) => {
     })
     .catch(err => console.log(err));
   
-    /*
-    Programa.fetchAll().then(([rows,fieldData]) => {
-        console.log(rows);
-
-        response.render('catEntrenamientos', { 
-            programas: rows,
-            pagetitle: 'Catálogo de Entrenamientos',
-            path: '/catEntrenamientos',
-            ultimo_programa: request.session.ultimo_programa || '',
-            isLoggedIn: request.session.isLoggedIn || false,
-            privilegios: request.session.privilegios || [],
-        });
-
-    }).catch(error => {console.log(error);});
-    */
 };
 
 exports.getDieta = (req, res, next) => {
 
-    DietasModel.fetchAll()
+    const numcal = req.params.numcal || '';
+
+    DietasModel.fetchByCal(numcal)
     .then(([rows, fieldData]) => {
         res.render('dietas', {
             dietas: rows,
