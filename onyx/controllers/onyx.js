@@ -93,7 +93,8 @@ exports.getBitacora = (req, res, next) => {
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, "0");
     const day = String(today.getDate()).padStart(2, "0");
-    const fecha = `${year}-${month}-${day}`;
+    const fecha = req.params.fecha || `${year}-${month}-${day}`;
+
     Bitacora.fetchByDate(req.session.email, fecha)
         .then(([rows, fieldData]) => {
             res.render("bitacora", {

@@ -24,6 +24,8 @@ router.get('/dashboard', onyxController.getDashboard);
 
 router.get('/bitacora', onyxController.getBitacora);
 
+router.get('/bitacora/:fecha', onyxController.getBitacora);
+
 router.get('/nuevabitacora', onyxController.getNuevaBitacora);
 
 router.post('/nuevabitacora', onyxController.postNuevaBitacora);
