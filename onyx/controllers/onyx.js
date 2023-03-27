@@ -20,6 +20,10 @@ exports.getCatEjercicios = (req, res, next) => {
         .catch((err) => console.log(err));
 };
 
+exports.getAdminDashboardPrivileges=(req, res, next) => {
+    res.render("adminDashboardPriviliges");
+}
+
 // exports.getHome = (req, res, next) => {
 //     res.render("home", {
 //         pagetitle: "Onyx",
