@@ -623,6 +623,7 @@ header .current-date {
     position: absolute;
 
     right: 20%;
+    bottom: 30%;
     margin: 20px;
 }
 
