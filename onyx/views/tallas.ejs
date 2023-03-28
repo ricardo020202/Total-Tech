@@ -1,39 +1,93 @@
 <%- include('includes/head.ejs') %>
 
 <main>
-    <div class="spacer"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h2 id="titulopagina" style="cursor: default">Tallas</h2>
+        <div class="spacer"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 id="titulopagina" style="cursor: default">Tallas</h2>
+                </div>
             </div>
-        </div>
-        <div class="row mt-5">
-            
-        </div>
-        <div class="row">
-            <div class="col">
-                <h4 style="cursor: default">Masculino</h4>
-                <svg width="100%" height="200" viewBox="0 0 100% 200" class="posAb">
-                    <line x1="5%" y1="32%" x2="15%" y2="32%" style="stroke:#f00; stroke-width:3">Cuello</line>
-                    <line x1="5%" y1="50%" x2="15%" y2="50%" stroke="red" stroke-width="3">Pecho</line>
-                    <line x1="5%" y1="63%" x2="15%" y2="63%" stroke="red" stroke-width="3">Cintura</line>
-                    <line x1="5%" y1="65%" x2="15%" y2="65%" stroke="red" stroke-width="3">Cadera(gluteo)</line>
-                    <line x1="5%" y1="78%" x2="15%" y2="78%" stroke="red" stroke-width="3">Pierna</line>
-                    <line x1="5%" y1="85%" x2="15%" y2="85%" stroke="red" stroke-width="3">Pantorrilla</line>
-                    <line x1="3%" y1="92%" x2="10%" y2="92%" stroke="red" stroke-width="3">Peso</line>
-                </svg>  
-                <img src="../assets/male-body-nobg.png" alt="male-body-nobg">
+            <div class="row mt-5">
                 
             </div>
-            
-            <div class="col">
-                <h4 style="cursor: default">Femenino</h4>
-                <img src="../assets/female-body-nobg.png" alt="female-body-nobg">
+            <div class="row">
+                <div style="width: 5%;">
+                    <div class="col">
+                        <h4 style="cursor: default">Masculino</h4>
+                            <svg width="100%" height="55%" viewBox="0 0 100% 200" class="posAb">
+                                <line x1="5%" y1="16%" x2="15%" y2="16%" style="stroke:#f00; stroke-width:3">Cuello</line>
+                                <line x1="5%" y1="22%" x2="15%" y2="22%" stroke="red" stroke-width="3">Pecho</line>
+                                <line x1="8%" y1="30%" x2="15%" y2="30%" stroke="red" stroke-width="3">Brazo Izquierdo</line>
+                                <line x1="2%" y1="35%" x2="15%" y2="35%" stroke="red" stroke-width="3">Brazo Derecho</line>
+                                <line x1="5%" y1="45%" x2="15%" y2="45%" stroke="red" stroke-width="3">Cintura</line>
+                                <line x1="5%" y1="50%" x2="15%" y2="50%" stroke="red" stroke-width="3">Cadera(gluteo)</line>
+                                <line x1="7%" y1="60%" x2="15%" y2="60%" stroke="red" stroke-width="3">Pierna Izquierda</line>
+                                <line x1="3%" y1="68%" x2="15%" y2="68%" stroke="red" stroke-width="3">Pierna Derecha</line>
+                                <line x1="7%" y1="80%" x2="15%" y2="80%" stroke="red" stroke-width="3">Pantorrilla Izquierda</line>
+                                <line x1="3%" y1="85%" x2="15%" y2="85%" stroke="red" stroke-width="3">Pantorrilla Derecha</line>
+                                <line x1="3%" y1="100%" x2="7%" y2="100%" stroke="red" stroke-width="3">Peso</line>
+                            </svg>  
+                            <img src="../assets/male-body-nobg.png" alt="male-body-nobg">
+                    </div>
+                </div>
+
+                <div class="col" style="margin-left: 0%;">
+                    <form>
+                        <input type="number" min="0" name="cuello" placeholder="cuello" style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="pecho" placeholder="pecho" style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="brazoI" placeholder="Brazo izq" style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="brazoD" placeholder="Brazo Der" style="margin-top: 11%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="cintura" placeholder="cintura" style="margin-top: 13.3%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="cadera" placeholder="cadera" style="margin-top: 15%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="piernaI" placeholder="pierna izq" style="margin-top: 18%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="piernaD" placeholder="pierna der" style="margin-top: 20%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="pantorrillaI" placeholder="pantorrilla izq" style="margin-top: 22%; margin-left: 10%; position: absolute; width: 8%;"/>
+                        <input type="number" min="0" name="pantorrillaD" placeholder="pantorrilla der" style="margin-top: 24%; margin-left: 10%; position: absolute; width: 8%;"/>
+                        <input type="number" min="0" name="peso" placeholder="peso" style="margin-top: 27%; margin-left: 0%; position: absolute; width: 5%;"/>
+                    </form>
+                </div>
+                
+                <div style="width: 5%;">
+                    <div class="col">
+                        <h4 style="cursor: default">Femenino</h4>
+                            <svg width="100%" height="55%" viewBox="0 0 100% 200" class="posAb">
+                                <line x1="5%" y1="16%" x2="15%" y2="16%" style="stroke:#f00; stroke-width:3">Cuello</line>
+                                <line x1="5%" y1="22%" x2="15%" y2="22%" stroke="red" stroke-width="3">Pecho</line>
+                                <line x1="8%" y1="30%" x2="15%" y2="30%" stroke="red" stroke-width="3">Brazo Izquierdo</line>
+                                <line x1="2%" y1="35%" x2="15%" y2="35%" stroke="red" stroke-width="3">Brazo Derecho</line>
+                                <line x1="5%" y1="45%" x2="15%" y2="45%" stroke="red" stroke-width="3">Cintura</line>
+                                <line x1="5%" y1="50%" x2="15%" y2="50%" stroke="red" stroke-width="3">Cadera(gluteo)</line>
+                                <line x1="7%" y1="60%" x2="15%" y2="60%" stroke="red" stroke-width="3">Pierna Izquierda</line>
+                                <line x1="3%" y1="68%" x2="15%" y2="68%" stroke="red" stroke-width="3">Pierna Derecha</line>
+                                <line x1="7%" y1="80%" x2="15%" y2="80%" stroke="red" stroke-width="3">Pantorrilla Izquierda</line>
+                                <line x1="3%" y1="85%" x2="15%" y2="85%" stroke="red" stroke-width="3">Pantorrilla Derecha</line>
+                                <line x1="3%" y1="100%" x2="7%" y2="100%" stroke="red" stroke-width="3">Peso</line>
+                            </svg>  
+                            <img src="../assets/female-body-nobg.png" alt="female-body-nobg">
+                    </div>
+                </div>
+
+                <div class="col" style="margin-left: 0%;">
+                    <form>
+                        <input type="number" min="0" name="cuello" placeholder="cuello" style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="pecho" placeholder="pecho" style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="brazoI" placeholder="Brazo izq" style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="brazoD" placeholder="Brazo Der" style="margin-top: 11%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="cintura" placeholder="cintura" style="margin-top: 13.3%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="cadera" placeholder="cadera" style="margin-top: 15%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="piernaI" placeholder="pierna izq" style="margin-top: 18%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="piernaD" placeholder="pierna der" style="margin-top: 20%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="pantorrillaI" placeholder="pantorrilla izq" style="margin-top: 22%; margin-left: 10%; position: absolute; width: 8%;"/>
+                        <input type="number" min="0" name="pantorrillaD" placeholder="pantorrilla der" style="margin-top: 24%; margin-left: 10%; position: absolute; width: 8%;"/>
+                        <input type="number" min="0" name="peso" placeholder="peso" style="margin-top: 27%; margin-left: 0%; position: absolute; width: 5%;"/>
+                    </form>
+                </div>
+                
+                <button>Modificar</button>
             </div>
+            
 
-        </div>
-
-</main>
+    </main>
 
 <%- include('includes/foot.ejs') %>
