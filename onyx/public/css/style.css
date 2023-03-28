@@ -658,3 +658,21 @@ tbody {
     background-color: #FFFFFF;
     color: #000000
 }
+
+#orderbybtn
+{
+    color: #d2ca03;
+}
+
+#containerdietas
+{
+    background-color: #000000;
+    border-radius: 50px;
+}
+
+#containerprogramas
+{
+    background-color: #000000;
+    border-radius: 50px;
+}
+

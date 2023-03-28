@@ -1,7 +1,5 @@
 <%- include('includes/head.ejs') %>
 
-    <div class="spacer"></div>
-
     <div class="container">
         <div class="spacer"></div>
         <h2 id="titulopagina">DIETAS PARA TI</h2>
@@ -13,23 +11,29 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="dropdown-item" href="/onyx/dietas/1500">1500</a>
+                        <a class="dropdown-item" href="/onyx/dietas">DEFAULT</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/2000">2000</a>
+                        <a class="dropdown-item" href="/onyx/dietas/1500">1500 - 1900</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/3000">3000</a>
+                        <a class="dropdown-item"  href="/onyx/dietas/2000">2000 - 2400</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/3500">3500</a>
+                        <a class="dropdown-item"  href="/onyx/dietas/2500">2500 - 2900</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/3000">3000 - 3400</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/3500">3500 - 3900</a>
                     </li>
                 </ul>
             </li>
         </div>
     </div>
 
-    <div class="container text-center">
+    <div id="containerdietas" class="container text-center">
         
         <div class="row align-items-start">
             <% for (let i=0; i < dietas.length; i++) { %>
@@ -52,8 +56,20 @@
                 </div>
             </div>
             <% } %>
+            <!--
+            <div class="col l12 m12 s12">
+                <ul class="pagination center-align">
+                <% for (let i = 1; i <= Math.ceil(dietas/9); i++) { %>
+                    <li class="active">
+                        <a href="/dietas/start/<%= (i-1)*9 %>""><%= i %></a>
+                    </li>
+                <% } %>
+                </ul>
+            </div>-->
+
         </div>
     </div>
+    <br>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">

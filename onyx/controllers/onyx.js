@@ -55,10 +55,12 @@ exports.getCatEntrenamientos = (req, res, next) => {
   
 };
 
-exports.getDieta = (req, res, next) => {
+exports.getDieta = async(req, res, next) => {
 
     const numcal = req.params.numcal || '';
-
+    //const total = await DietasModel.getTotal();
+    //const start = req.params.start ? req.params.start : 0
+    
     DietasModel.fetchByCal(numcal)
     .then(([rows, fieldData]) => {
         res.render('dietas', {
@@ -68,7 +70,20 @@ exports.getDieta = (req, res, next) => {
             path: '/dietas'
         });
     })
+    .catch(err => console.log(err));   
+/*
+    DietasModel.fetchAll(start)
+    .then(([rows, fieldData]) => {
+        res.render('dietas', {
+            dietas: rows,
+            pagetitle: 'Catálogo de Dietas',
+            user: req.session.user || '',
+            total_dietas: total
+        });
+    })
     .catch(err => console.log(err)); 
+
+*/
 
 };
 

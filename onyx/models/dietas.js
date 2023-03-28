@@ -37,10 +37,29 @@ module.exports = class Dieta {
             [this.nombre_dieta, this.no_calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato]
         );
     }
-
+    
     static fetchAll() {
-        return db.execute('SELECT * FROM dieta');
+        return db.execute('SELECT * FROM dieta ORDER BY no_calorias');
     }
+    
+    
+    /*
+    static fetchAll(start) {
+        return db.execute('SELECT * FROM dieta LIMIT ?, 9', [start]);
+    }
+
+    static getTotal() {
+        return db.execute('SELECT count(*) as total FROM dieta')
+        .then(([rows, fieldData]) => {
+            return rows[0].total;
+        })
+        .catch(error => 
+            {
+                console.log(error);
+                return 0;
+            });
+    }
+    */
 
     static fetchById(id_dieta)
     {
@@ -51,11 +70,11 @@ module.exports = class Dieta {
     {
         if (numcal  == '')
         {
-            return db.execute('SELECT * FROM dieta');
+            return db.execute('SELECT * FROM dieta ORDER BY no_calorias');
         }
         else
         {
-            return db.execute('SELECT * FROM dieta WHERE no_calorias = ? ', [numcal]);
+            return db.execute('SELECT * FROM dieta WHERE no_calorias BETWEEN ? AND ? + 400 ORDER BY no_calorias', [numcal, numcal]);
         }
         
     }
