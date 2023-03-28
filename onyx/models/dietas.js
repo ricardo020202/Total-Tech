@@ -38,43 +38,40 @@ module.exports = class Dieta {
         );
     }
     
-    static fetchAll() {
-        return db.execute('SELECT * FROM dieta ORDER BY no_calorias');
-    }
-    
-    
-    /*
     static fetchAll(start) {
-        return db.execute('SELECT * FROM dieta LIMIT ?, 9', [start]);
+        if(start > 0)
+        {
+            return db.execute('SELECT * FROM dieta ORDER BY no_calorias LIMIT ?, 9', [start]);  
+        }
+
+        else
+        {
+            return db.execute('SELECT * FROM dieta ORDER BY no_calorias');
+        }
+        
     }
 
     static getTotal() {
-        return db.execute('SELECT count(*) as total FROM dieta')
-        .then(([rows, fieldData]) => {
-            return rows[0].total;
-        })
-        .catch(error => 
-            {
-                console.log(error);
-                return 0;
-            });
+        return db.execute('SELECT count(*) as total FROM dieta');
+
     }
-    */
+    
 
     static fetchById(id_dieta)
     {
         return db.execute('SELECT * FROM dieta WHERE id_dieta = ?', [id_dieta]);
     }
 
-    static fetchByCal(numcal)
+    static fetchByCal(numcal, start)
     {
         if (numcal  == '')
         {
-            return db.execute('SELECT * FROM dieta ORDER BY no_calorias');
+    
+            return db.execute('SELECT * FROM dieta ORDER BY no_calorias  LIMIT ?, 9', [start]);
         }
         else
         {
-            return db.execute('SELECT * FROM dieta WHERE no_calorias BETWEEN ? AND ? + 400 ORDER BY no_calorias', [numcal, numcal]);
+            return db.execute('SELECT * FROM dieta WHERE no_calorias BETWEEN ? AND ? + 400 ORDER BY no_calorias  LIMIT ?, 9', [numcal, numcal, start]);
         }
         
     }
