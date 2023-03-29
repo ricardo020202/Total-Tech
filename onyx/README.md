@@ -16,4 +16,4 @@ Página web de la empresa Onyx
 
 - Dante Pérez
 - Erik Cabrera
-
+- Pablo Javier Arreola Velasco
