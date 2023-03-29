@@ -265,3 +265,39 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
     });
     
 };
+
+exports.getTallas = (req, res, next) => {
+    res.render("tallas", {
+        pagetitle: "Tallas",
+        user: req.session.user || "",
+        pecho: req.session.pecho || "",
+        brazoI: req.session.brazo_izquierdo || "",
+        brazoD: req.session.brazo_derecho || "",
+        peso: req.session.peso || "",
+        cintura: req.session.cintura || "",
+        cadera: req.session.cadera || "",
+        piernaI: req.session.pierna_izquierda || "",
+        piernaD: req.session.pierna_derecha || "",
+        pantorrillaI: req.session.pantorrilla_izquierda || "",
+        pantorrillaD: req.session.pantorrilla_derecha || "",
+        cuello: req.session.cuello || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postTallas = (req, res, next) => {
+    extremidades.forEach((ex) => {
+        const talla = new Talla({
+            email: req.session.email,
+            extremidad: ex,
+            medida: req.body[`input${ex}`],
+            fecha: new Date(),
+        });
+        talla
+            .save()
+            .then(([rows, fieldData]) => {
+                res.redirect("/onyx/tallas");
+            })
+            .catch((err) => console.log(err));
+    });
+}

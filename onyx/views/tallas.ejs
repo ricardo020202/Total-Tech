@@ -34,17 +34,18 @@
 
                 <div class="col" style="margin-left: 0%;">
                     <form>
-                        <input type="number" min="0" name="cuello" placeholder="cuello" style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;"/>
-                        <input type="number" min="0" name="pecho" placeholder="pecho" style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;"/>
-                        <input type="number" min="0" name="brazoI" placeholder="Brazo izq" style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;"/>
-                        <input type="number" min="0" name="brazoD" placeholder="Brazo Der" style="margin-top: 11%; margin-left: 10%; position: absolute; width: 6%;"/>
-                        <input type="number" min="0" name="cintura" placeholder="cintura" style="margin-top: 13.3%; margin-left: 10%; position: absolute; width: 5%;"/>
-                        <input type="number" min="0" name="cadera" placeholder="cadera" style="margin-top: 15%; margin-left: 10%; position: absolute; width: 5%;"/>
-                        <input type="number" min="0" name="piernaI" placeholder="pierna izq" style="margin-top: 18%; margin-left: 10%; position: absolute; width: 6%;"/>
-                        <input type="number" min="0" name="piernaD" placeholder="pierna der" style="margin-top: 20%; margin-left: 10%; position: absolute; width: 6%;"/>
-                        <input type="number" min="0" name="pantorrillaI" placeholder="pantorrilla izq" style="margin-top: 22%; margin-left: 10%; position: absolute; width: 8%;"/>
-                        <input type="number" min="0" name="pantorrillaD" placeholder="pantorrilla der" style="margin-top: 24%; margin-left: 10%; position: absolute; width: 8%;"/>
-                        <input type="number" min="0" name="peso" placeholder="peso" style="margin-top: 27%; margin-left: 0%; position: absolute; width: 5%;"/>
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                        <input type="number" min="0" name="inputcuello" placeholder="cuello" style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="inputpecho" placeholder="pecho" style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="inputbrazo_izquierdo" placeholder="Brazo izq" style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="inputbrazo_derecho" placeholder="Brazo Der" style="margin-top: 11%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="inputcintura" placeholder="cintura" style="margin-top: 13.3%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="inputcadera" placeholder="cadera" style="margin-top: 15%; margin-left: 10%; position: absolute; width: 5%;"/>
+                        <input type="number" min="0" name="inputpierna_izquierda" placeholder="pierna izq" style="margin-top: 18%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="inputpierna_derecha" placeholder="pierna der" style="margin-top: 20%; margin-left: 10%; position: absolute; width: 6%;"/>
+                        <input type="number" min="0" name="inputpantorrilla_izquierda" placeholder="pantorrilla izq" style="margin-top: 22%; margin-left: 10%; position: absolute; width: 8%;"/>
+                        <input type="number" min="0" name="inputpantorrilla_derecha" placeholder="pantorrilla der" style="margin-top: 24%; margin-left: 10%; position: absolute; width: 8%;"/>
+                        <input type="number" min="0" name="inputpeso" placeholder="peso" style="margin-top: 27%; margin-left: 0%; position: absolute; width: 5%;"/>
                     </form>
                 </div>
                 
@@ -70,6 +71,7 @@
 
                 <div class="col" style="margin-left: 0%;">
                     <form>
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
                         <input type="number" min="0" name="cuello" placeholder="cuello" style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;"/>
                         <input type="number" min="0" name="pecho" placeholder="pecho" style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;"/>
                         <input type="number" min="0" name="brazoI" placeholder="Brazo izq" style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;"/>
