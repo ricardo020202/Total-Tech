@@ -20,12 +20,12 @@ exports.getCatEjercicios = (req, res, next) => {
         .catch((err) => console.log(err));
 };
 
-exports.getAdminDashboardPrivileges=(req, res, next) => {
-    res.render("adminDashboardPriviliges",{
-        pagetitle: "adminDashboardPriviliges",
+// exports.getAdminDashboardPrivileges=(req, res, next) => {
+//     res.render("adminDashboardPriviliges",{
+//         pagetitle: "adminDashboardPriviliges",
 
-    });
-    }
+//     });
+//     }
 
 // exports.getHome = (req, res, next) => {
 //     res.render("home", {
@@ -34,12 +34,12 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
 //     });
 // };
 
-exports.getAdminDashboard = (req, res, next) => {
-    res.render("admindashboard", {
-        pagetitle: "Onyx",
-        user: req.session.user || "",
-    });
-};
+// exports.getAdminDashboard = (req, res, next) => {
+//     res.render("admindashboard", {
+//         pagetitle: "Onyx",
+//         user: req.session.user || "",
+//     });
+// };
 
 exports.getCatEntrenamientos = async(req, res, next) => {
     
