@@ -34,12 +34,12 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
 //     });
 // };
 
-exports.getAdminDashboard = (req, res, next) => {
-    res.render("admindashboard", {
-        pagetitle: "Onyx",
-        user: req.session.user || "",
-    });
-};
+// exports.getAdminDashboard = (req, res, next) => {
+//     res.render("admindashboard", {
+//         pagetitle: "Onyx",
+//         user: req.session.user || "",
+//     });
+// };
 
 exports.getCatEntrenamientos = async(req, res, next) => {
     

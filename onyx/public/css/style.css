@@ -477,16 +477,12 @@ a:hover {
     flex-direction: column;
 }
 
-img {
-    /*size of the image*/
+/*img {
     width: 100%;
     height: 100%;
-    /*to make the image responsive*/
     object-fit: cover;
-    /*to make the image responsive*/
     object-position: center;
-
-}
+}*/
 
 .ejercicio-img {
     width: 100%;
