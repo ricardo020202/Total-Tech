@@ -68,7 +68,7 @@
             </a>
           </li>
             <%let contador = 0;%>
-            <% for (let i = 1; i < total_dietas/9; i++) { %>
+            <% for (let i = 1; i <= Math.ceil(total_dietas/9); i++) { %>
                 <!--<%if(numcal=='') { numcal = 0;}%>-->
                 <%console.log(numcal)%>
                 <li class="page-item"><a class="page-link" href="/onyx/dietas/<%=contador%>/<%=numcal%>"><%= i %></a></li>

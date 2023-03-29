@@ -14,8 +14,21 @@ module.exports = class Programa {
             [this.id_programa, this.frecuencia, this.nombre_programa, this.descripcion_programa, this.imagen_programa]);
     }
 
-    static fetchAll() {
-        return db.execute('SELECT * FROM programa');
+    static fetchAll(start) {
+        if(start >= 0)
+        {
+            return db.execute('SELECT * FROM programa ORDER BY descripcion_programa LIMIT ?, 9', [start]);  
+        }
+
+        else
+        {
+            return db.execute('SELECT * FROM programa ORDER BY descripcion_programa');
+        }
+    }
+
+    static getTotal() {
+        return db.execute('SELECT count(*) as total FROM programa');
+
     }
 
     static fetchById(id_programa)

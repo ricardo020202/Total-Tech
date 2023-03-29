@@ -47,16 +47,14 @@ module.exports = class Dieta {
         else
         {
             return db.execute('SELECT * FROM dieta ORDER BY no_calorias');
-        }
-        
+        } 
     }
-
+ 
     static getTotal() {
         return db.execute('SELECT count(*) as total FROM dieta');
 
     }
     
-
     static fetchById(id_dieta)
     {
         return db.execute('SELECT * FROM dieta WHERE id_dieta = ?', [id_dieta]);
