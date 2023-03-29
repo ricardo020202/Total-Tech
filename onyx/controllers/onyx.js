@@ -6,6 +6,7 @@ const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
+const usuario = require("../models/usuario");
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -20,11 +21,24 @@ exports.getCatEjercicios = (req, res, next) => {
         .catch((err) => console.log(err));
 };
 
-exports.getAdminDashboardPrivileges = (req, res, next) => {
-    res.render("adminDashboardPriviliges", {
-        pagetitle: "adminDashboardPriviliges",
+exports.getAdminDashboardPrivileges=(req, res, next) => {
+    let results = [];
 
-    });
+    usuario.getPrivilegios()
+      .then(rows => {
+        rows.forEach(row => {
+          results.push(row);
+        });
+        console.log("results:",results[0]);
+        res.render("adminDashboardPrivileges", {
+            usersArray:results[0],
+            pagetitle: "Onyx",
+            user: req.session.user || "",
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
 }
 
 // exports.getHome = (req, res, next) => {

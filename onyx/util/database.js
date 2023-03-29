@@ -1,10 +1,29 @@
 const mysql = require('mysql2');
 
+//Switch as necesary
+
+//Mac database
+
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'onyx',
-    password: '',
+    port: 8889,
+    password: 'lol23',
 });
+
+// Windows database
+
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'onyx',
+//     password: '',
+// });
+
+
+
+
+
 
 module.exports = pool.promise();
