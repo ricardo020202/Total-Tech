@@ -11,7 +11,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="dropdown-item" href="/onyx/dietas">DEFAULT</a>
+                        <a class="dropdown-item" href="/onyx/dietas/0/0">DEFAULT</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="/onyx/dietas/1500/0">1500 - 1900</a>
@@ -67,8 +67,11 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-            <% for (let i = 1; i < total_dietas/9; i++) {%>
-                <li class="page-item"><a class="page-link" href="/onyx/dieta/<%numcal%>/<%i+9%>"><%= i %></a></li>
+            <% for (let i = 1; i < total_dietas/9; i++) { %>
+                <%if(numcal=='') { numcal = 0;}%>
+                <%console.log(numcal)%>
+                <li class="page-item"><a class="page-link" href="/onyx/dietas/<% numcal%>/<%=i%>"><%= i %></a></li>
+                <%console.log(numcal)%>
             <%}%>
         <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">

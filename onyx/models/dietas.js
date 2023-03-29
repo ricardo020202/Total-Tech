@@ -64,7 +64,7 @@ module.exports = class Dieta {
 
     static fetchByCal(numcal, start)
     {
-        if (numcal  == '')
+        if (numcal  == 0)
         {
     
             return db.execute('SELECT * FROM dieta ORDER BY no_calorias  LIMIT ?, 9', [start]);
