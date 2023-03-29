@@ -14,19 +14,19 @@
                         <a class="dropdown-item" href="/onyx/dietas/0/0">DEFAULT</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/onyx/dietas/1500/0">1500 - 1900</a>
+                        <a class="dropdown-item" href="/onyx/dietas/0/1500">1500 - 1900</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/2000/0">2000 - 2400</a>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2000">2000 - 2400</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/2500/0">2500 - 2900</a>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2500">2500 - 2900</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/3000/0">3000 - 3400</a>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3000">3000 - 3400</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/3500/0">3500 - 3900</a>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3500">3500 - 3900</a>
                     </li>
                 </ul>
             </li>
@@ -67,11 +67,15 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
+            <%let contador = 0;%>
             <% for (let i = 1; i < total_dietas/9; i++) { %>
-                <%if(numcal=='') { numcal = 0;}%>
+                <!--<%if(numcal=='') { numcal = 0;}%>-->
                 <%console.log(numcal)%>
-                <li class="page-item"><a class="page-link" href="/onyx/dietas/<% numcal%>/<%=i%>"><%= i %></a></li>
+                <li class="page-item"><a class="page-link" href="/onyx/dietas/<%=contador%>/<%=numcal%>"><%= i %></a></li>
                 <%console.log(numcal)%>
+
+                <%contador += 9;%>
+            
             <%}%>
         <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
