@@ -676,3 +676,34 @@ tbody {
     border-radius: 50px;
 }
 
+
+.btn-talla {
+    background-color: #D2CA03;
+    color: #000000;
+    margin: 10px;
+    border-radius: 40px;
+    width: 10%;
+    position: absolute;
+    margin-top: 30%;
+  }
+  
+  .btn-talla:hover {
+    background-color: #222222;
+    color: #FFFFFF;
+}
+
+.posAb {
+    position: absolute;
+}
+
+.image-tallas {
+    width: 22%;
+    height: fit-content;
+    object-fit: cover;
+    margin-left: 30%;
+}
+
+.cont-l {
+    margin-left: 30%;
+    margin-top: 0%;
+}

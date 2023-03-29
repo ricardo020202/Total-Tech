@@ -1,99 +1,148 @@
 <%- include('includes/head.ejs') %>
 
-<main>
-        <div class="spacer"></div>
-        <div class="container">
+    <main>
+        <div class="spacer">
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h2 id="titulopagina" style="cursor: default">Tallas</h2>
+            </div>
+        </div>
+        <div class="row mt-5">
+
+        </div>
+
+        <%if (sexo=='Masculino' ) {%>
+
             <div class="row">
-                <div class="col">
-                    <h2 id="titulopagina" style="cursor: default">Tallas</h2>
+
+                <h4 style="cursor: default">Masculino</h4>
+                <div class="col-6 justify-content-right">
+                    <div class="image-tallas">
+                        <img src="../assets/male-body-nobg.png" alt="male-body-nobg">
+                    </div>
                 </div>
+                <div class="col-6 justify-content-left">
+                    <svg width="100%" height="55%" viewBox="100% 100%" class="posAb">
+                        <line x1="5%" y1="16%" x2="15%" y2="16%" style="stroke:#f00; stroke-width:3">Cuello</line>
+                        <line x1="5%" y1="22%" x2="15%" y2="22%" stroke="red" stroke-width="3">Pecho</line>
+                        <line x1="8%" y1="30%" x2="15%" y2="30%" stroke="red" stroke-width="3">Brazo Izquierdo
+                        </line>
+                        <line x1="2%" y1="35%" x2="15%" y2="35%" stroke="red" stroke-width="3">Brazo Derecho</line>
+                        <line x1="5%" y1="45%" x2="15%" y2="45%" stroke="red" stroke-width="3">Cintura</line>
+                        <line x1="5%" y1="50%" x2="15%" y2="50%" stroke="red" stroke-width="3">Cadera(gluteo)</line>
+                        <line x1="7%" y1="60%" x2="15%" y2="60%" stroke="red" stroke-width="3">Pierna Izquierda
+                        </line>
+                        <line x1="3%" y1="68%" x2="15%" y2="68%" stroke="red" stroke-width="3">Pierna Derecha</line>
+                        <line x1="7%" y1="80%" x2="15%" y2="80%" stroke="red" stroke-width="3">Pantorrilla Izquierda
+                        </line>
+                        <line x1="3%" y1="85%" x2="15%" y2="85%" stroke="red" stroke-width="3">Pantorrilla Derecha
+                        </line>
+                        <line x1="0%" y1="100%" x2="7%" y2="100%" stroke="red" stroke-width="3">Peso</line>
+                    </svg>
+
+
+
+
+
+
+
+                    <form action="/onyx/tallas" method="POST">
+                        <input type="number" min="0" name="inputcuello" value="<%=cuello[cuello.length-1]%>"
+                            placeholder="cuello"
+                            style="margin-top: 3%; margin-left: 10%; position: absolute; width: 5%;" />
+                        <input type="number" min="0" name="inputpecho" value="<%=pecho[pecho.length-1]%>"
+                            placeholder="pecho"
+                            style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;" />
+                        <input type="number" min="0" name="inputbrazo_izquierdo" value="<%=brazoI[brazoI.length-1]%>"
+                            placeholder="Brazo izq"
+                            style="margin-top: 7.1%; margin-left: 11%; position: absolute; width: 6%;" />
+                        <input type="number" min="0" name="inputbrazo_derecho" value="<%=brazoD[brazoD.length-1]%>"
+                            placeholder="Brazo Der"
+                            style="margin-top: 9.3%; margin-left: 10%; position: absolute; width: 6%;" />
+                        <input type="number" min="0" name="inputcintura" value="<%=cintura[cintura.length-1]%>"
+                            placeholder="cintura"
+                            style="margin-top: 11.5%; margin-left: 10%; position: absolute; width: 5%;" />
+                        <input type="number" min="0" name="inputcadera" value="<%=cadera[cadera.length-1]%>"
+                            placeholder="cadera"
+                            style="margin-top: 13.7%; margin-left: 10%; position: absolute; width: 5%;" />
+                        <input type="number" min="0" name="inputpierna_izquierda" value="<%=piernaI[piernaI.length-1]%>"
+                            placeholder="pierna izq"
+                            style="margin-top: 16%; margin-left: 10%; position: absolute; width: 6%;" />
+                        <input type="number" min="0" name="inputpierna_derecha" value="<%=piernaD[piernaD.length-1]%>"
+                            placeholder="pierna der"
+                            style="margin-top: 18.2%; margin-left: 10%; position: absolute; width: 6%;" />
+                        <input type="number" min="0" name="inputpantorrilla_izquierda"
+                            value="<%=pantorrillaI[pantorrillaI.length-1]%>" placeholder="pantorrilla izq"
+                            style="margin-top: 21%; margin-left: 10%; position: absolute; width: 8%;" />
+                        <input type="number" min="0" name="inputpantorrilla_derecha"
+                            value="<%=pantorrillaD[pantorrillaD.length-1]%>" placeholder="pantorrilla der"
+                            style="margin-top: 23%; margin-left: 10%; position: absolute; width: 8%;" />
+                        <input type="number" min="0" name="inputpeso" value="<%=peso[peso.length-1]%>"
+                            placeholder="peso"
+                            style="margin-top: 27%; margin-left: 1%; position: absolute; width: 5%;" />
+                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                        <button type="submit" class="btn-talla">Modificar</button>
+                    </form>
+                </div>
+
             </div>
-            <div class="row mt-5">
-                
-            </div>
-            <div class="row">
-                <%if (sexo == 'Masculino') {%>
-                    <div style="width: 5%;">
-                        <div class="col">
-                            <h4 style="cursor: default">Masculino</h4>
-                                <svg width="100%" height="55%" viewBox="0 0 100% 200" class="posAb">
-                                    <line x1="5%" y1="16%" x2="15%" y2="16%" style="stroke:#f00; stroke-width:3">Cuello</line>
-                                    <line x1="5%" y1="22%" x2="15%" y2="22%" stroke="red" stroke-width="3">Pecho</line>
-                                    <line x1="8%" y1="30%" x2="15%" y2="30%" stroke="red" stroke-width="3">Brazo Izquierdo</line>
-                                    <line x1="2%" y1="35%" x2="15%" y2="35%" stroke="red" stroke-width="3">Brazo Derecho</line>
-                                    <line x1="5%" y1="45%" x2="15%" y2="45%" stroke="red" stroke-width="3">Cintura</line>
-                                    <line x1="5%" y1="50%" x2="15%" y2="50%" stroke="red" stroke-width="3">Cadera(gluteo)</line>
-                                    <line x1="7%" y1="60%" x2="15%" y2="60%" stroke="red" stroke-width="3">Pierna Izquierda</line>
-                                    <line x1="3%" y1="68%" x2="15%" y2="68%" stroke="red" stroke-width="3">Pierna Derecha</line>
-                                    <line x1="7%" y1="80%" x2="15%" y2="80%" stroke="red" stroke-width="3">Pantorrilla Izquierda</line>
-                                    <line x1="3%" y1="85%" x2="15%" y2="85%" stroke="red" stroke-width="3">Pantorrilla Derecha</line>
-                                    <line x1="3%" y1="100%" x2="7%" y2="100%" stroke="red" stroke-width="3">Peso</line>
-                                </svg>  
-                                <img src="../assets/male-body-nobg.png" alt="male-body-nobg">
-                        </div>
-                    </div>
 
-                    
+            <%} else {%>
+                <h4 style="cursor: default">Femenino</h4>
+                <svg width="100%" height="55%" viewBox="0 0 100% 200" class="posAb">
+                    <line x1="5%" y1="16%" x2="15%" y2="16%" style="stroke:#f00; stroke-width:3">Cuello
+                    </line>
+                    <line x1="5%" y1="22%" x2="15%" y2="22%" stroke="red" stroke-width="3">Pecho</line>
+                    <line x1="8%" y1="30%" x2="15%" y2="30%" stroke="red" stroke-width="3">Brazo
+                        Izquierdo</line>
+                    <line x1="2%" y1="35%" x2="15%" y2="35%" stroke="red" stroke-width="3">Brazo Derecho
+                    </line>
+                    <line x1="5%" y1="45%" x2="15%" y2="45%" stroke="red" stroke-width="3">Cintura
+                    </line>
+                    <line x1="5%" y1="50%" x2="15%" y2="50%" stroke="red" stroke-width="3">
+                        Cadera(gluteo)</line>
+                    <line x1="7%" y1="60%" x2="15%" y2="60%" stroke="red" stroke-width="3">Pierna
+                        Izquierda</line>
+                    <line x1="3%" y1="68%" x2="15%" y2="68%" stroke="red" stroke-width="3">Pierna
+                        Derecha</line>
+                    <line x1="7%" y1="80%" x2="15%" y2="80%" stroke="red" stroke-width="3">Pantorrilla
+                        Izquierda</line>
+                    <line x1="3%" y1="85%" x2="15%" y2="85%" stroke="red" stroke-width="3">Pantorrilla
+                        Derecha</line>
+                    <line x1="3%" y1="100%" x2="7%" y2="100%" stroke="red" stroke-width="3">Peso</line>
+                </svg>
+                <img src="../assets/female-body-nobg.png" alt="female-body-nobg">
 
-                    <div class="col" style="margin-left: 0%;">
-                        <form action="/onyx/tallas" method="POST">
-                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                            <input type="number" min="0" name="inputcuello" value="<%=cuello[cuello.length-1]%>" placeholder="cuello"  style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputpecho" value="<%=pecho[pecho.length-1]%>" placeholder="pecho" style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputbrazo_izquierdo" value="<%=brazoI[brazoI.length-1]%>" placeholder="Brazo izq" style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputbrazo_derecho" value="<%=brazoD[brazoD.length-1]%>" placeholder="Brazo Der" style="margin-top: 11%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputcintura" value="<%=cintura[cintura.length-1]%>" placeholder="cintura" style="margin-top: 13.3%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputcadera" value="<%=cadera[cadera.length-1]%>" placeholder="cadera" style="margin-top: 15%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputpierna_izquierda" value="<%=piernaI[piernaI.length-1]%>" placeholder="pierna izq" style="margin-top: 18%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputpierna_derecha" value="<%=piernaD[piernaD.length-1]%>" placeholder="pierna der" style="margin-top: 20%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputpantorrilla_izquierda" value="<%=pantorrillaI[pantorrillaI.length-1]%>" placeholder="pantorrilla izq" style="margin-top: 22%; margin-left: 10%; position: absolute; width: 8%;"/>
-                            <input type="number" min="0" name="inputpantorrilla_derecha" value="<%=pantorrillaD[pantorrillaD.length-1]%>" placeholder="pantorrilla der" style="margin-top: 24%; margin-left: 10%; position: absolute; width: 8%;"/>
-                            <input type="number" min="0" name="inputpeso" value="<%=peso[peso.length-1]%>" placeholder="peso" style="margin-top: 27%; margin-left: 0%; position: absolute; width: 5%;"/>
-                            <button type="submit">Modificar</button>
-                        </form>
-                    </div>
-                <%} else {%>
-                    <div style="width: 5%;">
-                        <div class="col">
-                            <h4 style="cursor: default">Femenino</h4>
-                                <svg width="100%" height="55%" viewBox="0 0 100% 200" class="posAb">
-                                    <line x1="5%" y1="16%" x2="15%" y2="16%" style="stroke:#f00; stroke-width:3">Cuello</line>
-                                    <line x1="5%" y1="22%" x2="15%" y2="22%" stroke="red" stroke-width="3">Pecho</line>
-                                    <line x1="8%" y1="30%" x2="15%" y2="30%" stroke="red" stroke-width="3">Brazo Izquierdo</line>
-                                    <line x1="2%" y1="35%" x2="15%" y2="35%" stroke="red" stroke-width="3">Brazo Derecho</line>
-                                    <line x1="5%" y1="45%" x2="15%" y2="45%" stroke="red" stroke-width="3">Cintura</line>
-                                    <line x1="5%" y1="50%" x2="15%" y2="50%" stroke="red" stroke-width="3">Cadera(gluteo)</line>
-                                    <line x1="7%" y1="60%" x2="15%" y2="60%" stroke="red" stroke-width="3">Pierna Izquierda</line>
-                                    <line x1="3%" y1="68%" x2="15%" y2="68%" stroke="red" stroke-width="3">Pierna Derecha</line>
-                                    <line x1="7%" y1="80%" x2="15%" y2="80%" stroke="red" stroke-width="3">Pantorrilla Izquierda</line>
-                                    <line x1="3%" y1="85%" x2="15%" y2="85%" stroke="red" stroke-width="3">Pantorrilla Derecha</line>
-                                    <line x1="3%" y1="100%" x2="7%" y2="100%" stroke="red" stroke-width="3">Peso</line>
-                                </svg>  
-                                <img src="../assets/female-body-nobg.png" alt="female-body-nobg">
-                        </div>
-                    </div>
-
-                    <div class="col" style="margin-left: 0%;">
-                        <form action="/onyx/tallas" method="POST">
-                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-                            <input type="number" min="0" name="inputcuello" placeholder="cuello" style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputpecho" placeholder="pecho" style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputbrazo_izquierdo" placeholder="Brazo izq" style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputbrazo_derecho" placeholder="Brazo Der" style="margin-top: 11%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputcintura" placeholder="cintura" style="margin-top: 13.3%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputcadera" placeholder="cadera" style="margin-top: 15%; margin-left: 10%; position: absolute; width: 5%;"/>
-                            <input type="number" min="0" name="inputpierna_izquierda" placeholder="pierna izq" style="margin-top: 18%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputpierna_derecha" placeholder="pierna der" style="margin-top: 20%; margin-left: 10%; position: absolute; width: 6%;"/>
-                            <input type="number" min="0" name="inputpantorrilla_izquierda" placeholder="pantorrilla izq" style="margin-top: 22%; margin-left: 10%; position: absolute; width: 8%;"/>
-                            <input type="number" min="0" name="inputpantorrilla_derecha" placeholder="pantorrilla der" style="margin-top: 24%; margin-left: 10%; position: absolute; width: 8%;"/>
-                            <input type="number" min="0" name="inputpeso" placeholder="peso" style="margin-top: 27%; margin-left: 0%; position: absolute; width: 5%;"/>
-                            <button type="submit">Modificar</button>
-                        </form>
-                    </div>
+                <form action="/onyx/tallas" method="POST">
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                    <input type="number" min="0" name="inputcuello" placeholder="cuello"
+                        style="margin-top: 5%; margin-left: 10%; position: absolute; width: 5%;" />
+                    <input type="number" min="0" name="inputpecho" placeholder="pecho"
+                        style="margin-top: 7%; margin-left: 10%; position: absolute; width: 5%;" />
+                    <input type="number" min="0" name="inputbrazo_izquierdo" placeholder="Brazo izq"
+                        style="margin-top: 9%; margin-left: 10%; position: absolute; width: 6%;" />
+                    <input type="number" min="0" name="inputbrazo_derecho" placeholder="Brazo Der"
+                        style="margin-top: 11%; margin-left: 10%; position: absolute; width: 6%;" />
+                    <input type="number" min="0" name="inputcintura" placeholder="cintura"
+                        style="margin-top: 13.3%; margin-left: 10%; position: absolute; width: 5%;" />
+                    <input type="number" min="0" name="inputcadera" placeholder="cadera"
+                        style="margin-top: 15%; margin-left: 10%; position: absolute; width: 5%;" />
+                    <input type="number" min="0" name="inputpierna_izquierda" placeholder="pierna izq"
+                        style="margin-top: 18%; margin-left: 10%; position: absolute; width: 6%;" />
+                    <input type="number" min="0" name="inputpierna_derecha" placeholder="pierna der"
+                        style="margin-top: 20%; margin-left: 10%; position: absolute; width: 6%;" />
+                    <input type="number" min="0" name="inputpantorrilla_izquierda" placeholder="pantorrilla izq"
+                        style="margin-top: 22%; margin-left: 10%; position: absolute; width: 8%;" />
+                    <input type="number" min="0" name="inputpantorrilla_derecha" placeholder="pantorrilla der"
+                        style="margin-top: 24%; margin-left: 10%; position: absolute; width: 8%;" />
+                    <input type="number" min="0" name="inputpeso" placeholder="peso"
+                        style="margin-top: 27%; margin-left: 0%; position: absolute; width: 5%;" />
+                    <button type="submit">Modificar</button>
+                </form>
                 <%}%>
-            </div>
-            
 
     </main>
 
-<%- include('includes/foot.ejs') %>
+    <%- include('includes/foot.ejs') %>
