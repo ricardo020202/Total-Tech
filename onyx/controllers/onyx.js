@@ -20,12 +20,12 @@ exports.getCatEjercicios = (req, res, next) => {
         .catch((err) => console.log(err));
 };
 
-exports.getAdminDashboardPrivileges=(req, res, next) => {
-    res.render("adminDashboardPriviliges",{
+exports.getAdminDashboardPrivileges = (req, res, next) => {
+    res.render("adminDashboardPriviliges", {
         pagetitle: "adminDashboardPriviliges",
 
     });
-    }
+}
 
 // exports.getHome = (req, res, next) => {
 //     res.render("home", {
@@ -43,47 +43,47 @@ exports.getAdminDashboard = (req, res, next) => {
 
 exports.getCatEntrenamientos = (req, res, next) => {
     EntrenamientoModel.fetchAll()
-    .then(([rows, fieldData]) => {
-        res.render('catEntrenamientos', {
-            programa: rows,
-            pagetitle: 'Catálogo de Entrenamientos',
-            user: req.session.user || '',
-            path: '/catEntrenamientos'
-        });
-    })
-    .catch(err => console.log(err));
-  
+        .then(([rows, fieldData]) => {
+            res.render('catEntrenamientos', {
+                programa: rows,
+                pagetitle: 'Catálogo de Entrenamientos',
+                user: req.session.user || '',
+                path: '/catEntrenamientos'
+            });
+        })
+        .catch(err => console.log(err));
+
 };
 
-exports.getDieta = async(req, res, next) => {
+exports.getDieta = async (req, res, next) => {
 
     const numcal = req.params.numcal || '';
     //const total = await DietasModel.getTotal();
     //const start = req.params.start ? req.params.start : 0
-    
-    DietasModel.fetchByCal(numcal)
-    .then(([rows, fieldData]) => {
-        res.render('dietas', {
-            dietas: rows,
-            pagetitle: 'Catálogo de Dietas',
-            user: req.session.user || '',
-            path: '/dietas'
-        });
-    })
-    .catch(err => console.log(err));   
-/*
-    DietasModel.fetchAll(start)
-    .then(([rows, fieldData]) => {
-        res.render('dietas', {
-            dietas: rows,
-            pagetitle: 'Catálogo de Dietas',
-            user: req.session.user || '',
-            total_dietas: total
-        });
-    })
-    .catch(err => console.log(err)); 
 
-*/
+    DietasModel.fetchByCal(numcal)
+        .then(([rows, fieldData]) => {
+            res.render('dietas', {
+                dietas: rows,
+                pagetitle: 'Catálogo de Dietas',
+                user: req.session.user || '',
+                path: '/dietas'
+            });
+        })
+        .catch(err => console.log(err));
+    /*
+        DietasModel.fetchAll(start)
+        .then(([rows, fieldData]) => {
+            res.render('dietas', {
+                dietas: rows,
+                pagetitle: 'Catálogo de Dietas',
+                user: req.session.user || '',
+                total_dietas: total
+            });
+        })
+        .catch(err => console.log(err)); 
+    
+    */
 
 };
 
@@ -93,7 +93,7 @@ exports.getFavoritos = (req, res, next) => {
         user: req.session.user || "",
     });
 };
- 
+
 // ========== Rutas Bitacora ==========
 exports.getBitacora = (req, res, next) => {
     // receive fecha from calendar in script.js when user clicks on a date in the calendar and send it to the server
@@ -212,17 +212,17 @@ exports.getDashboard = (req, res, next) => {
 
 exports.getDatosIniciales = (req, res, next) => {
     Cliente.fetchOne(req.session.email)
-        .then(([rows, fieldData]) => { 
-            if(rows.length === 0) {
+        .then(([rows, fieldData]) => {
+            if (rows.length === 0) {
                 return res.redirect("/onyx/registrar-datos-iniciales");
             }
             else {
                 res.render("datosIniciales", {
                     pagetitle: "Datos Iniciales",
                     user: req.session.user || "",
-                    cliente: rows[0], 
+                    cliente: rows[0],
                 });
-            }    
+            }
         })
         .catch((err) => console.log(err));
 };
@@ -238,7 +238,7 @@ exports.getRegistrarDatosIniciales = (req, res, next) => {
 
 exports.postRegistrarDatosIniciales = (req, res, next) => {
     const cliente = new Cliente({
-        email: req.session.email, 
+        email: req.session.email,
         altura: req.body.inputHeight,
         edad: req.body.inputAge,
         nivel_actividad: req.body.inputActivity,
@@ -249,55 +249,126 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         pr_Sentadillas: req.body.inputSentadillas,
         //peso: req.body.inputWeight,   
     });
-    
+
     cliente
-    .save()
-    .then(([rows, fieldData]) => {
-            res.redirect("/onyx/datos-iniciales"); 
-    })
-    .catch((err) => {
-        console.log(err);
-        cliente
-        .update()
+        .save()
         .then(([rows, fieldData]) => {
-            res.redirect("/onyx/datos-iniciales"); 
+            res.redirect("/onyx/datos-iniciales");
         })
-    });
-    
+        .catch((err) => {
+            console.log(err);
+            cliente
+                .update()
+                .then(([rows, fieldData]) => {
+                    res.redirect("/onyx/datos-iniciales");
+                })
+        });
+
 };
 
 exports.getTallas = (req, res, next) => {
-    res.render("tallas", {
-        pagetitle: "Tallas",
-        user: req.session.user || "",
-        pecho: req.session.pecho || "",
-        brazoI: req.session.brazo_izquierdo || "",
-        brazoD: req.session.brazo_derecho || "",
-        peso: req.session.peso || "",
-        cintura: req.session.cintura || "",
-        cadera: req.session.cadera || "",
-        piernaI: req.session.pierna_izquierda || "",
-        piernaD: req.session.pierna_derecha || "",
-        pantorrillaI: req.session.pantorrilla_izquierda || "",
-        pantorrillaD: req.session.pantorrilla_derecha || "",
-        cuello: req.session.cuello || "",
-        csrfToken: req.csrfToken(),
-    });
+    const extremidades = [
+        "pecho",
+        "brazo_izquierdo",
+        "brazo_derecho",
+        "peso",
+        "cintura",
+        "cadera",
+        "pierna_izquierda",
+        "pierna_derecha",
+        "pantorrilla_izquierda",
+        "pantorrilla_derecha",
+        "cuello",
+    ];
+
+    const promises = extremidades.map((extremidad) =>
+        TallaModel.fetchExtremidad(req.session.email, extremidad)
+            .then(([rows, fieldData]) => {
+                const medidas = rows.map((row) => row.medida);
+                const fechas = rows.map((row) => row.fecha);
+                return { medidas, fechas };
+            })
+            .catch((err) => {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            })
+    );
+
+    Promise.all(promises)
+        .then((resultados) => {
+            extremidades.forEach((extremidad, i) => {
+                req.session[extremidad] = resultados[i].medidas;
+                req.session[`${extremidad}_fecha`] = resultados[i].fechas;
+            });
+            Cliente.getSex(req.session.email)
+                .then(([rows, fieldData]) => {
+                    req.session.sex = rows[0].sexo;
+                    res.render("tallas", {
+                        pagetitle: "Tallas",
+                        user: req.session.user || "",
+                        pecho: req.session.pecho || "",
+                        brazoI: req.session.brazo_izquierdo || "",
+                        brazoD: req.session.brazo_derecho || "",
+                        peso: req.session.peso || "",
+                        cintura: req.session.cintura || "",
+                        cadera: req.session.cadera || "",
+                        piernaI: req.session.pierna_izquierda || "",
+                        piernaD: req.session.pierna_derecha || "",
+                        pantorrillaI: req.session.pantorrilla_izquierda || "",
+                        pantorrillaD: req.session.pantorrilla_derecha || "",
+                        cuello: req.session.cuello || "",
+                        sexo: req.session.sex || "",
+                        csrfToken: req.csrfToken(),
+                    });
+                })
+                .catch((err) => {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                    });
+                });
+        })
+        .catch((err) => {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+        });
 };
 
 exports.postTallas = (req, res, next) => {
-    extremidades.forEach((ex) => {
-        const talla = new Talla({
+    const extremidades = [
+        "pecho",
+        "brazo_izquierdo",
+        "brazo_derecho",
+        "peso",
+        "cintura",
+        "cadera",
+        "pierna_izquierda",
+        "pierna_derecha",
+        "pantorrilla_izquierda",
+        "pantorrilla_derecha",
+        "cuello",
+    ];
+
+    const promises = extremidades.map((extremidad) => {
+        const talla = new TallaModel({
             email: req.session.email,
-            extremidad: ex,
-            medida: req.body[`input${ex}`],
+            extremidad: extremidad,
+            medida: req.body[`input${extremidad}`],
             fecha: new Date(),
         });
-        talla
-            .save()
-            .then(([rows, fieldData]) => {
-                res.redirect("/onyx/tallas");
-            })
-            .catch((err) => console.log(err));
+        return talla.save();
     });
-}
+
+    Promise.all(promises)
+        .then((resultados) => {
+            res.redirect("/onyx/tallas");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};

@@ -24,4 +24,8 @@ module.exports = class Talla {
     static fetchExtremidad(email, extremidad){
         return db.execute('SELECT * FROM talla WHERE email = ? AND extremidad = ?', [email, extremidad]);
     }
+
+    static getTotalMedidas(email, extremidad){
+        return db.execute('SELECT COUNT(*) FROM talla WHERE email = ? AND extremidad = ?', [email, extremidad]);
+    }
 }

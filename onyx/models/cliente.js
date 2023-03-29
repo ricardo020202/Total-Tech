@@ -40,4 +40,8 @@ module.exports = class Cliente {
     static getPrivileges(){
         return db.execute('SELECT u.nombre, u.email, u.telefono, r.nombreRol FROM usuario u LEFT JOIN rol_usuario ru ON u.email = ru.email LEFT JOIN rol r ON ru.id_rol = r.id_rol');
     }
+
+    static getSex(email){
+        return db.execute('SELECT sexo FROM cliente WHERE email = ?', [email]);
+    }
 }
