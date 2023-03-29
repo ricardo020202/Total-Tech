@@ -2,14 +2,15 @@ const db = require('../util/database');
 
 module.exports = class Talla {
     constructor(talla) {
+        this.email = talla.email;
         this.extremidad = talla.extremidad;
         this.medida = talla.medida;
+        this.fecha = talla.fecha;
     }
 
     save() {
-        return db.execute('INSERT INTO talla (extremidad, medida) VALUES (?, ?)',
-            [this.extremidad, this.medida]
-        );
+        return db.execute('INSERT INTO talla (email, extremidad, medida, fecha) VALUES (?, ?, ?, ?)', 
+        [this.email, this.extremidad, this.medida, this.fecha]);
     }
 
     static fetchAll() {
@@ -22,5 +23,9 @@ module.exports = class Talla {
 
     static fetchExtremidad(email, extremidad){
         return db.execute('SELECT * FROM talla WHERE email = ? AND extremidad = ?', [email, extremidad]);
+    }
+
+    static getTotalMedidas(email, extremidad){
+        return db.execute('SELECT COUNT(*) FROM talla WHERE email = ? AND extremidad = ?', [email, extremidad]);
     }
 }
