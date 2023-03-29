@@ -18,7 +18,12 @@ exports.getCatEjercicios = (req, res, next) => {
                 path: "/catEjercicios",
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+        });
 };
 
 exports.getAdminDashboardPrivileges=(req, res, next) => {
@@ -37,16 +42,12 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
         });
       })
       .catch(error => {
-        console.log(error);
+        res.render("dbDown", {
+            pagetitle: "Error",
+            user: req.session.user || "",
+        });
       });
 }
-
-// exports.getHome = (req, res, next) => {
-//     res.render("home", {
-//         pagetitle: "Onyx",
-//         user: req.session.user || "",
-//     });
-// };
 
 exports.getAdminDashboard = (req, res, next) => {
     res.render("admindashboard", {
@@ -75,7 +76,6 @@ exports.getCatEntrenamientos = async(req, res, next) => {
             pagetitle: "Error",
             user: req.session.user || "",
         });
-        return { medidas: [], fechas: [] };
     })
   
 };
@@ -103,7 +103,6 @@ exports.getDieta = async (req, res, next) => {
             pagetitle: "Error",
             user: req.session.user || "",
         });
-        return { medidas: [], fechas: [] };
     })
 
 };
@@ -135,7 +134,12 @@ exports.getBitacora = (req, res, next) => {
                 fecha: fecha,
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+        });
 };
 
 exports.getNuevaBitacora = (req, res, next) => {
@@ -159,7 +163,12 @@ exports.postNuevaBitacora = (req, res, next) => {
         .then(([rows, fieldData]) => {
             res.redirect("/onyx/bitacora");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+        });
 };
 
 exports.getDashboard = (req, res, next) => {
@@ -227,7 +236,10 @@ exports.getDashboard = (req, res, next) => {
             });
         })
         .catch((err) => {
-            console.log(err);
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
         });
 };
 
@@ -245,7 +257,12 @@ exports.getDatosIniciales = (req, res, next) => {
                 });
             }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+        });
 };
 
 exports.getRegistrarDatosIniciales = (req, res, next) => {
@@ -276,12 +293,16 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
             res.redirect("/onyx/datos-iniciales");
         })
         .catch((err) => {
-            console.log(err);
-            cliente
-                .update()
-                .then(([rows, fieldData]) => {
-                    res.redirect("/onyx/datos-iniciales");
-                })
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            // console.log(err);
+            // cliente
+            //     .update()
+            //     .then(([rows, fieldData]) => {
+            //         res.redirect("/onyx/datos-iniciales");
+            //     })
         });
 
 };
@@ -313,7 +334,6 @@ exports.getTallas = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                 });
-                return { medidas: [], fechas: [] };
             })
     );
 
@@ -389,6 +409,9 @@ exports.postTallas = (req, res, next) => {
             res.redirect("/onyx/tallas");
         })
         .catch((err) => {
-            console.log(err);
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
         });
 };
