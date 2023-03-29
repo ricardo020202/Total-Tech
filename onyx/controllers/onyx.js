@@ -51,39 +51,41 @@ exports.getCatEntrenamientos = (req, res, next) => {
             path: '/catEntrenamientos'
         });
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+        res.render("dbDown", {
+            pagetitle: "Error",
+            user: req.session.user || "",
+        });
+        return { medidas: [], fechas: [] };
+    })
   
 };
 
 exports.getDieta = async(req, res, next) => {
 
     const numcal = req.params.numcal || '';
-    //const total = await DietasModel.getTotal();
-    //const start = req.params.start ? req.params.start : 0
-    
-    DietasModel.fetchByCal(numcal)
-    .then(([rows, fieldData]) => {
-        res.render('dietas', {
-            dietas: rows,
-            pagetitle: 'Catálogo de Dietas',
-            user: req.session.user || '',
-            path: '/dietas'
-        });
-    })
-    .catch(err => console.log(err));   
-/*
-    DietasModel.fetchAll(start)
-    .then(([rows, fieldData]) => {
-        res.render('dietas', {
-            dietas: rows,
-            pagetitle: 'Catálogo de Dietas',
-            user: req.session.user || '',
-            total_dietas: total
-        });
-    })
-    .catch(err => console.log(err)); 
+    const consulta_total = await DietasModel.getTotal();// [rows, fieldData]
+    const total = consulta_total[0][0].total;
 
-*/
+    const start = req.params.start ? req.params.start : 0
+    
+    DietasModel.fetchByCal(numcal,start)
+    .then(([rows, fieldData]) => {
+        res.render('dietas', {
+            dietas: rows,
+            pagetitle: 'Catálogo de Dietas',
+            user: req.session.user || '',
+            total_dietas: total,
+            numcal: numcal,
+        });
+    })
+    .catch((err) => {
+        res.render("dbDown", {
+            pagetitle: "Error",
+            user: req.session.user || "",
+        });
+        return { medidas: [], fechas: [] };
+    })
 
 };
 
@@ -93,7 +95,7 @@ exports.getFavoritos = (req, res, next) => {
         user: req.session.user || "",
     });
 };
- 
+
 // ========== Rutas Bitacora ==========
 exports.getBitacora = (req, res, next) => {
     // receive fecha from calendar in script.js when user clicks on a date in the calendar and send it to the server
@@ -209,7 +211,6 @@ exports.getDashboard = (req, res, next) => {
         });
 };
 
-
 exports.getDatosIniciales = (req, res, next) => {
     Cliente.fetchOne(req.session.email)
         .then(([rows, fieldData]) => { 
@@ -226,7 +227,6 @@ exports.getDatosIniciales = (req, res, next) => {
         })
         .catch((err) => console.log(err));
 };
-
 
 exports.getRegistrarDatosIniciales = (req, res, next) => {
     res.render("registrarDatos", {
