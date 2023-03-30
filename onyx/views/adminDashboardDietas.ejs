@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="/css/adminStyle.css">
+<%- include('includes/head.ejs') %>
+<div class="spacer"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <%- include('includes/sidebar.ejs') %>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <button onclick="showDieta()" style="border: none; padding: 0; background-color: transparent; color: white;">
+            <img src="https://igav3-metcdn-com.global.ssl.fastly.net/content/uploads/2020/10/14042312/Balanced_Diet_Hero_Image.jpg" alt="Agregar dieta" style="width: 100%;">
+            Agregar dieta
+          </button>
+        </div>
+        <div class="col">
+          <button onclick="showAlimento()" style="border: none; padding: 0; background-color: transparent; color: white;">
+            <img src="https://imagenes.20minutos.es/files/og_thumbnail/uploads/imagenes/2023/03/28/berros.jpeg" alt="Agregar alimento" style="width: 100%;">
+            Agregar alimento
+          </button>
+        </div>
+      </div>
+      <div id="dieta-form" style="display:none;">
+        <form>
+          <label for="nombre_dieta">Nombre de la dieta:</label>
+          <input type="text" id="nombre_dieta" name="nombre_dieta"><br><br>
+          <label for="no_calorias">No. de calorías:</label>
+          <input type="text" id="no_calorias" name="no_calorias"><br><br>
+          <label for="proteinas">Proteínas:</label>
+          <input type="text" id="proteinas" name="proteinas"><br><br>
+          <label for="grasas">Grasas:</label>
+          <input type="text" id="grasas" name="grasas"><br><br>
+          <label for="carbohidratos">Carbohidratos:</label>
+          <input type="text" id="carbohidratos" name="carbohidratos"><br><br>
+          <label for="micronutrientes">Micronutrientes:</label>
+          <input type="text" id="micronutrientes" name="micronutrientes"><br><br>
+          <label for="macronutrientes">Macronutrientes:</label>
+          <input type="text" id="macronutrientes" name="macronutrientes"><br><br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+      <div id="alimento-form" style="display:none;">
+        <% if (formType === 'alimento') { %>
+        <form action="/addAlimento" method="POST">
+          <div class="form-group">
+            <label for="unidad">Unidad:</label>
+            <input type="text" class="form-control" id="unidad" name="unidad" required>
+          </div>
+          <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+          </div>
+          <div class="form-group">
+            <label for="calorias">Calorías:</label>
+            <input type="number" class="form-control" id="calorias" name="calorias" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+      <% } else if (formType === 'ejercicio') { %>
+        <form action="/addEjercicio" method="POST">
+          <div class="form-group">
+            <label for="ejercicio">Ejercicio:</label>
+            <input type="text" class="form-control" id="ejercicio" name="ejercicio" required>
+          </div>
+          <div class="form-group">
+            <label for="tiempo">Tiempo (minutos):</label>
+            <input type="number" class="form-control" id="tiempo" name="tiempo" required>
+          </div>
+          <div class="form-group">
+            <label for="calorias">Calorías quemadas:</label>
+            <input type="number" class="form-control" id="calorias" name="calorias" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+
+

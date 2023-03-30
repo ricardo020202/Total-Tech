@@ -22,6 +22,8 @@ router.get("/admindashboard", onyxController.getAdminDashboard);
 
 router.get("/admindashboard/userprivileges",onyxController.getAdminDashboardPrivileges);
 
+router.get("/admindashboard/diets",onyxController.getAdminDashboardDietas);
+
 router.get('/dashboard', onyxController.getDashboard);
 
 router.get('/bitacora', onyxController.getBitacora);

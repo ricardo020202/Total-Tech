@@ -1,6 +1,8 @@
 const EjercicioModel = require("../models/ejercicio");
 const EntrenamientoModel = require("../models/programa");
-const DietasModel = require("../models/dietas");
+const Alimento = require("../models/alimento");
+const DietaAlimento = require("../models/dieta_alimento");
+const Dieta = require("../models/dietas");
 const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
@@ -21,6 +23,24 @@ exports.getCatEjercicios = (req, res, next) => {
         .catch((err) => console.log(err));
 };
 
+
+exports.getAdminDashboardDietas = async (req, res, next) => {
+    try {
+        const dietas = await Dieta.fetchAll();
+        const alimentos = await Alimento.fetchAll();
+        res.render("adminDashboardDietas", {
+            pagetitle: "Dietas",
+            user: req.session.user || "",
+            dietas: dietas[0],
+            alimentos: alimentos[0]
+        });
+    } catch (error) {
+        console.log(error);
+        res.redirect("/");
+    }
+}
+
+
 exports.getAdminDashboardPrivileges=(req, res, next) => {
     let results = [];
 
@@ -32,7 +52,7 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
         console.log("results:",results[0]);
         res.render("adminDashboardPrivileges", {
             usersArray:results[0],
-            pagetitle: "Onyx",
+            pagetitle: "Users",
             user: req.session.user || "",
         });
       })
