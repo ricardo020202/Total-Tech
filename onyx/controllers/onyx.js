@@ -60,11 +60,27 @@ exports.getAdminDashboardWorkouts= async (req, res, next) => {
 
 
 exports.getAdminDashboardDietas = async (req, res, next) => {
+    Dieta.fetchAll()
+    .then(([rows, fieldData]) => {
         res.render("adminDashboardDietas", {
-            pagetitle: "Dietas",
+            dieta: rows,
+            pagetitle: "Catálogo de Dietas",
             user: req.session.user || "",
+            path: "/adminDashboardDietas",
         });
-}
+    })
+    .catch((err) => {
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(err);
+        }
+    });
+};
 
 
 exports.getAdminDashboardPrivileges=(req, res, next) => {

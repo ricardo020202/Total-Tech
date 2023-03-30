@@ -2,6 +2,72 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
 
+<div class="spacer"></div>
+
+
+<div class="form-group">
+  <input type="text" class="form-control" id="searchInput" placeholder="Buscar programa...">
+</div>
+<div class="table-responsive">
+  <div class="table-title">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2><b>Dieta</b></h2>
+      </div>
+      <div class="col-sm-6">
+        <a href="/dieta/create" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Agregar nueva dieta</span></a>
+      </div>
+    </div>
+  </div>
+  <table class="table-active">
+    <thead class="table-header">
+      <tr>
+        <th scope="col">Id dieta</th>
+        <th scope="col">Nombre dieta</th>
+        <th scope="col">Grasas</th>
+        <th scope="col">Proteínas</th>
+        <th scope="col">Calorías</th>
+        <th scope="col">Carbohidratos</th>
+        <th scope="col">Micronutrientes</th>
+        <th scope="col">Macronutrientes</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% for(let i = 0; i < dieta.length; i++) { %>
+        <tr>
+          <td>
+            <%= dieta[i].id_dieta %>
+          </td>
+          <td>
+            <%= dieta[i].nombre_dieta %>
+          </td>
+          <td>
+            <%= dieta[i].grasas %>
+          </td>
+          <td>
+            <%= dieta[i].proteinas %>
+          </td>
+          <td>
+            <%= dieta[i].no_calorias %>
+          </td>
+          <td>
+            <%= dieta[i].carbohidratos %>
+          </td>
+          <td>
+            <%= dieta[i].micronutrientes %>
+          </td>
+          <td>
+            <%= dieta[i].macronutrientes %>
+          </td>
+        </tr>
+        <% } %>
+    </tbody>
+  </table>
+</div>
+
+
+
 <div class="container">
   <div class="spacer"></div>
   <div class="row">
@@ -80,4 +146,3 @@
     div.appendChild(document.createElement("br"));
   }
 </script>
-
