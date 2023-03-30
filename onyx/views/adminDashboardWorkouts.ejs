@@ -2,6 +2,40 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
 
+ <div class="spacer"></div>
+ <div class="form-group">
+   <input type="text" class="form-control" id="searchInput" placeholder="Buscar programa...">
+ </div>
+ <div class="table-responsive">
+   <table class="table table-striped">
+     <thead class="thead-dark">
+       <tr>
+         <th>Nombre programa</th>
+         <th>Descripcion programa</th>
+         <th>Frecuencia</th>
+       </tr>
+     </thead>
+     <tbody>
+       <% workoutArray.forEach(workout=> { %>
+         <tr>
+           <td>
+             <%= workout.nombre_programa %>
+           </td>
+           <td>
+             <%= workout.descripcion_programa %>
+           </td>
+           <td>
+             <%= workout.frecuencia %>
+           </td>
+         </tr>
+         <% }); %>
+     </tbody>
+   </table>
+ </div>
+
+
+
+
 <div class="container">
   <div class="spacer"></div>
   <div class="row">
@@ -82,5 +116,14 @@
     div.appendChild(document.createElement("br"));
     div.appendChild(document.createElement("br"));
   }
+  $(document).ready(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip();
+        $("#searchInput").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("tbody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
+      });
 </script>
 

@@ -35,10 +35,31 @@ exports.getCatEjercicios = (req, res, next) => {
 
 
 exports.getAdminDashboardWorkouts= async (req, res, next) => {
-    res.render("adminDashboardWorkouts", {
-        pagetitle: "Workouts",
-        user: req.session.user || "",
-    });
+    let results = [];
+
+    EntrenamientoModel.fetchAll()
+      .then(rows => {
+        rows.forEach(row => {
+          results.push(row);
+        });
+        console.log("results:",results[0]);
+        res.render("adminDashboardWorkouts", {
+            workoutArray:results[0],
+            pagetitle: "Entrenamientos",
+            user: req.session.user || "",
+        });
+      })
+      .catch(error => {
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(error);
+        }
+      });
 }
 
 
