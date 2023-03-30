@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ONYX Formulario</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="rectangulo"></div>
+    <div class="rectangulo1"></div>
+    <div class="rectangulo2"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom1">
+      <a class="navbar-brand" href="#">ONYX</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Nosotros</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="spacer"></div>
+    <div class="container">
+      <form id="onyx-form" action="" method="post">
+        <h2 class="header">Registro de Usuario</h2>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="altura">Altura</label>
+          <input type="text" class="form-control" id="altura" name="altura" required>
+        </div>
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="number" class="form-control" id="edad" name="edad" required>
+        </div>
+        <div class="form-group">
+          <label for="sexo">Sexo</label>
+          <select class="form-control" id="sexo" name="sexo" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nivel_actividad">Nivel de Actividad</label>
+          <select class="form-control" id="nivel_actividad" name="nivel_actividad" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Sedentario">Sedentario</option>
+            <option value="Ligera">Ligera</option>
+            <option value="Moderada">
+
+Moderada</option>
+<option value="Activa">Activa</option>
+<option value="Muy Activa">Muy Activa</option>
+</select>
+</div>
+<button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+</div>
+
+</body>
+</html>
