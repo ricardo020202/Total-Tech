@@ -62,23 +62,41 @@ exports.getAdminDashboardWorkouts= async (req, res, next) => {
       });
 }
 
+// Add a new Ejercicio
+exports.postAdminDashboardWorkouts = async (req, res, next) => {
+    const { categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio } = req.body;
+  
+    const newEjercicio = new Ejercicio({
+      categoria,
+      nivel_intensidad,
+      referencia_visual,
+      descripcion_ejercicio,
+      nombre_ejercicio,
+      imagen_ejercicio
+    });
+  
+    try {
+      await newEjercicio.save();
+      res.redirect('/admin/dashboard/workouts');
+    } catch (err) {
+      console.log(err);
+      res.redirect('/admin/dashboard/workouts');
+    }
+  };
+  
+
 
 exports.getAdminDashboardDietas = async (req, res, next) => {
-    let results = [];
-
     Dieta.fetchAll()
-      .then(rows => {
-        rows.forEach(row => {
-          results.push(row);
-        });
-        console.log("results:",results[0]);
+    .then(([rows, fieldData]) => {
         res.render("adminDashboardDietas", {
-            dietasArray:results[0],
-            pagetitle: "Users",
+            dieta: rows,
+            pagetitle: "Catálogo de Dietas",
             user: req.session.user || "",
+            path: "/adminDashboardDietas",
         });
-      })
-      .catch(error => {
+    })
+    .catch((err) => {
         if (err.code === "PROTOCOL_CONNECTION_LOST") {
             res.render("dbDown", {
                 pagetitle: "Error",
@@ -86,11 +104,10 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
             });
             return { medidas: [], fechas: [] };
         } else {
-            console.log(error);
+            console.log(err);
         }
-      });
-}
-
+    });
+};
 
 exports.getAdminDashboardPrivileges=(req, res, next) => {
     let results = [];
