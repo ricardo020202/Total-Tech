@@ -637,6 +637,20 @@ header .current-date {
   transition: 0.3s;
 }
 
+#cancelar {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#cancelar:hover {
+  background: #fff;
+  color: #000000;
+}
+
 #nuevabitacora:hover {
   background: #fff;
   color: #000000;
