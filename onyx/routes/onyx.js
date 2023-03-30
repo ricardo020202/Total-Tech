@@ -26,6 +26,10 @@ router.get("/admindashboard/diets",onyxController.getAdminDashboardDietas);
 
 router.get("/admindashboard/workouts",onyxController.getAdminDashboardWorkouts);
 
+router.get('/admindashboard/workouts/nuevoejercicio', onyxController.getAdminNuevoEjercicio);
+
+router.post('/admindashboard/workouts/nuevoejercicio', onyxController.postAdminNuevoEjercicio);
+
 router.get('/dashboard', onyxController.getDashboard);
 
 router.get('/bitacora', onyxController.getBitacora);

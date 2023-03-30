@@ -37,7 +37,7 @@ exports.getCatEjercicios = (req, res, next) => {
 exports.getAdminDashboardWorkouts= async (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
-            res.render("adminDashboardWorkout", {
+            res.render("adminDashboardEjercicio", {
                 ejercicio: rows,
                 pagetitle: "adminWorkouts",
                 user: req.session.user || "",
@@ -56,6 +56,44 @@ exports.getAdminDashboardWorkouts= async (req, res, next) => {
             }
         });
 };
+
+exports.getAdminNuevoEjercicio = (req, res, next) => {
+    res.render("adminNuevoEjercicio", {
+        pagetitle: "Nuevo Ejercicio",
+        user: req.session.user || "",
+        path: "adminNuevoEjercicio",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postAdminNuevoEjercicio = (req, res, next) => {
+    const ejercicio = new EjercicioModel({
+        categoria: req.body.categoria,
+        nivel_intensidad: req.body.nivel_intensidad,
+        referencia_visual: req.body.referencia_visual,
+        descripcion_ejercicio: req.body.descripcion_ejercicio,
+        nombre_ejercicio: req.body.nombre_ejercicio,
+        imagen_ejercicio: req.body.imagen_ejercicio,
+    });
+    ejercicio
+        .save()
+        .then((result) => {
+            res.redirect("/onyx/admindashboard/workouts");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
+
 
 
 

@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="/css/adminStyle.css">
+<%- include('includes/head.ejs') %>
+<%- include('includes/sidebar.ejs') %> 
+
+
+<!-- make new ejercicio page -->
+<div class="container" id="nuevo-ejercicio">
+    <div class="row">
+        <div class="col-12" id="ejercicio">
+            <h1 class="text-center">Nuevo Ejercicio</h1>
+        </div>
+    </div>
+
+    <!-- form for new ejercicio -->
+    <div class="container" id="form-nuevo-ejercicio">
+        <form action="/onyx/admindashboard/workouts/nuevoejercicio" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="categoria"
+                    name="categoria"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="nivel_intensidad" class="form-label">Nivel Intensidad</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nivel_intensidad"
+                    name="nivel_intensidad"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="referencia_visual" class="form-label">Referencia Visual</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="referencia_visual"
+                    name="referencia_visual"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="descripcion_ejercicio" class="form-label">Descripcion Ejercicio</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="descripcion_ejercicio"
+                    name="descripcion_ejercicio"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="nombre_ejercicio" class="form-label">Nombre Ejercicio</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nombre_ejercicio"
+                    name="nombre_ejercicio"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="imagen_ejercicio" class="form-label">Imagen Ejercicio</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="imagen_ejercicio"
+                    name="imagen_ejercicio"
+                />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
