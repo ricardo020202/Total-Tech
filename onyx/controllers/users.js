@@ -73,6 +73,8 @@ exports.post_signup = (request, response, next) => {
             if (error.code === "ER_DUP_ENTRY") {
                 request.session.mensaje = "El correo electrónico ya está registrado.";
                 response.redirect("/users/signup");
+            } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                response.render("/onyx/dbDown");
             } else {
                 response.render("/onyx/dbDown");
             }
