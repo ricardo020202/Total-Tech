@@ -64,10 +64,31 @@ exports.getAdminDashboardWorkouts= async (req, res, next) => {
 
 
 exports.getAdminDashboardDietas = async (req, res, next) => {
+    let results = [];
+
+    Dieta.fetchAll()
+      .then(rows => {
+        rows.forEach(row => {
+          results.push(row);
+        });
+        console.log("results:",results[0]);
         res.render("adminDashboardDietas", {
-            pagetitle: "Dietas",
+            dietasArray:results[0],
+            pagetitle: "Users",
             user: req.session.user || "",
         });
+      })
+      .catch(error => {
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(error);
+        }
+      });
 }
 
 
