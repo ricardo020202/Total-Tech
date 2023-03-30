@@ -1,103 +1,92 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Table</title>
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Popper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <!-- Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="/css/adminStyle.css">
-
-    <style>
-      /* Add some margin and padding to the table */
-      body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-size: 16px;
-        }
-      table {
-        margin: 1rem 0;
-        padding: 0;
-      }
-      
-      /* Add some font size and weight to the table header */
-      thead th {
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
-      
-      /* Add some font size to the table cells */
-      tbody td {
-        font-size: 1rem;
-      }
-      
-      /* Style the table header */
-      .thead-dark th {
-        background-color: #343a40;
-        color: #fff;
-      }
-    
-      /* Style the table rows */
-      tbody tr:nth-of-type(even) {
-        background-color: #f8f9fa;
-      }
-    </style>
-  </head>
 <%- include('includes/head.ejs') %>
-<div class="spacer"></div>
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <%- include('includes/sidebar.ejs') %>
-    </div>
-    <div class="col">
-      <div class="form-group">
-        <input type="text" class="form-control" id="searchInput" placeholder="Buscar usuarios...">
-      </div>
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead class="thead-dark">
-            <tr>
-              <th>Nombre de usuario</th>
-              <th>Email</th>
-              <th>Teléfono</th>
-              <th>Rol de usuario</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% usersArray.forEach(user => { %>
-            <tr>
-              <td><%= user.nombre %></td>
-              <td><%= user.email %></td>
-              <td><%= user.telefono %></td>
-              <td>
-                <span class="user-role" data-toggle="tooltip" data-bs-placement="top" title="<%= user.privileges %>"><%= user.rol %></span>
-              </td>
-            </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+<%- include('includes/sidebar.ejs') %>
+<link rel="stylesheet" href="/css/adminStyle.css">
+<style>
+  /* Add some margin and padding to the table */
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+  }
 
-<script>
-  $(document).ready(function() {
-    $('[data-bs-toggle="tooltip"]').tooltip();
-    $("#searchInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("tbody tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+  table {
+    margin: 1rem 0;
+    padding: 0;
+  }
+
+  /* Add some font size and weight to the table header */
+  thead th {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  /* Add some font size to the table cells */
+  tbody td {
+    font-size: 1rem;
+  }
+
+  /* Style the table header */
+  .thead-dark th {
+    background-color: #343a40;
+    color: #fff;
+  }
+
+  /* Style the table rows */
+  tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+  }
+</style>
+    <div class="spacer"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <input type="text" class="form-control" id="searchInput" placeholder="Buscar usuarios...">
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Nombre de usuario</th>
+                  <th>Email</th>
+                  <th>Teléfono</th>
+                  <th>Rol de usuario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% usersArray.forEach(user=> { %>
+                  <tr>
+                    <td>
+                      <%= user.nombre %>
+                    </td>
+                    <td>
+                      <%= user.email %>
+                    </td>
+                    <td>
+                      <%= user.telefono %>
+                    </td>
+                    <td>
+                      <span class="user-role" data-toggle="tooltip" data-bs-placement="top"
+                        title="<%= user.privileges %>">
+                        <%= user.rol %>
+                      </span>
+                    </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip();
+        $("#searchInput").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("tbody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+          });
+        });
       });
-    });
-  });
-</script>
+    </script>
