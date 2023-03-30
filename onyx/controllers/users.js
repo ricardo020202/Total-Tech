@@ -8,6 +8,7 @@ exports.get_signup = (request, response, next) => {
         isLoggedIn: request.session.isLoggedIn || false,
         user: request.session.user || "",
         csrfToken: request.csrfToken(),
+        mensaje: request.session.mensaje || "",
     });
 };
 
@@ -68,7 +69,10 @@ exports.post_signup = (request, response, next) => {
                 })
                 .catch((error) => console.log(error));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            request.session.mensaje = "Email ya registrado.";
+            response.redirect("/users/signup");
+        });
 };
 
 exports.login = (request, response, next) => {
