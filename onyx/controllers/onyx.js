@@ -34,6 +34,14 @@ exports.getCatEjercicios = (req, res, next) => {
 };
 
 
+exports.getAdminDashboardWorkouts= async (req, res, next) => {
+    res.render("adminDashboardWorkouts", {
+        pagetitle: "Workouts",
+        user: req.session.user || "",
+    });
+}
+
+
 exports.getAdminDashboardDietas = async (req, res, next) => {
         res.render("adminDashboardDietas", {
             pagetitle: "Dietas",
@@ -72,7 +80,7 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
 
 exports.getAdminDashboard = (req, res, next) => {
     res.render("admindashboard", {
-        pagetitle: "Onyx",
+        pagetitle: "Admin dashboard",
         user: req.session.user || "",
     });
 };
