@@ -70,8 +70,12 @@ exports.post_signup = (request, response, next) => {
                 .catch((error) => console.log(error));
         })
         .catch((error) => {
-            request.session.mensaje = "Email ya registrado.";
-            response.redirect("/users/signup");
+            if (error.code === "ER_DUP_ENTRY") {
+                request.session.mensaje = "El correo electrónico ya está registrado.";
+                response.redirect("/users/signup");
+            } else {
+                response.render("/onyx/dbDown");
+            }
         });
 };
 
