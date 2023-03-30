@@ -1,0 +1,132 @@
+<link rel="stylesheet" href="/css/adminStyle.css">
+<%- include('includes/head.ejs') %>
+<%- include('includes/sidebar.ejs') %> 
+
+<div class="spacer"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Buscar usuarios...">
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre de usuario</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Rol de usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% usersArray.forEach(user=> { %>
+              <tr>
+                <td>
+                  <%= user.nombre %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td>
+                  <%= user.telefono %>
+                </td>
+                <td>
+                  <span class="user-role" data-toggle="tooltip" data-bs-placement="top"
+                    title="<%= user.privileges %>">
+                    <%= user.rol %>
+                  </span>
+                </td>
+              </tr>
+              <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col">
+      <h1>Registrar Programa</h1>
+      <form action="/dieta/create" method="POST">
+        <label for="nombre_programa">Nombre programa</label>
+        <input type="text" name="nombre_programa" required><br><br>
+  
+        <label for="descripcion_programa">Descripción programa:</label>
+        <input type="text" name="descripcion_programa" required><br><br>
+  
+        <label for="frecuencia">Frecuencia:</label>
+        <input type="text" name="grasas" required><br><br>
+  
+  
+        <label for="alimento">Ejercicio:</label>
+        <select name="alimento">
+          <option value="bench">Bench</option>
+          <option value="abbs">Abbs</option>
+          <option value="pierna">Pierna</option>
+        </select><br><br>
+  
+        <div id="alimentos"></div>
+  
+        <button type="button" onclick="addEjercicio()">Agregar Alimento</button><br><br>
+  
+        <input type="submit" value="Crear Dieta">
+      </form>
+    </div>
+    <div class="col">
+      <h1>Registrar Ejercicio:</h1>
+      <form action="/alimento/create" method="POST">
+        <label for="unidad">Nombre ejercicio:</label>
+        <input type="text" name="unidad" required><br><br>
+  
+        <label for="cantidad">Descripción ejercicio:</label>
+        <input type="number" name="cantidad" required><br><br>
+  
+        <label for="nivel_intensidad">Nivel de intensidad:</label>
+        <input type="text" name="nivel_intensidad" required><br><br>
+
+        <label for="alimento">Nivel de intensidad:</label>
+
+        <select name="nivel_intensidad">
+            <option value="bench">Básico</option>
+            <option value="abbs">Intermedio</option>
+            <option value="pierna">Avanzado</option>
+          </select><br><br>
+
+        <label for="tipo_ejercicio">Tipo de ejercicio:</label>
+        <input type="text" name="tipo_ejercicio" required><br><br>
+
+        <label for="image">Referencia visual (sube una imagen):</label>
+        <input type="file" id="image" name="image">
+        <br><br>
+        <input type="submit" value="Registrar ejercicio">
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function addAlimento() {
+    const div = document.getElementById("alimentos");
+    const label = document.createElement("label");
+    label.innerHTML = "Alimento:";
+    const select = document.createElement("select");
+    select.name = "alimento";
+    select.innerHTML = `
+      <option value="pollo">Pollo</option>
+      <option value="carne">Carne</option>
+      <option value="pescado">Pescado</option>
+    `;
+    div.appendChild(label);
+    div.appendChild(select);
+    div.appendChild(document.createElement("br"));
+    div.appendChild(document.createElement("br"));
+  }
+</script>
+

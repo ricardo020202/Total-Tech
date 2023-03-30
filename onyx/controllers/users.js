@@ -73,10 +73,14 @@ exports.post_signup = (request, response, next) => {
             if (error.code === "ER_DUP_ENTRY") {
                 request.session.mensaje = "El correo electrónico ya está registrado.";
                 response.redirect("/users/signup");
-            } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                response.render("/onyx/dbDown");
+            } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
+                request.session.mensaje = "Error Completar Registro.";
+                response.redirect("/users/signUp");
             } else {
-                response.render("/onyx/dbDown");
+                response.render("dbDown", {
+                    pagetitle: "Error",
+                    user: request.session.user || "",
+                });
             }
         });
 };
