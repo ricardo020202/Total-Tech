@@ -62,17 +62,22 @@
     </div>
   </div>
 </div>
-      <script>
-        function addAlimento() {
-          const div = document.getElementById("alimentos");
-          const select = document.createElement("select");
-          select.name = "alimento";
-          select.innerHTML = `
-            <option value="pollo">Pollo</option>
-            <option value="carne">Carne</option>
-            <option value="pescado">Pescado</option>
-          `;
-          div.appendChild(select);
-        }
-      </script>
+<script>
+  function addAlimento() {
+    const div = document.getElementById("alimentos");
+    const label = document.createElement("label");
+    label.innerHTML = "Alimento:";
+    const select = document.createElement("select");
+    select.name = "alimento";
+    select.innerHTML = `
+      <option value="pollo">Pollo</option>
+      <option value="carne">Carne</option>
+      <option value="pescado">Pescado</option>
+    `;
+    div.appendChild(label);
+    div.appendChild(select);
+    div.appendChild(document.createElement("br"));
+    div.appendChild(document.createElement("br"));
+  }
+</script>
 
