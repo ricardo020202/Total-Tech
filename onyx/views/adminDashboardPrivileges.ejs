@@ -1,5 +1,5 @@
 <%- include('includes/head.ejs') %>
-<%- include('includes/sidebar.ejs') %>
+
 <link rel="stylesheet" href="/css/adminStyle.css">
 <style>
   /* Add some margin and padding to the table */
@@ -38,6 +38,9 @@
     <div class="spacer"></div>
     <div class="container">
       <div class="row">
+        <div class="col-3">
+          <%- include('includes/sidebar.ejs') %>
+        </div>
         <div class="col">
           <div class="form-group">
             <input type="text" class="form-control" id="searchInput" placeholder="Buscar usuarios...">

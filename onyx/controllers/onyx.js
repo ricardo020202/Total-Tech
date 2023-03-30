@@ -35,19 +35,10 @@ exports.getCatEjercicios = (req, res, next) => {
 
 
 exports.getAdminDashboardDietas = async (req, res, next) => {
-    try {
-        const dietas = await Dieta.fetchAll();
-        const alimentos = await Alimento.fetchAll();
         res.render("adminDashboardDietas", {
             pagetitle: "Dietas",
             user: req.session.user || "",
-            dietas: dietas[0],
-            alimentos: alimentos[0]
         });
-    } catch (error) {
-        console.log(error);
-        res.redirect("/");
-    }
 }
 
 
