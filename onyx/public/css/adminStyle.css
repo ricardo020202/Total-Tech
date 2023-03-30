@@ -275,3 +275,36 @@ td, th {
 .workouts{
     width: 99%;
 }
+
+
+/* ================= ADMIN WORKOUT ================= */
+#workout{
+    margin-left: 8rem;
+    margin-top: 15rem;
+    /* elements in a row */
+    display: flex;
+}
+
+#search-bar {
+    /* white search bar */
+}
+
+#search-bar input {
+    /* white search bar */
+    background: #FFFFFF;
+}
+
+.cell-class {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px; /* adjust the value to the maximum width you want the cell to be */
+}
+
+.table-title {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 300px;
+    margin-top: 100px;
+}
