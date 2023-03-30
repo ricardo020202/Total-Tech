@@ -4,11 +4,12 @@ module.exports = class DietaAlimento {
     constructor(id_dieta, id_alimento, cantidad) {
         this.id_dieta = id_dieta;
         this.id_alimento = id_alimento;
+        this.cantidad = cantidad;
     }
 
     save() {
-        return db.execute('INSERT INTO dieta_alimento (id_dieta, id_alimento) VALUES (?, ?)',
-            [this.id_dieta, this.id_alimento]);
+        return db.execute('INSERT INTO dieta_alimento (id_dieta, id_alimento, cantidad) VALUES (?, ?, ?)',
+            [this.id_dieta, this.id_alimento, this.cantidad]);
     }
 
     static fetchAll() {

@@ -1,11 +1,14 @@
 const EjercicioModel = require("../models/ejercicio");
 const EntrenamientoModel = require("../models/programa");
-const DietasModel = require("../models/dietas");
+const Alimento = require("../models/alimento");
+const DietaAlimento = require("../models/dieta_alimento");
+const Dieta = require("../models/dietas");
 const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
+const usuario = require("../models/usuario");
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -17,29 +20,62 @@ exports.getCatEjercicios = (req, res, next) => {
                 path: "/catEjercicios",
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
 };
 
-exports.getAdminDashboardPrivileges = (req, res, next) => {
-    res.render("adminDashboardPriviliges", {
-        pagetitle: "adminDashboardPriviliges",
 
-    });
+exports.getAdminDashboardDietas = async (req, res, next) => {
+        res.render("adminDashboardDietas", {
+            pagetitle: "Dietas",
+            user: req.session.user || "",
+        });
 }
 
-// exports.getHome = (req, res, next) => {
-//     res.render("home", {
-//         pagetitle: "Onyx",
-//         user: req.session.user || "",
-//     });
-// };
 
-// exports.getAdminDashboard = (req, res, next) => {
-//     res.render("admindashboard", {
-//         pagetitle: "Onyx",
-//         user: req.session.user || "",
-//     });
-// };
+exports.getAdminDashboardPrivileges=(req, res, next) => {
+    let results = [];
+
+    usuario.getPrivilegios()
+      .then(rows => {
+        rows.forEach(row => {
+          results.push(row);
+        });
+        console.log("results:",results[0]);
+        res.render("adminDashboardPrivileges", {
+            usersArray:results[0],
+            pagetitle: "Users",
+            user: req.session.user || "",
+        });
+      })
+      .catch(error => {
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(error);
+        }
+      });
+}
+
+exports.getAdminDashboard = (req, res, next) => {
+    res.render("admindashboard", {
+        pagetitle: "Onyx",
+        user: req.session.user || "",
+    });
+};
 
 exports.getCatEntrenamientos = async(req, res, next) => {
     
@@ -57,11 +93,15 @@ exports.getCatEntrenamientos = async(req, res, next) => {
         });
     })
     .catch((err) => {
-        res.render("dbDown", {
-            pagetitle: "Error",
-            user: req.session.user || "",
-        });
-        return { medidas: [], fechas: [] };
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(err);
+        }
     })
   
 };
@@ -85,11 +125,15 @@ exports.getDieta = async (req, res, next) => {
         });
     })
     .catch((err) => {
-        res.render("dbDown", {
-            pagetitle: "Error",
-            user: req.session.user || "",
-        });
-        return { medidas: [], fechas: [] };
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(err);
+        }
     })
 
 };
@@ -121,7 +165,17 @@ exports.getBitacora = (req, res, next) => {
                 fecha: fecha,
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
 };
 
 exports.getNuevaBitacora = (req, res, next) => {
@@ -145,7 +199,17 @@ exports.postNuevaBitacora = (req, res, next) => {
         .then(([rows, fieldData]) => {
             res.redirect("/onyx/bitacora");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
 };
 
 exports.getDashboard = (req, res, next) => {
@@ -171,11 +235,15 @@ exports.getDashboard = (req, res, next) => {
                 return { medidas, fechas };
             })
             .catch((err) => {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                });
-                return { medidas: [], fechas: [] };
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                    });
+                    return { medidas: [], fechas: [] };
+                } else {
+                    console.log(err);
+                }
             })
     );
 
@@ -213,7 +281,15 @@ exports.getDashboard = (req, res, next) => {
             });
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -231,7 +307,17 @@ exports.getDatosIniciales = (req, res, next) => {
                 });
             }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
 };
 
 exports.getRegistrarDatosIniciales = (req, res, next) => {
@@ -262,12 +348,21 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
             res.redirect("/onyx/datos-iniciales");
         })
         .catch((err) => {
-            console.log(err);
-            cliente
-                .update()
-                .then(([rows, fieldData]) => {
-                    res.redirect("/onyx/datos-iniciales");
-                })
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+            // console.log(err);
+            // cliente
+            //     .update()
+            //     .then(([rows, fieldData]) => {
+            //         res.redirect("/onyx/datos-iniciales");
+            //     })
         });
 
 };
@@ -295,11 +390,15 @@ exports.getTallas = (req, res, next) => {
                 return { medidas, fechas };
             })
             .catch((err) => {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                });
-                return { medidas: [], fechas: [] };
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                    });
+                    return { medidas: [], fechas: [] };
+                } else {
+                    console.log(err);
+                }
             })
     );
 
@@ -331,17 +430,27 @@ exports.getTallas = (req, res, next) => {
                     });
                 })
                 .catch((err) => {
-                    res.render("dbDown", {
-                        pagetitle: "Error",
-                        user: req.session.user || "",
-                    });
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                        });
+                        return { medidas: [], fechas: [] };
+                    } else {
+                        console.log(err);
+                    }
                 });
         })
         .catch((err) => {
-            res.render("dbDown", {
-                pagetitle: "Error",
-                user: req.session.user || "",
-            });
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -375,6 +484,14 @@ exports.postTallas = (req, res, next) => {
             res.redirect("/onyx/tallas");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
         });
 };

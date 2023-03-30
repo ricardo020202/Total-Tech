@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col d-flex justify-content-center">
                 <form action="/users/login" method="POST">
+                    <p><%=mensaje%></p>
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <div class="p-5 rounded-5 text-dark shadow rounded bg-custom-login" style="width: 25rem">
                         <div class="d-flex justify-content-center">

@@ -8,6 +8,7 @@ exports.get_signup = (request, response, next) => {
         isLoggedIn: request.session.isLoggedIn || false,
         user: request.session.user || "",
         csrfToken: request.csrfToken(),
+        mensaje: request.session.mensaje || "",
     });
 };
 
@@ -68,7 +69,16 @@ exports.post_signup = (request, response, next) => {
                 })
                 .catch((error) => console.log(error));
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            if (error.code === "ER_DUP_ENTRY") {
+                request.session.mensaje = "El correo electrónico ya está registrado.";
+                response.redirect("/users/signup");
+            } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                response.render("/onyx/dbDown");
+            } else {
+                response.render("/onyx/dbDown");
+            }
+        });
 };
 
 exports.login = (request, response, next) => {

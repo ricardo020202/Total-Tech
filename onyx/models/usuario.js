@@ -32,12 +32,14 @@ module.exports = class Usuario {
         return db.execute('SELECT * FROM usuario WHERE email = ?', [email]);
     }
 
-    static getPrivilegios(email) {
+    static getPrivilegios() {
         return db.execute(`
-            SELECT p.nombrecu
-            FROM privilegio p, rol_privilegio rp, rol r, rol_usuario ru, usuario u
-            WHERE u.email = ? AND u.email = ru.email AND ru.id_rol = r.id_rol
-            AND rp.id_rol = r.id_rol AND rp.id_cu = p.id_cu
-        `, [email]);
+        SELECT u.nombre, u.email, u.telefono, r.nombreRol AS rol, GROUP_CONCAT(p.nombrecu SEPARATOR ', ') AS privileges 
+        FROM usuario u 
+        INNER JOIN rol_usuario ru ON u.email = ru.email 
+        INNER JOIN rol r ON ru.id_rol = r.id_rol 
+        INNER JOIN rol_privilegio rp ON r.id_rol = rp.id_rol 
+        INNER JOIN privilegio p ON rp.id_cu = p.id_cu 
+        GROUP BY u.nombre, u.email, u.telefono, r.nombreRol;`);
     }   
 }

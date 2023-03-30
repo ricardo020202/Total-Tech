@@ -76,10 +76,11 @@ module.exports = class Dieta {
 
     update() {
         return db.execute(
-            'UPDATE dieta SET nombre_dieta = ?, no_calorias = ?, proteinas = ?, carbohidratos = ?, grasas = ?, fibra_total = ?, ceniza = ?, calcio = ?, fosforo = ?, hierro = ?, tiamina = ?, riboflavina = ?, niacina = ?, vitamina_c = ?, vitamina_a = ?, ac_graso_mono = ?, ac_graso_poli = ?, ac_graso_saturado = ?, colesterol = ?, potasio = ?, sodio = ?, zinc = ?, magnesio = ?, vit_b6 = ?, vit_b12 = ?, ac_folico = ?, folato = ?'
-            [this.nombre_dieta, this.no_calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato]
+            'UPDATE dieta SET nombre_dieta = ?, no_calorias = ?, proteinas = ?, carbohidratos = ?, grasas = ?, fibra_total = ?, ceniza = ?, calcio = ?, fosforo = ?, hierro = ?, tiamina = ?, riboflavina = ?, niacina = ?, vitamina_c = ?, vitamina_a = ?, ac_graso_mono = ?, ac_graso_poli = ?, ac_graso_saturado = ?, colesterol = ?, potasio = ?, sodio = ?, zinc = ?, magnesio = ?, vit_b6 = ?, vit_b12 = ?, ac_folico = ?, folato = ? WHERE id_dieta = ?',
+            [this.nombre_dieta, this.no_calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato, this.id_dieta]
         );
     }
+
 
     static deleteById(id_dieta) {
         return db.execute('DELETE FROM dieta WHERE id_dieta = ?', [id_dieta]);

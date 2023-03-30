@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="/css/adminStyle.css">
+<%- include('includes/head.ejs') %>
+
+<div class="container">
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col-3">
+      <%- include('includes/sidebar.ejs') %>
+    </div>
+    <div class="col">
+      <h1>Registrar dieta</h1>
+      <form action="/dieta/create" method="POST">
+        <label for="no_calorias">No. de Calorias:</label>
+        <input type="number" name="no_calorias" required><br><br>
+  
+        <label for="proteinas">Proteinas:</label>
+        <input type="number" name="proteinas" required><br><br>
+  
+        <label for="grasas">Grasas:</label>
+        <input type="number" name="grasas" required><br><br>
+  
+        <label for="carbohidratos">Carbohidratos:</label>
+        <input type="number" name="carbohidratos" required><br><br>
+  
+        <label for="micronutrientes">Micronutrientes:</label>
+        <input type="text" name="micronutrientes" required><br><br>
+  
+        <label for="macronutrientes">Macronutrientes:</label>
+        <input type="text" name="macronutrientes" required><br><br>
+  
+        <label for="nombre_dieta">Nombre de la Dieta:</label>
+        <input type="text" name="nombre_dieta" required><br><br>
+  
+        <label for="alimento">Alimento:</label>
+        <select name="alimento">
+          <option value="pollo">Pollo</option>
+          <option value="carne">Carne</option>
+          <option value="pescado">Pescado</option>
+        </select><br><br>
+  
+        <div id="alimentos"></div>
+  
+        <button type="button" onclick="addAlimento()">Agregar Alimento</button><br><br>
+  
+        <input type="submit" value="Crear Dieta">
+      </form>
+    </div>
+    <div class="col">
+      <h1>Registrar Alimento</h1>
+      <form action="/alimento/create" method="POST">
+        <label for="unidad">Unidad:</label>
+        <input type="text" name="unidad" required><br><br>
+  
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" name="cantidad" required><br><br>
+  
+        <label for="descripcion_alimento">Descripcion del Alimento:</label>
+        <input type="text" name="descripcion_alimento" required><br><br>
+  
+        <input type="submit" value="Crear Alimento">
+      </form>
+    </div>
+  </div>
+</div>
+      <script>
+        function addAlimento() {
+          const div = document.getElementById("alimentos");
+          const select = document.createElement("select");
+          select.name = "alimento";
+          select.innerHTML = `
+            <option value="pollo">Pollo</option>
+            <option value="carne">Carne</option>
+            <option value="pescado">Pescado</option>
+          `;
+          div.appendChild(select);
+        }
+      </script>
+
