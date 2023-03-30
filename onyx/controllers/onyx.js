@@ -35,6 +35,8 @@ exports.getCatEjercicios = (req, res, next) => {
 
 
 exports.getAdminDashboardWorkouts= async (req, res, next) => {
+
+
     res.render("adminDashboardWorkouts", {
         pagetitle: "Workouts",
         user: req.session.user || "",
