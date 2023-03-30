@@ -356,13 +356,12 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                 return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
+            cliente
+                .update()
+                .then(([rows, fieldData]) => {
+                    res.redirect("/onyx/datos-iniciales");
+                })
             }
-            // console.log(err);
-            // cliente
-            //     .update()
-            //     .then(([rows, fieldData]) => {
-            //         res.redirect("/onyx/datos-iniciales");
-            //     })
         });
 
 };
