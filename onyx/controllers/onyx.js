@@ -109,12 +109,12 @@ exports.getCatEntrenamientos = async(req, res, next) => {
 exports.getDieta = async (req, res, next) => {
 
     const numcal = req.params.numcal || '';
-    const consulta_total = await DietasModel.getTotal();// [rows, fieldData]
+    const consulta_total = await Dieta.getTotal();// [rows, fieldData]
     const total = consulta_total[0][0].total;
 
     const start = req.params.start ? req.params.start : 0
     
-    DietasModel.fetchByCal(numcal,start)
+    Dieta.fetchByCal(numcal,start)
     .then(([rows, fieldData]) => {
         res.render('dietas', {
             dietas: rows,
@@ -355,14 +355,12 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                console.log(err);
+            cliente
+                .update()
+                .then(([rows, fieldData]) => {
+                    res.redirect("/onyx/datos-iniciales");
+                })
             }
-            // console.log(err);
-            // cliente
-            //     .update()
-            //     .then(([rows, fieldData]) => {
-            //         res.redirect("/onyx/datos-iniciales");
-            //     })
         });
 
 };
