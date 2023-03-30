@@ -34,6 +34,7 @@ CREATE TABLE usuario(
     apellido VARCHAR(50) NOT NULL,
     contraseña VARCHAR(400) NOT NULL,
     telefono VARCHAR(30) NOT NULL,
+    user_pic VARCHAR(200),
     PRIMARY KEY (email)
 );
 

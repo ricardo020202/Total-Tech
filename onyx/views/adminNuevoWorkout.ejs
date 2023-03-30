@@ -2,6 +2,52 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
 
+<div class="spacer"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Buscar usuarios...">
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre de usuario</th>
+              <th>Email</th>
+              <th>Teléfono</th>
+              <th>Rol de usuario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% usersArray.forEach(user=> { %>
+              <tr>
+                <td>
+                  <%= user.nombre %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+                <td>
+                  <%= user.telefono %>
+                </td>
+                <td>
+                  <span class="user-role" data-toggle="tooltip" data-bs-placement="top"
+                    title="<%= user.privileges %>">
+                    <%= user.rol %>
+                  </span>
+                </td>
+              </tr>
+              <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="spacer"></div>
   <div class="row">
