@@ -1,74 +1,121 @@
 <%- include('includes/head.ejs') %>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+/>
 
-    <div class="container">
-        <div class="container mt-5">
-            <br />
-            <br />
-            <h1 class="fw-bold text-start">Bitácora</h1>
-            <p class="lead text-start">
-                Aquí podras ver que día realizaste ejercicio y como te sentiste ese
-                dia, además llevar un control de tus entrenamietos
-            </p>
-        </div>
-        <!-- button for add event in the right -->
-        <div class="add-event">
-            <a href="/onyx/nuevabitacora">
-                <button class="btn btn-primary" id="add-event">
-                    <span class="material-symbols-rounded">add</span>
-                </button>
-            </a>
-        </div>
+<div class="container">
+    <div class="container mt-5">
+        <br />
+        <br />
+        <h1 class="fw-bold text-start">Bitácora</h1>
+        <p class="lead text-start">
+            Aquí podras ver que día realizaste ejercicio y como te sentiste ese
+            dia, además llevar un control de tus entrenamietos
+        </p>
+    </div>
+    <!-- button for add event in the right -->
+    <div class="add-event">
+        <a href="/onyx/nuevabitacora">
+            <button class="btn btn-primary" id="add-event">
+                <span class="material-symbols-rounded">add</span>
+            </button>
+        </a>
+    </div>
 
-        <!-- calendario de bitacora -->
-        <!-- two columns -->
-        <div class="row calendario-bitacora">
-            <div class="col-md-6">
-                <div class="wrapper">
-                    <header>
-                        <p class="current-date"></p>
-                        <div class="icons">
-                            <span id="prev" class="material-symbols-rounded">chevron_left</span>
-                            <span id="next" class="material-symbols-rounded">chevron_right</span>
-                        </div>
-                    </header>
-                    <div class="calendar">
-                        <ul class="weeks">
-                            <li>Sun</li>
-                            <li>Mon</li>
-                            <li>Tue</li>
-                            <li>Wed</li>
-                            <li>Thu</li>
-                            <li>Fri</li>
-                            <li>Sat</li>
-                        </ul>
-                        <ul class="days"></ul>
+    <!-- calendario de bitacora -->
+    <!-- two columns -->
+    <div class="row calendario-bitacora">
+        <div class="col-md-6">
+            <div class="wrapper">
+                <header>
+                    <p class="current-date"></p>
+                    <div class="icons">
+                        <span id="prev" class="material-symbols-rounded"
+                            >chevron_left</span
+                        >
+                        <span id="next" class="material-symbols-rounded"
+                            >chevron_right</span
+                        >
                     </div>
-
+                </header>
+                <div class="calendar">
+                    <ul class="weeks">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul class="days"></ul>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="container">
-                    <% for (let i=0; i < bitacora.length; i++) { %>
-                        <!-- tarjetas con los eventos -->
-                        <div class="cards text-center <% if (i === 0) { %>active<% } %>" style="width: 18rem">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <%= bitacora[i].entreno %>
-                                </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    <%= new Date(bitacora[i].fecha).toLocaleDateString() %>
-                                </h6>
-                                <p class="card-text">
-                                    <%= bitacora[i].contenido %>
-                                </p>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                        <% } %>
+        </div>
+        <div class="col-md-6">
+            <div class="container">
+                <% for (let i=0; i < bitacora.length; i++) { %>
+                <!-- tarjetas con los eventos -->
+                <div
+                    class="cards text-center <% if (i === 0) { %>active<% } %>"
+                    style="width: 18rem"
+                >
+                    <div class="card-body">
+                        <h5 class="card-title"><%= bitacora[i].entreno %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <%= new Date(bitacora[i].fecha).toLocaleDateString()
+                            %>
+                        </h6>
+                        <p class="card-text"><%= bitacora[i].contenido %></p>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
                 </div>
+                <% } %>
             </div>
         </div>
     </div>
-    <%- include('includes/foot.ejs') %>
+    <!-- break -->
+    <br />
+    <!-- Ultimas 10 bitacoras -->
+    <div class="container">
+        <h1 class="fw-bold text-start">Ultimas 10 bitacoras</h1>
+        <p class="lead text-start">
+            Aquí podras ver las ultimas 10 bitacoras que has realizado
+        </p>
+        <div class="accordion">
+            <% for (let i=0; i < bitacora.length; i++) { %>
+                <div class="accordion-item <% if (i === 0) { %>active<% } %>">
+                    <h2 class="accordion-header" id="heading<%= i %>">
+                        <button
+                            class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapse<%= i %>"
+                            aria-expanded="<%= i === 0 %>"
+                            aria-controls="collapse<%= i %>"
+                        >
+                            <%= bitacora[i].entreno %>
+                        </button>
+                    </h2>
+                    <div
+                        id="collapse<%= i %>"
+                        class="accordion-collapse collapse <%= i === 0 ? 'show' : '' %>"
+                        aria-labelledby="heading<%= i %>"
+                        data-bs-parent="#accordionExample"
+                    >
+                        <div class="accordion-body">
+                            <strong>Fecha:</strong>
+                            <%= new Date(bitacora[i].fecha).toLocaleDateString() %>
+                            <br />
+                            <strong>Contenido:</strong>
+                            <%= bitacora[i].contenido %> <br />
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        
+    </div>
+</div>
+<%- include('includes/foot.ejs') %>

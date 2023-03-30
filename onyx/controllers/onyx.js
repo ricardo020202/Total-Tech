@@ -125,13 +125,24 @@ exports.getBitacora = (req, res, next) => {
     const day = String(today.getDate()).padStart(2, "0");
     const fecha = req.params.fecha || `${year}-${month}-${day}`;
 
-    Bitacora.fetchByDate(req.session.email, fecha)
+    const email = req.session.email;
+
+    let results;
+
+    if(fecha) {
+        result = Bitacora.fetchByDate(email, fecha)
+    } else {
+        result = Bitacora.fetchLastEntries(email)
+    }
+
+    result
         .then(([rows, fieldData]) => {
             res.render("bitacora", {
+                bitacora: rows.filter((row) => row.email === req.session.email),
                 pagetitle: "Bitacora",
                 user: req.session.user || "",
-                bitacora: rows.filter((row) => row.email === req.session.email),
                 fecha: fecha,
+                csrfToken: req.csrfToken(),
             });
         })
         .catch((err) => {
