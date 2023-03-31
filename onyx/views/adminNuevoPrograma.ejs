@@ -3,16 +3,16 @@
 <%- include('includes/sidebar.ejs') %> 
 
 
-<!-- make new ejercicio page -->
-<div class="container" id="nuevo-ejercicio">
+<!-- make new programa page -->
+<div class="container" id="nuevo-programa">
     <div class="row">
-        <div class="col-12" id="ejercicio">
-            <h1 class="text-center">Nuevo Ejercicio</h1>
+        <div class="col-12" id="programa">
+            <h1 class="text-center">Nuevo Programa</h1>
         </div>
     </div>
 
-    <!-- form for new ejercicio -->
-    <div class="container" id="form-nuevo-ejercicio">
+    <!-- form for new programa -->
+    <div class="container" id="form-nuevo-programa">
         <form action="/admin/admindashboard/workouts/nuevoprograma" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="mb-3">
@@ -43,30 +43,30 @@
                     required/>
             </div>
             <div class="mb-3">
-                <label for="descripcion_ejercicio" class="form-label">Descripcion Ejercicio</label>
+                <label for="descripcion_programa" class="form-label">Descripcion Programa</label>
                 <input
                     type="text"
                     class="form-control"
-                    id="descripcion_ejercicio"
-                    name="descripcion_ejercicio"
+                    id="descripcion_programa"
+                    name="descripcion_programa"
                     required/>
             </div>
             <div class="mb-3">
-                <label for="nombre_ejercicio" class="form-label">Nombre Ejercicio</label>
+                <label for="nombre_programa" class="form-label">Nombre Programa</label>
                 <input
                     type="text"
                     class="form-control"
-                    id="nombre_ejercicio"
-                    name="nombre_ejercicio"
+                    id="nombre_programa"
+                    name="nombre_programa"
                     required/>
             </div>
             <div class="mb-3">
-                <label for="imagen_ejercicio" class="form-label">Imagen Ejercicio</label>
+                <label for="imagen_programa" class="form-label">Imagen Programa</label>
                 <input
                     type="text"
                     class="form-control"
-                    id="imagen_ejercicio"
-                    name="imagen_ejercicio"
+                    id="imagen_programa"
+                    name="imagen_programa"
                     required/>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
