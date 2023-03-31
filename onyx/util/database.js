@@ -9,7 +9,7 @@ const mysql = require('mysql2');
 //     user: 'root',
 //     database: 'onyx',
 //     port: 8889,
-//     password: 'lol23',
+//     password: 'root',
 // });
 
 // Windows database

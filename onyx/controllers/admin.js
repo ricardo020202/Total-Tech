@@ -42,6 +42,40 @@ exports.getAdminNuevoEjercicio = (req, res, next) => {
     });
 };
 
+exports.getAdminNuevoProgograma = (req, res, next) => {
+    res.render("adminNuevoPrograma", {
+        pagetitle: "Nuevo Programa",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postAdminNuevoPrograma = (req, res, next) => {
+    const programa = new EntrenamientoModel({
+        frecuencia: req.body.frecuencia,
+        descripcion_programa: req.body.descripcion_programa,
+        nombre_programa: req.body.nombre_programa,
+        ref_visual: req.body.ref_visual,
+        img_programa: req.body.imagen_ejercicio,
+    });
+    programa
+        .save()
+        .then((result) => {
+            res.redirect("/admin/admindashboard/workouts");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
 exports.getAdminNuevaDieta = (req, res, next) => {
     res.render("adminNuevaDieta", {
         pagetitle: "Nueva Dieta",
@@ -134,10 +168,6 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
         });
 };
 
-
-
-
-
 exports.getAdminDashboardDietas = async (req, res, next) => {
     Dieta.fetchAll()
     .then(([rows, fieldData]) => {
@@ -160,7 +190,6 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
         }
     });
 };
-
 
 exports.getAdminDashboardPrivileges=(req, res, next) => {
     let results = [];
@@ -188,7 +217,7 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
             console.log(error);
         }
       });
-}
+};
 
 exports.getAdminDashboard = (req, res, next) => {
     res.render("admindashboard", {
