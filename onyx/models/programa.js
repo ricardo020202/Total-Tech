@@ -7,7 +7,7 @@ module.exports = class Programa {
         this.nombre_programa = programa.nombre_programa;
         this.descripcion_programa = programa.descripcion_programa;
         this.ref_visual = programa.ref_visual;
-        this.imag_programa = programa.img_programa;
+        this.img_programa = programa.img_programa;
     }
 
     // save() {
