@@ -20,4 +20,8 @@ router.get('/admindashboard/workouts/nuevoejercicio', adminController.getAdminNu
 
 router.post('/admindashboard/workouts/nuevoejercicio', adminController.postAdminNuevoEjercicio);
 
+router.get('/admindashboard/workouts/nuevoprograma', adminController.getAdminNuevoPrograma);
+
+router.post('/admindashboard/workouts/nuevoprograma', adminController.postAdminNuevoPrograma);
+
 module.exports = router;
