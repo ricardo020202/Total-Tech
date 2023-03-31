@@ -66,6 +66,71 @@ exports.getAdminNuevoEjercicio = (req, res, next) => {
     });
 };
 
+exports.getAdminNuevaDieta = (req, res, next) => {
+    res.render("adminNuevaDieta", {
+        pagetitle: "Nueva Dieta",
+        user: req.session.user || "",
+        path: "adminNuevaDieta",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postAdminNuevaDieta = (req, res, next) => {
+    const dieta = new Dieta({
+        nombre_dieta: req.body.nombre_dieta,
+        no_calorias: req.body.no_calorias,
+        proteinas: req.body.proteinas,
+        carbohidratos: req.body.carbohidratos,
+        grasas: req.body.grasas,
+        micronutrientes: req.body.micronutrientes,
+        macronutrientes: req.body.macronutrientes,
+    });
+
+    const alimento = new Alimento({
+        descripcion: req.body.descripcion_alimento,
+        unidad: req.body.unidad,
+        cantidad: req.body.cantidad,
+    });
+
+    if (dieta) {
+           dieta
+    .save()
+    .then((result) => {
+        res.redirect("/onyx/admindashboard/diets");
+    })
+    .catch((err) => {
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(err);
+        }
+    });
+    }
+    if (alimento) {
+        alimento
+    .save()
+    .then((result) => {
+        res.redirect("/onyx/admindashboard/diets");
+    })
+    .catch((err) => {
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(err);
+        }
+    }
+    );
+};
+};    
+
 exports.postAdminNuevoEjercicio = (req, res, next) => {
     const ejercicio = new EjercicioModel({
         categoria: req.body.categoria,

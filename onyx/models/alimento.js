@@ -8,7 +8,7 @@ module.exports = class Alimento {
     }
 
     save() {
-        return db.execute('INSERT INTO alimento (descripcion, unidad, cantidad) VALUES (?, ?, ?)',
+        return db.execute('INSERT INTO alimento (descripcion_alimento, unidad, cantidad) VALUES (?, ?, ?)',
             [this.descripcion, this.unidad, this.cantidad]);
     }
 
