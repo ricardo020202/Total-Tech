@@ -56,7 +56,7 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
         descripcion_programa: req.body.descripcion_programa,
         nombre_programa: req.body.nombre_programa,
         ref_visual: req.body.ref_visual,
-        img_programa: req.body.imagen_ejercicio,
+        img_programa: req.body.img_programa,
     });
     programa
         .save()

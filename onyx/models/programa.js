@@ -2,7 +2,6 @@ const db = require('../util/database');
 
 module.exports = class Programa {
     constructor(programa) {
-        this.id_programa = programa.id_programa;
         this.frecuencia = programa.frecuencia;
         this.nombre_programa = programa.nombre_programa;
         this.descripcion_programa = programa.descripcion_programa;
