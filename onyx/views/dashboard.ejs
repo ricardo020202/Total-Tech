@@ -46,11 +46,10 @@
                                 <%= pecho[pecho.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...pecho) %> cm
+                                <% if (pecho.length == 0) {%>0<%} else {%><%=Math.max(...pecho)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...pecho) %> cm
-                            </td>
+                                <% if (pecho.length == 0) {%>0<%} else {%><%=Math.min(...pecho)%><%} %> cm
                         </tr>
                         <tr>
                             <th scope="row">
@@ -60,10 +59,10 @@
                                 <%= brazoI[brazoI.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...brazoI) %> cm
+                                <% if (brazoI.length == 0) {%>0<%} else {%><%=Math.max(...brazoI)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...brazoI) %> cm
+                                <% if (brazoI.length == 0) {%>0<%} else {%><%=Math.min(...brazoI)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -74,10 +73,10 @@
                                 <%= brazoD[brazoD.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...brazoD) %> cm
+                                <% if (brazoD.length == 0) {%>0<%} else {%><%=Math.max(...brazoD)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...brazoD) %> cm
+                                <% if (brazoD.length == 0) {%>0<%} else {%><%=Math.min(...brazoD)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -88,10 +87,10 @@
                                 <%= cintura[cintura.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...cintura) %> cm
+                                <% if (cintura.length == 0) {%>0<%} else {%><%=Math.max(...cintura)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...cintura) %> cm
+                                <% if (cintura.length == 0) {%>0<%} else {%><%=Math.min(...cintura)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -102,10 +101,10 @@
                                 <%= cadera[cadera.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...cadera) %> cm
+                                <% if (cadera.length == 0) {%>0<%} else {%><%=Math.max(...cadera)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...cadera) %> cm
+                                <% if (cadera.length == 0) {%>0<%} else {%><%=Math.min(...cadera)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -116,10 +115,10 @@
                                 <%= piernaI[piernaI.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...piernaI) %> cm
+                                <% if (piernaI.length == 0) {%>0<%} else {%><%=Math.max(...piernaI)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...piernaI) %> cm
+                                <% if (piernaI.length == 0) {%>0<%} else {%><%=Math.min(...piernaI)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -130,10 +129,10 @@
                                 <%= piernaD[piernaD.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...piernaD) %> cm
+                                <% if (piernaD.length == 0) {%>0<%} else {%><%=Math.max(...piernaD)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...piernaD) %> cm
+                                <% if (piernaD.length == 0) {%>0<%} else {%><%=Math.min(...piernaD)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -144,10 +143,10 @@
                                 <%= pantorrillaI[pantorrillaI.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...pantorrillaI) %> cm
+                                <% if (pantorrillaI.length == 0) {%>0<%} else {%><%=Math.max(...pantorrillaI)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...pantorrillaI) %> cm
+                                <% if (pantorrillaI.length == 0) {%>0<%} else {%><%=Math.min(...pantorrillaI)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -158,10 +157,10 @@
                                 <%= pantorrillaD[pantorrillaD.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...pantorrillaD) %> cm
+                                <% if (pantorrillaD.length == 0) {%>0<%} else {%><%=Math.max(...pantorrillaD)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...pantorrillaD) %> cm
+                                <% if (pantorrillaD.length == 0) {%>0<%} else {%><%=Math.min(...pantorrillaD)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -172,10 +171,10 @@
                                 <%= cuello[cuello.length - 1] %> cm
                             </td>
                             <td>
-                                <%= Math.max(...cuello) %> cm
+                                <% if (cuello.length == 0) {%>0<%} else {%><%=Math.max(...cuello)%><%} %> cm
                             </td>
                             <td>
-                                <%= Math.min(...cuello) %> cm
+                                <% if (cuello.length == 0) {%>0<%} else {%><%=Math.min(...cuello)%><%} %> cm
                             </td>
                         </tr>
                         <tr>
@@ -186,10 +185,10 @@
                                 <%= peso[peso.length - 1] %> kg
                             </td>
                             <td>
-                                <%= Math.max(...peso) %> kg
+                                <% if (peso.length == 0) {%>0<%} else {%><%=Math.max(...peso)%><%} %> kg
                             </td>
                             <td>
-                                <%= Math.min(...peso) %> kg
+                                <% if (peso.length == 0) {%>0<%} else {%><%=Math.min(...peso)%><%} %> kg
                             </td>
                         </tr>
                     </tbody>

@@ -81,11 +81,17 @@
                             placeholder="Search for anything" aria-label="Search">
                     </form>
                     <% if (user){ %>
-                        <a class="nav-link active text-dark" aria-current="page" href="/onyx/datos-iniciales">
-                            <p class="text-dark my-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Hola, <strong><%= user %></strong>
-                            </p>
-                        </a>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/onyx/datos-iniciales">Datos iniciales</a>
+                                </li>
+                                <li><a class="dropdown-item" href="/onyx/tallas">Tallas</a></li>
+                            </ul>
+                        </li>
                         <a class="btn btn-light rounded-pill text-dark" aria-current="page"
                             href="/users/logout"><strong>Log out</strong></a>
                     <%} else { %>
