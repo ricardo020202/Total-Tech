@@ -42,7 +42,7 @@ exports.getAdminNuevoEjercicio = (req, res, next) => {
     });
 };
 
-exports.getAdminNuevoProgograma = (req, res, next) => {
+exports.getAdminNuevoPrograma = (req, res, next) => {
     res.render("adminNuevoPrograma", {
         pagetitle: "Nuevo Programa",
         user: req.session.user || "",
