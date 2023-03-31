@@ -369,3 +369,69 @@ td, th {
     /* 1rem = 16px */
     margin-top: 5rem;
 }
+
+
+
+
+
+
+/* =============== Nuevo Ejericio =============== */
+#nuevo-programa{
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    display: flex;
+    margin-left: 10rem;
+
+}
+
+#nuevo-programa input {
+    /* white search bar */
+    background: #FFFFFF;
+    max-width: 100%;
+}
+
+#programa {
+    margin-left: 8rem;
+    margin-top: 15rem;
+    /* elements in a row */
+}
+
+#form-nuevo-programa {
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    margin-top: 5rem;
+}
