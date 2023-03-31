@@ -73,9 +73,25 @@ module.exports = class Dieta {
     
             return db.execute('SELECT * FROM dieta ORDER BY no_calorias  LIMIT ?, 9', [start]);
         }
+        
+        if(numcal > 900 && numcal < 4000)
+        {
+            return db.execute('SELECT * FROM dieta WHERE no_calorias = ? ORDER BY no_calorias  LIMIT ?, 9', [numcal, start]);
+        }
+
+        if(numcal >= 4000)
+        {
+            return db.execute('SELECT * FROM dieta WHERE no_calorias BETWEEN ? AND ? + 1000 ORDER BY no_calorias  LIMIT ?, 9', [numcal, numcal, start]);
+        }
+
+        if(numcal <= 900)
+        {
+            return db.execute('SELECT * FROM dieta WHERE no_calorias BETWEEN ? AND ? - 500 ORDER BY no_calorias  LIMIT ?, 9', [numcal, numcal, start]);
+        }
+
         else
         {
-            return db.execute('SELECT * FROM dieta WHERE no_calorias BETWEEN ? AND ? + 400 ORDER BY no_calorias  LIMIT ?, 9', [numcal, numcal, start]);
+            return db.execute('SELECT * FROM dieta ORDER BY no_calorias  LIMIT ?, 9', [start]);
         }
         
     }
