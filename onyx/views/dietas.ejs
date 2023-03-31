@@ -9,26 +9,110 @@
                     aria-expanded="false">
                     NUMERO DE CALORIAS
                 </a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" style="height: 120px; overflow-y: scroll;">
                     <li>
                         <a class="dropdown-item" href="/onyx/dietas/0/0">DEFAULT</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="/onyx/dietas/0/1500">1500 - 1900</a>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/900">900 - CALORÍAS</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/0/2000">2000 - 2400</a>
+                        <a class="dropdown-item" href="/onyx/dietas/0/1000">1000 CALORÍAS</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/0/2500">2500 - 2900</a>
+                        <a class="dropdown-item" href="/onyx/dietas/0/1100">1100 - CALORÍAS</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/0/3000">3000 - 3400</a>
+                        <a class="dropdown-item" href="/onyx/dietas/0/1200">1200 - CALORÍAS</a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="/onyx/dietas/0/3500">3500 - 3900</a>
+                        <a class="dropdown-item" href="/onyx/dietas/0/1300">1300 - CALORÍAS</a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" href="/onyx/dietas/0/1400">1400 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/onyx/dietas/0/1500">1500 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/1600">1600 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/1700">1700 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/1800">1800 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/1900">1900 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2000">2000 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2100">2100 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2200">2200 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2300">2300 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2400">2400 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2500">2500 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2600">2600 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2700">2700 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2800">2800 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/2900">2900 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3000">3000 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3100">3100 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3200">3200 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3300">3300 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3400">3400 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3500">3500 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3600">3600 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3700">3700 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3800">3800 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/3900">3900 - CALORÍAS</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item"  href="/onyx/dietas/0/4000">+3900 - CALORÍAS</a>
+                    </li>
+
                 </ul>
+            
+
             </li>
         </div>
     </div>
@@ -67,15 +151,11 @@
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-            <%let contador = 0;%>
+            <%let contador = 1;%>
             <% for (let i = 1; i <= Math.ceil(total_dietas/9); i++) { %>
-                <!--<%if(numcal=='') { numcal = 0;}%>-->
-                <%console.log(numcal)%>
+                <%if(numcal == '') { numcal = 0;}%>
                 <li class="page-item"><a class="page-link" href="/onyx/dietas/<%=contador%>/<%=numcal%>"><%= i %></a></li>
-                <%console.log(numcal)%>
-
                 <%contador += 9;%>
-            
             <%}%>
         <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
