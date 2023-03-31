@@ -102,6 +102,14 @@ exports.login = (request, response, next) => {
 };
 
 exports.post_login = (request, response, next) => {
+    user.getRol(request.body.email)
+        .then(([rows, fieldData]) => {
+            request.session.rol = rows[0].nombreRol;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
     user.fetch(request.body.email)
         .then(([rows, fieldData]) => {
             if (rows.length > 0) {
@@ -125,8 +133,11 @@ exports.post_login = (request, response, next) => {
                                     return request.session.save((error) => {
                                         cliente.fetchOne(request.session.email)
                                         .then(([rows, fieldData]) => { 
-                                            if(rows.length === 0) {
+                                            if(rows.length === 0 && request.session.rol === "cliente") {
                                                 return response.redirect("/onyx/registrar-datos-iniciales");
+                                            }
+                                            else if (request.session.rol === "administrador") {
+                                                response.redirect("/onyx/adminDashboard");
                                             }
                                             else {
                                                 response.redirect("/onyx/");
@@ -141,7 +152,11 @@ exports.post_login = (request, response, next) => {
                         } else {
                             request.session.mensaje =
                                 "Usuario y/o contraseña incorrecta.";
-                            response.redirect("/users/login");
+                            if (request.session.rol === "administrador") {
+                                response.redirect("/onyx/adminDashboard");
+                            } else if (request.session.rol === "cliente") {
+                                response.redirect("/users/login");
+                            }
                             console.log(rows);
                         }
                     })

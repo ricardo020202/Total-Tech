@@ -42,4 +42,8 @@ module.exports = class Usuario {
         INNER JOIN privilegio p ON rp.id_cu = p.id_cu 
         GROUP BY u.nombre, u.email, u.telefono, r.nombreRol;`);
     }   
+
+    static getRol(email) {
+        return db.execute('SELECT r.nombreRol FROM usuario u INNER JOIN rol_usuario ru ON u.email = ru.email INNER JOIN rol r ON ru.id_rol = r.id_rol WHERE u.email = ?', [email]);
+    }
 }
