@@ -4,35 +4,19 @@ const path = require("path");
 
 const onyxController = require("../controllers/onyx");
 
-// router.get("/", onyxController.getHome);
-
 router.get('/catejercicios', onyxController.getCatEjercicios);
 
 router.get('/catentrenamientos', onyxController.getCatEntrenamientos);
+
 router.get('/catentrenamientos/:start', onyxController.getCatEntrenamientos);
 
 router.get('/dietas', onyxController.getDieta);
+
 router.get('/dietas/:start/:numcal', onyxController.getDieta);
 
 router.get('/bitacora', onyxController.getBitacora);
 
 router.get('/favoritos', onyxController.getFavoritos);
-
-router.get("/admindashboard", onyxController.getAdminDashboard);
-
-router.get("/admindashboard/userprivileges",onyxController.getAdminDashboardPrivileges);
-
-router.get("/admindashboard/diets",onyxController.getAdminDashboardDietas);
-
-router.get("/admindashboard/diets/add",onyxController.getAdminNuevaDieta);
-
-router.post("/admindashboard/diets/add",onyxController.postAdminNuevaDieta);
-
-router.get("/admindashboard/workouts",onyxController.getAdminDashboardWorkouts);
-
-router.get('/admindashboard/workouts/nuevoejercicio', onyxController.getAdminNuevoEjercicio);
-
-router.post('/admindashboard/workouts/nuevoejercicio', onyxController.postAdminNuevoEjercicio);
 
 router.get('/dashboard', onyxController.getDashboard);
 

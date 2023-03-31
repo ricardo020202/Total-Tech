@@ -137,7 +137,7 @@ exports.post_login = (request, response, next) => {
                                                 return response.redirect("/onyx/registrar-datos-iniciales");
                                             }
                                             else if (request.session.rol === "administrador") {
-                                                response.redirect("/onyx/adminDashboard");
+                                                response.redirect("/admin/adminDashboard");
                                             }
                                             else {
                                                 response.redirect("/onyx/");
@@ -153,7 +153,7 @@ exports.post_login = (request, response, next) => {
                             request.session.mensaje =
                                 "Usuario y/o contraseña incorrecta.";
                             if (request.session.rol === "administrador") {
-                                response.redirect("/onyx/adminDashboard");
+                                response.redirect("/admin/adminDashboard");
                             } else if (request.session.rol === "cliente") {
                                 response.redirect("/users/login");
                             }

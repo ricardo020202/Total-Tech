@@ -6,6 +6,7 @@ const app = express();
 const session = require('express-session');
 const csrf = require('csurf');
 const isAuth = require('./util/is-auth');
+const isAdmin = require('./util/is-admin');
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -31,6 +32,9 @@ app.use('/onyx',noRegRoutes);
 
 const onyxRoutes = require("./routes/onyx");
 app.use('/onyx', isAuth, onyxRoutes);
+
+const adminRoutes = require("./routes/admin");
+app.use('/admin', isAuth, isAdmin, adminRoutes);
 
 app.use((req, res, next) => {
     res.status(404);
