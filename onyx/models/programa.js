@@ -17,7 +17,7 @@ module.exports = class Programa {
 
     save() {
         return db.execute('INSERT INTO programa (frecuencia, nombre_programa, descripcion_programa, img_programa, ref_visual) VALUES (?, ?, ?, ?, ?)',
-             [this.frecuencia, this.nombre_programa, this.descripcion_programa, this.img_programa, this.refvisual]);
+             [this.frecuencia, this.nombre_programa, this.descripcion_programa, this.img_programa, this.ref_visual]);
      }
 
     static fetchAll(start) {
