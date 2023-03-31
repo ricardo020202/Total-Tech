@@ -80,15 +80,15 @@
                     Aquí podras ver los 10 registros mas recientes de tu bitácora
                 </p>
             </div>
-            <table>
+            <table class="table table-hover text-center">
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Entreno</th>
-                        <th>Contenido</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Entreno</th>
+                        <th scope="col">Contenido</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-dark">
                     <% for (let i=0; i < bit10.length; i++) { %>
                         <tr>
                             <td><%= new Date(bit10[i].fecha).toLocaleDateString() %></td>
