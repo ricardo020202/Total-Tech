@@ -16,34 +16,7 @@
         <form action="/admin/admindashboard/workouts/nuevoprograma" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="categoria"
-                    name="categoria"
-                    required/>
-            </div>
-            <div class="mb-3">
-                <label for="nivel_intensidad" class="form-label">Nivel Intensidad</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="nivel_intensidad"
-                    name="nivel_intensidad"
-                    required/>
-            </div>
-            <div class="mb-3">
-                <label for="referencia_visual" class="form-label">Referencia Visual</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="referencia_visual"
-                    name="referencia_visual"
-                    required/>
-            </div>
-            <div class="mb-3">
-                <label for="descripcion_programa" class="form-label">Descripcion Programa</label>
+                <label for="descripcion_programa" class="form-label">Descripcion</label>
                 <input
                     type="text"
                     class="form-control"
@@ -51,6 +24,7 @@
                     name="descripcion_programa"
                     required/>
             </div>
+
             <div class="mb-3">
                 <label for="nombre_programa" class="form-label">Nombre Programa</label>
                 <input
@@ -60,13 +34,33 @@
                     name="nombre_programa"
                     required/>
             </div>
+
             <div class="mb-3">
-                <label for="imagen_programa" class="form-label">Imagen Programa</label>
+                <label for="frecuencia" class="form-label">Frecuencia</label>
                 <input
                     type="text"
                     class="form-control"
-                    id="imagen_programa"
-                    name="imagen_programa"
+                    id="frecuencia"
+                    name="frecuencia"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="ref_visual" class="form-label">Referencia Visual</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="ref_visual"
+                    name="ref_visual"
+                    required/>
+            </div>
+            
+            <div class="mb-3">
+                <label for="img_programa" class="form-label">Imagen Programa</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="img_programa"
+                    name="img_programa"
                     required/>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
