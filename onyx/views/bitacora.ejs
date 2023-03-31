@@ -70,5 +70,34 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="container mt-3">
+                <br />
+                <br />
+                <h1 class="fw-bold text-start">Registros mas recientes</h1>
+                <p class="lead text-start">
+                    Aquí podras ver los 10 registros mas recientes de tu bitácora
+                </p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Entreno</th>
+                        <th>Contenido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i=0; i < bit10.length; i++) { %>
+                        <tr>
+                            <td><%= new Date(bit10[i].fecha).toLocaleDateString() %></td>
+                            <td><%= bit10[i].entreno %></td>
+                            <td><%= bit10[i].contenido %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
     </div>
     <%- include('includes/foot.ejs') %>

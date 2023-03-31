@@ -300,6 +300,21 @@ exports.getBitacora = (req, res, next) => {
     const day = String(today.getDate()).padStart(2, "0");
     const fecha = req.params.fecha || `${year}-${month}-${day}`;
 
+    Bitacora.fetch10(req.session.email)
+        .then(([rows, fieldData]) => {
+            req.session.bit10 = rows;
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+            } else {
+                console.log(err);
+            }
+        });
+
     Bitacora.fetchByDate(req.session.email, fecha)
         .then(([rows, fieldData]) => {
             res.render("bitacora", {
@@ -307,6 +322,7 @@ exports.getBitacora = (req, res, next) => {
                 user: req.session.user || "",
                 bitacora: rows.filter((row) => row.email === req.session.email),
                 fecha: fecha,
+                bit10: req.session.bit10,
             });
         })
         .catch((err) => {

@@ -51,4 +51,11 @@ module.exports = class Bitacora {
             [email, fecha]
         );
     }
+
+    static fetch10(email) {
+        return db.execute(
+            "SELECT * FROM bitacora WHERE email = ? ORDER BY fecha DESC LIMIT 10",
+            [email]
+        );
+    }
 };
