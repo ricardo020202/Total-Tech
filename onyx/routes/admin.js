@@ -14,14 +14,16 @@ router.get("/admindashboard/diets/add",adminController.getAdminNuevaDieta);
 
 router.post("/admindashboard/diets/add",adminController.postAdminNuevaDieta);
 
-router.get("/admindashboard/workouts",adminController.getAdminDashboardWorkouts);
+router.get("/admindashboard/ejercicios",adminController.getAdminDashboardEjercicios);
 
-router.get('/admindashboard/workouts/nuevoejercicio', adminController.getAdminNuevoEjercicio);
+router.get('/admindashboard/ejercicios/nuevoejercicio', adminController.getAdminNuevoEjercicio);
 
-router.post('/admindashboard/workouts/nuevoejercicio', adminController.postAdminNuevoEjercicio);
+router.post('/admindashboard/ejercicios/nuevoejercicio', adminController.postAdminNuevoEjercicio);
 
-router.get('/admindashboard/workouts/nuevoprograma', adminController.getAdminNuevoPrograma);
+router.get("/admindashboard/programas",adminController.getAdminDashboardProgramas);
 
-router.post('/admindashboard/workouts/nuevoprograma', adminController.postAdminNuevoPrograma);
+router.get('/admindashboard/programas/nuevoprograma', adminController.getAdminNuevoPrograma);
+
+router.post('/admindashboard/programas/nuevoprograma', adminController.postAdminNuevoPrograma);
 
 module.exports = router;

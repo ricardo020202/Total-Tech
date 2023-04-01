@@ -10,14 +10,36 @@ const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
 
-exports.getAdminDashboardWorkouts= async (req, res, next) => {
+exports.getAdminDashboardEjercicios= async (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
             res.render("adminDashboardEjercicio", {
                 ejercicio: rows,
-                pagetitle: "adminWorkouts",
+                pagetitle: "adminEjercicios",
                 user: req.session.user || "",
-                path: "/adminDashboardWorkout",
+            });
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
+exports.getAdminDashboardProgramas= async (req, res, next) => {
+    EntrenamientoModel.fetchAll()
+        .then(([rows, fieldData]) => {
+            res.render("adminDashboardProgramas", {
+                programa: rows,
+                pagetitle: "adminProgramas",
+                user: req.session.user || "",
+                path: "/adminDashboardProgramas",
             });
         })
         .catch((err) => {
@@ -61,7 +83,7 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
     programa
         .save()
         .then((result) => {
-            res.redirect("/admin/admindashboard/workouts");
+            res.redirect("/admin/admindashboard/programas");
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -153,7 +175,7 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
     ejercicio
         .save()
         .then((result) => {
-            res.redirect("/admin/admindashboard/workouts");
+            res.redirect("/admin/admindashboard/ejercicios");
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
