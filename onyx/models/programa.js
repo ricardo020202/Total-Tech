@@ -19,16 +19,8 @@ module.exports = class Programa {
              [this.frecuencia, this.nombre_programa, this.descripcion_programa, this.img_programa, this.ref_visual]);
      }
 
-    static fetchAll(start) {
-        if(start >= 0)
-        {
-            return db.execute('SELECT * FROM programa ORDER BY descripcion_programa LIMIT ?, 9', [start]);  
-        }
-
-        else
-        {
-            return db.execute('SELECT * FROM programa ORDER BY descripcion_programa');
-        }
+    static fetchAll() {
+        return db.execute('SELECT * FROM programa');
     }
 
     static getTotal() {

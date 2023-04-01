@@ -34,17 +34,16 @@ exports.getCatEjercicios = (req, res, next) => {
 };
 
 exports.getCatEntrenamientos = async (req, res, next) => {
-
-    const start = req.params.start ? req.params.start : 0
+    const start = req.params.start ? req.params.start : 0;
     const consulta_total = await EntrenamientoModel.getTotal();
     const total = consulta_total[0][0].total;
 
     EntrenamientoModel.fetchAll(start)
         .then(([rows, fieldData]) => {
-            res.render('catEntrenamientos', {
+            res.render("catEntrenamientos", {
                 programa: rows,
-                pagetitle: 'Catálogo de Entrenamientos',
-                user: req.session.user || '',
+                pagetitle: "Catálogo de Entrenamientos",
+                user: req.session.user || "",
                 total_programas: total,
             });
         })
@@ -58,24 +57,22 @@ exports.getCatEntrenamientos = async (req, res, next) => {
             } else {
                 console.log(err);
             }
-        })
-
+        });
 };
 
 exports.getDieta = async (req, res, next) => {
-
-    const numcal = req.params.numcal || '';
-    const consulta_total = await Dieta.getTotal();// [rows, fieldData]
+    const numcal = req.params.numcal || "";
+    const consulta_total = await Dieta.getTotal(); // [rows, fieldData]
     const total = consulta_total[0][0].total;
 
-    const start = req.params.start ? req.params.start : 0
+    const start = req.params.start ? req.params.start : 0;
 
     Dieta.fetchByCal(numcal, start)
         .then(([rows, fieldData]) => {
-            res.render('dietas', {
+            res.render("dietas", {
                 dietas: rows,
-                pagetitle: 'Catálogo de Dietas',
-                user: req.session.user || '',
+                pagetitle: "Catálogo de Dietas",
+                user: req.session.user || "",
                 total_dietas: total,
                 numcal: numcal,
             });
@@ -90,8 +87,7 @@ exports.getDieta = async (req, res, next) => {
             } else {
                 console.log(err);
             }
-        })
-
+        });
 };
 
 exports.getFavoritos = (req, res, next) => {
@@ -100,7 +96,6 @@ exports.getFavoritos = (req, res, next) => {
         user: req.session.user || "",
     });
 };
-
 
 // ========== Rutas Bitacora ==========
 exports.getBitacora = (req, res, next) => {
@@ -120,7 +115,9 @@ exports.getBitacora = (req, res, next) => {
                     res.render("bitacora", {
                         pagetitle: "Bitacora",
                         user: req.session.user || "",
-                        bitacora: rows.filter((row) => row.email === req.session.email),
+                        bitacora: rows.filter(
+                            (row) => row.email === req.session.email
+                        ),
                         fecha: fecha,
                         bit10: req.session.bit10,
                     });
@@ -258,8 +255,7 @@ exports.getDatosIniciales = (req, res, next) => {
         .then(([rows, fieldData]) => {
             if (rows.length === 0) {
                 return res.redirect("/onyx/registrar-datos-iniciales");
-            }
-            else {
+            } else {
                 res.render("datosIniciales", {
                     pagetitle: "Datos Iniciales",
                     user: req.session.user || "",
@@ -299,7 +295,7 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         pr_BenchPress: req.body.inputBenchPress,
         pr_PesoMuerto: req.body.inputPesoMuerto,
         pr_Sentadillas: req.body.inputSentadillas,
-        //peso: req.body.inputWeight,   
+        //peso: req.body.inputWeight,
     });
 
     cliente
@@ -315,14 +311,11 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                cliente
-                    .update()
-                    .then(([rows, fieldData]) => {
-                        res.redirect("/onyx/datos-iniciales");
-                    })
+                cliente.update().then(([rows, fieldData]) => {
+                    res.redirect("/onyx/datos-iniciales");
+                });
             }
         });
-
 };
 
 exports.getTallas = (req, res, next) => {

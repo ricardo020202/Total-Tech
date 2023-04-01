@@ -1,4 +1,8 @@
 <link rel="stylesheet" href="/css/adminStyle.css">
+<script
+    src="https://kit.fontawesome.com/77587b01e9.js"
+    crossorigin="anonymous"
+></script>
 <%- include('includes/head.ejs') %>
 <%- include('includes/sidebar.ejs') %>
 
@@ -38,8 +42,8 @@
                 <td><%= ejercicio[i].nombre_ejercicio %></td>
                 <td class="cell-class"><%= ejercicio[i].imagen_ejercicio %></td>
                 <td class="crud button">
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #e5dc01;"></i>
+                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #e5dc01;"></i>
                 </td>
             </tr>
             <% } %>
