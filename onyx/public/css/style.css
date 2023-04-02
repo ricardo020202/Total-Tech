@@ -52,7 +52,7 @@ body {
 
 .bg-custom1 {
   background-color: #151515;
-  z-index: 2;
+  z-index: 1;
 }
 
 .bg-footer {
@@ -727,3 +727,14 @@ tbody {
   color: #fff;
 }
 
+/* Dropdown chido para la parte de workouts En proceso... Ayudenme si se les ocurre algo pls xd
+.wk-css {
+  background-color: #d2ca03;
+  color: #000000;
+}
+
+.wk-css:after {
+  background-color: #d2ca03;
+  color: #000000;
+  transition: transform 200ms linear;
+} */
