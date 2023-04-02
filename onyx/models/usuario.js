@@ -33,13 +33,13 @@ module.exports = class Usuario {
 
     static getPrivilegios() {
         return db.execute(`
-        SELECT u.nombre, u.email, u.telefono, r.nombreRol AS rol, GROUP_CONCAT(p.nombrecu SEPARATOR ', ') AS privileges 
+        SELECT u.nombre, u.email, r.nombreRol AS rol, GROUP_CONCAT(p.nombrecu SEPARATOR ', ') AS privileges 
         FROM usuario u 
         INNER JOIN rol_usuario ru ON u.email = ru.email 
         INNER JOIN rol r ON ru.id_rol = r.id_rol 
         INNER JOIN rol_privilegio rp ON r.id_rol = rp.id_rol 
         INNER JOIN privilegio p ON rp.id_cu = p.id_cu 
-        GROUP BY u.nombre, u.email, u.telefono, r.nombreRol;`);
+        GROUP BY u.nombre, u.email, r.nombreRol;`);
     }   
 
     static getRol(email) {
