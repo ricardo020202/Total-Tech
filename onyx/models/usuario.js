@@ -7,15 +7,14 @@ module.exports = class Usuario {
         this.nombre = usuario.nombre;
         this.apellido = usuario.apellido;
         this.contraseña = usuario.contraseña;
-        this.telefono = usuario.telefono;
     }
 
     save() {
         return bcrypt.hash(this.contraseña, 12)
             .then(hashedPassword => {
                 this.password = hashedPassword;
-                return db.execute('INSERT INTO usuario (email, nombre, apellido, contraseña, telefono) VALUES (?, ?, ?, ?, ?)',
-                    [this.email, this.nombre, this.apellido, hashedPassword, this.telefono]
+                return db.execute('INSERT INTO usuario (email, nombre, apellido, contraseña) VALUES (?, ?, ?, ?, ?)',
+                    [this.email, this.nombre, this.apellido, hashedPassword]
                 );
             });
     }
