@@ -46,6 +46,10 @@ body {
   z-index: 2;
 }
 
+.bg-input{
+  z-index: 1;
+}
+
 .bg-custom-login {
   background-color: #d2ca03;
 }
