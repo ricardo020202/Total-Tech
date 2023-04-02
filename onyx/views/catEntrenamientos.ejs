@@ -50,22 +50,12 @@
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-                <%let contador = 1;%>
+                <%let contador = 0;%>
                 <% for (let i = 1; i <= Math.ceil(total_programas/9); i++) { %>
                     <li class="page-item"><a class="page-link" href="/onyx/catentrenamientos/<%=contador%>"><%= i %></a></li>
                     <%contador += 9;%>
                 
                 <%}%>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
             </ul>
           </nav>
 

@@ -9,18 +9,21 @@ module.exports = class Programa {
         this.img_programa = programa.img_programa;
     }
 
-    // save() {
-    //    return db.execute('INSERT INTO programa (id_programa, frecuencia, nombre_programa, descripcio_programa, imagen_programa) VALUES (?, ?, ?, ?, ?, ?)',
-    //         [this.id_programa, this.frecuencia, this.nombre_programa, this.descripcion_programa, this.img_programa, this.refvisual]);
-    // }
-
     save() {
         return db.execute('INSERT INTO programa (frecuencia, nombre_programa, descripcion_programa, img_programa, ref_visual) VALUES (?, ?, ?, ?, ?)',
              [this.frecuencia, this.nombre_programa, this.descripcion_programa, this.img_programa, this.ref_visual]);
      }
 
-    static fetchAll() {
-        return db.execute('SELECT * FROM programa');
+    static fetchAll(start) {
+        if(start > 0)
+        {
+            return db.execute('SELECT * FROM programa ORDER BY nombre_programa LIMIT ?, 9', [start]);  
+        }
+
+        else
+        {
+            return db.execute('SELECT * FROM programa ORDER BY nombre_programa  LIMIT 0, 9');
+        } 
     }
 
     static getTotal() {

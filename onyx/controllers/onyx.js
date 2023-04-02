@@ -34,9 +34,9 @@ exports.getCatEjercicios = (req, res, next) => {
 };
 
 exports.getCatEntrenamientos = async (req, res, next) => {
-    const start = req.params.start ? req.params.start : 0;
     const consulta_total = await EntrenamientoModel.getTotal();
     const total = consulta_total[0][0].total;
+    const start = req.params.start ? req.params.start : 0;
 
     EntrenamientoModel.fetchAll(start)
         .then(([rows, fieldData]) => {
@@ -64,7 +64,6 @@ exports.getDieta = async (req, res, next) => {
     const numcal = req.params.numcal || "";
     const consulta_total = await Dieta.getTotal(); // [rows, fieldData]
     const total = consulta_total[0][0].total;
-
     const start = req.params.start ? req.params.start : 0;
 
     Dieta.fetchByCal(numcal, start)
