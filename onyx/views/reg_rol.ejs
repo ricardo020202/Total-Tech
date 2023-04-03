@@ -1,0 +1,22 @@
+<!-- vistas/registrar-rol.ejs -->
+<%- include('includes/head.ejs') %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Registrar Rol</title>
+</head>
+<body>
+	<h1>Registrar Rol</h1>
+	<form action="/registrar-rol" method="POST">
+		<label for="nombre">Nombre:</label>
+		<input type="text" id="nombre" name="nombre" required><br><br>
+		<label for="descripcion">Descripción:</label>
+		<textarea id="descripcion" name="descripcion" required></textarea><br><br>
+		<button type="submit">Guardar</button>
+	</form>
+</body>
+</html>
+
+<%- include('includes/foot.ejs') %>
