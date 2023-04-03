@@ -16,4 +16,9 @@ module.exports = class ProgramaDietaCliente {
     static fetchAll() {
         return db.execute('SELECT * FROM programa_dieta_cliente');
     }
+
+
+    static deleteById(id_dieta,id_programa) {
+        return db.execute('DELETE FROM programa_dieta_cliente WHERE id_dieta = ? AND id_programa = ?', [id_dieta, id_programa]);
+    }
 }
