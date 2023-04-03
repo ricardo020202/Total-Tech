@@ -7,16 +7,21 @@ const session = require('express-session');
 const csrf = require('csurf');
 const isAuth = require('./util/is-auth');
 const isAdmin = require('./util/is-admin');
+const flash = require('connect-flash');
+
 
 
 app.set("view engine", "ejs");
 app.set("views", "views");
+
 
 app.use(session({
     secret: 'mi string secreto que debe ser un string aleatorio muy largo, no como éste', 
     resave: false, //La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió 
     saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
 }));
+
+app.use(flash());
 
 app.use(express.static(path.join(__dirname, "public")));
 

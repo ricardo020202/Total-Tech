@@ -745,3 +745,17 @@ tbody {
   color: #000000;
   transition: transform 200ms linear;
 } */
+
+#delete-bitacora {
+  /*center the button*/
+  margin: 0 auto;
+  /*display as block*/
+  display: block;
+  /*set the width*/
+  width: 100%;
+  /*set the height*/
+  height: 100%;
+  /*set the background color*/
+  /*set the border*/
+  border: 1px solid #d2ca03;
+}

@@ -6,6 +6,7 @@ const Dieta = require("../models/dietas");
 const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
+const flash = require("connect-flash");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
@@ -90,9 +91,9 @@ exports.getDieta = async (req, res, next) => {
         });
 };
 
-exports.getFavoritos = async(req, res, next) => {
+exports.getFavoritos = async (req, res, next) => {
     //const numcal = req.params.numcal || "";
-    const consulta_total = await Favoritos.getTotal(); 
+    const consulta_total = await Favoritos.getTotal();
     const total = consulta_total[0][0].total;
     const start = req.params.start ? req.params.start : 0;
 
@@ -128,43 +129,77 @@ exports.getBitacora = (req, res, next) => {
     const day = String(today.getDate()).padStart(2, "0");
     const fecha = req.params.fecha || `${year}-${month}-${day}`;
 
-    Bitacora.fetch10(req.session.email)
-        .then(([rows, fieldData]) => {
-            req.session.bit10 = rows;
-            Bitacora.fetchByDate(req.session.email, fecha)
-                .then(([rows, fieldData]) => {
-                    res.render("bitacora", {
-                        pagetitle: "Bitacora",
-                        user: req.session.user || "",
-                        bitacora: rows.filter(
-                            (row) => row.email === req.session.email
-                        ),
-                        fecha: fecha,
-                        bit10: req.session.bit10,
-                    });
-                })
-                .catch((err) => {
-                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                        res.render("dbDown", {
-                            pagetitle: "Error",
-                            user: req.session.user || "",
-                        });
-                        return { medidas: [], fechas: [] };
-                    } else {
-                        console.log(err);
-                    }
+    if (req.query.action === "delete" && req.query.id) {
+        const id_bitacora = req.query.id;
+        Bitacora.deleteById(id_bitacora)
+            .then(() => {
+                console.log(
+                    `Bitacora with id ${id_bitacora} has been deleted.`
+                );
+                res.redirect(`/bitacora/${fecha}`);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.render("error", {
+                    message: "Error deleting bitacora record",
+                    error: err,
                 });
+            });
+    } else {
+        Bitacora.fetch10(req.session.email)
+            .then(([rows, fieldData]) => {
+                req.session.bit10 = rows;
+                Bitacora.fetchByDate(req.session.email, fecha)
+                    .then(([rows, fieldData]) => {
+                        res.render("bitacora", {
+                            pagetitle: "Bitacora",
+                            user: req.session.user || "",
+                            bitacora: rows.filter(
+                                (row) => row.email === req.session.email
+                            ),
+                            fecha: fecha,
+                            bit10: req.session.bit10,
+                            csrfToken: req.csrfToken(),
+                        });
+                    })
+                    .catch((err) => {
+                        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                            res.render("dbDown", {
+                                pagetitle: "Error",
+                                user: req.session.user || "",
+                            });
+                            return { medidas: [], fechas: [] };
+                        } else {
+                            console.log(err);
+                        }
+                    });
+            })
+            .catch((err) => {
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                    });
+                } else {
+                    console.log(err);
+                }
+            });
+    }
+};
+
+exports.deleteBitacora = (req, res, next) => {
+    const id_bitacora = req.params.id_bitacora;
+
+    Bitacora.deleteById(id_bitacora)
+        .then(([result]) => {
+            req.flash("success", "Bitacora deleted successfully");
+            res.redirect("/onyx/bitacora");
         })
         .catch((err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                });
-            } else {
-                console.log(err);
-            }
+            console.log(err);
         });
+
+    res.locals.messeges = req.flash();
 };
 
 exports.getNuevaBitacora = (req, res, next) => {
