@@ -9,6 +9,7 @@ const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
+const Favoritos = require("../models/favoritos");
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -89,11 +90,32 @@ exports.getDieta = async (req, res, next) => {
         });
 };
 
-exports.getFavoritos = (req, res, next) => {
-    res.render("favoritos", {
-        pagetitle: "Favoritos",
-        user: req.session.user || "",
-    });
+exports.getFavoritos = async(req, res, next) => {
+    //const numcal = req.params.numcal || "";
+    const consulta_total = await Favoritos.getTotal(); 
+    const total = consulta_total[0][0].total;
+    const start = req.params.start ? req.params.start : 0;
+
+    Favoritos.fetchById(start)
+        .then(([rows, fieldData]) => {
+            res.render("favoritos", {
+                favoritos: rows,
+                pagetitle: "Favoritos",
+                user: req.session.user || "",
+                total_favoritos: total,
+            });
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { favoritos: [] };
+            } else {
+                console.log(err);
+            }
+        });
 };
 
 // ========== Rutas Bitacora ==========
