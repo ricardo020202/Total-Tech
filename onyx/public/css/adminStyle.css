@@ -236,7 +236,6 @@ button:active {
 
 .card {
     /* width and height are optional */
-    width: 300px;
     height: 300px;
 }
 
@@ -292,7 +291,8 @@ td, th {
 
 
 .dashboard{
-    margin-left: 280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dietas{
@@ -481,6 +481,6 @@ td, th {
     grid-column: 2;
 }
 
-
-
-
+.dash{
+    margin-left: 200px;
+}
