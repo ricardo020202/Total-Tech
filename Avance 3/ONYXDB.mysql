@@ -8,100 +8,104 @@ CREATE DATABASE Onyx;
 USE Onyx;
 
 CREATE TABLE privilegio(
-id_cu INT AUTO_INCREMENT NOT NULL,
-nombrecu VARCHAR(20),
-PRIMARY KEY(id_cu)
+    id_cu INT AUTO_INCREMENT NOT NULL,
+    nombrecu VARCHAR(50),
+    PRIMARY KEY(id_cu)
 );
 
 CREATE TABLE rol(
-id_rol INT AUTO_INCREMENT NOT NULL,
-statusRol varchar(20) NOT NULL,
-nombreRol VARCHAR(20),
-PRIMARY KEY(id_rol)
+    id_rol INT AUTO_INCREMENT NOT NULL,
+    statusRol varchar(20) NOT NULL,
+    nombreRol VARCHAR(20),
+    PRIMARY KEY(id_rol)
 );
 
 CREATE TABLE rol_privilegio(
-id_rol INT NOT NULL,
-id_cu INT NOT NULL,
-PRIMARY KEY(id_rol, id_cu),
-FOREIGN KEY(id_rol) REFERENCES rol(id_rol),
-FOREIGN KEY(id_cu) REFERENCES privilegio(id_cu)
+    id_rol INT NOT NULL,
+    id_cu INT NOT NULL,
+    PRIMARY KEY(id_rol, id_cu),
+    FOREIGN KEY(id_rol) REFERENCES rol(id_rol),
+    FOREIGN KEY(id_cu) REFERENCES privilegio(id_cu)
 );
 
 CREATE TABLE usuario(
-email VARCHAR(30) NOT NULL,
-nombre VARCHAR(50) NOT NULL,
-apellido VARCHAR(50) NOT NULL,
-contraseña VARCHAR(15) NOT NULL,
-telefono VARCHAR(30) NOT NULL,
-PRIMARY KEY (email)
+    email VARCHAR(30) NOT NULL,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    contraseña VARCHAR(400) NOT NULL,
+    telefono VARCHAR(30) NOT NULL,
+    user_pic VARCHAR(200),
+    PRIMARY KEY (email)
 );
 
 CREATE TABLE rol_usuario (
-id_rol INT AUTO_INCREMENT NOT NULL ,
-email VARCHAR(30) NOT NULL,
-fecha DATE NOT NULL,
-PRIMARY KEY (id_rol, email),
-FOREIGN KEY(email) REFERENCES usuario(email),
-FOREIGN KEY(id_rol) REFERENCES rol(id_rol)
+    id_rol INT AUTO_INCREMENT NOT NULL ,
+    email VARCHAR(30) NOT NULL,
+    fecha DATE NOT NULL,
+    PRIMARY KEY (id_rol, email),
+    FOREIGN KEY(email) REFERENCES usuario(email),
+    FOREIGN KEY(id_rol) REFERENCES rol(id_rol)
 );
 
 CREATE TABLE admin(
-email VARCHAR(30) NOT NULL,
-PRIMARY KEY(email),
-FOREIGN KEY(email) REFERENCES usuario(email)
+    email VARCHAR(30) NOT NULL,
+    PRIMARY KEY(email),
+    FOREIGN KEY(email) REFERENCES usuario(email)
 );
 
 CREATE TABLE cliente(
-email VARCHAR(30) NOT NULL,
-peso INT NOT NULL,
-altura DOUBLE NOT NULL,
-edad INT NOT NULL,
-nivel_actividad varchar(30) NOT NULL,
-objetivo VARCHAR (20) NOT NULL,
-sexo VARCHAR (15) NOT NULL,
-pr_BenchPress INT NOT NULL,
-pr_PesoMuerto INT NOT NULL,
-pr_Sentadillas INT NOT NULL,
-PRIMARY KEY(email),
-FOREIGN KEY(email) REFERENCES usuario(email)
+    email VARCHAR(30) NOT NULL,
+    altura DOUBLE NOT NULL,
+    edad INT NOT NULL,
+    nivel_actividad varchar(30) NOT NULL,
+    objetivo VARCHAR (20) NOT NULL,
+    sexo VARCHAR (15) NOT NULL,
+    pr_BenchPress INT NOT NULL,
+    pr_PesoMuerto INT NOT NULL,
+    pr_Sentadillas INT NOT NULL,
+    PRIMARY KEY(email),
+    FOREIGN KEY(email) REFERENCES usuario(email)
 );
 
 CREATE TABLE talla(
-id_medida INT AUTO_INCREMENT NOT NULL,
-email VARCHAR(30) NOT NULL,
-extremidad VARCHAR(50) NOT NULL,
-medida INT NOT NULL,
-fecha DATE NOT NULL,
-PRIMARY KEY (id_medida),
-FOREIGN KEY(email) REFERENCES usuario(email)
+    id_medida INT AUTO_INCREMENT NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    extremidad VARCHAR(50) NOT NULL,
+    medida INT NOT NULL,
+    fecha DATE NOT NULL,
+    PRIMARY KEY (id_medida),
+    FOREIGN KEY(email) REFERENCES usuario(email)
 );
 
 CREATE TABLE bitacora(
-id_bitacora INT AUTO_INCREMENT NOT NULL ,
-fecha DATE NOT NULL,
-contenido VARCHAR(2500) NOT NULL,
-entreno VARCHAR(200) NOT NULL,
-email VARCHAR(30) NOT NULL,
-PRIMARY KEY(id_bitacora),
-FOREIGN KEY(email) REFERENCES usuario(email)
+    id_bitacora INT AUTO_INCREMENT NOT NULL ,
+    fecha DATE NOT NULL,
+    contenido VARCHAR(2500) NOT NULL,
+    entreno VARCHAR(200) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    PRIMARY KEY(id_bitacora),
+    FOREIGN KEY(email) REFERENCES usuario(email)
 );
 
 CREATE TABLE programa (
-id_programa INT AUTO_INCREMENT NOT NULL,
-frecuencia INT NOT NULL,
-descripcion_programa VARCHAR(200) NOT NULL,
-nombre_programa VARCHAR(100) NOT NULL,
-PRIMARY KEY(id_programa)
+    id_programa INT AUTO_INCREMENT NOT NULL,
+    frecuencia INT NOT NULL,
+    descripcion_programa VARCHAR(200) NOT NULL,
+    nombre_programa VARCHAR(100) NOT NULL,
+    ref_visual VARCHAR(200),
+    img_programa VARCHAR(200),
+    PRIMARY KEY(id_programa)
 );
 
 CREATE TABLE ejercicio(
-id_ejercicio INT AUTO_INCREMENT NOT NULL,
-categoria VARCHAR(20) NOT NULL,
-nivel_intensidad VARCHAR(20) NOT NULL,
-referencia_visual VARCHAR(100) NOT NULL,
-descripcion_ejercicio VARCHAR(200) NOT NULL,
-PRIMARY KEY(id_ejercicio)
+    id_ejercicio INT AUTO_INCREMENT NOT NULL,
+    categoria VARCHAR(20) NOT NULL,
+    nivel_intensidad VARCHAR(20) NOT NULL,
+    referencia_visual VARCHAR(100) NOT NULL,
+    descripcion_ejercicio VARCHAR(200) NOT NULL,
+    nombre_ejercicio VARCHAR(100) NOT NULL,
+    imagen_ejercicio VARCHAR(500) NOT NULL,
+    PRIMARY KEY(id_ejercicio)
 );
 
 CREATE TABLE programa_ejercicio(
@@ -202,29 +206,29 @@ INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('cla
 
 /*INSERTS - CLIENTE*/
 
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('maria.gomez@gmail.com',80,175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('jose.martinez@yahoo.com',57,163,27,'Bajo','Perder Peso','Femenino',40,65,30);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('lucia.perez@hotmail.com',90,182,29,'Alto','Ganar Fuerza','Masculino',100,150,70);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('juan.sanchez@gmail.com',55,160,30,'Moderado','Perder Grasa','Femenino',35,60,25);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carlos.lopez@gmail.com',75,178,32,'Alto','Ganar Masa Muscular','Masculino',85,120,65);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('ana.ramirez@hotmail.com',58,165,24,'Bajo','Perder Peso','Femenino',40,70,30);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('pablo.flores@yahoo.com',80,182,29,'Alto','Ganar Fuerza','Masculino',95,140,75);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('clara.hernandez@gmail.com',62,170,28,'Moderado','Perder Grasa','Femenino',45,75,30);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('oscar.ortega@hotmail.com',80,175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
-INSERT INTO cliente(email, peso, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('sofia.estrada@yahoo.com',57,163,27,'Bajo','Perder Peso','Femenino',40,65,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('maria.gomez@gmail.com',175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('jose.martinez@yahoo.com',163,27,'Bajo','Perder Peso','Femenino',40,65,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('lucia.perez@hotmail.com',182,29,'Alto','Ganar Fuerza','Masculino',100,150,70);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('juan.sanchez@gmail.com',160,30,'Moderado','Perder Grasa','Femenino',35,60,25);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('carlos.lopez@gmail.com',178,32,'Alto','Ganar Masa Muscular','Masculino',85,120,65);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('ana.ramirez@hotmail.com',165,24,'Bajo','Perder Peso','Femenino',40,70,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('pablo.flores@yahoo.com',182,29,'Alto','Ganar Fuerza','Masculino',95,140,75);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('clara.hernandez@gmail.com',170,28,'Moderado','Perder Grasa','Femenino',45,75,30);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('oscar.ortega@hotmail.com',175,35,'Moderado','Ganar Masa Muscular','Masculino',90,130,80);
+INSERT INTO cliente(email, altura, edad, nivel_actividad, objetivo, sexo, pr_BenchPress, pr_PesoMuerto, pr_Sentadillas) VALUES ('sofia.estrada@yahoo.com',163,27,'Bajo','Perder Peso','Femenino',40,65,30);
 
 
 /*INSERTS - EJERCICIO*/
 
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('push','novato','pecho','favorece el desarrollo de la musculatura pectoral a través del movimiento de empuje con carga');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('pull','principiante','espalda','favorece el desarrollo de la musculatura de la espalda a través del movimiento de tracción con carga');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('full-body','intermedio','cuerpo completo','favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('fuerza','avanzado','brazos','favorece el desarrollo de la fuerza muscular en los brazos a través de ejercicios específicos de carga');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('hipertrofia','elite','glúteos','favorece el desarrollo de la masa muscular en los glúteos a través de ejercicios específicos con alta carga y repetición');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('resistencia','monstruo!','abdomen','favorece el desarrollo de la resistencia muscular en el abdomen a través de ejercicios específicos con alta carga y alto volumen');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('pull','novato','bíceps','favorece el desarrollo de la musculatura del bíceps a través del movimiento de tracción con carga');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('push','principiante','hombros','favorece el desarrollo de la musculatura de los hombros a través del movimiento de empuje con carga');
-INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio) VALUES ('full-body','intermedio','cuerpo completo','favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('push','novato','pecho','favorece el desarrollo de la musculatura pectoral a través del movimiento de empuje con carga', 'Press de banca', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/press-de-banca.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('pull','principiante','espalda','favorece el desarrollo de la musculatura de la espalda a través del movimiento de tracción con carga', 'Remo con barra', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/remo-con-barra.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('full-body','intermedio','cuerpo completo','favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares', 'Sentadilla', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/sentadilla.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('fuerza','avanzado','brazos','favorece el desarrollo de la fuerza muscular en los brazos a través de ejercicios específicos de carga', 'Dominadas', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/dominadas.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('hipertrofia','elite','glúteos','favorece el desarrollo de la masa muscular en los glúteos a través de ejercicios específicos con alta carga y repetición', 'Peso muerto', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/peso-muerto.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('resistencia','monstruo!','abdomen','favorece el desarrollo de la resistencia muscular en el abdomen a través de ejercicios específicos con alta carga y alto volumen', 'Abdominales', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/abdominales.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('pull','novato','bíceps','favorece el desarrollo de la musculatura del bíceps a través del movimiento de tracción con carga', 'Dominadas', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/dominadas.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('push','principiante','hombros','favorece el desarrollo de la musculatura de los hombros a través del movimiento de empuje con carga', 'Press militar', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/press-militar.jpg');
+INSERT INTO ejercicio(categoria, nivel_intensidad, referencia_visual, descripcion_ejercicio, nombre_ejercicio, imagen_ejercicio) VALUES ('full-body','intermedio','cuerpo completo','favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares', 'Peso muerto', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/peso-muerto.jpg');
 
 /*INSERTS - ROL*/
 

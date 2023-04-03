@@ -1,0 +1,35 @@
+<%- include('includes/head.ejs') %>
+
+<div class="container mt-5">
+    <br />
+    <br />
+    <h1 class="fw-bold text-start">WorkOut</h1>
+    <p class="lead text-start">
+        Aquí encontrarás todos los ejercicios que tenemos para ti
+    </p>
+</div>
+
+<div class="container-fluid bg-custom mt-4 mb-4"></div>
+
+<div class="container">
+    <% for (let i=0; i < ejercicio.length; i++) { %>
+    <div class="row mt-5 <% if (i === 0) { %>active<% } %>">
+        <div class="col-md-3">
+            <img
+                src="/assets/workout.jfif"
+                class="ejercicio-img"
+                alt="Bench Press con barra"
+                class="img-fluid img-thumbnail"
+            />
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-start"><%= ejercicio[i].nombre_ejercicio %></h2>
+            <p class="text-start" style="margin-bottom: 10px">
+                <%= ejercicio[i].descripcion_ejercicio %>
+            </p>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<%- include('includes/foot.ejs') %>

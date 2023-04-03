@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2023 a las 19:54:29
+-- Tiempo de generación: 18-03-2023 a las 23:16:09
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -95,16 +95,16 @@ CREATE TABLE `bitacora` (
 --
 
 INSERT INTO `bitacora` (`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`) VALUES
-(1, '2023-03-12', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'maria.gomez@gmail.com'),
-(2, '2023-03-12', 'Realicé una caminata al aire libre en el parque.', 'Caminata al aire libre', 'jose.martinez@yahoo.com'),
-(3, '2023-03-12', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'lucia.perez@hotmail.com'),
-(4, '2023-03-12', 'Realicé una sesión de entrenamiento en casa.', 'Entrenamiento de cardio en casa', 'juan.sanchez@gmail.com'),
-(5, '2023-03-12', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'carlos.lopez@gmail.com'),
-(6, '2023-03-12', 'Realicé una clase de yoga en el estudio.', 'Clase de yoga', 'ana.ramirez@hotmail.com'),
-(7, '2023-03-12', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'pablo.flores@yahoo.com'),
-(8, '2023-03-12', 'Realicé una caminata al aire libre en el parque.', 'Caminata al aire libre', 'clara.hernandez@gmail.com'),
-(9, '2023-03-12', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'oscar.ortega@hotmail.com'),
-(10, '2023-03-12', 'Realicé una sesión de entrenamiento en casa.', 'Entrenamiento de cardio en casa', 'sofia.estrada@yahoo.com');
+(1, '2023-03-18', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'maria.gomez@gmail.com'),
+(2, '2023-03-18', 'Realicé una caminata al aire libre en el parque.', 'Caminata al aire libre', 'jose.martinez@yahoo.com'),
+(3, '2023-03-18', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'lucia.perez@hotmail.com'),
+(4, '2023-03-18', 'Realicé una sesión de entrenamiento en casa.', 'Entrenamiento de cardio en casa', 'juan.sanchez@gmail.com'),
+(5, '2023-03-18', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'carlos.lopez@gmail.com'),
+(6, '2023-03-18', 'Realicé una clase de yoga en el estudio.', 'Clase de yoga', 'ana.ramirez@hotmail.com'),
+(7, '2023-03-18', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'pablo.flores@yahoo.com'),
+(8, '2023-03-18', 'Realicé una caminata al aire libre en el parque.', 'Caminata al aire libre', 'clara.hernandez@gmail.com'),
+(9, '2023-03-18', 'Realicé una sesión de entrenamiento con mi entrenador personal.', 'Entrenamiento de fuerza en el gimnasio', 'oscar.ortega@hotmail.com'),
+(10, '2023-03-18', 'Realicé una sesión de entrenamiento en casa.', 'Entrenamiento de cardio en casa', 'sofia.estrada@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,6 @@ INSERT INTO `bitacora` (`id_bitacora`, `fecha`, `contenido`, `entreno`, `email`)
 
 CREATE TABLE `cliente` (
   `email` varchar(30) NOT NULL,
-  `peso` int(11) NOT NULL,
   `altura` double NOT NULL,
   `edad` int(11) NOT NULL,
   `nivel_actividad` varchar(30) NOT NULL,
@@ -129,17 +128,17 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`email`, `peso`, `altura`, `edad`, `nivel_actividad`, `objetivo`, `sexo`, `pr_BenchPress`, `pr_PesoMuerto`, `pr_Sentadillas`) VALUES
-('ana.ramirez@hotmail.com', 58, 165, 24, 'Bajo', 'Perder Peso', 'Femenino', 40, 70, 30),
-('carlos.lopez@gmail.com', 75, 178, 32, 'Alto', 'Ganar Masa Muscular', 'Masculino', 85, 120, 65),
-('clara.hernandez@gmail.com', 62, 170, 28, 'Moderado', 'Perder Grasa', 'Femenino', 45, 75, 30),
-('jose.martinez@yahoo.com', 57, 163, 27, 'Bajo', 'Perder Peso', 'Femenino', 40, 65, 30),
-('juan.sanchez@gmail.com', 55, 160, 30, 'Moderado', 'Perder Grasa', 'Femenino', 35, 60, 25),
-('lucia.perez@hotmail.com', 90, 182, 29, 'Alto', 'Ganar Fuerza', 'Masculino', 100, 150, 70),
-('maria.gomez@gmail.com', 80, 175, 35, 'Moderado', 'Ganar Masa Muscular', 'Masculino', 90, 130, 80),
-('oscar.ortega@hotmail.com', 80, 175, 35, 'Moderado', 'Ganar Masa Muscular', 'Masculino', 90, 130, 80),
-('pablo.flores@yahoo.com', 80, 182, 29, 'Alto', 'Ganar Fuerza', 'Masculino', 95, 140, 75),
-('sofia.estrada@yahoo.com', 57, 163, 27, 'Bajo', 'Perder Peso', 'Femenino', 40, 65, 30);
+INSERT INTO `cliente` (`email`, `altura`, `edad`, `nivel_actividad`, `objetivo`, `sexo`, `pr_BenchPress`, `pr_PesoMuerto`, `pr_Sentadillas`) VALUES
+('ana.ramirez@hotmail.com', 165, 24, 'Bajo', 'Perder Peso', 'Femenino', 40, 70, 30),
+('carlos.lopez@gmail.com', 178, 32, 'Alto', 'Ganar Masa Muscular', 'Masculino', 85, 120, 65),
+('clara.hernandez@gmail.com', 170, 28, 'Moderado', 'Perder Grasa', 'Femenino', 45, 75, 30),
+('jose.martinez@yahoo.com', 163, 27, 'Bajo', 'Perder Peso', 'Femenino', 40, 65, 30),
+('juan.sanchez@gmail.com', 160, 30, 'Moderado', 'Perder Grasa', 'Femenino', 35, 60, 25),
+('lucia.perez@hotmail.com', 182, 29, 'Alto', 'Ganar Fuerza', 'Masculino', 100, 150, 70),
+('maria.gomez@gmail.com', 175, 35, 'Moderado', 'Ganar Masa Muscular', 'Masculino', 90, 130, 80),
+('oscar.ortega@hotmail.com', 175, 35, 'Moderado', 'Ganar Masa Muscular', 'Masculino', 90, 130, 80),
+('pablo.flores@yahoo.com', 182, 29, 'Alto', 'Ganar Fuerza', 'Masculino', 95, 140, 75),
+('sofia.estrada@yahoo.com', 163, 27, 'Bajo', 'Perder Peso', 'Femenino', 40, 65, 30);
 
 -- --------------------------------------------------------
 
@@ -205,23 +204,25 @@ CREATE TABLE `ejercicio` (
   `categoria` varchar(20) NOT NULL,
   `nivel_intensidad` varchar(20) NOT NULL,
   `referencia_visual` varchar(100) NOT NULL,
-  `descripcion_ejercicio` varchar(200) NOT NULL
+  `descripcion_ejercicio` varchar(200) NOT NULL,
+  `nombre_ejercicio` varchar(100) NOT NULL,
+  `imagen_ejercicio` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ejercicio`
 --
 
-INSERT INTO `ejercicio` (`id_ejercicio`, `categoria`, `nivel_intensidad`, `referencia_visual`, `descripcion_ejercicio`) VALUES
-(1, 'push', 'novato', 'pecho', 'favorece el desarrollo de la musculatura pectoral a través del movimiento de empuje con carga'),
-(2, 'pull', 'principiante', 'espalda', 'favorece el desarrollo de la musculatura de la espalda a través del movimiento de tracción con carga'),
-(3, 'full-body', 'intermedio', 'cuerpo completo', 'favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares'),
-(4, 'fuerza', 'avanzado', 'brazos', 'favorece el desarrollo de la fuerza muscular en los brazos a través de ejercicios específicos de carga'),
-(5, 'hipertrofia', 'elite', 'glúteos', 'favorece el desarrollo de la masa muscular en los glúteos a través de ejercicios específicos con alta carga y repetición'),
-(6, 'resistencia', 'monstruo!', 'abdomen', 'favorece el desarrollo de la resistencia muscular en el abdomen a través de ejercicios específicos con alta carga y alto volumen'),
-(7, 'pull', 'novato', 'bíceps', 'favorece el desarrollo de la musculatura del bíceps a través del movimiento de tracción con carga'),
-(8, 'push', 'principiante', 'hombros', 'favorece el desarrollo de la musculatura de los hombros a través del movimiento de empuje con carga'),
-(9, 'full-body', 'intermedio', 'cuerpo completo', 'favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares');
+INSERT INTO `ejercicio` (`id_ejercicio`, `categoria`, `nivel_intensidad`, `referencia_visual`, `descripcion_ejercicio`, `nombre_ejercicio`, `imagen_ejercicio`) VALUES
+(1, 'push', 'novato', 'pecho', 'favorece el desarrollo de la musculatura pectoral a través del movimiento de empuje con carga', 'Press de banca', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/press-de-banca.jpg'),
+(2, 'pull', 'principiante', 'espalda', 'favorece el desarrollo de la musculatura de la espalda a través del movimiento de tracción con carga', 'Remo con barra', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/remo-con-barra.jpg'),
+(3, 'full-body', 'intermedio', 'cuerpo completo', 'favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares', 'Sentadilla', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/sentadilla.jpg'),
+(4, 'fuerza', 'avanzado', 'brazos', 'favorece el desarrollo de la fuerza muscular en los brazos a través de ejercicios específicos de carga', 'Dominadas', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/dominadas.jpg'),
+(5, 'hipertrofia', 'elite', 'glúteos', 'favorece el desarrollo de la masa muscular en los glúteos a través de ejercicios específicos con alta carga y repetición', 'Peso muerto', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/peso-muerto.jpg'),
+(6, 'resistencia', 'monstruo!', 'abdomen', 'favorece el desarrollo de la resistencia muscular en el abdomen a través de ejercicios específicos con alta carga y alto volumen', 'Abdominales', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/abdominales.jpg'),
+(7, 'pull', 'novato', 'bíceps', 'favorece el desarrollo de la musculatura del bíceps a través del movimiento de tracción con carga', 'Dominadas', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/dominadas.jpg'),
+(8, 'push', 'principiante', 'hombros', 'favorece el desarrollo de la musculatura de los hombros a través del movimiento de empuje con carga', 'Press militar', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/press-militar.jpg'),
+(9, 'full-body', 'intermedio', 'cuerpo completo', 'favorece el desarrollo de la musculatura de todo el cuerpo a través de ejercicios que involucran varios grupos musculares', 'Peso muerto', 'https://www.fitnessrevolucion.com/wp-content/uploads/2018/10/peso-muerto.jpg');
 
 -- --------------------------------------------------------
 
@@ -231,7 +232,7 @@ INSERT INTO `ejercicio` (`id_ejercicio`, `categoria`, `nivel_intensidad`, `refer
 
 CREATE TABLE `privilegio` (
   `id_cu` int(11) NOT NULL,
-  `nombrecu` varchar(20) DEFAULT NULL
+  `nombrecu` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -242,7 +243,7 @@ INSERT INTO `privilegio` (`id_cu`, `nombrecu`) VALUES
 (1, 'Registrar Bitacora'),
 (2, 'Registrar Alimento'),
 (3, 'Registrar Dieta'),
-(4, 'Registrar Entrenamie'),
+(4, 'Registrar Entrenamiento'),
 (5, 'Registrar Rutina'),
 (6, 'Registrar Usuario'),
 (7, 'Registrar Rol');
@@ -380,11 +381,11 @@ CREATE TABLE `rol_usuario` (
 --
 
 INSERT INTO `rol_usuario` (`id_rol`, `email`, `fecha`) VALUES
-(1, 'clara.hernandez@gmail.com', '2023-03-12'),
-(1, 'maria.gomez@gmail.com', '2023-03-12'),
-(1, 'sofia.estrada@yahoo.com', '2023-03-12'),
-(2, 'juan.sanchez@gmail.com', '2023-03-12'),
-(2, 'pablo.flores@yahoo.com', '2023-03-12');
+(1, 'clara.hernandez@gmail.com', '2023-03-18'),
+(1, 'maria.gomez@gmail.com', '2023-03-18'),
+(1, 'sofia.estrada@yahoo.com', '2023-03-18'),
+(2, 'juan.sanchez@gmail.com', '2023-03-18'),
+(2, 'pablo.flores@yahoo.com', '2023-03-18');
 
 -- --------------------------------------------------------
 
@@ -405,16 +406,16 @@ CREATE TABLE `talla` (
 --
 
 INSERT INTO `talla` (`id_medida`, `email`, `extremidad`, `medida`, `fecha`) VALUES
-(1, 'maria.gomez@gmail.com', 'Brazo', 30, '2023-03-12'),
-(2, 'jose.martinez@yahoo.com', 'Brazo', 36, '2023-03-12'),
-(3, 'lucia.perez@hotmail.com', 'Pierna', 56, '2023-03-12'),
-(4, 'juan.sanchez@gmail.com', 'Pierna', 61, '2023-03-12'),
-(5, 'carlos.lopez@gmail.com', 'Cintura', 85, '2023-03-12'),
-(6, 'ana.ramirez@hotmail.com', 'Cadera', 100, '2023-03-12'),
-(7, 'pablo.flores@yahoo.com', 'Brazo', 33, '2023-03-12'),
-(8, 'clara.hernandez@gmail.com', 'Brazo', 27, '2023-03-12'),
-(9, 'oscar.ortega@hotmail.com', 'Pecho', 95, '2023-03-12'),
-(10, 'sofia.estrada@yahoo.com', 'Espalda', 40, '2023-03-12');
+(1, 'maria.gomez@gmail.com', 'Brazo', 30, '2023-03-18'),
+(2, 'jose.martinez@yahoo.com', 'Brazo', 36, '2023-03-18'),
+(3, 'lucia.perez@hotmail.com', 'Pierna', 56, '2023-03-18'),
+(4, 'juan.sanchez@gmail.com', 'Pierna', 61, '2023-03-18'),
+(5, 'carlos.lopez@gmail.com', 'Cintura', 85, '2023-03-18'),
+(6, 'ana.ramirez@hotmail.com', 'Cadera', 100, '2023-03-18'),
+(7, 'pablo.flores@yahoo.com', 'Brazo', 33, '2023-03-18'),
+(8, 'clara.hernandez@gmail.com', 'Brazo', 27, '2023-03-18'),
+(9, 'oscar.ortega@hotmail.com', 'Pecho', 95, '2023-03-18'),
+(10, 'sofia.estrada@yahoo.com', 'Espalda', 40, '2023-03-18');
 
 -- --------------------------------------------------------
 

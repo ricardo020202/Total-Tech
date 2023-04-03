@@ -1,0 +1,74 @@
+<%- include('includes/head.ejs') %>
+
+    <div class="container">
+        <div class="container mt-5">
+            <br>
+            <br>
+            <h1 class="fw-bold text-start">Registro de datos iniciales</h1>
+            <p class="lead text-start">
+                Llena todos los campos para hacer un plan a tu medida
+            </p>
+        </div>
+    </div> 
+
+    <div class="container">
+        <form class="row g-3" action="/onyx/registrar-datos-iniciales" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <div class="col-md-6">
+            <label for="inputHeight" class="form-label">Altura (cm)</label>
+            <input type="number" class="form-control" id="inputHeight" name="inputHeight" required>
+            </div>
+            <div class="col-md-6">
+            <label for="inputWeight" class="form-label">Peso</label>
+            <input type="number" class="form-control" id="inputWeight" name="inputWeight" required>
+            </div>
+            <div class="col-6">
+            <label for="inputAge" class="form-label">Edad</label>
+            <input type="number" class="form-control" id="inputAge" name="inputAge" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputGender" class="form-label">Sexo</label>
+                <select id="inputGender" class="form-select" name="inputGender" required>
+                <option selected disabled>Elige uno...</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputGoal" class="form-label">Objetivo</label>
+                <select id="inputGoal" class="form-select" name="inputGoal" required>
+                <option selected disabled>Elige uno...</option>
+                <option value="Perder Peso">Perder Peso</option>
+                <option value="Perder Grasa">Perder Grasa</option>
+                <option value="Ganar Fuerza">Ganar Fuerza</option>
+                <option value="Ganar Masa Muscular">Ganar Masa Muscular</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+            <label for="inputActivity" class="form-label">Nivel de actividad</label>
+            <select id="inputActivity" class="form-select" name="inputActivity" required>
+                <option selected disabled>Elige uno...</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Moderado">Moderado</option>
+                <option value="Alto">Alto</option>
+            </select>
+            </div>
+            <div class="col-4">
+                <label for="inputBenchPress" class="form-label">Press de Banca (lb)</label>
+                <input type="number" class="form-control" id="inputBenchPress" name="inputBenchPress">
+            </div>
+            <div class="col-4">
+                <label for="inputPesoMuerto" class="form-label">Peso Muerto (lb)</label>
+                <input type="number" class="form-control" id="inputPesoMuerto" name="inputPesoMuerto">
+            </div>
+            <div class="col-4">
+                <label for="inputSentadillas" class="form-label">Sentadilla (lb)</label>
+                <input type="number" class="form-control" id="inputSentadillas" name="inputSentadillas">
+            </div>
+            <div class="col-12">
+            <button type="submit" class="btn btn-custom" id="registrarDatos">Registrar</button>
+            </div>
+        </form>  
+    </div>
+
+<%- include('includes/foot.ejs') %>
