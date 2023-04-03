@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
-const Favoritos = require("../models/favoritos");
+// const Favoritos = require("../models/favoritos");
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
