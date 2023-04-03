@@ -1,0 +1,244 @@
+3<%- include('includes/head.ejs') %>
+
+    <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
+
+    <div class="spacer"></div>
+    <div class="container">
+        <div class="row mb-5">
+            <h2 class="text-center">
+                Reporte de progreso de <span style="color: #D2CA03;">
+                    <%= user %>
+                </span>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-center" id="graph">
+
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="row">
+            <h3 class="text-center">Historico de medidas</h3>
+            <div class="col d-flex justify-content-center mt-3">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="bg-custom">
+                                Categoria
+                            </th>
+                            <th scope="col">
+                                Actual
+                            </th>
+                            <th scope="col">
+                                Maxima
+                            </th>
+                            <th scope="col">
+                                Minima
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-dark">
+                        <tr>
+                            <th scope="row">
+                                Pecho
+                            </th>
+                            <td>
+                                <%= pecho[pecho.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (pecho.length == 0) {%>0<%} else {%><%=Math.max(...pecho)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (pecho.length == 0) {%>0<%} else {%><%=Math.min(...pecho)%><%} %> cm
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Brazo Izquierdo
+                            </th>
+                            <td>
+                                <%= brazoI[brazoI.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (brazoI.length == 0) {%>0<%} else {%><%=Math.max(...brazoI)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (brazoI.length == 0) {%>0<%} else {%><%=Math.min(...brazoI)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Brazo Derecho
+                            </th>
+                            <td>
+                                <%= brazoD[brazoD.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (brazoD.length == 0) {%>0<%} else {%><%=Math.max(...brazoD)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (brazoD.length == 0) {%>0<%} else {%><%=Math.min(...brazoD)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Cintura
+                            </th>
+                            <td>
+                                <%= cintura[cintura.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (cintura.length == 0) {%>0<%} else {%><%=Math.max(...cintura)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (cintura.length == 0) {%>0<%} else {%><%=Math.min(...cintura)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Cadera
+                            </th>
+                            <td>
+                                <%= cadera[cadera.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (cadera.length == 0) {%>0<%} else {%><%=Math.max(...cadera)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (cadera.length == 0) {%>0<%} else {%><%=Math.min(...cadera)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pierna Izquierda
+                            </th>
+                            <td>
+                                <%= piernaI[piernaI.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (piernaI.length == 0) {%>0<%} else {%><%=Math.max(...piernaI)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (piernaI.length == 0) {%>0<%} else {%><%=Math.min(...piernaI)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pierna Derecha
+                            </th>
+                            <td>
+                                <%= piernaD[piernaD.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (piernaD.length == 0) {%>0<%} else {%><%=Math.max(...piernaD)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (piernaD.length == 0) {%>0<%} else {%><%=Math.min(...piernaD)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pantorrilla Izquierda
+                            </th>
+                            <td>
+                                <%= pantorrillaI[pantorrillaI.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (pantorrillaI.length == 0) {%>0<%} else {%><%=Math.max(...pantorrillaI)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (pantorrillaI.length == 0) {%>0<%} else {%><%=Math.min(...pantorrillaI)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Pantorrilla Derecha
+                            </th>
+                            <td>
+                                <%= pantorrillaD[pantorrillaD.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (pantorrillaD.length == 0) {%>0<%} else {%><%=Math.max(...pantorrillaD)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (pantorrillaD.length == 0) {%>0<%} else {%><%=Math.min(...pantorrillaD)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Cuello
+                            </th>
+                            <td>
+                                <%= cuello[cuello.length - 1] %> cm
+                            </td>
+                            <td>
+                                <% if (cuello.length == 0) {%>0<%} else {%><%=Math.max(...cuello)%><%} %> cm
+                            </td>
+                            <td>
+                                <% if (cuello.length == 0) {%>0<%} else {%><%=Math.min(...cuello)%><%} %> cm
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Peso
+                            </th>
+                            <td>
+                                <%= peso[peso.length - 1] %> kg
+                            </td>
+                            <td>
+                                <% if (peso.length == 0) {%>0<%} else {%><%=Math.max(...peso)%><%} %> kg
+                            </td>
+                            <td>
+                                <% if (peso.length == 0) {%>0<%} else {%><%=Math.min(...peso)%><%} %> kg
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createTrace(data, name, date) {
+            return {
+                x: date,
+                y: data,
+                type: 'scatter',
+                name: name
+            };
+        }
+
+        const pecho = createTrace(<%= JSON.stringify(pecho) %>, 'Pecho');
+        const brazoIzq = createTrace(<%= JSON.stringify(brazoI) %>, 'Brazo Izquierdo');
+        const brazoDer = createTrace(<%= JSON.stringify(brazoD) %>, 'Brazo Derecho');
+        const cintura = createTrace(<%= JSON.stringify(cintura) %>, 'Cintura');
+        const cadera = createTrace(<%= JSON.stringify(cadera) %>, 'Cadera');
+        const piernaIzq = createTrace(<%= JSON.stringify(piernaI) %>, 'Pierna Izquierda');
+        const piernaDer = createTrace(<%= JSON.stringify(piernaD) %>, 'Pierna Derecha');
+        const pantorillaIzq = createTrace(<%= JSON.stringify(pantorrillaI) %>, 'Pantorilla Izquierda');
+        const pantorillaDer = createTrace(<%= JSON.stringify(pantorrillaD) %>, 'Pantorilla Derecha');
+        const cuello = createTrace(<%= JSON.stringify(cuello) %>, 'Cuello');
+        const peso = createTrace(<%= JSON.stringify(peso) %>, 'Peso');
+
+        const layout = {
+            autosize: true,
+            title: 'Medidas generales de <%= user%>',
+            xaxis: {
+                title: 'Fecha(mes)',
+                zeroline: false
+            },
+            yaxis: {
+                title: 'Medida',
+            },
+            paper_bgcolor: "rgb(17,17,17)",
+            plot_bgcolor: "rgb(17,17,17)",
+            height: 600,
+            width: 900,
+        };
+        const data = [pecho, brazoIzq, brazoDer, cintura, cadera, piernaIzq, piernaDer,
+            pantorillaIzq, pantorillaDer, cuello, peso];
+        Plotly.newPlot(graph, data, layout, { theme: "plotly_dark" });
+        graph = document.getElementById('graph');
+
+    </script>
+
+    <%- include('includes/foot.ejs') %>

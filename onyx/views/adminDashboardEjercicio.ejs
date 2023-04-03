@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="/css/adminStyle.css">
+<script
+    src="https://kit.fontawesome.com/77587b01e9.js"
+    crossorigin="anonymous"
+></script>
+<%- include('includes/head.ejs') %>
+<%- include('includes/sidebar.ejs') %>
+
+<div class="table-responsive">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2><b>Ejercicios</b></h2>
+            </div>
+            <div class="col-sm-6">
+                <a href="/admin/admindashboard/ejercicios/nuevoejercicio" class="btn btn-success"><i class="material-icons"></i> <span>Agregar Nuevo Ejercicio</span></a>
+            </div>
+        </div>
+    </div>
+    <table class="table-active table-striped">
+        <thead class="table-header">
+            <tr>
+                <th scope="col">ID Ejercio</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Nivel Intensidad</th>
+                <th scope="col">Nombre Ejercicio</th>
+                <th scope="col">Descripcion Ejercicio</th>
+                <th scope="col">Referencia Visual</th>
+                <th scope="col">Imagen Ejercicio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i=0; i < ejercicio.length; i++) { %>
+            <tr>
+                <th scope="row"><%= ejercicio[i].id_ejercicio %></th>
+                <td><%= ejercicio[i].categoria %></td>
+                <td><%= ejercicio[i].nivel_intensidad %></td>
+                <td><%= ejercicio[i].referencia_visual %></td>
+                <!-- dont show all the text -->
+                <td class="cell-class"><%= ejercicio[i].descripcion_ejercicio %></td>
+                <td><%= ejercicio[i].nombre_ejercicio %></td>
+                <td class="cell-class"><%= ejercicio[i].imagen_ejercicio %></td>
+                <td class="crud button">
+                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #e5dc01;"></i>
+                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #e5dc01;"></i>
+                </td>
+            </tr>
+            <% } %>
+
+
+
+        </tbody>
+    </table>
+</div>

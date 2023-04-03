@@ -1,0 +1,486 @@
+body {
+    background-color: #151515;
+    font-family: 'DM Sans', sans-serif;
+    color: #FFFFFF;
+    height: 100vh;
+}
+
+.rectangulo {
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo1 {
+    background-color: #151515;
+    width: 90px;
+    height: 10px;
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.rectangulo2 {
+    background-color: #151515;
+    width: 69px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: -35px;
+    z-index: 3;
+    rotate: -65.84deg;
+    transform: skew(25deg);
+}
+
+.bg-custom {
+    background-color: #D2CA03;
+    z-index: 2;
+}
+
+.bg-footer {
+    background-color: black;
+    z-index: 2;
+}
+
+.text-custom {
+    color: #D2CA03;
+}
+
+.navbar-brand {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.nav-item {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.search-bar {
+    background-color: black;
+    width: 336px;
+    height: 35px;
+}
+
+.bg-image {
+    background-image: url(../assets/cover.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    filter: blur(5px);
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: start;
+    color: #FFFFFF;
+    z-index: 1;
+}
+
+.header {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.subHeader {
+    font-weight: 700;
+    color: #D2CA03;
+}
+
+@media (max-width: 992px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 55px;
+        left: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        width: 75%;
+        height: 100%;
+        background-color: #D2CA03;
+    }
+
+    .navbar-collapse.collapsing {
+        left: -75%;
+        transition: height 0s ease;
+    }
+
+    .navbar-collapse.show {
+        left: 0;
+        transition: left 300ms ease-in-out;
+    }
+
+    .navbar-toggler.collapsed~.navbar-collapse {
+        transition: left 500ms ease-in-out;
+    }
+
+}
+
+.accordion {
+    color: #FFFFFF;
+}
+
+.accordion-item {
+    background-color: #151515;
+    color: #FFFFFF;
+}
+
+.accordion-button {
+    background-color: rgb(43, 43, 43);
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.accordion-button:hover {
+    background-color: #151515;
+    color: #FFFFFF;
+}
+
+.accordion-button:focus {
+    background-color: rgb(43, 43, 43);
+    color: #FFFFFF;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgb(43, 43, 43);
+    color: #FFFFFF;
+}
+
+li {
+    list-style: none;
+    color: #FFFFFF;
+}
+
+.buttonChido {
+    background-color: #D2CA03;
+    color: black;
+    border-radius: 10em;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 1em 2em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid black;
+    box-shadow: 0 0 0 0 black;
+    position: absolute;
+    top: 20%;
+    left: 85%;
+}
+
+button:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 black;
+}
+
+
+button:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 black;
+}
+
+
+.sidebar {
+    background-color: #383838;
+    color: #FFFFFF;
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+}
+
+.admin-rol {
+    font-size: 13px;
+    color: #D2CA03;
+}
+
+.side-link:active{
+    background-color: #D2CA03;
+    color: black;
+}
+
+.activo{
+    background-color: #D2CA03;
+    color: black;
+}
+
+.spacer {
+    height: 100px;
+}
+
+.bg-users {
+    background-color: #F0F9FF;
+}
+
+.bg-dietas {
+    background-color: #FEF6FB;
+}
+
+.bg-programas {
+    background-color: #FEFBEC;
+}
+
+.bg-ejercicio {
+    background-color: #F1FFDE;
+}
+
+.card {
+    /* width and height are optional */
+    height: 300px;
+}
+
+.icon-users {
+    /* change the color of the icon */
+    fill: #74C1ED;
+}
+
+.icon-dietas {
+    /* change the color of the icon */
+    fill: #EE95C5;
+}
+
+.icon-programas {
+    /* change the color of the icon */
+    fill: #F6C762;
+}
+
+.icon-ejercicio {
+    /* change the color of the icon */
+    fill: #A8FF33;
+}
+
+
+.number {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* ================= ADMIN DIETA ================= */
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 300px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+tbody{
+    background-color: #F0F9FF;
+    color: #000000;
+}
+
+td, th {
+    border-top: #151515 5px solid;
+    border-bottom: #151515 5px solid;
+    padding: 10px;
+}
+
+
+.dashboard{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dietas{
+    width: 97%;
+}
+
+.workouts{
+    width: 99%;
+}
+
+
+/* ================= ADMIN WORKOUT ================= */
+#workout{
+    margin-left: 8rem;
+    margin-top: 15rem;
+    /* elements in a row */
+    display: flex;
+}
+
+#search-bar {
+    /* white search bar */
+}
+
+#search-bar input {
+    /* white search bar */
+    background: #FFFFFF;
+}
+
+.cell-class {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px; /* adjust the value to the maximum width you want the cell to be */
+}
+
+.table-title {
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 300px;
+    margin-top: 100px;
+}
+
+/* =============== Nuevo Ejericio =============== */
+#nuevo-ejercicio{
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    display: flex;
+    margin-left: 10rem;
+
+}
+
+#nuevo-ejercicio input {
+    /* white search bar */
+    background: #FFFFFF;
+    max-width: 100%;
+}
+
+#ejercicio {
+    margin-left: 8rem;
+    margin-top: 15rem;
+    /* elements in a row */
+}
+
+#form-nuevo-ejercicio {
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    margin-top: 5rem;
+}
+
+
+
+
+
+
+/* =============== Nuevo Programa =============== */
+#nuevo-programa{
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    display: flex;
+    margin-left: 10rem;
+
+}
+
+#nuevo-programa input {
+    /* white search bar */
+    background: #FFFFFF;
+    max-width: 100%;
+}
+
+#programa {
+    margin-left: 8rem;
+    margin-top: 15rem;
+    /* elements in a row */
+}
+
+#form-nuevo-programa {
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    margin-top: 5rem;
+}
+
+.nav-link2 {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 0.5rem;
+    align-items: center;
+    grid-row-gap: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link-icon {
+    grid-column: 1;
+    text-align: center;
+}
+
+.nav-link-text {
+    grid-column: 2;
+}
+
+.dash{
+    margin-left: 200px;
+}

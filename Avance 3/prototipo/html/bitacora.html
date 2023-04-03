@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Bootsrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Bitácora</title>
+
+    <!-- Calendario -->
+    <script type="text/javascript" src="../js/calendario.js"></script>
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="fixed-top">
+            <div class="rectangulo"></div>
+            <div class="rectangulo1"></div>
+            <div class="rectangulo2"></div>
+        </div>
+        <nav class="navbar navbar-expand-lg bg-custom navbar-light fixed-top">
+            <div class="container-fluid ms-5">
+                <a class="navbar-brand ms-3" href="../index.html">ONYX</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Workouts
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="./ejercicios.html">Catalogo de ejercicios</a>
+                                </li>
+                                <li><a class="dropdown-item" href="./entrenamientos.html">Catalogo de
+                                        entrenamientos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Alimentación
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./dietasparati.html">Dietas para ti</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./dietas.html">Dietas</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./bitacora.html">Bitácora</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./favoritos.html">Favoritos</a>
+                        </li>
+                        <form class="d-flex justify-self-center ms-5" role="search">
+                            <input class="me-2 rounded-pill search-bar text-white text-center ms-5" type="search"
+                                placeholder="Search for anything" aria-label="Search">
+                        </form>
+                    </ul>
+                    <a class="nav-link active text-dark" aria-current="page" href="./user.html"><img
+                            src="../assets/user.png" alt="" class="icon"></a>
+                    <a class="nav-link active text-dark" aria-current="page" href="./login.html"><strong>Log
+                            in</strong></a>
+                    <a aria-current="page" href="./register.html"><button type="button"
+                            class="btn btn-light rounded-pill">Sign up</button></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="bitspacer"></div>
+        <h2 id="titulopagina" style="margin-left: 3%">Bitácora</h2>
+        <div class="calspacer"></div>
+        <div class="card-container">
+            <div id="calendario">
+                <div id="anterior" onclick="mesantes()"></div>
+                <div id="posterior" onclick="mesdespues()"></div>
+                <h2 id="titulos"></h2>
+                <table id="diasc">
+                    <tr id="fila0"><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+                    <tr id="fila1"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila4"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila5"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr id="fila6"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </table>
+                <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
+                <div id="buscafecha">
+                    <form action="#" name="buscar">
+                        <p>Buscar: MES
+                            <select name="buscames">
+                                <option hidden selected>Selecciona un mes</option>
+                                <option value="0">Enero</option>
+                                <option value="1">Febrero</option>
+                                <option value="2">Marzo</option>
+                                <option value="3">Abril</option>
+                                <option value="4">Mayo</option>
+                                <option value="5">Junio</option>
+                                <option value="6">Julio</option>
+                                <option value="7">Agosto</option>
+                                <option value="8">Septiembre</option>
+                                <option value="9">Octubre</option>
+                                <option value="10">Noviembre</option>
+                                <option value="11">Diciembre</option>
+                            </select>
+                            , AÑO ,
+                            <input type="text" name="buscaanno" maxlength="4" size="4" />
+
+                            <input type="button" value="BUSCAR" onclick="mifecha()" style="background-color: rgb(186, 186, 186);" />
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <div class="container"></div>
+            <!-- Boton modal para popup -->
+            <button type="button" class="createButton" data-toggle="modal" data-target="#myModal">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
+                    </svg> Create
+                </span>
+            </button>
+
+            <!-- Modal -->
+
+            
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    </main>
+
+    <!-- JS Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

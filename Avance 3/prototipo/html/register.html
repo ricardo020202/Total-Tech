@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Bootsrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <title>Sign up</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="fixed-top">
+            <div class="rectangulo"></div>
+            <div class="rectangulo1"></div>
+            <div class="rectangulo2"></div>
+        </div>
+        <nav class="navbar navbar-expand-lg bg-custom navbar-light fixed-top">
+            <div class="container-fluid ms-5">
+                <a class="navbar-brand ms-3" href="../index.html">ONYX</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Workouts
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="./ejercicios.html">Catalogo de ejercicios</a>
+                                </li>
+                                <li><a class="dropdown-item" href="./entrenamientos.html">Catalogo de
+                                        entrenamientos</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Alimentación
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./dietasparati.html">Dietas para ti</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./dietas.html">Dietas</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./bitacora.html">Bitácora</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./favoritos.html">Favoritos</a>
+                        </li>
+                        <form class="d-flex justify-self-center ms-5" role="search">
+                            <input class="me-2 rounded-pill search-bar text-white text-center ms-5" type="search"
+                                placeholder="Search for anything" aria-label="Search">
+                        </form>
+                    </ul>
+                    <a class="nav-link active text-dark" aria-current="page" href="./user.html"><img
+                            src="../assets/user.png" alt="" class="icon"></a>
+                    <a class="nav-link active text-dark" aria-current="page" href="./login.html"><strong>Log
+                            in</strong></a>
+                    <a aria-current="page" href="./register.html"><button type="button"
+                            class="btn btn-light rounded-pill">Sign up</button></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="spacer"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <div class="p-5 rounded-5 text-dark shadow rounded bg-custom" style="width: 25rem">
+                        <div class="d-flex justify-content-center">
+                            <img src="../assets/login-icon.svg" alt="login-icon" style="height: 7rem" />
+                        </div>
+                        <div class="text-center fs-1 fw-bold">Sign up</div>
+                        <div class="input-group mt-4">
+                            <div class="input-group-text bg-custom1">
+                                <img src="../assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="text" placeholder="Nombre" />
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="../assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="text" placeholder="Apellido" />
+                        </div>
+                        <div class="input-group mt-4">
+                            <div class="input-group-text bg-custom1">
+                                <img src="../assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="email" placeholder="Correo" />
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="../assets/password-icon.svg" alt="password-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="password" placeholder="Contraseña" />
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="../assets/password-icon.svg" alt="password-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="password" placeholder="Confirmar contraseña" />
+                        </div>
+                        <div class="input-group mt-1">
+                            <div class="input-group-text bg-custom1">
+                                <img src="../assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            </div>
+                            <input class="form-control bg-light" type="tel" placeholder="Numero de telefono" />
+                        </div>
+                        <div class="btn bg-custom1 text-white w-100 mt-4 fw-semibold shadow-sm">
+                            Registrarme
+                        </div>
+                        <div class="p-3">
+                            <div class="border-bottom text-center" style="height: 0.9rem">
+                                <span class="bg-white px-3">o</span>
+                            </div>
+                        </div>
+                        <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm bg-custom1">
+                            <img src="../assets/google-icon.svg" alt="google-icon" style="height: 1.6rem" />
+                            <div class="fw-semibold text-white">Registrate con Google</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<!-- JS Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

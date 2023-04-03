@@ -7,5 +7,8 @@ Implementacion de proyecto
 Pablo Javier <br>
 Manuel Villalpando <br>
 Dante Pérez <br>
+Gamaliel Marines <br>
+Erik Cabrera <br>
+Ricardo Rosales <br>
 
 

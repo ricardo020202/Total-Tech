@@ -1,0 +1,63 @@
+<%- include('includes/head.ejs') %>
+
+
+<div class="container">
+    <div class="spacer">
+    </div>
+
+    <div class="container">
+        <h2 id="titulopagina">PROGRAMAS PARA TI</h2>
+
+        <div id="orderby">
+            <li id="OrderBy" class="nav-item dropdown">
+                <a id="orderbybtn" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Ordenar por
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/onyx/catentrenamientos/0">Nombre</a></li>
+                </ul>
+            </li>
+        </div>
+
+    </div>
+
+        <div class="container text-center">
+            <div class="row align-items-start">
+                <% for (let i=0; i < programa.length; i++) { %>
+                <div class="col">
+                    <div class="cards" style="width: 18rem;">
+                        <img style="object-fit: cover;" src="<%programa[i].img_programa%>"
+                            class="card-img-top" alt="<%programa[i].ref_visual%>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= programa[i].nombre_programa%></h5>
+                            <p class="card-text"><%= programa[i].descripcion_programa%></p>
+                            <p class="card-text"><%= programa[i].frequencia%></p>
+                            <!-- que va a hacer el boton start -->
+                            <a href="#" id="btnstart" class="btn btn-primary">EMPEZAR</a>
+                            <br>
+                            <!--quitar el más info, no? -->
+                            <a href="#" class="masinfo">AGREGAR A FAVORITOS</a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            
+        </div>
+
+        <br>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <%let contador = 0;%>
+                <% for (let i = 1; i <= Math.ceil(total_programas/9); i++) { %>
+                    <li class="page-item"><a class="page-link" href="/onyx/catentrenamientos/<%=contador%>"><%= i %></a></li>
+                    <%contador += 9;%>
+                
+                <%}%>
+            </ul>
+          </nav>
+
+</div>
+<%- include('includes/foot.ejs') %>
