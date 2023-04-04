@@ -58,4 +58,12 @@ module.exports = class Bitacora {
             [email]
         );
     }
+
+    // modified a entry in the database
+    static updateById(id_bitacora, fecha, contenido, entreno) {
+        return db.execute(
+            "UPDATE bitacora SET fecha = ?, contenido = ?, entreno = ? WHERE id_bitacora = ?",
+            [fecha, contenido, entreno, id_bitacora]
+        );
+    }
 };
