@@ -17,27 +17,27 @@
             <tr>
                 <th scope="col">Nombre de usuario</th>
                 <th scope="col">Email</th>
-                <th scope="col">Telefono</th>
                 <th scope="col">Rol</th>
             </tr>
                     </thead>
                     <tbody>
                         <% usersArray.forEach(user=> { %>
-                        <tr>
-                            <td><%= user.nombre %></td>
-                            <td><%= user.email %></td>
-                            <td><%= user.telefono %></td>
-                            <td>
-                                <span
-                                    class="user-role"
-                                    data-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="<%= user.privileges %>"
-                                >
-                                    <%= user.rol %>
-                                </span>
-                            </td>
-                        </tr>
+                            <% if (user.rol == "administrador") { %>
+                                <tr>
+                                    <td><%= user.nombre %></td>
+                                    <td><%= user.email %></td>
+                                    <td>
+                                        <span
+                                            class="user-role"
+                                            data-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title="<%= user.privileges %>"
+                                        >
+                                            <%= user.rol %>
+                                        </span>
+                                    </td>
+                                </tr>
+                            <% } %>
                         <% }); %>
                     </tbody>
                 </table>
