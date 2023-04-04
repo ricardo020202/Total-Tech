@@ -312,10 +312,6 @@ td, th {
     display: flex;
 }
 
-#search-bar {
-    /* white search bar */
-}
-
 #search-bar input {
     /* white search bar */
     background: #FFFFFF;
