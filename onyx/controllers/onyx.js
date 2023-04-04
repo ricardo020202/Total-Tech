@@ -481,3 +481,11 @@ exports.postTallas = (req, res, next) => {
             }
         });
 };
+
+exports.getCuenta = (req, res, next) => {
+    res.render("cuenta", {
+        pagetitle: "Cuenta",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};

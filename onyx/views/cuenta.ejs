@@ -1,0 +1,29 @@
+<%- include('includes/head.ejs') %>
+
+<!-- profile page -->
+
+<div class="container">
+    <div class="container mt-5">
+        <br/>
+        <br />
+        <% if (user){ %>
+            <div class="d-flex align-items-center ">
+                <!-- foto de perfil -->
+                <div class="profile-pic">
+                    <img src="/assets/manu.jpeg" alt="profile-pic" />
+                </div>
+                <!-- user info -->
+                <div class="user-info">
+                    <h1 class="fw-bold text-end"> <%= user %> </h1>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+
+
+
+
+
+<%- include('includes/foot.ejs') %>
