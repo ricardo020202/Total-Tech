@@ -76,6 +76,8 @@
         </div>
     </div>
 
+    
+
     <div class="row">
         <div class="container mt-3">
             <br />
@@ -96,12 +98,13 @@
             </thead>
             <tbody class="table-dark">
                 <% for (let i=0; i < bit10.length; i++) { %>
-                <tr id="registro-<%= bit10[i].id_bitacora %>">
+                <tr>
                     <td>
                         <%= new Date(bit10[i].fecha).toLocaleDateString() %>
                     </td>
                     <td><%= bit10[i].entreno %></td>
                     <td><%= bit10[i].contenido %></td>
+                    
                     <!-- more options dropdown bootstrap three dots -->
                     <td>
                         <div class="d-flex justify-content-center">
@@ -127,7 +130,7 @@
                                     <li>
                                         <form
                                             method="post"
-                                            action="/onyx/bitacora/delete/<%= bit10[i].id_bitacora %>"
+                                            action="/onyx/bitacora/delete/<%= bitacora[i].id_bitacora %>"
                                         >
                                             <input
                                                 type="hidden"
