@@ -8,7 +8,7 @@
             <h2><b>Usuarios</b></h2>
         </div>
         <div class="col-sm-6">
-            <a href="#" class="btn btn-success"><i class="material-icons"></i> <span>Agregar Nuevo Usuario</span></a>
+            <a href="/admin/admindashboard/userprivileges/add" class="btn btn-success"><i class="material-icons"></i> <span>Agregar Nuevo Usuario</span></a>
         </div>
         </div>
     </div>
@@ -16,43 +16,27 @@
         <thead class="table-header">
             <tr>
                 <th scope="col">Nombre de usuario</th>
-                <th scope="col">Email</th>
+                <th scope="col">Email</th>               
                 <th scope="col">Rol</th>
             </tr>
                     </thead>
                     <tbody>
                         <% usersArray.forEach(user=> { %>
-                            <% if (user.rol == "administrador") { %>
-                                <tr>
-                                    <td><%= user.nombre %></td>
-                                    <td><%= user.email %></td>
-                                    <td>
-                                        <span
-                                            class="user-role"
-                                            data-toggle="tooltip"
-                                            data-bs-placement="top"
-                                            title="<%= user.privileges %>"
-                                        >
-                                            <%= user.rol %>
-                                        </span>
-                                    </td>
-                                </tr>
-                            <% } %>
+                        <tr>
+                            <td><%= user.nombre %></td>
+                            <td><%= user.email %></td>
+                            <td>
+                                <span
+                                    class="user-role"
+                                    data-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="<%= user.privileges %>"
+                                >
+                                    <%= user.rol %>
+                                </span>
+                            </td>
+                        </tr>
                         <% }); %>
                     </tbody>
                 </table>
             </div>
-
-<script>
-    $(document).ready(function () {
-        $('[data-bs-toggle="tooltip"]').tooltip();
-        $("#searchInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("tbody tr").filter(function () {
-                $(this).toggle(
-                    $(this).text().toLowerCase().indexOf(value) > -1
-                );
-            });
-        });
-    });
-</script>
