@@ -69,6 +69,12 @@ body {
   z-index: 2;
 }
 
+footer {
+  bottom: 0;
+  width: 100%;
+  position: static;
+}
+
 .text-custom {
   color: #d2ca03;
 }
@@ -761,7 +767,6 @@ tbody {
 }
 
 .profile-pic {
-  flex: 0 0 auto;
   border-radius: 50%;
   overflow: hidden;
   width: 200px;

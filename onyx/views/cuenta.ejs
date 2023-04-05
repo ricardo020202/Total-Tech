@@ -7,18 +7,24 @@
         <br/>
         <br />
         <% if (user){ %>
-            <div class="d-flex align-items-center ">
+            <div class="d-flex align-items-center justify-content-center">
                 <!-- foto de perfil -->
                 <div class="profile-pic">
                     <img src="/assets/manu.jpeg" alt="profile-pic" />
                 </div>
                 <!-- user info -->
                 <div class="user-info">
-                    <h1 class="fw-bold text-end"> <%= user %> </h1>
+                    <h1 class="fw-bold text-start"> <%= user %> </h1>
+                    <div class="descripcion">
+                        <p class="text-start"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                    </div>
                 </div>
             </div>
         <% } %>
     </div>
+
+    <!-- Descripcion del usuario -->
+    
 </div>
 
 
