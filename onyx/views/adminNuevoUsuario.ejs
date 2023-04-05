@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/adminStyle.css">
+<%- include('includes/head.ejs') %>
+<%- include('includes/sidebar.ejs') %> 
+<h1>Registrar Usuario</h1>
+
+<div class="container">
+<div class="spacer"></div>
+
+<div class="row">
+  <div class="col"></div>
+
+  <div class="col">
+    <h1>Agregar usuarios</h1>
+    <h1><%= mensaje %></h1>
+    <br><br><br>
+    <form action="/admin/admindashboard/userprivileges/add" method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+      <label for="email">Email:</label>
+      <input type="text" name="email" required><br><br>
+  
+      <label for="role">Rol:</label>
+      <select name="role">
+        <% for (let i = 0; i < roles.length; i++) { %>
+          <option value="<%= roles[i].id_rol %>"><%= roles[i].nombreRol %></option>
+        <% } %>
+      </select>      
+      <br><br>
+
+
+      <input type="submit" value="Registrar usuario">
+  </form>
+  </div>
+</div>
+
+</div>

@@ -8,6 +8,10 @@ router.get("/admindashboard", adminController.getAdminDashboard);
 
 router.get("/admindashboard/userprivileges",adminController.getAdminDashboardPrivileges);
 
+router.get("/admindashboard/userprivileges/add",adminController.getAdminDashboardAddUser);
+
+router.post("/admindashboard/userprivileges/add",adminController.postAdminDashboardAddUser);
+
 router.get("/admindashboard/diets",adminController.getAdminDashboardDietas);
 
 router.get("/admindashboard/diets/add",adminController.getAdminNuevaDieta);

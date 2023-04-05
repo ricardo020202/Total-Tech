@@ -8,7 +8,9 @@ const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
+const Rol = require('../models/rol');
 const usuario = require("../models/usuario");
+const RolUsuario = require('../models/rol_usuario');
 
 exports.getAdminDashboardEjercicios= async (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -190,6 +192,75 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
         });
 };
 
+
+exports.getAdminDashboardAddUser = (req, res, next) => {
+    Rol.fetchAll()
+        .then(([rows]) => {
+
+            res.render("adminNuevoUsuario", {
+                pagetitle: "Agregar usuario",
+                user: req.session.user || "",
+                roles: rows,
+                csrfToken: req.csrfToken(),
+                mensaje: ""
+            });
+        })
+        .catch(err => console.log(err));
+};
+
+exports.postAdminDashboardAddUser = async (req, res, next) => {
+    const email = req.body.email;
+    const role = req.body.role;
+    
+    try {
+      // Check if user exists
+      const [users] = await usuario.fetch(email);
+      if (!users.length) {
+        return res.render("adminNuevoUsuario", {
+          pagetitle: "Agregar usuario",
+          user: req.session.user || "",
+          roles: await Rol.fetchAll(),
+          csrfToken: req.csrfToken(),
+          mensaje: "Usuario no registrado"
+        });
+      }
+  
+      // Delete the email from the rol_usuario table and add it again
+      RolUsuario.delete(email);
+      const modificar = new RolUsuario(role, email);
+
+      modificar
+      .save()
+      .then((result) => {
+            res.render("adminNuevoUsuario", {
+            pagetitle: "Agregar usuario",
+            user: req.session.user || "",
+            roles: Rol.fetchAll(),
+            csrfToken: req.csrfToken(),
+            mensaje: "Usuario agregado exitosamente"
+          });
+      })
+      .catch((err) => {
+          if (err.code === "PROTOCOL_CONNECTION_LOST") {
+              res.render("dbDown", {
+                  pagetitle: "Error",
+                  user: req.session.user || "",
+              });
+              return { medidas: [], fechas: [] };
+          } else {
+              console.log(err);
+          }
+      })
+  
+      
+    } catch (err) {
+      console.log(err);
+      res.redirect("/");
+    }
+};
+  
+
+
 exports.getAdminDashboardDietas = async (req, res, next) => {
     Dieta.fetchAll()
     .then(([rows, fieldData]) => {
@@ -221,7 +292,6 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
         rows.forEach(row => {
           results.push(row);
         });
-        console.log("results:",results[0]);
         res.render("adminDashboardPrivileges", {
             usersArray:results[0],
             pagetitle: "Users",
