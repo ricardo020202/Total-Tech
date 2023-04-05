@@ -39,6 +39,7 @@ module.exports = class Usuario {
         INNER JOIN rol r ON ru.id_rol = r.id_rol 
         INNER JOIN rol_privilegio rp ON r.id_rol = rp.id_rol 
         INNER JOIN privilegio p ON rp.id_cu = p.id_cu 
+        WHERE r.nombreRol != 'cliente'
         GROUP BY u.nombre, u.email, r.nombreRol;`);
     }   
 
