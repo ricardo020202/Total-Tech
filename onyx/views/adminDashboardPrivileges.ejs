@@ -23,20 +23,21 @@
                     </thead>
                     <tbody>
                         <% usersArray.forEach(user=> { %>
-                        <tr>
-                            <td><%= user.nombre %></td>
-                            <td><%= user.email %></td>
-                            <td>
-                                <span
-                                    class="user-role"
-                                    data-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="<%= user.privileges %>"
-                                >
-                                    <%= user.rol %>
-                                </span>
-                            </td>
-                        </tr>
+                            <% if (user.rol == "administrador") { %>
+                                <tr>
+                                    <td><%= user.nombre %></td>
+                                    <td><%= user.email %></td>
+                                    <td>
+                                        <span
+                                            class="user-role"
+                                            data-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            title="<%= user.privileges %>">
+                                            <%= user.rol %>
+                                        </span>
+                                    </td>
+                                </tr>
+                            <% } %>
                         <% }); %>
                     </tbody>
                 </table>
