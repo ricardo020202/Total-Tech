@@ -10,6 +10,7 @@ const flash = require("connect-flash");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
+const Usuario = require("../models/usuario");
 // const Favoritos = require("../models/favoritos");
 
 exports.getCatEjercicios = (req, res, next) => {
@@ -481,3 +482,46 @@ exports.postTallas = (req, res, next) => {
             }
         });
 };
+
+exports.getCuenta = (req, res, next) => {
+    Usuario.fetchOne(req.session.email)
+        .then(([rows, fieldData]) => {
+            req.session.usuario = rows
+            Cliente.fetchOne(req.session.email)
+                .then(([rows, fieldData]) => {
+                    req.session.cliente = rows
+                    res.render("cuenta", {
+                        pagetitle: "Cuenta",
+                        user: req.session.user || "",
+                        usuario: req.session.usuario || "",
+                        cliente: req.session.cliente || "",
+                        csrfToken: req.csrfToken(),
+                    });
+                })
+                .catch((err) => {
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                        });
+                        return { medidas: [], fechas: [] };
+                    } else {
+                        console.log(err);
+                    }
+                }
+                );
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        }
+        );
+};
+

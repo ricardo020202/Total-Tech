@@ -46,4 +46,8 @@ module.exports = class Usuario {
     static getRol(email) {
         return db.execute('SELECT r.nombreRol FROM usuario u INNER JOIN rol_usuario ru ON u.email = ru.email INNER JOIN rol r ON ru.id_rol = r.id_rol WHERE u.email = ?', [email]);
     }
+
+    static fetchOne(email) {
+        return db.execute('SELECT * FROM usuario WHERE email = ?', [email]);
+    }
 }

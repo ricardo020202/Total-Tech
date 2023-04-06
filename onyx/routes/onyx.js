@@ -51,4 +51,6 @@ router.post("/tallas", onyxController.postTallas);
 
 // router.post('/modificar-tallas', onyxController.postTallas);
 
+router.get("/cuenta", onyxController.getCuenta);
+
 module.exports = router;
