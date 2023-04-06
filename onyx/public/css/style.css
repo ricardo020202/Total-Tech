@@ -777,3 +777,13 @@ tbody {
   width: 100%;
   height: auto;
 }
+
+.table-dark {
+  color: white;
+}
+
+.table-dark th,
+.table-dark td {
+  color: white;
+}
+

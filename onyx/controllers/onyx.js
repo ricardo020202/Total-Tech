@@ -10,6 +10,7 @@ const flash = require("connect-flash");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
+const Usuario = require("../models/usuario");
 // const Favoritos = require("../models/favoritos");
 
 exports.getCatEjercicios = (req, res, next) => {
@@ -483,9 +484,25 @@ exports.postTallas = (req, res, next) => {
 };
 
 exports.getCuenta = (req, res, next) => {
-    res.render("cuenta", {
-        pagetitle: "Cuenta",
-        user: req.session.user || "",
-        csrfToken: req.csrfToken(),
-    });
+    Usuario.fetchOne(req.session.email)
+        .then(([rows, fieldData]) => {
+            res.render("cuenta", {
+                pagetitle: "Cuenta",
+                user: req.session.user || "",
+                csrfToken: req.csrfToken(),
+                usuario: rows[0],
+                cliente: rows[0],
+            });
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
 };
