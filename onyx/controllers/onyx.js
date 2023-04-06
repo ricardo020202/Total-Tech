@@ -486,13 +486,30 @@ exports.postTallas = (req, res, next) => {
 exports.getCuenta = (req, res, next) => {
     Usuario.fetchOne(req.session.email)
         .then(([rows, fieldData]) => {
-            res.render("cuenta", {
-                pagetitle: "Cuenta",
-                user: req.session.user || "",
-                csrfToken: req.csrfToken(),
-                usuario: rows[0],
-                cliente: rows[0],
-            });
+            req.session.usuario = rows
+            Cliente.fetchOne(req.session.email)
+                .then(([rows, fieldData]) => {
+                    req.session.cliente = rows
+                    res.render("cuenta", {
+                        pagetitle: "Cuenta",
+                        user: req.session.user || "",
+                        usuario: req.session.usuario || "",
+                        cliente: req.session.cliente || "",
+                        csrfToken: req.csrfToken(),
+                    });
+                })
+                .catch((err) => {
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                        });
+                        return { medidas: [], fechas: [] };
+                    } else {
+                        console.log(err);
+                    }
+                }
+                );
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -504,5 +521,7 @@ exports.getCuenta = (req, res, next) => {
             } else {
                 console.log(err);
             }
-        });
+        }
+        );
 };
+
