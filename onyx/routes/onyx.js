@@ -38,7 +38,7 @@ router.get('/tallas', onyxController.getTallas);
 
 router.post('/tallas', onyxController.postTallas);
 
-router.get('/reg_rol', onyxController.getreg_rol);  
+router.get('/reg_rol', onyxController.getreg_rol);
 
 router.post('/reg_rol', onyxController.postreg_rol);
 

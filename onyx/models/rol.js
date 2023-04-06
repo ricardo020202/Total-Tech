@@ -1,12 +1,12 @@
 const db = require('../util/database');
 
-module.exports = class Rol {
+class Rol {
     constructor(rol) {
         this.nombre = rol.nombre;
     }
 
     save() {
-        return db.execute('INSERT INTO rol (nombre) VALUES (?)',
+        return db.execute('INSERT INTO rol (nombreRol) VALUES (?)',
             [this.nombre]
         );
     }
@@ -15,3 +15,5 @@ module.exports = class Rol {
         return db.execute('SELECT * FROM rol');
     }
 }
+
+module.exports = Rol;

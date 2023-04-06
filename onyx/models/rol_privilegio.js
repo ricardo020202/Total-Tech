@@ -1,6 +1,6 @@
 const db = require('../util/database');
 
-module.exports = class RolPrivilegio {
+class RolPrivilegio {
     constructor(id_rol, id_cu) {
         this.id_rol = id_rol;
         this.id_cu = id_cu;
@@ -16,3 +16,5 @@ module.exports = class RolPrivilegio {
         return db.execute('SELECT * FROM rol_privilegio');
     }
 }
+
+module.exports = RolPrivilegio;

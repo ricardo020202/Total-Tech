@@ -10,26 +10,26 @@ const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
 const RolUsuario = require('../models/rol_usuario');
+const reg_rol = require('../models/reg_rol');
+const Rol = require('../models/rol');
+const RolPrivilegio = require('../models/rol_privilegio');
 const db = require('../util/database');
 
-exports.registrarRol = async (req, res) => {
-    try {
-        const { id_rol, nombre_rol, id_cu } = req.body;
-        const ids_casos_uso = id_cu.split(',');
 
-        // Insertar rol en la tabla rol
-        await db.execute('INSERT INTO rol (id_rol, nombreRol, statusRol) VALUES (?, ?, ?)', [id_rol, nombre_rol, 'on']);
-
-        // Insertar registros en la tabla rol_privilegio
-        for (const id_caso_uso of ids_casos_uso) {
-            await db.execute('INSERT INTO rol_privilegio (id_rol, id_cu) VALUES (?, ?)', [id_rol, id_cu.trim()]);
-        }
-
-        res.status(200).json({ message: 'Rol registrado correctamente.' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al registrar el rol.', error});
-    }
+exports.postreg_rol = (req, res, next) => {
+    const email = req.session.email;
+    const tipoRol = req.body.id_rol;
+    
+    const rolUsuario = new Rol(tipoRol, email);
+    rolUsuario.save()
+      .then(resultado => {
+        console.log('Registro guardado en la base de datos.');
+        res.redirect('/'); 
+      })
+      .catch(error => {
+        console.log('Error al guardar el registro en la base de datos:', error);
+        res.redirect('/');
+      });
 };
 
 exports.getreg_rol = (req, res, next) => {
@@ -38,24 +38,31 @@ exports.getreg_rol = (req, res, next) => {
       user: req.session.user, // o como se llame la variable en la sesión
       csrfToken: req.csrfToken()
     });
-  };
-
-
-exports.postreg_rol = (req, res, next) => {
-  const email = req.session.email;
-  const tipoRol = req.body.id_rol;
-
-  const rolUsuario = new RolUsuario(tipoRol, email);
-  rolUsuario.save()
-    .then(resultado => {
-      console.log('Registro guardado en la base de datos.');
-      res.redirect('/'); 
-    })
-    .catch(error => {
-      console.log('Error al guardar el registro en la base de datos:', error);
-      res.redirect('/');
-    });
 };
+
+exports.registrarRol = async (req, res) => {
+    try {
+        const { id_rol, nombre_rol, id_cu } = req.body;
+        const ids_casos_uso = id_cu.split(',');
+
+        // Insertar rol en la tabla rol
+        const rol = new Rol({nombre: nombre_rol});
+        const [result] = await rol.save();
+        const insertedIdRol = result.insertId;
+
+        // Insertar registros en la tabla rol_privilegio
+        for (const id_caso_uso of ids_casos_uso) {
+            const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
+            await rolPrivilegio.save();
+        }
+
+        res.status(200).json({ message: 'Rol registrado correctamente.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error al registrar el rol.', error });
+    }
+};
+
 
 
 exports.getCatEjercicios = (req, res, next) => {
