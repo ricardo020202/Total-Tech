@@ -9,6 +9,35 @@ const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
+const RolUsuario = require('../models/rol_usuario');
+
+
+
+exports.getAdminreg_rol = (req, res, next) => {
+    res.render("reg_rol", {
+      pagetitle: "Registro de Rol",
+      user: req.session.user, // o como se llame la variable en la sesión
+      csrfToken: req.csrfToken()
+    });
+  };
+
+
+exports.postAdminreg_rol = (req, res, next) => {
+  const email = req.session.email;
+  const tipoRol = req.body.id_rol;
+
+  const rolUsuario = new RolUsuario(tipoRol, email);
+  rolUsuario.save()
+    .then(resultado => {
+      console.log('Registro guardado en la base de datos.');
+      res.redirect('/'); 
+    })
+    .catch(error => {
+      console.log('Error al guardar el registro en la base de datos:', error);
+      res.redirect('/');
+    });
+};
+
 
 exports.getAdminDashboardEjercicios= async (req, res, next) => {
     EjercicioModel.fetchAll()

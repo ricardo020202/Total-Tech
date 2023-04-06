@@ -4,22 +4,23 @@ const mysql = require('mysql2');
 
 //Mac database
 
-const pool = mysql.createPool({
+/*const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'onyx',
     port: 8889,
     password: 'root',
 });
+*/
 
-// Windows database
+//Windows database
 
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     database: 'onyx',
-//     password: '',
-// });
+const pool = mysql.createPool({
+     host: 'localhost',
+     user: 'root',
+     database: 'onyx',
+     password: '',
+ });
 
 
 

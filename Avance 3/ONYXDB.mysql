@@ -172,7 +172,7 @@ CREATE TABLE programa_dieta_cliente(
     id_programa INT NOT NULL,
     id_dieta INT NOT NULL,
     email VARCHAR(30) NOT NULL,
-    tipo VARCHAR(15) NOT NULL,
+    tipo VARCHAR(20) NOT NULL,
     PRIMARY KEY(id_programa, id_dieta, email),
     FOREIGN KEY(id_programa) REFERENCES programa(id_programa),
     FOREIGN KEY(id_dieta) REFERENCES dieta(id_dieta),
