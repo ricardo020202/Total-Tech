@@ -104,7 +104,7 @@ exports.login = (request, response, next) => {
 exports.post_login = (request, response, next) => {
     user.getRol(request.body.email)
         .then(([rows, fieldData]) => {
-            request.session.rol = rows[0].nombreRol;
+            request.session.rol = rows[0].rol;
         })
         .catch((error) => {
             console.log(error);
