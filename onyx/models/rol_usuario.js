@@ -20,4 +20,8 @@ module.exports = class RolUsuario {
     static fetchAll() {
         return db.execute('SELECT * FROM rol_usuario');
     }
+
+    static deleteById(email) {
+        return db.execute(`UPDATE rol_usuario SET id_rol = 2 WHERE rol_usuario.email = '?'`, [email]);
+    }
 }

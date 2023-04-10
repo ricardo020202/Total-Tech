@@ -261,16 +261,19 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
 exports.deleteAdminDashboarUser = (req, res, next) => {
     const email = req.params.email;
 
-    usuario.deleteById(email)
-        .then(([result]) => {
+    console.log(email);
+
+    RolUsuario.deleteById(email)
+        .then(([rows, fieldData]) => {
+            console.log(rows);
+            console.log(fieldData);
             req.flash("success", "Se elimino usuario");
-            res.redirect("/onyx/admindashboard");
+            res.redirect("/admin/admindashboard/userprivileges");
         })
         .catch((err) => {
             console.log(err);
         });
 
-    res.locals.messeges = req.flash();
 };
   
 exports.getAdminDashboardDietas = async (req, res, next) => {
@@ -305,7 +308,7 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
           results.push(row);
         });
         res.render("adminDashboardPrivileges", {
-            usersArray:results[0],
+            usersArray:rows[0],
             pagetitle: "Users",
             user: req.session.user || "",
             csrfToken: req.csrfToken(),
