@@ -11,7 +11,7 @@ const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
 const Usuario = require("../models/usuario");
-// const Favoritos = require("../models/favoritos");
+const Favoritos = require("../models/programa_dieta_cliente");
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -97,6 +97,21 @@ exports.getFavoritos = async (req, res, next) => {
         pagetitle: "Favoritos",
         user: req.session.user || "",
     });
+};
+
+exports.deleteFavoritos = (req, res, next) => {
+    const id_favorito = req.params.id_favorito;
+
+    Favoritos.deleteById(id_favorito)
+        .then(([result]) => {
+            req.flash("success", "Se elimino de tus favoritos");
+            res.redirect("/onyx/favoritos");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    res.locals.messeges = req.flash();
 };
 
 // ========== Rutas Bitacora ==========

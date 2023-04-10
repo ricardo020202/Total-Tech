@@ -9,7 +9,7 @@ const pool = mysql.createPool({
     user: 'root',
     database: 'Onyx',
     port: 8889,
-    password: 'lol23',
+    password: 'root',
 });
 
 // Windows database

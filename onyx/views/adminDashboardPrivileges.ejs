@@ -19,6 +19,7 @@
                 <th scope="col">Nombre de usuario</th>
                 <th scope="col">Email</th>               
                 <th scope="col">Rol</th>
+                <th scope="col">Acciones</th>
             </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,27 @@
                                             title="<%= user.privileges %>">
                                             <%= user.rol %>
                                         </span>
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+                                        <form
+                                            method="post"
+                                            action="/onyx/admindashboard/userprivileges/delete/<%= user.email %>"
+                                        >
+                                            <input
+                                                type="hidden"
+                                                name="_csrf"
+                                                value="<%= csrfToken %>"
+                                            />
+                                            <button
+                                                type="submit"
+                                                class="btn btn-danger"
+                                                id="delete-bitacora"
+                                            >
+                                                Delete
+                                            </button>
+                                        </form>
+                                        
                                     </td>
                                 </tr>
                             <% } %>

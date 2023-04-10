@@ -192,7 +192,6 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
         });
 };
 
-
 exports.getAdminDashboardAddUser = (req, res, next) => {
     Rol.fetchAll()
         .then(([rows]) => {
@@ -258,9 +257,22 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
       res.redirect("/");
     }
 };
+
+exports.deleteAdminDashboarUser = (req, res, next) => {
+    const email = req.params.email;
+
+    usuario.deleteById(email)
+        .then(([result]) => {
+            req.flash("success", "Se elimino usuario");
+            res.redirect("/onyx/admindashboard");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    res.locals.messeges = req.flash();
+};
   
-
-
 exports.getAdminDashboardDietas = async (req, res, next) => {
     Dieta.fetchAll()
     .then(([rows, fieldData]) => {
@@ -296,6 +308,7 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
             usersArray:results[0],
             pagetitle: "Users",
             user: req.session.user || "",
+            csrfToken: req.csrfToken(),
         });
       })
       .catch(error => {

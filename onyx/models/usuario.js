@@ -31,6 +31,10 @@ module.exports = class Usuario {
         return db.execute('SELECT * FROM usuario WHERE email = ?', [email]);
     }
 
+    static deleteById(email) {
+        return db.execute(`UPDATE rol_usuario SET id_rol = '2' WHERE rol_usuario.email = '?';`, [email]);
+    }
+
     static getPrivilegios() {
         return db.execute(`
         SELECT u.nombre, u.email, r.nombreRol AS rol, GROUP_CONCAT(p.nombrecu SEPARATOR ', ') AS privileges 

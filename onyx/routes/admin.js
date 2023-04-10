@@ -12,6 +12,8 @@ router.get("/admindashboard/userprivileges/add",adminController.getAdminDashboar
 
 router.post("/admindashboard/userprivileges/add",adminController.postAdminDashboardAddUser);
 
+router.post("admindashboard/userprivileges/delete/:email", adminController.deleteAdminDashboarUser);
+
 router.get("/admindashboard/diets",adminController.getAdminDashboardDietas);
 
 router.get("/admindashboard/diets/add",adminController.getAdminNuevaDieta);
