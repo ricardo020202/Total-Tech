@@ -22,6 +22,6 @@ module.exports = class RolUsuario {
     }
 
     static deleteById(email) {
-        return db.execute(`UPDATE rol_usuario SET id_rol = 2 WHERE rol_usuario.email = '?'`, [email]);
+        return db.execute(`UPDATE rol_usuario SET id_rol = 2 WHERE rol_usuario.email = ?`, [email]);
     }
 }
