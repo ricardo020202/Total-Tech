@@ -201,7 +201,8 @@ exports.getAdminDashboardAddUser = (req, res, next) => {
                 user: req.session.user || "",
                 roles: rows,
                 csrfToken: req.csrfToken(),
-                mensaje: ""
+                mensaje: "",
+                email: req.params.email,
             });
         })
         .catch(err => console.log(err));

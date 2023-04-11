@@ -10,6 +10,8 @@ router.get("/admindashboard/userprivileges",adminController.getAdminDashboardPri
 
 router.get("/admindashboard/userprivileges/add",adminController.getAdminDashboardAddUser);
 
+router.get("/admindashboard/userprivileges/add/:email", adminController.getAdminDashboardAddUser);
+
 router.post("/admindashboard/userprivileges/add",adminController.postAdminDashboardAddUser);
 
 router.post("/admindashboard/userprivileges/delete/:email", adminController.deleteAdminDashboarUser);
