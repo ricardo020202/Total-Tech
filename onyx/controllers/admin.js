@@ -193,7 +193,7 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
 };
 
 exports.getAdminDashboardAddUser = (req, res, next) => {
-    Rol.fetchAll()
+    Rol.fetchAllButUsers()
         .then(([rows]) => {
 
             res.render("adminNuevoUsuario", {
