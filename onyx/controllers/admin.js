@@ -326,9 +326,22 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
       });
 };
 
-exports.getAdminDashboard = (req, res, next) => {
+exports.getAdminDashboard = async (req, res, next) => {
+    const consulta_total_dieta = await Dieta.getTotal();
+    const total_dieta = consulta_total_dieta[0][0].total;
+    const consulta_total_ejercicio = await EjercicioModel.getTotal();
+    const total_ejercicio = consulta_total_ejercicio[0][0].total;
+    const consulta_total_cliente = await Cliente.getTotal();
+    const total_cliente = consulta_total_cliente[0][0].total;
+    const consulta_total_programa = await EntrenamientoModel.getTotal();
+    const total_programa = consulta_total_programa[0][0].total;
+
     res.render("admindashboard", {
         pagetitle: "Admin dashboard",
         user: req.session.user || "",
+        total_dieta: total_dieta || "",
+        total_ejercicio: total_ejercicio || "",
+        total_cliente: total_cliente || "",
+        total_programa: total_programa || "",
     });
 };
