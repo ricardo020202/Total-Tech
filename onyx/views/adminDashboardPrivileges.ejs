@@ -38,7 +38,12 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+                                        <a
+                                            href="/admin/admindashboard/userprivileges/add/<%= user.email %>"
+                                            class="btn btn-custom"
+                                            role="button"> Editar
+                                        </a>
+                                        <br><br>
                                         <form
                                             method="post"
                                             action="/admin/admindashboard/userprivileges/delete/<%= user.email %>"
