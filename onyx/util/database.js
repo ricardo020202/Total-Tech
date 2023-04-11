@@ -12,6 +12,14 @@ const pool = mysql.createPool({
     password: 'root',
 });
 
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'Onyx',
+//     port: 8889,
+//     password: 'lol23',
+// });
+
 
 //  Erik database
 
