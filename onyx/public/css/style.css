@@ -7,11 +7,11 @@ body {
 
 .rectangulo {
   background-color: #151515;
-  width: 90px;
+  width: 105px;
   height: 10px;
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 7px;
   z-index: 3;
   rotate: -65.84deg;
   transform: skew(25deg);
@@ -19,11 +19,11 @@ body {
 
 .rectangulo1 {
   background-color: #151515;
-  width: 90px;
+  width: 105px;
   height: 10px;
   position: absolute;
   top: 10px;
-  left: -10px;
+  left: -13px;
   z-index: 3;
   rotate: -65.84deg;
   transform: skew(25deg);
@@ -31,11 +31,11 @@ body {
 
 .rectangulo2 {
   background-color: #151515;
-  width: 69px;
+  width: 82px;
   height: 30px;
   position: absolute;
   top: 10px;
-  left: -35px;
+  left: -38px;
   z-index: 3;
   rotate: -65.84deg;
   transform: skew(25deg);
