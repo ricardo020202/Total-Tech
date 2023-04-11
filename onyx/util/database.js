@@ -15,24 +15,24 @@ const mysql = require('mysql2');
 
 //  Erik database
 
-const pool = mysql.createPool({
+/* const pool = mysql.createPool({
     host: 'localhost',
     user: 'erik',
     database: 'onyx',
     password: 'erik',
     port: 8889,
-});
+}); */
 
 // Windows database
 
-/*
+
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'onyx',
     password: '',
 });
-*/
+
 
 
 
