@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="/css/adminStyle.css">
-<%- include('includes/head.ejs') %>
-<%- include('includes/sidebar.ejs') %>
-
+<link rel="stylesheet" href="/css/adminStyle.css" />
+<%- include('includes/head.ejs') %> <%- include('includes/sidebar.ejs') %>
 
 <!-- Admin Dashboard Programa -->
 <div class="table-responsive">
@@ -11,7 +9,12 @@
                 <h2><b>Programas</b></h2>
             </div>
             <div class="col-sm-6">
-                <a href="/admin/admindashboard/programas/nuevoprograma" class="btn btn-success"><i class="material-icons"></i> <span>Agregar Nuevo Programa</span></a>
+                <a
+                    href="/admin/admindashboard/programas/nuevoprograma"
+                    class="btn btn-success"
+                    ><i class="material-icons"></i>
+                    <span>Agregar Nuevo Programa</span></a
+                >
             </div>
         </div>
     </div>
@@ -31,15 +34,23 @@
             <% for (let i=0; i < programa.length; i++) { %>
             <tr>
                 <th scope="row"><%= programa[i].id_programa %></th>
-                <td class="cell-class"><%= programa[i].descripcion_programa %></td>
+                <td class="cell-class">
+                    <%= programa[i].descripcion_programa %>
+                </td>
                 <td><%= programa[i].nombre_programa %></td>
                 <td><%= programa[i].frecuencia %></td>
                 <!-- dont show all the text -->
                 <td class="cell-class"><%= programa[i].ref_visual %></td>
                 <td><%= programa[i].img_programa %></td>
                 <td class="crud button">
-                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #e5dc01;"></i>
-                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #e5dc01;"></i>
+                    <i
+                        class="fa-solid fa-pen-to-square fa-lg"
+                        style="color: #000"
+                    ></i>
+                    <i
+                        class="fa-sharp fa-solid fa-trash fa-lg"
+                        style="color: #000"
+                    ></i>
                 </td>
             </tr>
             <% } %>
