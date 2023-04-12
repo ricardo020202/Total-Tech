@@ -50,4 +50,8 @@ module.exports = class Usuario {
     static fetchOne(email) {
         return db.execute('SELECT * FROM usuario WHERE email = ?', [email]);
     }
+
+    static addRol(email, rol, fecha) {
+        return db.execute('INSERT INTO rol_usuario (email, id_rol, fecha) VALUES (?, ?, ?)', [email, rol, fecha]);
+    }
 }

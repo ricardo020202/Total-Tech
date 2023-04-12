@@ -35,6 +35,7 @@ exports.post_signup = (request, response, next) => {
                                     request.session.isLoggedIn = true;
                                     request.session.user = rows[0].nombre;
                                     request.session.email = rows[0].email;
+                                    user.addRol(request.body.email, 2, new Date());
                                     user.getPrivilegios(rows[0].email)
                                         .then(([consulta_privilegios, fieldData]) => {
                                             console.log(consulta_privilegios);
@@ -46,7 +47,7 @@ exports.post_signup = (request, response, next) => {
                                             request.session.privilegios = privilegios;
 
                                             return request.session.save((error) => {
-                                                response.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
+                                                response.redirect("/onyx/registrar-datos-iniciales");
                                             });
                                         })
                                         .catch((error) => {
