@@ -36,7 +36,7 @@ exports.post_signup = (request, response, next) => {
                                     request.session.user = rows[0].nombre;
                                     request.session.email = rows[0].email;
                                     user.addRol(request.body.email, 2, new Date());
-                                    user.getPrivilegios(rows[0].email)
+                                    user.getPrivilegiosOne(rows[0].email)
                                         .then(([consulta_privilegios, fieldData]) => {
                                             console.log(consulta_privilegios);
                                             const privilegios = [];
@@ -121,7 +121,7 @@ exports.post_login = (request, response, next) => {
                             request.session.isLoggedIn = true;
                             request.session.user = rows[0].nombre;
                             request.session.email = rows[0].email;
-                            user.getPrivilegios(rows[0].email)
+                            user.getPrivilegiosOne(rows[0].email)
                                 .then(([consulta_privilegios, fieldData]) => {
                                     console.log(consulta_privilegios);
                                     const privilegios = [];

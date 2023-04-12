@@ -314,7 +314,7 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
             csrfToken: req.csrfToken(),
         });
       })
-      .catch(error => {
+      .catch(err => {
         if (err.code === "PROTOCOL_CONNECTION_LOST") {
             res.render("dbDown", {
                 pagetitle: "Error",
