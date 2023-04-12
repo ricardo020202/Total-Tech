@@ -14,7 +14,20 @@ const reg_rol = require('../models/reg_rol');
 const Rol = require('../models/rol');
 const RolPrivilegio = require('../models/rol_privilegio');
 const db = require('../util/database');
+const flash = require('connect-flash');
 
+
+
+
+
+exports.getreg_rol = (req, res) => {
+    res.render("reg_rol", {
+      pagetitle: "Registro de Rol",
+      user: req.session.user, // o como se llame la variable en la sesión
+      csrfToken: req.csrfToken(),
+      mensaje: req.session.mensaje || ""
+    });
+};
 
 exports.postreg_rol = (req, res, next) => {
     const email = req.session.email;
@@ -32,37 +45,32 @@ exports.postreg_rol = (req, res, next) => {
       });
 };
 
-exports.getreg_rol = (req, res, next) => {
-    res.render("reg_rol", {
-      pagetitle: "Registro de Rol",
-      user: req.session.user, // o como se llame la variable en la sesión
-      csrfToken: req.csrfToken()
-    });
-};
-
 exports.registrarRol = async (req, res) => {
-    try {
-        const { id_rol, nombre_rol, id_cu } = req.body;
-        const ids_casos_uso = id_cu.split(',');
+    const { id_rol, nombre_rol, id_cu } = req.body;
+    const ids_casos_uso = id_cu.split(',');
+    const rol = new Rol({nombre: nombre_rol});
+    let insertedIdRol;
+    req.session.mensaje = "Rol Registrado Correctamente.";
 
-        // Insertar rol en la tabla rol
-        const rol = new Rol({nombre: nombre_rol});
-        const [result] = await rol.save();
-        const insertedIdRol = result.insertId;
-
-        // Insertar registros en la tabla rol_privilegio
-        for (const id_caso_uso of ids_casos_uso) {
-            const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
-            await rolPrivilegio.save();
-        }
-
-        res.status(200).json({ message: 'Rol registrado correctamente.' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al registrar el rol.', error });
-    }
+    rol.save()
+        .then(([result]) => {
+            insertedIdRol = result.insertId;
+            const promises = ids_casos_uso.map((id_caso_uso) => {
+                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
+                return rolPrivilegio.save();
+            });
+            return Promise.all(promises);
+        })
+        .then(() => {
+            req.flash('success', 'Rol registrado correctamente.');
+            res.redirect('/onyx/reg_rol');
+        })
+        .catch((error) => {
+            console.error(error);
+            req.flash('error', 'Error al registrar el rol.');
+            res.redirect('/onyx/reg_rol');
+        });
 };
-
 
 
 exports.getCatEjercicios = (req, res, next) => {

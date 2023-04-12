@@ -734,6 +734,10 @@ tbody {
   color: #fff;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Dropdown chido para la parte de workouts En proceso... Ayudenme si se les ocurre algo pls xd
 .wk-css {
   background-color: #d2ca03;

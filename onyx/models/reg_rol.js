@@ -1,4 +1,4 @@
-const RolUsuario = require('../models/reg_rol');
+/*const RolUsuario = require('../models/reg_rol');
 const db = require('../util/database');
 
 
@@ -59,3 +59,4 @@ exports.getreg_rol = (req, res, next) => {
     csrfToken: req.csrfToken()
   });
 };
+*/

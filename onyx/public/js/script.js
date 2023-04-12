@@ -133,3 +133,7 @@ function validatePassword() {
 
 confirmPassword.addEventListener('input', validatePassword);
 password.addEventListener('input', validatePassword);
+
+//respuesta satisfactoria del servidor
+const successMessage = document.getElementById('success-message');
+successMessage.classList.remove('hidden');

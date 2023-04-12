@@ -7,10 +7,14 @@ const session = require('express-session');
 const csrf = require('csurf');
 const isAuth = require('./util/is-auth');
 const isAdmin = require('./util/is-admin');
-
+const flash = require('connect-flash');
 
 app.set("view engine", "ejs");
 app.set("views", "views");
+
+// Configurar middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session({
     secret: 'mi string secreto que debe ser un string aleatorio muy largo, no como éste', 
@@ -18,18 +22,16 @@ app.use(session({
     saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
 }));
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(csrf());
 
-app.use(bodyParser.urlencoded({ extended: false }));
-
-const csrfProtection = csrf();
-app.use(csrfProtection);
+// Configurar middleware de express-flash
+app.use(flash());
 
 const userRoutes = require('./routes/users');
-app.use('/users',userRoutes);
+app.use('/users', userRoutes);
 
 const noRegRoutes = require("./routes/noRegistrados");
-app.use('/onyx',noRegRoutes);
+app.use('/onyx', noRegRoutes);
 
 const onyxRoutes = require("./routes/onyx");
 app.use('/onyx', isAuth, onyxRoutes);
