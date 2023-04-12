@@ -35,7 +35,7 @@ module.exports = class Ejercicio {
         ]);
     }
 
-    update() {
+    static update() {
         return db.execute(
             "UPDATE ejercicio SET categoria = ?, nivel_intensidad = ?, referencia_visual = ?, descripcion_ejercicio = ?, nombre_ejercicio = ?, imagen_ejercicio = ? WHERE id_ejercicio = ?",
             [
@@ -54,5 +54,9 @@ module.exports = class Ejercicio {
         return db.execute("DELETE FROM ejercicio WHERE id_ejercicio = ?", [
             id_ejercicio,
         ]);
+    }
+
+    static getTotal() {
+        return db.execute("SELECT COUNT(*) as total FROM ejercicio");
     }
 };

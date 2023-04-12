@@ -12,35 +12,36 @@
                         </div>
                         <div class="text-center fs-1 fw-bold">Sign up</div>
                         <div class="input-group mt-4">
-                            <div class="input-group-text bg-custom1">
-                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            <div class="input-group-text bg-signUp">
+                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem;" />
                             </div>
-                            <input class="form-control bg-light" type="text" placeholder="Nombre" name="nombre" required/>
+                            <input class="form-control bg-light" style="z-index: 1;" type="text" placeholder="Nombre" name="nombre" required/>
                         </div>
                         <div class="input-group mt-1">
-                            <div class="input-group-text bg-custom1">
+                            <div class="input-group-text bg-signUp">
                                 <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
                             </div>
-                            <input class="form-control bg-light" type="text" placeholder="Apellido" name="apellido" required/>
+                            <input class="form-control bg-light" style="z-index: 1;" type="text" placeholder="Apellido" name="apellido" required/>
                         </div>
                         <div class="input-group mt-4">
-                            <div class="input-group-text bg-custom1">
+                            <div class="input-group-text bg-signUp">
                                 <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
                             </div>
-                            <input class="form-control bg-light" type="email" placeholder="Correo" name="email" required/>
+                            <input class="form-control bg-light" style="z-index: 1;" type="email" placeholder="Correo" name="email" required/>
                         </div>
                         <div class="input-group mt-1">
-                            <div class="input-group-text bg-custom1">
+                            <div class="input-group-text bg-signUp">
                                 <img src="/assets/password-icon.svg" alt="password-icon" style="height: 1rem" />
                             </div>
-                            <input class="form-control bg-light" type="password" placeholder="Contraseña" name="password" required/>
+                            <input class="form-control bg-light" style="z-index: 1;" type="password" placeholder="Contraseña" name="password" id="password" required/>
                         </div>
                         <div class="input-group mt-1">
-                            <div class="input-group-text bg-custom1">
-                                <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                            <div class="input-group-text bg-signUp">
+                                <img src="/assets/password-icon.svg" alt="password-icon" style="height: 1rem" />
                             </div>
-                            <input class="form-control bg-light" type="tel" placeholder="Numero de telefono" name="telefono" required/>
+                            <input class="form-control bg-light" style="z-index: 1;" type="password" placeholder="Confirmar Contraseña" name="confirm-password" id="confirm-password" required/>
                         </div>
+                        <div id="password-message"></div>
                         <div class="d-flex justify-content-around mt-1">
                             <div class="d-flex align-items-center gap-1">
                                 <input class="form-check-input" type="checkbox" required/>
@@ -53,7 +54,7 @@
                                     style="font-size: 0.9rem">Terminos y condiciones</a>
                             </div>
                         </div>
-                        <button class="btn bg-custom1 text-white w-100 mt-4 fw-semibold shadow-sm" type="submit" name="action">
+                        <button class="btn bg-custom1 text-white w-100 mt-4 fw-semibold shadow-sm" type="submit" name="action" id="confirm">
                             Registrarme
                         </button>
                         <div class="p-3">
@@ -70,5 +71,6 @@
             </div>
         </div>
     </div>
+    <script src="/js/signUp.js"></script>
 
     <%- include('includes/foot.ejs') %>

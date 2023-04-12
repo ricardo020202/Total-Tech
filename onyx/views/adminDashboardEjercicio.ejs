@@ -1,8 +1,11 @@
 <link rel="stylesheet" href="/css/adminStyle.css">
-<%- include('includes/head.ejs') %>
-<%- include('includes/sidebar.ejs') %> 
+<script
+    src="https://kit.fontawesome.com/77587b01e9.js"
+    crossorigin="anonymous"
+></script>
+<%- include('includes/headAdmin.ejs') %>
+<%- include('includes/sidebar.ejs') %>
 
-<!-- Admin Dashboard Workout -->
 <div class="table-responsive">
     <div class="table-title">
         <div class="row">
@@ -10,7 +13,7 @@
                 <h2><b>Ejercicios</b></h2>
             </div>
             <div class="col-sm-6">
-                <a href="/admin/admindashboard/workouts/nuevoejercicio" class="btn btn-success"><i class="material-icons"></i> <span>Agregar Nuevo Ejercicio</span></a>
+                <a href="/admin/admindashboard/ejercicios/nuevoejercicio" class="btn btn-success"><i class="material-icons"></i> <span>Agregar Nuevo Ejercicio</span></a>
             </div>
         </div>
     </div>
@@ -20,9 +23,9 @@
                 <th scope="col">ID Ejercio</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Nivel Intensidad</th>
-                <th scope="col">Referencia Visual</th>
-                <th scope="col">Descripcion Ejercicio</th>
                 <th scope="col">Nombre Ejercicio</th>
+                <th scope="col">Descripcion Ejercicio</th>
+                <th scope="col">Referencia Visual</th>
                 <th scope="col">Imagen Ejercicio</th>
                 <th scope="col">Acciones</th>
             </tr>
@@ -39,9 +42,9 @@
                 <td><%= ejercicio[i].nombre_ejercicio %></td>
                 <td class="cell-class"><%= ejercicio[i].imagen_ejercicio %></td>
                 <td class="crud button">
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
+                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+                        </td>
             </tr>
             <% } %>
 

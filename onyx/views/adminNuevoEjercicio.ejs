@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/adminStyle.css">
-<%- include('includes/head.ejs') %>
+<%- include('includes/headAdmin.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
 
 
@@ -13,7 +13,7 @@
 
     <!-- form for new ejercicio -->
     <div class="container" id="form-nuevo-ejercicio">
-        <form action="/admin/admindashboard/workouts/nuevoejercicio" method="POST">
+        <form action="/admin/admindashboard/ejercicios/nuevoejercicio" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoria</label>
@@ -22,7 +22,7 @@
                     class="form-control"
                     id="categoria"
                     name="categoria"
-                />
+                    required/>
             </div>
             <div class="mb-3">
                 <label for="nivel_intensidad" class="form-label">Nivel Intensidad</label>
@@ -31,7 +31,7 @@
                     class="form-control"
                     id="nivel_intensidad"
                     name="nivel_intensidad"
-                />
+                    required/>
             </div>
             <div class="mb-3">
                 <label for="referencia_visual" class="form-label">Referencia Visual</label>
@@ -40,7 +40,7 @@
                     class="form-control"
                     id="referencia_visual"
                     name="referencia_visual"
-                />
+                    required/>
             </div>
             <div class="mb-3">
                 <label for="descripcion_ejercicio" class="form-label">Descripcion Ejercicio</label>
@@ -49,7 +49,7 @@
                     class="form-control"
                     id="descripcion_ejercicio"
                     name="descripcion_ejercicio"
-                />
+                    required/>
             </div>
             <div class="mb-3">
                 <label for="nombre_ejercicio" class="form-label">Nombre Ejercicio</label>
@@ -58,7 +58,7 @@
                     class="form-control"
                     id="nombre_ejercicio"
                     name="nombre_ejercicio"
-                />
+                    required/>
             </div>
             <div class="mb-3">
                 <label for="imagen_ejercicio" class="form-label">Imagen Ejercicio</label>
@@ -67,9 +67,13 @@
                     class="form-control"
                     id="imagen_ejercicio"
                     name="imagen_ejercicio"
-                />
+                    required/>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- cancelar -->
+            <a href="/admin/admindashboard/ejercicios">
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </a>
         </form>
     </div>
 </div>

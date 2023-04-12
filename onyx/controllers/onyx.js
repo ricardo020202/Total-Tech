@@ -6,9 +6,12 @@ const Dieta = require("../models/dietas");
 const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
+const flash = require("connect-flash");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
+const Usuario = require("../models/usuario");
+const Favoritos = require("../models/programa_dieta_cliente");
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -34,17 +37,16 @@ exports.getCatEjercicios = (req, res, next) => {
 };
 
 exports.getCatEntrenamientos = async (req, res, next) => {
-
-    const start = req.params.start ? req.params.start : 0
     const consulta_total = await EntrenamientoModel.getTotal();
     const total = consulta_total[0][0].total;
+    const start = req.params.start ? req.params.start : 0;
 
     EntrenamientoModel.fetchAll(start)
         .then(([rows, fieldData]) => {
-            res.render('catEntrenamientos', {
+            res.render("catEntrenamientos", {
                 programa: rows,
-                pagetitle: 'Catálogo de Entrenamientos',
-                user: req.session.user || '',
+                pagetitle: "Catálogo de Entrenamientos",
+                user: req.session.user || "",
                 total_programas: total,
             });
         })
@@ -58,24 +60,21 @@ exports.getCatEntrenamientos = async (req, res, next) => {
             } else {
                 console.log(err);
             }
-        })
-
+        });
 };
 
 exports.getDieta = async (req, res, next) => {
-
-    const numcal = req.params.numcal || '';
-    const consulta_total = await Dieta.getTotal();// [rows, fieldData]
+    const numcal = req.params.numcal || "";
+    const consulta_total = await Dieta.getTotal(); // [rows, fieldData]
     const total = consulta_total[0][0].total;
-
-    const start = req.params.start ? req.params.start : 0
+    const start = req.params.start ? req.params.start : 0;
 
     Dieta.fetchByCal(numcal, start)
         .then(([rows, fieldData]) => {
-            res.render('dietas', {
+            res.render("dietas", {
                 dietas: rows,
-                pagetitle: 'Catálogo de Dietas',
-                user: req.session.user || '',
+                pagetitle: "Catálogo de Dietas",
+                user: req.session.user || "",
                 total_dietas: total,
                 numcal: numcal,
             });
@@ -90,17 +89,30 @@ exports.getDieta = async (req, res, next) => {
             } else {
                 console.log(err);
             }
-        })
-
+        });
 };
 
-exports.getFavoritos = (req, res, next) => {
+exports.getFavoritos = async (req, res, next) => {
     res.render("favoritos", {
         pagetitle: "Favoritos",
         user: req.session.user || "",
     });
 };
 
+exports.deleteFavoritos = (req, res, next) => {
+    const id_favorito = req.params.id_favorito;
+
+    Favoritos.deleteById(id_favorito)
+        .then(([result]) => {
+            req.flash("success", "Se elimino de tus favoritos");
+            res.redirect("/onyx/favoritos");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    res.locals.messeges = req.flash();
+};
 
 // ========== Rutas Bitacora ==========
 exports.getBitacora = (req, res, next) => {
@@ -112,41 +124,77 @@ exports.getBitacora = (req, res, next) => {
     const day = String(today.getDate()).padStart(2, "0");
     const fecha = req.params.fecha || `${year}-${month}-${day}`;
 
-    Bitacora.fetch10(req.session.email)
-        .then(([rows, fieldData]) => {
-            req.session.bit10 = rows;
-            Bitacora.fetchByDate(req.session.email, fecha)
-                .then(([rows, fieldData]) => {
-                    res.render("bitacora", {
-                        pagetitle: "Bitacora",
-                        user: req.session.user || "",
-                        bitacora: rows.filter((row) => row.email === req.session.email),
-                        fecha: fecha,
-                        bit10: req.session.bit10,
-                    });
-                })
-                .catch((err) => {
-                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                        res.render("dbDown", {
-                            pagetitle: "Error",
-                            user: req.session.user || "",
-                        });
-                        return { medidas: [], fechas: [] };
-                    } else {
-                        console.log(err);
-                    }
+    if (req.query.action === "delete" && req.query.id) {
+        const id_bitacora = req.query.id;
+        Bitacora.deleteById(id_bitacora)
+            .then(() => {
+                console.log(
+                    `Bitacora with id ${id_bitacora} has been deleted.`
+                );
+                res.redirect(`/bitacora/${fecha}`);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.render("error", {
+                    message: "Error deleting bitacora record",
+                    error: err,
                 });
+            });
+    } else {
+        Bitacora.fetch10(req.session.email)
+            .then(([rows, fieldData]) => {
+                req.session.bit10 = rows;
+                Bitacora.fetchByDate(req.session.email, fecha)
+                    .then(([rows, fieldData]) => {
+                        res.render("bitacora", {
+                            pagetitle: "Bitacora",
+                            user: req.session.user || "",
+                            bitacora: rows.filter(
+                                (row) => row.email === req.session.email
+                            ),
+                            fecha: fecha,
+                            bit10: req.session.bit10,
+                            csrfToken: req.csrfToken(),
+                        });
+                    })
+                    .catch((err) => {
+                        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                            res.render("dbDown", {
+                                pagetitle: "Error",
+                                user: req.session.user || "",
+                            });
+                            return { medidas: [], fechas: [] };
+                        } else {
+                            console.log(err);
+                        }
+                    });
+            })
+            .catch((err) => {
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                    });
+                } else {
+                    console.log(err);
+                }
+            });
+    }
+};
+
+exports.deleteBitacora = (req, res, next) => {
+    const id_bitacora = req.params.id_bitacora;
+
+    Bitacora.deleteById(id_bitacora)
+        .then(([result]) => {
+            req.flash("success", "Bitacora deleted successfully");
+            res.redirect("/onyx/bitacora");
         })
         .catch((err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                });
-            } else {
-                console.log(err);
-            }
+            console.log(err);
         });
+
+    res.locals.messeges = req.flash();
 };
 
 exports.getNuevaBitacora = (req, res, next) => {
@@ -258,8 +306,7 @@ exports.getDatosIniciales = (req, res, next) => {
         .then(([rows, fieldData]) => {
             if (rows.length === 0) {
                 return res.redirect("/onyx/registrar-datos-iniciales");
-            }
-            else {
+            } else {
                 res.render("datosIniciales", {
                     pagetitle: "Datos Iniciales",
                     user: req.session.user || "",
@@ -299,7 +346,7 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         pr_BenchPress: req.body.inputBenchPress,
         pr_PesoMuerto: req.body.inputPesoMuerto,
         pr_Sentadillas: req.body.inputSentadillas,
-        //peso: req.body.inputWeight,   
+        //peso: req.body.inputWeight,
     });
 
     cliente
@@ -315,14 +362,11 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                cliente
-                    .update()
-                    .then(([rows, fieldData]) => {
-                        res.redirect("/onyx/datos-iniciales");
-                    })
+                cliente.update().then(([rows, fieldData]) => {
+                    res.redirect("/onyx/datos-iniciales");
+                });
             }
         });
-
 };
 
 exports.getTallas = (req, res, next) => {
@@ -453,3 +497,46 @@ exports.postTallas = (req, res, next) => {
             }
         });
 };
+
+exports.getCuenta = (req, res, next) => {
+    Usuario.fetchOne(req.session.email)
+        .then(([rows, fieldData]) => {
+            req.session.usuario = rows
+            Cliente.fetchOne(req.session.email)
+                .then(([rows, fieldData]) => {
+                    req.session.cliente = rows
+                    res.render("cuenta", {
+                        pagetitle: "Cuenta",
+                        user: req.session.user || "",
+                        usuario: req.session.usuario || "",
+                        cliente: req.session.cliente || "",
+                        csrfToken: req.csrfToken(),
+                    });
+                })
+                .catch((err) => {
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                        });
+                        return { medidas: [], fechas: [] };
+                    } else {
+                        console.log(err);
+                    }
+                }
+                );
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        }
+        );
+};
+

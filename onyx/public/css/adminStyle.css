@@ -226,13 +226,39 @@ button:active {
     background-color: #FEF6FB;
 }
 
-.bg-workouts {
+.bg-programas {
     background-color: #FEFBEC;
 }
 
-.bg-users1{
-    background-color: #FEAF00;
+.bg-ejercicio {
+    background-color: #F1FFDE;
 }
+
+.card {
+    /* width and height are optional */
+    height: 300px;
+}
+
+.icon-users {
+    /* change the color of the icon */
+    fill: #74C1ED;
+}
+
+.icon-dietas {
+    /* change the color of the icon */
+    fill: #EE95C5;
+}
+
+.icon-programas {
+    /* change the color of the icon */
+    fill: #F6C762;
+}
+
+.icon-ejercicio {
+    /* change the color of the icon */
+    fill: #A8FF33;
+}
+
 
 .number {
     font-size: 50px;
@@ -265,7 +291,8 @@ td, th {
 
 
 .dashboard{
-    margin-left: 280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .dietas{
@@ -285,10 +312,6 @@ td, th {
     display: flex;
 }
 
-#search-bar {
-    /* white search bar */
-}
-
 #search-bar input {
     /* white search bar */
     background: #FFFFFF;
@@ -298,7 +321,7 @@ td, th {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 200px; /* adjust the value to the maximum width you want the cell to be */
+        max-width: 180px; /* adjust the value to the maximum width you want the cell to be */
 }
 
 .table-title {
@@ -368,4 +391,92 @@ td, th {
     grid-gap: 1rem;
     /* 1rem = 16px */
     margin-top: 5rem;
+}
+
+
+
+
+
+
+/* =============== Nuevo Programa =============== */
+#nuevo-programa{
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    display: flex;
+    margin-left: 10rem;
+
+}
+
+#nuevo-programa input {
+    /* white search bar */
+    background: #FFFFFF;
+    max-width: 100%;
+}
+
+#programa {
+    margin-left: 8rem;
+    margin-top: 15rem;
+    /* elements in a row */
+}
+
+#form-nuevo-programa {
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    margin-top: 5rem;
+}
+
+.nav-link2 {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 0.5rem;
+    align-items: center;
+    grid-row-gap: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link-icon {
+    grid-column: 1;
+    text-align: center;
+}
+
+.nav-link-text {
+    grid-column: 2;
+}
+
+.dash{
+    margin-left: 200px;
 }

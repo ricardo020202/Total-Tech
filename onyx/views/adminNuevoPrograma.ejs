@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="/css/adminStyle.css">
+<%- include('includes/headAdmin.ejs') %>
+<%- include('includes/sidebar.ejs') %> 
+
+
+<!-- make new programa page -->
+<div class="container" id="nuevo-programa">
+    <div class="row">
+        <div class="col-12" id="programa">
+            <h1 class="text-center">Nuevo Programa</h1>
+        </div>
+    </div>
+
+    <!-- form for new programa -->
+    <div class="container" id="form-nuevo-programa">
+        <form action="/admin/admindashboard/programas/nuevoprograma" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <div class="mb-3">
+                <label for="descripcion_programa" class="form-label">Descripcion</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="descripcion_programa"
+                    name="descripcion_programa"
+                    required/>
+            </div>
+
+            <div class="mb-3">
+                <label for="nombre_programa" class="form-label">Nombre Programa</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nombre_programa"
+                    name="nombre_programa"
+                    required/>
+            </div>
+
+            <div class="mb-3">
+                <label for="frecuencia" class="form-label">Frecuencia</label>
+                <input
+                    type="number"
+                    class="form-control"
+                    id="frecuencia"
+                    name="frecuencia"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="ref_visual" class="form-label">Referencia Visual</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="ref_visual"
+                    name="ref_visual"
+                    required/>
+            </div>
+            
+            <div class="mb-3">
+                <label for="img_programa" class="form-label">Imagen Programa</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="img_programa"
+                    name="img_programa"
+                    required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- cancelar -->
+            <a href="/admin/admindashboard/programas">
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </a>
+        </form>
+    </div>
+</div>

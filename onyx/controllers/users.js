@@ -18,7 +18,6 @@ exports.post_signup = (request, response, next) => {
         nombre: request.body.nombre,
         apellido: request.body.apellido,
         contraseña: request.body.password,
-        telefono: request.body.telefono,
     });
     user_nuevo
         .save()
@@ -70,6 +69,7 @@ exports.post_signup = (request, response, next) => {
                 .catch((error) => console.log(error));
         })
         .catch((error) => {
+            console.log(error);
             if (error.code === "ER_DUP_ENTRY") {
                 request.session.mensaje = "El correo electrónico ya está registrado.";
                 response.redirect("/users/signup");

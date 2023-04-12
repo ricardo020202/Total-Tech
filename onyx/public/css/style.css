@@ -7,11 +7,11 @@ body {
 
 .rectangulo {
   background-color: #151515;
-  width: 90px;
+  width: 105px;
   height: 10px;
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 7px;
   z-index: 3;
   rotate: -65.84deg;
   transform: skew(25deg);
@@ -19,11 +19,11 @@ body {
 
 .rectangulo1 {
   background-color: #151515;
-  width: 90px;
+  width: 105px;
   height: 10px;
   position: absolute;
   top: 10px;
-  left: -10px;
+  left: -13px;
   z-index: 3;
   rotate: -65.84deg;
   transform: skew(25deg);
@@ -31,11 +31,11 @@ body {
 
 .rectangulo2 {
   background-color: #151515;
-  width: 69px;
+  width: 82px;
   height: 30px;
   position: absolute;
   top: 10px;
-  left: -35px;
+  left: -38px;
   z-index: 3;
   rotate: -65.84deg;
   transform: skew(25deg);
@@ -44,6 +44,10 @@ body {
 .bg-custom {
   background-color: #d2ca03;
   z-index: 2;
+}
+
+.bg-input {
+  z-index: 1;
 }
 
 .bg-custom-login {
@@ -55,9 +59,20 @@ body {
   z-index: 2;
 }
 
+.bg-signUp {
+  background-color: #151515;
+  z-index: 1;
+}
+
 .bg-footer {
   background-color: black;
   z-index: 2;
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  position: static;
 }
 
 .text-custom {
@@ -131,8 +146,14 @@ body {
     transition: left 300ms ease-in-out;
   }
 
-  .navbar-toggler.collapsed ~ .navbar-collapse {
+  .navbar-toggler.collapsed~.navbar-collapse {
     transition: left 500ms ease-in-out;
+  }
+
+  .search-bar {
+    background-color: black;
+    width: 100%;
+    height: 35px;
   }
 }
 
@@ -717,5 +738,52 @@ tbody {
   border-radius: 9999px;
   box-shadow: inset 2px 5px 10px rgb(0, 0, 0);
   color: #fff;
+}
+
+/* Dropdown chido para la parte de workouts En proceso... Ayudenme si se les ocurre algo pls xd
+.wk-css {
+  background-color: #d2ca03;
+  color: #000000;
+}
+
+.wk-css:after {
+  background-color: #d2ca03;
+  color: #000000;
+  transition: transform 200ms linear;
+} */
+
+#delete-bitacora {
+  /*center the button*/
+  margin: 0 auto;
+  /*display as block*/
+  display: block;
+  /*set the width*/
+  width: 100%;
+  /*set the height*/
+  height: 100%;
+  /*set the background color*/
+  /*set the border*/
+  border: 1px solid #d2ca03;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200px;
+  height: 50%;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: auto;
+}
+
+.table-dark {
+  color: white;
+}
+
+.table-dark th,
+.table-dark td {
+  color: white;
 }
 
