@@ -1,0 +1,78 @@
+<!-- vistas/registrar-rol.ejs -->
+<%- include('includes/head.ejs') %>
+<br><br>
+<br><br>
+<body>
+<h1>Registro de Roles - Onyx</h1>
+<br><br>
+<div class="container">
+        <form action="/onyx/reg_rol" method="post">
+            <div class="form-container">
+            <% if (typeof mensaje !== 'undefined' && mensaje !== '') { %>
+                    <div class="alert alert-success">
+                    <p><%= mensaje %></p>
+                    </div>
+                  <% } %>
+            <label for="nombreRol" >Nombre del Rol:</label>
+            <input type="text" class="form-control" name="nombreRol" id="nombreRol" required>
+            <br><br>
+            <label for="id_cu">Privilegios (IDs separados por comas):</label>
+            <input type="text" name="id_cu" id="id_cu" required>
+            <br><br>
+            <input type="submit" value="Registrar Rol" class="btn btn-primary">
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>"> <br>
+        </form>
+    </div>
+    <div class="table-container">
+
+        <table border="2" cellspacing="5" cellpadding="7">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Privilegio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Registrar Bitacora</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Registrar Alimento</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Registrar Dieta</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Registrar Entrenamiento</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Registrar Rutina</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Registrar Usuario</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Registrar Rol</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    // Esperar 5 segundos y ocultar el mensaje
+    window.onload = () => {
+        setTimeout(() => {
+            document.querySelector('.alert').classList.add('hidden');
+        }, 1500);
+    };
+  </script>
+</body>
+</html>
+<%- include('includes/foot.ejs') %>

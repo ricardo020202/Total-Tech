@@ -6,12 +6,55 @@ const Dieta = require("../models/dietas");
 const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
-const flash = require("connect-flash");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
-const Usuario = require("../models/usuario");
-const Favoritos = require("../models/programa_dieta_cliente");
+const RolUsuario = require('../models/rol_usuario');
+const Rol = require('../models/rol');
+const RolPrivilegio = require('../models/rol_privilegio');
+const db = require('../util/database');
+
+
+exports.getreg_rol = (req, res) => {
+    res.render("reg_rol", {
+      pagetitle: "Registro de Rol",
+      user: req.session.user, // o como se llame la variable en la sesión
+      csrfToken: req.csrfToken(),
+      mensaje: req.session.mensaje || ""
+    });
+};
+
+exports.postreg_rol = function (req, res) {
+    const nombreRol = req.body.nombreRol;
+    const { id_rol, id_cu } = req.body;
+    const ids_casos_uso = id_cu.split(',');
+    const rol = new Rol({nombre: nombreRol});
+    const email = req.session.email;
+    const tipoRol = req.body.id_rol;
+    let insertedIdRol;
+    req.session.mensaje = "Rol Registrado Correctamente.";
+
+    rol.save()
+        .then(([result]) => {
+            insertedIdRol = result.insertId;
+            const promises = ids_casos_uso.map((id_caso_uso) => {
+                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
+                console.log(`Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`);
+                return rolPrivilegio.save()
+                    .then(() => console.log(`Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`))
+                    .catch((error) => console.error(`Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`, error));
+            });
+            return Promise.all(promises);
+        })
+        .then(() => {
+            console.log(`Rol guardado correctamente`);
+            res.redirect('back');
+        })
+        .catch((error) => {
+            console.error(error);
+            req.session.mensaje = "Error al registrar el rol.";
+        });
+};
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -575,4 +618,3 @@ exports.postEditarCuenta = (req, res, next) => {
             }
         });
 }
-

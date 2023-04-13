@@ -25,3 +25,4 @@ module.exports = class RolUsuario {
         return db.execute(`UPDATE rol_usuario SET id_rol = 2 WHERE rol_usuario.email = ?`, [email]);
     }
 }
+

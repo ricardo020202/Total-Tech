@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const flash = require("connect-flash");
-
 const onyxController = require("../controllers/onyx");
 
 router.get("/catejercicios", onyxController.getCatEjercicios);
@@ -33,26 +31,24 @@ router.post("/nuevabitacora", onyxController.postNuevaBitacora);
 
 router.get("/datos-iniciales", onyxController.getDatosIniciales);
 
-router.get(
-    "/registrar-datos-iniciales",
-    onyxController.getRegistrarDatosIniciales
-);
+router.get("/registrar-datos-iniciales", onyxController.getRegistrarDatosIniciales);
 
-router.post(
-    "/registrar-datos-iniciales",
-    onyxController.postRegistrarDatosIniciales
-);
+router.post("/registrar-datos-iniciales", onyxController.postRegistrarDatosIniciales);
 
 router.get("/tallas", onyxController.getTallas);
 
 router.post("/tallas", onyxController.postTallas);
 
-// router.get('/modificar-tallas', onyxController.getTallas);
+router.get('/modificar-tallas', onyxController.getTallas);
 
-// router.post('/modificar-tallas', onyxController.postTallas);
+router.post('/modificar-tallas', onyxController.postTallas);
 
 router.get("/cuenta", onyxController.getCuenta);
 
 router.get("/editar-cuenta", onyxController.getEditarCuenta);
+
+router.get('/reg_rol', onyxController.getreg_rol);
+
+router.post('/reg_rol', onyxController.postreg_rol);
 
 module.exports = router;
