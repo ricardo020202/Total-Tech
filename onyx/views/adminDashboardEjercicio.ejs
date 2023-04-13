@@ -3,7 +3,7 @@
     src="https://kit.fontawesome.com/77587b01e9.js"
     crossorigin="anonymous"
 ></script>
-<%- include('includes/head.ejs') %>
+<%- include('includes/headAdmin.ejs') %>
 <%- include('includes/sidebar.ejs') %>
 
 <div class="table-responsive">
@@ -42,9 +42,9 @@
                 <td><%= ejercicio[i].nombre_ejercicio %></td>
                 <td class="cell-class"><%= ejercicio[i].imagen_ejercicio %></td>
                 <td class="crud button">
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </td>
+                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+                        </td>
             </tr>
             <% } %>
 

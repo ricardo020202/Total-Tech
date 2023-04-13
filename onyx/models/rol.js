@@ -15,6 +15,10 @@ module.exports = class Rol {
         return db.execute('SELECT * FROM rol');
     }
 
+    static fetchAllButUsers() {
+        return db.execute('SELECT * FROM rol WHERE nombreRol != "cliente"');
+    }
+
     static fetchName(){
         return db.execute('SELECT nombreRol FROM rol');
     }

@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="/css/adminStyle.css">
-<%- include('includes/head.ejs') %>
+<%- include('includes/headAdmin.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
-<h1>Registrar Usuario</h1>
-
 <div class="container">
 <div class="spacer"></div>
 
@@ -16,8 +14,11 @@
     <form action="/admin/admindashboard/userprivileges/add" method="POST">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
       <label for="email">Email:</label>
+      <% if (email) { %>
+        <input type="text" name="email" value="<%= email %>" required><br><br>
+      <% } else { %>
       <input type="text" name="email" required><br><br>
-  
+      <% } %>
       <label for="role">Rol:</label>
       <select name="role">
         <% for (let i = 0; i < roles.length; i++) { %>

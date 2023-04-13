@@ -50,4 +50,11 @@ module.exports = class Usuario {
     static fetchOne(email) {
         return db.execute('SELECT * FROM usuario WHERE email = ?', [email]);
     }
+
+    static changePassword(email, password) {
+        return bcrypt.hash(password, 12)
+            .then(hashedPassword => {
+                return db.execute('UPDATE usuario SET contraseña = ? WHERE email = ?', [hashedPassword, email]);
+            });
+    }
 }

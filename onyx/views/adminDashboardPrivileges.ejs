@@ -1,4 +1,4 @@
-<%- include('includes/head.ejs') %> 
+<%- include('includes/headAdmin.ejs') %> 
 <%- include('includes/sidebar.ejs') %>
 
 <link rel="stylesheet" href="/css/adminStyle.css" />
@@ -38,7 +38,12 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+                                        <a
+                                            href="/admin/admindashboard/userprivileges/add/<%= user.email %>"
+                                            class="btn btn-custom"
+                                            role="button"> Editar
+                                        </a>
+                                        <br><br>
                                         <form
                                             method="post"
                                             action="/admin/admindashboard/userprivileges/delete/<%= user.email %>"
@@ -48,12 +53,7 @@
                                                 name="_csrf"
                                                 value="<%= csrfToken %>"
                                             />
-                                            <button
-                                                type="submit"
-                                                class="btn btn-danger"
-                                            >
-                                                Delete
-                                            </button>
+                                            <button type="submit" class="btn btn-outline-dark">Delete </button>
                                         </form>
                                         
                                     </td>

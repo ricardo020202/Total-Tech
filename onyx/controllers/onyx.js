@@ -540,3 +540,39 @@ exports.getCuenta = (req, res, next) => {
         );
 };
 
+
+exports.getEditarCuenta = (req, res, next) => {
+    res.render("editarCuenta", {
+        pagetitle: "Editar Cuenta",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postEditarCuenta = (req, res, next) => {
+    const usuario = new UsuarioModel({
+        email: req.session.email,
+        nombre: req.body.inputNombre,
+        apellido: req.body.inputApellido,
+        telefono: req.body.inputTelefono,
+        direccion: req.body.inputDireccion,
+        password: req.body.inputPassword,
+    });
+    usuario
+        .save()
+        .then((result) => {
+            res.redirect("/onyx/cuenta");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+}
+

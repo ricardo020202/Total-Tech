@@ -1,4 +1,4 @@
-<%- include('includes/head.ejs') %> 
+<%- include('includes/headAdmin.ejs') %> 
 <%- include('includes/sidebar.ejs') %>
 
 <link rel="stylesheet" href="/css/adminStyle.css" />
@@ -21,7 +21,7 @@
                             />
                         </svg>
                         <h5 class="card-title">Dietas</h5>
-                        <p class="number card-text text-end">13</p>
+                        <p class="number card-text text-end"><%= total_dieta %></p>
                     </div>
                 </div>
             </a>
@@ -41,7 +41,7 @@
                             />
                         </svg>
                         <h5 class="card-title">Ejercicios</h5>
-                        <p class="number card-text text-end">13</p>
+                        <p class="number card-text text-end"><%= total_ejercicio %></p>
                     </div>
                 </div>
             </a>
@@ -61,7 +61,7 @@
                             />
                         </svg>
                         <h5 class="card-title">Programas</h5>
-                        <p class="number card-text text-end">10</p>
+                        <p class="number card-text text-end"><%= total_programa %></p>
                     </div>
                 </div>
             </a>
@@ -81,7 +81,7 @@
                             />
                         </svg>
                         <h5>Usuarios</h5>
-                        <p class="number card-text text-end">243</p>
+                        <p class="number card-text text-end"><%= total_cliente %></p>
                     </div>
                 </div>
             </a>
