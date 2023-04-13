@@ -182,7 +182,8 @@ CREATE TABLE programa_dieta_cliente(
 
 CREATE TABLE sesiones(
     id_sesion INT NOT NULL AUTO_INCREMENT,
-    fecha DATE NOT NULL
+    fecha DATE NOT NULL ,
+    PRIMARY KEY(id_sesion)
 );    
 
 /*INSERTS - USUARIO*/
