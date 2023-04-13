@@ -180,6 +180,11 @@ CREATE TABLE programa_dieta_cliente(
 
 );
 
+CREATE TABLE sesiones(
+    id_sesion INT NOT NULL AUTO_INCREMENT,
+    fecha DATE NOT NULL
+);    
+
 /*INSERTS - USUARIO*/
 
 INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.gomez@gmail.com','María','Gómez','M3kHd8','+1 (555)123-4567');
