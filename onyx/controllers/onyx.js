@@ -29,6 +29,7 @@ exports.getreg_rol = (req, res) => {
     });
 };
 
+// CORREGIR ESTA FUNCION, ELIMINAR RUTAS QUE NO HACEN NADA xd
 exports.postreg_rol = (req, res, next) => {
     const email = req.session.email;
     const tipoRol = req.body.id_rol;
