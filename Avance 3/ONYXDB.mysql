@@ -184,13 +184,6 @@ CREATE TABLE sesiones(
     id_sesion INT NOT NULL AUTO_INCREMENT,
     fecha DATE NOT NULL
 );    
-CREATE TABLE `talla` (
-  `id_medida` int(11) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `extremidad` varchar(50) NOT NULL,
-  `medida` int(11) NOT NULL,
-  `fecha` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*INSERTS - USUARIO*/
 
