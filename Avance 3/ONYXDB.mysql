@@ -180,6 +180,11 @@ CREATE TABLE programa_dieta_cliente(
 
 );
 
+CREATE TABLE sesiones(
+    id_sesion INT NOT NULL AUTO_INCREMENT,
+    fecha DATE NOT NULL
+);    
+
 /*INSERTS - USUARIO*/
 
 INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.gomez@gmail.com','María','Gómez','M3kHd8','+1 (555)123-4567');
@@ -369,6 +374,8 @@ INSERT INTO programa_ejercicio(id_programa, id_ejercicio) VALUES (2,1);
 INSERT INTO programa_ejercicio(id_programa, id_ejercicio) VALUES (3,1);
 INSERT INTO programa_ejercicio(id_programa, id_ejercicio) VALUES (4,2);
 INSERT INTO programa_ejercicio(id_programa, id_ejercicio) VALUES (2,4);
+
+
 
 
 /* DEFINICION DE LAS LLAVES FORANEAS */
