@@ -22,4 +22,3 @@ module.exports = class RolPrivilegio {
       
 }
 
-module.exports = RolPrivilegio;

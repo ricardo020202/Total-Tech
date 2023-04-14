@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <title>Modificar rol</title>
     <link rel="stylesheet" href="/css/adminStyle.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -21,49 +20,23 @@
             <label for="rol">Selecciona un rol:</label>
             <select id="rol" name="rol">
               <% roles.forEach(function(role) { %>
-              <option value="<%= role.id_rol %>"><%= role.nombreRol %></option>
+                <option value="<%= role.id_rol %>"><%= role.nombreRol %></option>
               <% }); %>
             </select>
             <br>
-            <label for="privilegios">Privilegios:</label>
-            <div class="privilege-form">
-              <div class="form-group">
-                <label for="privilege1">Privilegio 1:</label>
-                <select id="privilege1" name="privilege[]" class="form-control privilege-select" placeholder="Agregar Privilegio">
-                  <option value="">Selecciona un privilegio</option>
-                  <% privileges.forEach(function(privilege) { %>
-                  <option value="<%= privilege.id_privilegio %>"><%= privilege.nombrecu %></option>
-                  <% }); %>
-                </select>
-              </div>
-            </div>
-            <button type="button" class="btn btn-secondary add-privilege">Agregar Privilegio</button>
+            <label>Privilegios:</label>
+            <br>
+            <% privileges.forEach(function(privilege) { %>
+              <input type="checkbox" id="privilege_ <%= privilege.id_privilegio %> " name="privilege_<%= privilege.id_privilegio %>" value="<%= privilege.id_privilegio %>" class="form-check-input">
+              <label for="privilege_<%= privilege.id_privilegio %>" class="form-check-label"><%= privilege.nombrecu %></label>
+              <br>
+            <% }); %>
             <br><br>
             <input type="submit" value="Modificar rol">
           </form>
         </div>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function() {
-        $('.add-privilege').click(function() {
-          var newPrivilege = $('.privilege-form .form-group').length + 1;
-          var html = '<div class="form-group">';
-          html += '<label for="privilege' + newPrivilege + '">Privilegio ' + newPrivilege + ':</label>';
-          html += '<select id="privilege' + newPrivilege + '" name="privilege[]" class="form-control privilege-select" placeholder="Agregar Privilegio">';
-          html += '<option value="">Selecciona un privilegio</option>';
-          var selectedPrivileges = $('.privilege-select').map(function() { return $(this).val(); }).get();
-          <% privileges.forEach(function(privilege) { %>
-          if ($.inArray('<%= privilege.id_privilegio %>', selectedPrivileges) == -1) {
-            html += '<option value="<%= privilege.id_privilegio %>"><%= privilege.nombrePriv %></option>';
-          }
-          <% }); %>
-          html += '</select>';
-          html += '</div>';
-          $('.privilege-form').append(html);
-        });
-      });
-    </script>
   </body>
 </html>
+

@@ -347,6 +347,7 @@ exports.getAdminDashboard = async (req, res, next) => {
         total_ejercicio: total_ejercicio || "",
         total_cliente: total_cliente || "",
         total_programa: total_programa || "",
+        csrfToken: req.csrfToken()
     });
 };
 
@@ -381,11 +382,10 @@ exports.getAdminModRol = (req, res, next) => {
           console.log(error);
         }
       });    
-  };
+};
   
 exports.postAdminModRol = (req, res, next) => {
-    const rol = req.body.rol;
-    const privilegios = req.body.privilegios;
-    
+    console.log(req.body);
 };
+
   
