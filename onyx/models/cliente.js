@@ -48,4 +48,8 @@ module.exports = class Cliente {
     static getTotal(){
         return db.execute('SELECT COUNT(*) as total FROM cliente');
     }
+
+    static updateEmail(email, newEmail){
+        return db.execute('UPDATE cliente SET email = ? WHERE email = ?', [newEmail, email]);
+    }
 }

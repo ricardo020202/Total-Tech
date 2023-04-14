@@ -1,0 +1,60 @@
+<%- include('includes/head.ejs') %>
+
+<div class="container">
+    <div class="container mt-5">
+        <br />
+        <br />
+        <h1 class="fw-bold text-start">Editar Cuenta</h1>
+        <p class="lead text-start">
+            Llena los campos necesarios para editar tu cuenta
+        </p>
+    </div>
+
+    <!-- form for edit account -->
+    <div class="container">
+        <form action="/onyx/editarcuenta" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <!-- <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nombre"
+                    name="nombre"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="apellido"
+                    name="apellido"
+                    required/>
+            </div> -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    required/>
+            </div>
+            <button type="submit" class="btn btn-primary" id="editarcuenta">Submit</button>
+            <!-- cancelar -->
+            <a href="/onyx/cuenta" class="btn btn-danger" id="cancelar">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+<%- include('includes/foot.ejs') %>
