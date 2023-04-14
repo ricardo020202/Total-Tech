@@ -34,4 +34,9 @@ router.get('/admindashboard/programas/nuevoprograma', adminController.getAdminNu
 
 router.post('/admindashboard/programas/nuevoprograma', adminController.postAdminNuevoPrograma);
 
+router.get('/admindashboard/reg_rol', adminController.getadminreg_rol);
+
+router.post('/admindashboard/reg_rol', adminController.postadminreg_rol);
+
+
 module.exports = router;

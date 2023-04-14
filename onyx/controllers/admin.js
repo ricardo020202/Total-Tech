@@ -11,9 +11,12 @@ const Cliente = require("../models/cliente");
 const Rol = require('../models/rol');
 const usuario = require("../models/usuario");
 const RolUsuario = require('../models/rol_usuario');
+const RolPrivilegio = require('../models/rol_privilegio');
+const db = require('../util/database');
 
 
-exports.getreg_rol = (req, res, next) => {
+
+exports.getadminreg_rol = (req, res, next) => {
     Rol.fetchAll()
       .then(([rows]) => {
         const csrfToken = req.csrfToken();
@@ -34,7 +37,7 @@ exports.getreg_rol = (req, res, next) => {
       .catch(err => console.log(err));
   };
 
-exports.postreg_rol = function (req, res) {
+exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
     const { id_rol, id_cu } = req.body;
     const ids_casos_uso = id_cu.split(',');

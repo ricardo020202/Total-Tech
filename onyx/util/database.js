@@ -3,7 +3,6 @@ const mysql = require('mysql2');
 //Switch as necesary
 
 // Mac database
-
 // const pool = mysql.createPool({
 //     host: 'localhost',
 //     user: 'root',
@@ -11,7 +10,6 @@ const mysql = require('mysql2');
 //     port: 8889,
 //     password: 'root',
 // });
-
 // const pool = mysql.createPool({
 //     host: 'localhost',
 //     user: 'root',
@@ -19,10 +17,7 @@ const mysql = require('mysql2');
 //     port: 8889,
 //     password: 'lol23',
 // });
-
-
 //  Erik database
-
 // const pool = mysql.createPool({
 //     host: 'localhost',
 //     user: 'erik',
@@ -30,14 +25,10 @@ const mysql = require('mysql2');
 //     password: 'erik',
 //     port: 8889,
 // });
-
 // Windows database
-
-
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    database: 'onyx',
     database: 'onyx',
     password: '',
 });
