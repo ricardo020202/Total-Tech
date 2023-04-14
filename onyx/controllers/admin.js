@@ -12,6 +12,60 @@ const Rol = require('../models/rol');
 const usuario = require("../models/usuario");
 const RolUsuario = require('../models/rol_usuario');
 
+
+exports.getreg_rol = (req, res, next) => {
+    Rol.fetchAll()
+      .then(([rows]) => {
+        const csrfToken = req.csrfToken();
+        const roles = rows.map(row => {
+        return {id: row.id_rol, nombre: row.nombreRol};
+        });
+
+        res.render('reg_rol', { 
+            
+          pagetitle: 'Registrar Rol',
+          mensaje: req.session.mensaje, 
+          user: req.session.email,
+          roles: rows ,
+          csrfToken: csrfToken
+          
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+exports.postreg_rol = function (req, res) {
+    const nombreRol = req.body.nombreRol;
+    const { id_rol, id_cu } = req.body;
+    const ids_casos_uso = id_cu.split(',');
+    const rol = new Rol({nombre: nombreRol});
+    const email = req.session.email;
+    const tipoRol = req.body.id_rol;
+    let insertedIdRol;
+    req.session.mensaje = "Rol Registrado Correctamente.";
+
+    rol.save()
+        .then(([result]) => {
+            insertedIdRol = result.insertId;
+            const promises = ids_casos_uso.map((id_caso_uso) => {
+                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
+                console.log(`Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`);
+                return rolPrivilegio.save()
+                    .then(() => console.log(`Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`))
+                    .catch((error) => console.error(`Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`, error));
+            });
+            return Promise.all(promises);
+        })
+        .then(() => {
+            console.log(`Rol guardado correctamente`);
+            res.redirect('back');
+        })
+        .catch((error) => {
+            console.error(error);
+            req.session.mensaje = "Error al registrar el rol.";
+        });
+};
+
 exports.getAdminDashboardEjercicios= async (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
