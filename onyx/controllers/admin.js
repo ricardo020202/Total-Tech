@@ -11,6 +11,9 @@ const Cliente = require("../models/cliente");
 const Rol = require('../models/rol');
 const usuario = require("../models/usuario");
 const RolUsuario = require('../models/rol_usuario');
+const RolPrivilegio = require('../models/rol_privilegio');
+const Privilegio = require('../models/privilegio');
+
 
 exports.getAdminDashboardEjercicios= async (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -346,3 +349,43 @@ exports.getAdminDashboard = async (req, res, next) => {
         total_programa: total_programa || "",
     });
 };
+
+
+exports.getAdminModRol = (req, res, next) => {
+    let roles = [];
+    let privileges = [];
+    Privilegio.fetchAll()
+      .then(privilegesRows => {
+        privileges = privilegesRows;
+        return Rol.fetchAll();
+      })
+      .then(rolesRows => {
+        roles = rolesRows;
+        console.log(roles[0]);
+        console.log(privileges[0]);
+        res.render("modrol", {
+          roles: roles[0],
+          privileges: privileges[0],
+          pagetitle: "Modificar rol",
+          user: req.session.user || "",
+          csrfToken: req.csrfToken()
+        });
+      })
+      .catch(error => {
+        if (error.code === "PROTOCOL_CONNECTION_LOST") {
+          res.render("dbDown", {
+            pagetitle: "Error",
+            user: req.session.user || "",
+          });
+        } else {
+          console.log(error);
+        }
+      });    
+  };
+  
+exports.postAdminModRol = (req, res, next) => {
+    const rol = req.body.rol;
+    const privilegios = req.body.privilegios;
+    
+};
+  
