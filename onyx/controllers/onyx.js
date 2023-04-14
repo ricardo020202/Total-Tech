@@ -15,14 +15,26 @@ const RolPrivilegio = require('../models/rol_privilegio');
 const db = require('../util/database');
 
 
-exports.getreg_rol = (req, res) => {
-    res.render("reg_rol", {
-      pagetitle: "Registro de Rol",
-      user: req.session.user, // o como se llame la variable en la sesión
-      csrfToken: req.csrfToken(),
-      mensaje: req.session.mensaje || ""
-    });
-};
+exports.getreg_rol = (req, res, next) => {
+    Rol.fetchAll()
+      .then(([rows]) => {
+        const csrfToken = req.csrfToken();
+        const roles = rows.map(row => {
+        return {id: row.id_rol, nombre: row.nombreRol};
+        });
+
+        res.render('reg_rol', { 
+            
+          pagetitle: 'Registrar Rol',
+          mensaje: req.session.mensaje, 
+          user: req.session.email,
+          roles: rows ,
+          csrfToken: csrfToken
+          
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
 exports.postreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
