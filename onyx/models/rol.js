@@ -6,10 +6,11 @@ module.exports = class Rol {
     }
 
     save() {
-        return db.execute('INSERT INTO rol (nombre) VALUES (?)',
-            [this.nombre]
-        );
-    }
+        if (!this.nombre) {
+          throw new Error('Nombre de rol no definido');
+        }
+        return db.execute('INSERT INTO rol (nombreRol) VALUES (?)', [this.nombre]);
+      }
 
     static fetchAll() {
         return db.execute('SELECT * FROM rol');

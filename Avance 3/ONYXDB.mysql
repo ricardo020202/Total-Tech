@@ -132,7 +132,7 @@ CREATE TABLE dieta(
     proteinas INT NOT NULL,
     grasas INT NOT NULL,
     carbohidratos INT NOT NULL,
-    calorias INT NOT NULL,
+    no_calorias INT NOT NULL,
     fibra_total FLOAT,
     ceniza FLOAT,
     calcio FLOAT,

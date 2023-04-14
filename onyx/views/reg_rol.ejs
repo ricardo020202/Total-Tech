@@ -1,0 +1,93 @@
+<!-- vistas/registrar-rol.ejs -->
+<%- include('includes/head.ejs') %>
+<br><br>
+<br><br>
+<body>
+  <div class="container">
+    <h1 class="text-center">Registro de Roles - Onyx</h1>
+    <div class="row justify-content-center">
+      <form class="col-6" action="/onyx/reg_rol" method="post">
+        <div class="form-group">
+          <% if (typeof mensaje !== 'undefined' && mensaje !== '') { %>
+          <div class="alert alert-success">
+            <p><%= mensaje %></p>
+          </div>
+          <% } %>
+          <label for="nombreRol">Nombre del Rol:</label>
+          <input type="text" class="form-control" name="nombreRol" id="nombreRol" required>
+        </div>
+        <div class="form-group">
+          <label for="id_cu">Privilegios (IDs separados por comas):</label>
+          <input type="text" name="id_cu" id="id_cu" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Registrar Rol</button>
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+      </form>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-6">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Privilegio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Registrar Bitacora</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Registrar Alimento</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Registrar Dieta</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Registrar Entrenamiento</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Registrar Rutina</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Registrar Usuario</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Registrar Rol</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <div class="table-container" style="overflow-y: scroll;">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre del Rol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% roles.forEach(function(rol) { %>
+              <tr>
+                <td><%= rol.id_rol %></td>
+                <td><%= rol.nombreRol %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('includes/foot.ejs') %>
+</body>
+</html>

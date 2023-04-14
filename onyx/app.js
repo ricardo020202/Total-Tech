@@ -27,6 +27,7 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const csrfProtection = csrf();
 app.use(csrfProtection);
