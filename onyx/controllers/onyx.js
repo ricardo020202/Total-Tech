@@ -63,6 +63,35 @@ exports.getCatEntrenamientos = async (req, res, next) => {
         });
 };
 
+
+
+
+exports.getDetallePrograma = (req, res, next) => {
+    
+    const id_programa = req.params.id_programa;
+
+    EntrenamientoModel.fetchById(id_programa)
+        .then(([rows, fieldData]) => {
+            res.render("programaDetallado", {
+                detalles: rows,
+                pagetitle: "Detalles de Programa",
+                user: req.session.user || "",
+            });
+            
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { detalles: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
 exports.getDieta = async (req, res, next) => {
     const numcal = req.params.numcal || "";
     const consulta_total = await Dieta.getTotal(); // [rows, fieldData]
@@ -100,9 +129,11 @@ exports.getFavoritos = async (req, res, next) => {
 };
 
 exports.deleteFavoritos = (req, res, next) => {
-    const id_favorito = req.params.id_favorito;
+    const id_dieta = req.params.id_dieta;
+    const id_programa = req.params.id_programa;
+    const tipo = req.params.tipo;
 
-    Favoritos.deleteById(id_favorito)
+    Favoritos.deleteById(id_dieta,id_programa,tipo)
         .then(([result]) => {
             req.flash("success", "Se elimino de tus favoritos");
             res.redirect("/onyx/favoritos");

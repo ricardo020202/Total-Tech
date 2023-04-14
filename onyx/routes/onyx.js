@@ -11,6 +11,10 @@ router.get("/catentrenamientos", onyxController.getCatEntrenamientos);
 
 router.get("/catentrenamientos/:start", onyxController.getCatEntrenamientos);
 
+router.get("/programa", onyxController.getDetallePrograma);
+
+router.get("/programa/:id_programa", onyxController.getDetallePrograma);
+
 router.get("/dietas", onyxController.getDieta);
 
 router.get("/dietas/:start/:numcal", onyxController.getDieta);
