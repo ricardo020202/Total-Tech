@@ -6,68 +6,12 @@ const Dieta = require("../models/dietas");
 const Talla = require("../models/talla");
 const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
+const flash = require("connect-flash");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
 const usuario = require("../models/usuario");
 const Usuario = require("../models/usuario");
 const Favoritos = require("../models/programa_dieta_cliente");
-const RolUsuario = require('../models/rol_usuario');
-const Rol = require('../models/rol');
-const RolPrivilegio = require('../models/rol_privilegio');
-const db = require('../util/database');
-
-exports.getreg_rol = (req, res, next) => {
-    Rol.fetchAll()
-      .then(([rows]) => {
-        const csrfToken = req.csrfToken();
-        const roles = rows.map(row => {
-        return {id: row.id_rol, nombre: row.nombreRol};
-        });
-
-        res.render('reg_rol', { 
-            
-          pagetitle: 'Registrar Rol',
-          mensaje: req.session.mensaje, 
-          user: req.session.email,
-          roles: rows ,
-          csrfToken: csrfToken
-          
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-exports.postreg_rol = function (req, res) {
-    const nombreRol = req.body.nombreRol;
-    const { id_rol, id_cu } = req.body;
-    const ids_casos_uso = id_cu.split(',');
-    const rol = new Rol({nombre: nombreRol});
-    const email = req.session.email;
-    const tipoRol = req.body.id_rol;
-    let insertedIdRol;
-    req.session.mensaje = "Rol Registrado Correctamente.";
-
-    rol.save()
-        .then(([result]) => {
-            insertedIdRol = result.insertId;
-            const promises = ids_casos_uso.map((id_caso_uso) => {
-                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
-                console.log(`Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`);
-                return rolPrivilegio.save()
-                    .then(() => console.log(`Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`))
-                    .catch((error) => console.error(`Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`, error));
-            });
-            return Promise.all(promises);
-        })
-        .then(() => {
-            console.log(`Rol guardado correctamente`);
-            res.redirect('back');
-        })
-        .catch((error) => {
-            console.error(error);
-            req.session.mensaje = "Error al registrar el rol.";
-        });
-};
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -119,9 +63,6 @@ exports.getCatEntrenamientos = async (req, res, next) => {
         });
 };
 
-
-
-
 exports.getDetallePrograma = (req, res, next) => {
     
     const id_programa = req.params.id_programa;
@@ -131,6 +72,32 @@ exports.getDetallePrograma = (req, res, next) => {
             res.render("programaDetallado", {
                 detalles: rows,
                 pagetitle: "Detalles de Programa",
+                user: req.session.user || "",
+            });
+            
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { detalles: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
+exports.getDetalleDieta = (req, res, next) => {
+    
+    const id_dieta = req.params.id_dieta;
+
+    Dieta.fetchById(id_dieta)
+        .then(([rows, fieldData]) => {
+            res.render("dietaDetallada", {
+                detalles: rows,
+                pagetitle: "Detalles de dieta",
                 user: req.session.user || "",
             });
             
@@ -662,5 +629,4 @@ exports.postEditarCuenta = (req, res, next) => {
             }
         });
 }
-
 
