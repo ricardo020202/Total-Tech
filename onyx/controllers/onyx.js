@@ -63,9 +63,6 @@ exports.getCatEntrenamientos = async (req, res, next) => {
         });
 };
 
-
-
-
 exports.getDetallePrograma = (req, res, next) => {
     
     const id_programa = req.params.id_programa;
@@ -75,6 +72,32 @@ exports.getDetallePrograma = (req, res, next) => {
             res.render("programaDetallado", {
                 detalles: rows,
                 pagetitle: "Detalles de Programa",
+                user: req.session.user || "",
+            });
+            
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { detalles: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
+exports.getDetalleDieta = (req, res, next) => {
+    
+    const id_dieta = req.params.id_dieta;
+
+    Dieta.fetchById(id_dieta)
+        .then(([rows, fieldData]) => {
+            res.render("dietaDetallada", {
+                detalles: rows,
+                pagetitle: "Detalles de dieta",
                 user: req.session.user || "",
             });
             

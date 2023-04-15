@@ -15,6 +15,10 @@ router.get("/programa", onyxController.getDetallePrograma);
 
 router.get("/programa/:id_programa", onyxController.getDetallePrograma);
 
+router.get("/dieta", onyxController.getDetalleDieta);
+
+router.get("/dieta/:id_dieta", onyxController.getDetalleDieta);
+
 router.get("/dietas", onyxController.getDieta);
 
 router.get("/dietas/:start/:numcal", onyxController.getDieta);
