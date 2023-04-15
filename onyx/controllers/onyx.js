@@ -629,4 +629,3 @@ exports.postEditarCuenta = (req, res, next) => {
             }
         });
 }
-
