@@ -209,8 +209,8 @@ exports.getFavoritos = async (req, res, next) => {
 };
 
 exports.postFavoritos = (req, res, next) => {
-    const id_dieta = req.params.id_dieta || "";
-    const id_programa = req.params.id_programa || "";
+    const id_dieta = req.params.id_dieta || null;
+    const id_programa = req.params.id_programa || null;
     const tipo = req.params.tipo;
 
     const favorito = new Favoritos({
@@ -231,8 +231,8 @@ exports.postFavoritos = (req, res, next) => {
 };
 
 exports.deleteFavoritos = (req, res, next) => {
-    const id_dieta = req.params.id_dieta || "";
-    const id_programa = req.params.id_programa || "";
+    const id_dieta = req.params.id_dieta || null;
+    const id_programa = req.params.id_programa || null;
     const tipo = req.params.tipo;
 
     Favoritos.deleteById(id_dieta,id_programa,tipo)
