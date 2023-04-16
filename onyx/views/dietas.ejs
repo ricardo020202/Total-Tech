@@ -1,4 +1,6 @@
 <%- include('includes/head.ejs') %>
+<link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
     <div class="container">
         <div class="spacer"></div>
@@ -135,7 +137,8 @@
                         
                         <a href="/onyx/dieta/<%= dietas[i].id_dieta%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                         <br />
-                        <a href="#" class="masinfo">AGREGAR A FAVORITOS</a>
+                        <a href="/onyx/favoritos/add/<%= dietas[i].id_dieta%>/<%= dietas[i].id_dieta%>/dieta" class="fav"><i class="bi bi-star"></i></a>
+                        <!-- <i class="bi bi-star-fill fav"></i> -->
                     </div>
                 </div>
             </div>

@@ -1,9 +1,6 @@
 /* Proyecto ONYX - Tecnologico de Monterrey - Campus Queretaro BASE DE DATOS DE ONYX */
 /* Creado por el equipo de desarrollo de bases de datos de Total-Tech*/
 
-
-
-DROP DATABASE IF EXISTS onyx;
 CREATE DATABASE Onyx;
 USE Onyx;
 
@@ -132,7 +129,7 @@ CREATE TABLE dieta(
     proteinas INT NOT NULL,
     grasas INT NOT NULL,
     carbohidratos INT NOT NULL,
-    no_calorias INT NOT NULL,
+    calorias INT NOT NULL,
     fibra_total FLOAT,
     ceniza FLOAT,
     calcio FLOAT,
@@ -173,11 +170,10 @@ CREATE TABLE programa_dieta_cliente(
     id_dieta INT NOT NULL,
     email VARCHAR(30) NOT NULL,
     tipo VARCHAR(20) NOT NULL,
-    PRIMARY KEY(id_programa, id_dieta, email),
+    PRIMARY KEY(id_programa, id_dieta, email, tipo),
     FOREIGN KEY(id_programa) REFERENCES programa(id_programa),
     FOREIGN KEY(id_dieta) REFERENCES dieta(id_dieta),
     FOREIGN KEY(email) REFERENCES usuario(email)
-
 );
 
 CREATE TABLE sesiones(

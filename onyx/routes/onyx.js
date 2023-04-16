@@ -25,7 +25,9 @@ router.get("/bitacora", onyxController.getBitacora);
 
 router.get("/favoritos", onyxController.getFavoritos);
 
-router.get("/favoritos/delete/:id_dieta/:id_programa/:tipo", onyxController.getFavoritos);
+router.get("/favoritos/delete/:id_dieta/:id_programa/:tipo", onyxController.deleteFavoritos);
+
+router.get("/favoritos/add/:id_dieta/:id_programa/:tipo", onyxController.postFavoritos);
 
 router.get("/dashboard", onyxController.getDashboard);
 

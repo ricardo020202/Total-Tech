@@ -1,5 +1,6 @@
 <%- include('includes/head.ejs') %>
-
+<link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
 <div class="container">
     <div class="spacer">
@@ -36,8 +37,7 @@
                             <!-- que va a hacer el boton start -->
                             <a href="/onyx/programa/<%= programa[i].id_programa%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                             <br>
-                            <!--quitar el más info, no? -->
-                            <a href="#" class="masinfo">AGREGAR A FAVORITOS</a>
+                            <a href="/onyx/favoritos/add/<%= programa[i].id_programa%>/<%= programa[i].id_programa%>/programa" class="fav"><i class="bi bi-star"></i></a>
                         </div>
                     </div>
                 </div>

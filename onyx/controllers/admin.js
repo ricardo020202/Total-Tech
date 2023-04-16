@@ -371,7 +371,7 @@ exports.getAdminDashboardPrivileges=(req, res, next) => {
         });
       })
       .catch(error => {
-        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+        if (error.code === "PROTOCOL_CONNECTION_LOST") {
             res.render("dbDown", {
                 pagetitle: "Error",
                 user: req.session.user || "",

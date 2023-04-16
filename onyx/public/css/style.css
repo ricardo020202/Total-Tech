@@ -787,3 +787,8 @@ tbody {
   color: white;
 }
 
+.fav{
+  color: #d2ca03;
+  font-size: 120%;
+  margin-right: 0;
+}
