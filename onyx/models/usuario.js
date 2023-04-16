@@ -57,4 +57,17 @@ module.exports = class Usuario {
                 return db.execute('UPDATE usuario SET contraseña = ? WHERE email = ?', [hashedPassword, email]);
             });
     }
+
+    static addRol(email, rol, fecha) {
+        return db.execute('INSERT INTO rol_usuario (email, id_rol, fecha) VALUES (?, ?, ?)', [email, rol, fecha]);
+    }
+
+    static getPrivilegiosOne(email) {
+        return db.execute(`
+            SELECT p.nombrecu
+            FROM privilegio p, rol_privilegio rp, rol r, rol_usuario ru, usuario u
+            WHERE u.email = ? AND u.email = ru.email AND ru.id_rol = r.id_rol
+            AND rp.id_rol = r.id_rol AND rp.id_cu = p.id_cu
+        `, [email]);
+    }  
 }
