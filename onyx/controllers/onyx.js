@@ -70,8 +70,6 @@ exports.postreg_rol = function (req, res) {
         });
 };
 
-
-
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
@@ -216,15 +214,13 @@ exports.deleteFavoritos = (req, res, next) => {
     const tipo = req.params.tipo;
 
     Favoritos.deleteById(id_dieta,id_programa,tipo)
-        .then(([result]) => {
+        .then(([rows, fieldData]) => {
             req.flash("success", "Se elimino de tus favoritos");
             res.redirect("/onyx/favoritos");
         })
         .catch((err) => {
             console.log(err);
         });
-
-    res.locals.messeges = req.flash();
 };
 
 // ========== Rutas Bitacora ==========

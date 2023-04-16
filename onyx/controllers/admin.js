@@ -323,7 +323,6 @@ exports.deleteAdminDashboarUser = (req, res, next) => {
 
     RolUsuario.deleteById(email)
         .then(([rows, fieldData]) => {
-            console.log(rows);
             req.flash("success", "Se elimino usuario");
             res.redirect("/admin/admindashboard/userprivileges");
         })
