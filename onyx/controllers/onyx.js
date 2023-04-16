@@ -100,12 +100,29 @@ exports.getCatEntrenamientos = async (req, res, next) => {
 
     EntrenamientoModel.fetchAll(start)
         .then(([rows, fieldData]) => {
-            res.render("catEntrenamientos", {
-                programa: rows,
-                pagetitle: "Catálogo de Entrenamientos",
-                user: req.session.user || "",
-                total_programas: total,
-            });
+            EntrenamientoModel.isFavorite(req.session.email, "programa")
+                .then(([rows2, fieldData2]) => {
+                    const favArray = rows2.map((row) => { return row.id_programa; });
+                    console.log(favArray);
+                    res.render("catEntrenamientos", {
+                        programa: rows,
+                        pagetitle: "Catálogo de Entrenamientos",
+                        user: req.session.user || "",
+                        total_programas: total,
+                        favoritos: favArray,
+                    });
+                })
+                .catch((err) => {
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                        });
+                        return { medidas: [], fechas: [] };
+                    } else {
+                        console.log(err);
+                    }
+                });
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -240,7 +257,12 @@ exports.postFavoritos = (req, res, next) => {
     favorito.save()
         .then(([rows, fieldData]) => {
             req.flash("success", "Se agrego a tus favoritos");
-            res.redirect("/onyx/dietas");
+            if (tipo == "dieta") {
+                res.redirect("/onyx/dietas");
+            }
+            if (tipo == "programa") {
+                res.redirect("/onyx/catentrenamientos");
+            }
         })
         .catch((err) => {
             console.log(err);

@@ -137,7 +137,6 @@
                         
                         <a href="/onyx/dieta/<%= dietas[i].id_dieta%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                         <br />
-                        <%favoritos.isArray%>
                         <% if (favoritos.includes(dietas[i].id_dieta)) {%>
                             <a href="/onyx/favoritos/add/<%= dietas[i].id_dieta%>/0/dieta" class="fav"><i class="bi bi-star-fill"></i></a>
                         <% } else { %>
