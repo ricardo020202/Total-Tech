@@ -122,7 +122,7 @@
     <div class="container text-center">
         
         <div class="row align-items-start">
-            <% for (let i=0; i < dietas.length; i++) { %>
+            <% for (let i=1; i < dietas.length; i++) { %>
             <div class="col">
                 <div class="cards" style="width: 18rem">
                     <img src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/health/wp-content/uploads/2022/01/foods_to_eat_to_lose_weight.jpeg"
@@ -137,7 +137,12 @@
                         
                         <a href="/onyx/dieta/<%= dietas[i].id_dieta%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                         <br />
-                        <a href="/onyx/favoritos/add/<%= dietas[i].id_dieta%>/<%= dietas[i].id_dieta%>/dieta" class="fav"><i class="bi bi-star"></i></a>
+                        <%favoritos.isArray%>
+                        <% if (favoritos.includes(dietas[i].id_dieta)) {%>
+                            <a href="/onyx/favoritos/add/<%= dietas[i].id_dieta%>/0/dieta" class="fav"><i class="bi bi-star-fill"></i></a>
+                        <% } else { %>
+                            <a href="/onyx/favoritos/add/<%= dietas[i].id_dieta%>/0/dieta" class="fav"><i class="bi bi-star"></i></a>
+                        <% } %>
                         <!-- <i class="bi bi-star-fill fav"></i> -->
                     </div>
                 </div>

@@ -180,13 +180,30 @@ exports.getDieta = async (req, res, next) => {
 
     Dieta.fetchByCal(numcal, start)
         .then(([rows, fieldData]) => {
-            res.render("dietas", {
-                dietas: rows,
-                pagetitle: "Catálogo de Dietas",
-                user: req.session.user || "",
-                total_dietas: total,
-                numcal: numcal,
-            });
+            Dieta.isFavorite(req.session.email, "dieta")
+                .then(([rows2, fieldData2]) => {
+                    const favArray = rows2.map((row) => row.id_dieta);
+                    console.log(favArray);
+                    res.render("dietas", {
+                        dietas: rows,
+                        pagetitle: "Catálogo de Dietas",
+                        user: req.session.user || "",
+                        total_dietas: total,
+                        numcal: numcal,
+                        favoritos: favArray,
+                    });
+                })
+                .catch((err) => {
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                        });
+                        return { medidas: [], fechas: [] };
+                    } else {
+                        console.log(err);
+                    }
+                });
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {

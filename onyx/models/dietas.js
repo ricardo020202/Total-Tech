@@ -103,8 +103,11 @@ module.exports = class Dieta {
         );
     }
 
-
     static deleteById(id_dieta) {
         return db.execute('DELETE FROM dieta WHERE id_dieta = ?', [id_dieta]);
+    }
+
+    static isFavorite(email, tipo) {
+        return db.execute('SELECT id_dieta FROM programa_dieta_cliente WHERE email = ? AND tipo = ?', [email, tipo]);
     }
 }

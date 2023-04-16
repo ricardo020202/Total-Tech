@@ -25,7 +25,7 @@
 
         <div class="container text-center">
             <div class="row align-items-start">
-                <% for (let i=0; i < programa.length; i++) { %>
+                <% for (let i=1; i < programa.length; i++) { %>
                 <div class="col">
                     <div class="cards" style="width: 18rem;">
                         <img style="object-fit: cover;" src="<%programa[i].img_programa%>"
@@ -37,7 +37,7 @@
                             <!-- que va a hacer el boton start -->
                             <a href="/onyx/programa/<%= programa[i].id_programa%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                             <br>
-                            <a href="/onyx/favoritos/add/<%= programa[i].id_programa%>/<%= programa[i].id_programa%>/programa" class="fav"><i class="bi bi-star"></i></a>
+                            <a href="/onyx/favoritos/add/0/<%= programa[i].id_programa%>/programa" class="fav"><i class="bi bi-star"></i></a>
                         </div>
                     </div>
                 </div>
