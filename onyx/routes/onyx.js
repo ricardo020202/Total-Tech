@@ -61,6 +61,12 @@ router.get("/cambiarPassword", onyxController.getCambiarPassword);
 
 router.post("/cambiarPassword", onyxController.postCambiarPassword);
 
+router.post("/cuenta", onyxController.postCuenta);
+
+router.get("/fotoperfil", onyxController.getFotoPerfil);
+
+router.post("/fotoperfil", onyxController.postFotoPerfil);
+
 //router.get('/reg_rol', onyxController.getreg_rol);
 
 //router.post('/reg_rol', onyxController.postreg_rol);

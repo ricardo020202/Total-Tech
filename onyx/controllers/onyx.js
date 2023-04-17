@@ -662,6 +662,29 @@ exports.getCuenta = (req, res, next) => {
         );
 };
 
+exports.postCuenta = (req, res, next) => {
+
+    console.log(req.file);
+    const usuario = new Usuario({
+        email: req.session.email,
+        nombre: req.body.inputNombre,
+        apellidos: req.body.inputApellidos,
+        user_pic: req.file.filename,
+    });
+    usuario
+        .save()
+        .then((result) => {
+            console.log(rows);
+            console.log(result);
+            console.log("Usuario actualizado");
+            res.redirect("/onyx/cuenta");
+            res.status(300).redirect("/onyx/cuenta");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
 
 exports.getCambiarPassword= (req, res, next) => {
     res.render("cambiarPassword", {
@@ -744,6 +767,40 @@ exports.postCambiarPassword = (req, res, next) => {
         }
         );
 };
+
+exports.getFotoPerfil = (req, res, next) => {
+    res.render("fotoperfil", {
+        pagetitle: "Foto de Perfil",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postFotoPerfil = (req, res, next) => {
+    const usuario = new Usuario({
+        email: req.session.email,
+        user_pic: req.file.filename,
+    });
+    usuario
+        .save()
+        .then((result) => {
+            res.redirect("/onyx/cuenta");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
+
+
 //     bcrypt.compare(req.body.contraseña, req.session.password, (err, result) => {
 //         if (err) {
 //             console.log(err);
