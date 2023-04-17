@@ -13,6 +13,7 @@ const usuario = require("../models/usuario");
 const Usuario = require("../models/usuario");
 const Favoritos = require("../models/programa_dieta_cliente");
 
+
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
@@ -124,6 +125,13 @@ exports.getDieta = async (req, res, next) => {
 exports.getFavoritos = async (req, res, next) => {
     res.render("favoritos", {
         pagetitle: "Favoritos",
+        user: req.session.user || "",
+    });
+};
+
+exports.getConsultarFav = async (req, res, next) => {
+    res.render("ConsFavs", {
+        pagetitle: "ConsultarFavoritos",
         user: req.session.user || "",
     });
 };

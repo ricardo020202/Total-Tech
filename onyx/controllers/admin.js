@@ -385,7 +385,22 @@ exports.getAdminModRol = (req, res, next) => {
 };
   
 exports.postAdminModRol = (req, res, next) => {
-    console.log(req.body);
-};
-
+    const idRol = req.body.rol;
+    const privileges = req.body['privilege[]'];
+  
+    // Delete existing RolPrivilegio records for the given idRol
+    RolPrivilegio.deleteByRol(idRol)
+      .then(() => {
+        // Insert new RolPrivilegio records for each privilege in the array
+        privileges.forEach((privilege) => {
+          const rolPrivilegio = new RolPrivilegio(idRol, privilege);
+          rolPrivilegio.save();
+        });
+        res.redirect('/admin/adminDashboard/modrol');
+      })
+      .catch((err) => {
+        console.log(err);
+        next(err);
+      });
+  };
   
