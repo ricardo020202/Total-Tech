@@ -694,33 +694,6 @@ exports.getCambiarPassword= (req, res, next) => {
     });
 };
 
-exports.postEditarCuenta = (req, res, next) => {
-    const usuario = new Usuario({
-        email: req.session.email,
-        nombre: req.body.inputNombre,
-        apellido: req.body.inputApellido,
-        telefono: req.body.inputTelefono,
-        direccion: req.body.inputDireccion,
-        password: req.body.inputPassword,
-    });
-    usuario
-        .save()
-        .then((result) => {
-            res.redirect("/onyx/cuenta");
-        })
-        .catch((err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                });
-                return { medidas: [], fechas: [] };
-            } else {
-                console.log(err);
-            }
-        });
-}
-
 
 exports.postCambiarPassword = (req, res, next) => {
     const { contraseña, newPassword, confirmPassword } = req.body;
@@ -798,47 +771,3 @@ exports.postFotoPerfil = (req, res, next) => {
             }
         });
 };
-
-
-
-//     bcrypt.compare(req.body.contraseña, req.session.password, (err, result) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         if (result) {
-//             const email = req.session.email;
-//             usuario.changePassword(email, newPassword)
-//                 .then((result) => {
-//                     console.log(result);
-//                     console.log("Password cambiada");
-//                     res.redirect("/onyx/cuenta");
-//                 }
-//                 )
-//                 .catch((err) => {
-//                     console.log(err);
-//                 });
-//         } else {
-//             res.redirect("/onyx/cambiarPassword");
-//         }
-//     });
-// };
-
-//     compare = bcrypt.compareSync(contraseña, req.session.password);
-
-//     if (!compare) {
-//         return res.redirect("/onyx/cambiarPassword");
-//     }
-
-//     const email = req.session.email;
-
-//     usuario.changePassword(email, newPassword)
-//         .then((result) => {
-//             console.log(result);
-//             console.log("Password cambiada");
-//             res.redirect("/onyx/cuenta");
-//         }
-//         )
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// };
