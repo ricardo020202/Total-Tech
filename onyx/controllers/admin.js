@@ -440,7 +440,9 @@ exports.postAdminModRol = (req, res, next) => {
       });
   };
   
-  exports.getadminreg_rol = (req, res, next) => {
+exports.getadminreg_rol = (req, res, next) => {
+    const mensaje = req.query.mensaje === 'success' ? 'Rol registrado correctamente.' : '';
+
     Rol.fetchAll()
       .then(([rows]) => {
         const csrfToken = req.csrfToken();
@@ -448,32 +450,35 @@ exports.postAdminModRol = (req, res, next) => {
         return {id: row.id_rol, nombre: row.nombreRol};
         });
 
+        
         res.render('reg_rol', { 
 
           pagetitle: 'Registrar Rol',
-          mensaje: req.session.mensaje, 
+          mensaje: mensaje, 
           user: req.session.email,
           roles: rows ,
           csrfToken: csrfToken
 
         });
+        res.locals.mensaje = "";
       })
       .catch(err => console.log(err));
-      req.session.mensaje = "";
+
   };
 
 exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
-    const { id_rol, id_cu } = req.body;
-    const ids_casos_uso = id_cu.split(',');
+    const { id_rol, privilegios } = req.body;
+    const ids_casos_uso = Array.isArray(privilegios) ? privilegios : [privilegios];
     const rol = new Rol({nombre: nombreRol});
     const email = req.session.email;
     const tipoRol = req.body.id_rol;
     let insertedIdRol;
-    req.session.mensaje = "Rol Registrado Correctamente.";
+    
 
     rol.save()
         .then(([result]) => {
+            req.app.locals.mensaje = "Rol Registrado Correctamente.";
             insertedIdRol = result.insertId;
             const promises = ids_casos_uso.map((id_caso_uso) => {
                 const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
@@ -486,7 +491,7 @@ exports.postadminreg_rol = function (req, res) {
         })
         .then(() => {
             console.log(`Rol guardado correctamente`);
-            res.redirect('back');
+            res.redirect('/admin/adminDashboard/reg_rol?mensaje=success');
         })
         .catch((error) => {
             console.error(error);
