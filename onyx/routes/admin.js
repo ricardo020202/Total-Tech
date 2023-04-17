@@ -44,4 +44,9 @@ router.post('/admindashboard/reg_rol', adminController.postadminreg_rol);
 
 
 
+router.get("/admindashboard/modrol",adminController.getAdminModRol);
+
+router.post("/admindashboard/modrol",adminController.postAdminModRol);
+
+
 module.exports = router;

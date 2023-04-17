@@ -1,0 +1,33 @@
+<div class="spacer"></div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 id="titulopagina">Mis Dietas Favoritas</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <% if(dietasFavoritas.length > 0) { %>
+        <% dietasFavoritas.forEach(function(dieta) { %>
+        <div class="col">
+            <div class="cards" style="width: 18rem;">
+                <img src="<%= dieta.imagen %>"
+                    class="card-img-top" alt="Imagen de <%= dieta.nombre %>">
+                <div class="card-body">
+                    <h5 class="card-title"><%= dieta.nombre %></h5>
+                    <p class="card-text"><%= dieta.descripcion %></p>
+                    <a href="/dietas/<%= dieta.id %>" class="btn btn-primary">Ver más</a>
+                    <br>
+                    <form action="/dietas/favoritas/<%= dieta.id %>?_method=DELETE" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger">Eliminar de Favoritos</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+        <% } else { %>
+        <div class="col">
+            <p>No has agregado dietas a tus favoritos aún</p>
+        </div>
+        <% } %>
+    </div>
+</div>
