@@ -459,6 +459,7 @@ exports.postAdminModRol = (req, res, next) => {
         });
       })
       .catch(err => console.log(err));
+      req.session.mensaje = "";
   };
 
 exports.postadminreg_rol = function (req, res) {
