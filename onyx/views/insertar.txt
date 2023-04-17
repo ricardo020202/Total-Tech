@@ -1,0 +1,12 @@
+<!-- <div class="mb-3">
+                <label for="nombre_programa" class="form-label">Nombre Programa</label>
+                <select name="nombre_programa" id="nombre_programa">
+                    <option value=""></option>
+                    <% for (let i=0; i < programa.length; i++) { %> 
+                        <option value="<%= programa[i].nombre_programa %>"><%= programa[i].nombre_programa %></option>
+                    <% } %>
+                </select>
+            </div> -->
+
+            pa q no se me vata la idea xd
+            att el namu
