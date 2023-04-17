@@ -38,9 +38,9 @@
                             <a href="/onyx/programa/<%= programa[i].id_programa%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                             <br>
                             <% if (favoritos.includes(programa[i].id_programa)) {%>
-                                <a href="/onyx/favoritos/delete/0/<%= programa[i].id_programa%>/programa" class="fav"><i class="bi bi-star-fill"></i></a>
+                                <a href="/onyx/favoritos/delete/1/<%= programa[i].id_programa%>/programa" class="fav"><i class="bi bi-star-fill"></i></a>
                             <% } else { %>
-                                <a href="/onyx/favoritos/add/0/<%= programa[i].id_programa%>/programa" class="fav"><i class="bi bi-star"></i></a>
+                                <a href="/onyx/favoritos/add/1/<%= programa[i].id_programa%>/programa" class="fav"><i class="bi bi-star"></i></a>
                             <% } %>
                         </div>
                     </div>
