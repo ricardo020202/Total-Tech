@@ -1,6 +1,7 @@
 /* Proyecto ONYX - Tecnologico de Monterrey - Campus Queretaro BASE DE DATOS DE ONYX */
 /* Creado por el equipo de desarrollo de bases de datos de Total-Tech*/
 
+DROP DATABASE Onyx;
 CREATE DATABASE Onyx;
 USE Onyx;
 
@@ -256,14 +257,14 @@ INSERT INTO alimento(unidad, cantidad, descripcion_alimento) VALUES ('gramos',15
 
 /*INSERTS - DIETA*/
 
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'comodin'),
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (152,95,308,2700,35.1,17.7,1482.4,2156.4,18.9,1.4,2.9,23.7,37.2,2271.8,27.0,18.2,28.9,865.7,3993.7,1781.7,16.1,485.1,2.2,4.5,0.0,389.2);
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (100,50,200,1800,25.0,15.0,800.0,1200.0,10.0,1.0,2.0,20.0,20.0,1500.0,15.0,10.0,20.0,500.0,2500.0,1000.0,10.0,400.0,2.0,3.0,0.0,300.0);
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (120,80,220,2000,30.0,20.0,1000.0,1500.0,12.0,1.2,2.5,25.0,25.0,1800.0,18.0,12.0,22.0,550.0,3000.0,1200.0,12.0,450.0,2.5,3.5,0.0,350.0);
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (130,70,240,2200,32.5,22.0,1100.0,1600.0,14.0,1.3,2.7,27.5,27.5,1950.0,20.0,13.0,24.0,600.0,3250.0,1300.0,14.0,500.0,3.0,4.0,0.0,375.0);
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (135, 90, 340, 2800, 30.5, 18.3, 1350.7, 1950.9, 22.5, 1.3, 2.7, 21.9, 33.6, 2150.3, 27.3, 16.5, 26.2, 800.9, 3600.8, 1590.2, 15.7, 470.4, 2.0, 4.1, 0.0, 365.2);
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (90,50,150,1500,10.5,9.3,700.2,800.3,12.3,0.8,1.6,12.9,27.6,1050.8,15.7,10.1,12.5,324.8,1587.2,761.9,9.8,259.4,1.4,2.1,0.0,219.7);
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (110,60,200,1800,15.0,10.8,950.6,1020.9,14.2,1.2,2.2,15.3,30.7,1378.6,18.6,12.3,14.9,415.6,1976.3,991.2,10.7,303.8,1.7,2.9,0.0,259.8);
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, nombre_dieta) VALUES (152,95,308,2700,35.1,17.7,1482.4,2156.4,18.9,1.4,2.9,23.7,37.2,2271.8,27.0,18.2,28.9,865.7,3993.7,1781.7,16.1,485.1,2.2,4.5,0.0,389.2, 'Dieta 1');
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, nombre_dieta) VALUES (152,95,308,2700,35.1,17.7,1482.4,2156.4,18.9,1.4,2.9,23.7,37.2,2271.8,27.0,18.2,28.9,865.7,3993.7,1781.7,16.1,485.1,2.2,4.5,0.0,389.2, 'Dieta 2');
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, nombre_dieta) VALUES (100,50,200,1800,25.0,15.0,800.0,1200.0,10.0,1.0,2.0,20.0,20.0,1500.0,15.0,10.0,20.0,500.0,2500.0,1000.0,10.0,400.0,2.0,3.0,0.0,300.0, 'Dieta 3');
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato,nombre_dieta) VALUES (120,80,220,2000,30.0,20.0,1000.0,1500.0,12.0,1.2,2.5,25.0,25.0,1800.0,18.0,12.0,22.0,550.0,3000.0,1200.0,12.0,450.0,2.5,3.5,0.0,350.0,'Dieta 4');
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato,nombre_dieta) VALUES (130,70,240,2200,32.5,22.0,1100.0,1600.0,14.0,1.3,2.7,27.5,27.5,1950.0,20.0,13.0,24.0,600.0,3250.0,1300.0,14.0,500.0,3.0,4.0,0.0,375.0,'Dieta 5');
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato,nombre_dieta) VALUES (135, 90, 340, 2800, 30.5, 18.3, 1350.7, 1950.9, 22.5, 1.3, 2.7, 21.9, 33.6, 2150.3, 27.3, 16.5, 26.2, 800.9, 3600.8, 1590.2, 15.7, 470.4, 2.0, 4.1, 0.0, 365.2,'Dieta 6');
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato,nombre_dieta) VALUES (90,50,150,1500,10.5,9.3,700.2,800.3,12.3,0.8,1.6,12.9,27.6,1050.8,15.7,10.1,12.5,324.8,1587.2,761.9,9.8,259.4,1.4,2.1,0.0,219.7,'Dieta 7');
+INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato,nombre_dieta) VALUES (110,60,200,1800,15.0,10.8,950.6,1020.9,14.2,1.2,2.2,15.3,30.7,1378.6,18.6,12.3,14.9,415.6,1976.3,991.2,10.7,303.8,1.7,2.9,0.0,259.8,'Dieta 8');
 
 
 
@@ -353,10 +354,11 @@ INSERT INTO admin(email) VALUES ('jose.martinez@yahoo.com');
 /* INSERT - PROGRAMA_DIETA_CLIENTE */
 
 INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email) VALUES ('1','4','maria.gomez@gmail.com');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email) VALUES ('2','2','sofia.estrada@yahoo.com');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email) VALUES ('4','3','clara.hernandez@gmail.com');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email) VALUES ('3','1','juan.sanchez@gmail.com');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email) VALUES ('2','3','pablo.flores@yahoo.com');
+INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('1','4','maria.gomez@gmail.com', 'programa');
+INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('2','2','sofia.estrada@yahoo.com', 'programa');
+INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('4','3','clara.hernandez@gmail.com', 'programa');
+INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('3','1','juan.sanchez@gmail.com', 'dieta');
+INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('2','3','pablo.flores@yahoo.com', 'dieta');
 
 /* INSERTS - rol_usuario */ 
 
