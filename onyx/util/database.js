@@ -3,13 +3,23 @@ const mysql = require('mysql2');
 //Switch as necesary
 
 // Mac database
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'Onyx',
-    port: 8889,
-    password: 'root',
-});
+
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'Onyx',
+//     port: 8889,
+//     password: 'root',
+// });
+
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'Onyx',
+//     port: 8889,
+//     password: 'lol23',
+// });
+
 // const pool = mysql.createPool({
 //     host: 'localhost',
 //     user: 'root',
@@ -26,12 +36,25 @@ const pool = mysql.createPool({
 //     port: 8889,
 // });
 
+// Windows database
+
+
 // const pool = mysql.createPool({
 //     host: 'localhost',
 //     user: 'root',
-//     database: 'onyx2',
+//     database: 'onyx',
+//     database: 'onyx',
 //     password: '',
 // });
+
+// Windows database
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'onyx',
+    password: '',
+});
+>>>>>>> editar_programa
 
 
 module.exports = pool.promise();
