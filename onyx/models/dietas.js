@@ -7,8 +7,6 @@ module.exports = class Dieta {
         this.proteinas = dieta.proteinas;
         this.carbohidratos = dieta.carbohidratos;
         this.grasas = dieta.grasas;
-        this.micronutrientes = dieta.micronutrientes;
-        this.macronutrientes = dieta.macronutrientes;
         this.fibra_total = dieta.fibra_total || 0;
         this.ceniza = dieta.ceniza || 0;
         this.calcio = dieta.calcio || 0;
@@ -70,7 +68,6 @@ module.exports = class Dieta {
     {
         if (numcal  == 0)
         {
-    
             return db.execute('SELECT * FROM dieta ORDER BY calorias  LIMIT ?, 9', [start]);
         }
         

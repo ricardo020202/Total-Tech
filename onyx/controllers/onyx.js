@@ -103,7 +103,6 @@ exports.getCatEntrenamientos = async (req, res, next) => {
             EntrenamientoModel.isFavorite(req.session.email, "programa")
                 .then(([rows2, fieldData2]) => {
                     const favArray = rows2.map((row) => { return row.id_programa; });
-                    console.log(favArray);
                     res.render("catEntrenamientos", {
                         programa: rows,
                         pagetitle: "Catálogo de Entrenamientos",
@@ -143,8 +142,9 @@ exports.getDetallePrograma = (req, res, next) => {
 
     EntrenamientoModel.fetchById(id_programa)
         .then(([rows, fieldData]) => {
+            console.log(rows[0])
             res.render("programaDetallado", {
-                detalles: rows,
+                detalles: rows[0],
                 pagetitle: "Detalles de Programa",
                 user: req.session.user || "",
             });
@@ -169,8 +169,9 @@ exports.getDetalleDieta = (req, res, next) => {
 
     Dieta.fetchById(id_dieta)
         .then(([rows, fieldData]) => {
+            console.log(rows)
             res.render("dietaDetallada", {
-                detalles: rows,
+                detalles: rows[0],
                 pagetitle: "Detalles de dieta",
                 user: req.session.user || "",
             });
@@ -200,7 +201,6 @@ exports.getDieta = async (req, res, next) => {
             Dieta.isFavorite(req.session.email, "dieta")
                 .then(([rows2, fieldData2]) => {
                     const favArray = rows2.map((row) => row.id_dieta);
-                    console.log(favArray);
                     res.render("dietas", {
                         dietas: rows,
                         pagetitle: "Catálogo de Dietas",
@@ -277,7 +277,12 @@ exports.deleteFavoritos = (req, res, next) => {
     Favoritos.deleteById(id_dieta,id_programa,tipo)
         .then(([rows, fieldData]) => {
             req.flash("success", "Se elimino de tus favoritos");
-            res.redirect("/onyx/favoritos");
+            if (tipo == "dieta") {
+                res.redirect("/onyx/dietas");
+            }
+            if (tipo == "programa") {
+                res.redirect("/onyx/catentrenamientos");
+            }
         })
         .catch((err) => {
             console.log(err);
