@@ -3,11 +3,10 @@
 <%- include('includes/head.ejs') %>
 <body>
   <br><br>
-  <br><br>
-  <div class="container">
+  <div class="container mt-5">
     <h1 class="text-center">Registro de Roles - Onyx</h1>
     <div class="row justify-content-center">
-      <form class="col-6" action="/admin/adminDashboard/reg_rol" method="post">
+      <form class="col-md-6" action="/admin/adminDashboard/reg_rol" method="post">
         <div class="form-group">
           <% if (typeof mensaje !== 'undefined' && mensaje !== '') { %>
           <div class="alert alert-success">
@@ -19,7 +18,7 @@
         </div>
         <label>Privilegios:</label>
         <table class="table table-bordered">
-          <thead class="sticky-header">
+          <thead>
             <tr>
               <th>ID</th>
               <th>Privilegios</th>
@@ -63,13 +62,11 @@
               <td><input type="checkbox" name="privilegios" value="7"></td>
             </tr>
           </tbody>
-      
         </table>
       </div>
-      <div class="col-6">
-        <label>Roles Registrados:</label>
-        <div class="table-container" style="height: 300px; overflow-y: scroll; overflow-y: auto; ">
-            
+      <div class="col-md-6">
+      <label>Roles Registrados:</label>
+        <div class="table-container" style="height: 300px; overflow-y: scroll; overflow-y: auto; "> 
           <table class="table table-bordered" id="tabla-roles">
             <thead class="sticky-header">
               <tr>
@@ -95,7 +92,6 @@
     <input type="hidden" name="_csrf" value="<%=csrfToken%>">
   </form>
   </div>
-  
   </div>
   <%- include('includes/foot.ejs') %>
 </body>
