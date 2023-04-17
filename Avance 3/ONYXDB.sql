@@ -256,7 +256,6 @@ INSERT INTO alimento(unidad, cantidad, descripcion_alimento) VALUES ('gramos',15
 
 /*INSERTS - DIETA*/
 
-INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) VALUES (0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'comodin'),
 INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, nombre_dieta) VALUES (152,95,308,2700,35.1,17.7,1482.4,2156.4,18.9,1.4,2.9,23.7,37.2,2271.8,27.0,18.2,28.9,865.7,3993.7,1781.7,16.1,485.1,2.2,4.5,0.0,389.2, 'Dieta 1');
 INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, nombre_dieta) VALUES (152,95,308,2700,35.1,17.7,1482.4,2156.4,18.9,1.4,2.9,23.7,37.2,2271.8,27.0,18.2,28.9,865.7,3993.7,1781.7,16.1,485.1,2.2,4.5,0.0,389.2, 'Dieta 2');
 INSERT INTO dieta(proteinas, grasas, carbohidratos, calorias, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, nombre_dieta) VALUES (100,50,200,1800,25.0,15.0,800.0,1200.0,10.0,1.0,2.0,20.0,20.0,1500.0,15.0,10.0,20.0,500.0,2500.0,1000.0,10.0,400.0,2.0,3.0,0.0,300.0, 'Dieta 3');
@@ -311,7 +310,6 @@ INSERT INTO `bitacora`(`fecha`, `contenido`, `entreno`, `email`) VALUES (NOW(),'
 
 /*INSERTS - PROGRAMA*/
 
-INSERT INTO programa(frecuencia, nombre_programa, descripcion_programa) VALUES (0, 0, 'comodin', 'comodin', 'comodin', 'comodin'),
 INSERT INTO programa(frecuencia, nombre_programa, descripcion_programa) VALUES (4,'Programa de fuerza','Programa de fuerza para principiantes');
 INSERT INTO programa(frecuencia, nombre_programa, descripcion_programa) VALUES (3,'Programa de hipertrofia','Programa de entrenamiento para aumentar el tamaño muscular');
 INSERT INTO programa(frecuencia, nombre_programa, descripcion_programa) VALUES (5,'Programa de resistencia','Programa de entrenamiento para mejorar la capacidad aeróbica');
@@ -353,7 +351,7 @@ INSERT INTO admin(email) VALUES ('jose.martinez@yahoo.com');
 
 /* INSERT - PROGRAMA_DIETA_CLIENTE */
 
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email) VALUES ('1','4','maria.gomez@gmail.com');
+INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email,tipo) VALUES ('1','4','maria.gomez@gmail.com','dieta');
 INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('1','4','maria.gomez@gmail.com', 'programa');
 INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('2','2','sofia.estrada@yahoo.com', 'programa');
 INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('4','3','clara.hernandez@gmail.com', 'programa');
