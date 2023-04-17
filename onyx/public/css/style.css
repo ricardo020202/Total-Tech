@@ -803,3 +803,10 @@ tbody {
   font-size: 120%;
   margin-right: 0;
 }
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #d2ca03;
+  z-index: 100;
+}
