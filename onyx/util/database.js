@@ -54,7 +54,7 @@ const pool = mysql.createPool({
     database: 'onyx',
     password: '',
 });
->>>>>>> editar_programa
+
 
 
 module.exports = pool.promise();
