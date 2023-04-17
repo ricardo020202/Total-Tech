@@ -716,16 +716,16 @@ exports.getCuenta = (req, res, next) => {
 };
 
 
-exports.getEditarCuenta = (req, res, next) => {
-    res.render("editarCuenta", {
-        pagetitle: "Editar Cuenta",
+exports.getCambiarPassword= (req, res, next) => {
+    res.render("cambiarPassword", {
+        pagetitle: "Cambiar Password",
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
     });
 };
 
 exports.postEditarCuenta = (req, res, next) => {
-    const usuario = new UsuarioModel({
+    const usuario = new Usuario({
         email: req.session.email,
         nombre: req.body.inputNombre,
         apellido: req.body.inputApellido,
@@ -750,3 +750,91 @@ exports.postEditarCuenta = (req, res, next) => {
             }
         });
 }
+
+
+exports.postCambiarPassword = (req, res, next) => {
+    const { contraseña, newPassword, confirmPassword } = req.body;
+
+    if (newPassword !== confirmPassword) {
+        return res.redirect("/onyx/cambiarPassword");
+    }
+
+    if (newPassword === contraseña) {
+        return res.redirect("/onyx/cambiarPassword");
+    }
+
+    Usuario.fetchOne(req.session.email)
+        .then(([rows, fieldData]) => {
+            if (rows.length > 0) {
+                bcrypt.compare(req.body.password, rows[0].contraseña).then((doMatch) => {
+                    if (doMatch) {
+                        usuario.changePassword(req.session.email, newPassword)
+                            .then((result) => {
+                                console.log(result);
+                                console.log("Password cambiada");
+                                res.redirect("/onyx/cuenta");
+                            }
+                            )
+                            .catch((err) => {
+                                console.log(err);
+                            });
+                    } else {
+                        res.redirect("/onyx/cambiarPassword");
+                    }
+                });
+            }
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        }
+        );
+};
+//     bcrypt.compare(req.body.contraseña, req.session.password, (err, result) => {
+//         if (err) {
+//             console.log(err);
+//         }
+//         if (result) {
+//             const email = req.session.email;
+//             usuario.changePassword(email, newPassword)
+//                 .then((result) => {
+//                     console.log(result);
+//                     console.log("Password cambiada");
+//                     res.redirect("/onyx/cuenta");
+//                 }
+//                 )
+//                 .catch((err) => {
+//                     console.log(err);
+//                 });
+//         } else {
+//             res.redirect("/onyx/cambiarPassword");
+//         }
+//     });
+// };
+
+//     compare = bcrypt.compareSync(contraseña, req.session.password);
+
+//     if (!compare) {
+//         return res.redirect("/onyx/cambiarPassword");
+//     }
+
+//     const email = req.session.email;
+
+//     usuario.changePassword(email, newPassword)
+//         .then((result) => {
+//             console.log(result);
+//             console.log("Password cambiada");
+//             res.redirect("/onyx/cuenta");
+//         }
+//         )
+//         .catch((err) => {
+//             console.log(err);
+//         });
+// };

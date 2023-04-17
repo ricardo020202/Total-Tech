@@ -57,7 +57,9 @@ router.post('/modificar-tallas', onyxController.postTallas);
 
 router.get("/cuenta", onyxController.getCuenta);
 
-router.get("/editar-cuenta", onyxController.getEditarCuenta);
+router.get("/cambiarPassword", onyxController.getCambiarPassword);
+
+router.post("/cambiarPassword", onyxController.postCambiarPassword);
 
 router.get('/reg_rol', onyxController.getreg_rol);
 
