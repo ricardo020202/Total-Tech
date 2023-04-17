@@ -31,7 +31,6 @@ CREATE TABLE usuario(
     nombre VARCHAR(50) NOT NULL,
     apellido VARCHAR(50) NOT NULL,
     contraseña VARCHAR(400) NOT NULL,
-    telefono VARCHAR(30) NOT NULL,
     user_pic VARCHAR(200),
     PRIMARY KEY (email)
 );
@@ -185,28 +184,28 @@ CREATE TABLE sesiones(
 
 /*INSERTS - USUARIO*/
 
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.gomez@gmail.com','María','Gómez','M3kHd8','+1 (555)123-4567');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('jose.martinez@yahoo.com','José','Martínez','GhT1w7','+52(33)987-6543');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('lucia.perez@hotmail.com','Lucía','Pérez','XcVbN9','+34 911111111');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('juan.sanchez@gmail.com','Juan','Sánchez','AsDfG1','+1 (408)765-4321');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('carlos.lopez@gmail.com','Carlos','López','QwErT7','+52 (55)5555-5555');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('ana.ramirez@hotmail.com','Ana','Ramírez','ZxTyU2','+34 912222222');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pablo.flores@yahoo.com','Pablo','Flores','KjHgF4','+1 (415)123-4567');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('clara.hernandez@gmail.com','Clara','Hernández','VbNmL0','+52(55)1234-5678');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('oscar.ortega@hotmail.com','Óscar','Ortega','PoiUy6','+34 913333333');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('sofia.estrada@yahoo.com','Sofía','Estrada','NmLkJ9','+1 (650)765-4321');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('luisa.mendez@yahoo.com','Luisa','Méndez','L0pKj8','+34 917 777 777'); 
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('david.fernandez@hotmail.com','David','Fernández','ZxAsD5','+1 (408) 111-2222');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('juan.rodriguez@gmail.com','Juan','Rodríguez','aBc123','+34 912 345 678');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('ana.perez@hotmail.com','Ana','Pérez','qWe456','+34 910 111 222');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('carlos.sanchez@yahoo.com','Carlos','Sánchez','zXc789','+34 913 456 789');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('laura.garcia@gmail.com','Laura','García','sEd123','+34 916 777 888');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pedro.lopez@hotmail.com','Pedro','López','dFg456','+34 918 222 333');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('maria.martin@yahoo.com','María','Martín','gHi789','+34 914 777 555');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('jose.fernandez@hotmail.com','José','Fernández','jKl123','+34 915 444 555');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('lucia.gonzalez@gmail.com','Lucía','González','mNo456','+34 919 555 666');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('pablo.ruiz@yahoo.com','Pablo','Ruiz','pQr789','+34 917 444 777');
-INSERT INTO usuario(email, nombre, apellido, contraseña, telefono) VALUES ('clara.hernandez@hotmail.com','Clara','Hernández','tUv123','+34 914 222 777');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('maria.gomez@gmail.com','María','Gómez','M3kHd8');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('jose.martinez@yahoo.com','José','Martínez','GhT1w7');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('lucia.perez@hotmail.com','Lucía','Pérez','XcVbN9');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('juan.sanchez@gmail.com','Juan','Sánchez','AsDfG1');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('carlos.lopez@gmail.com','Carlos','López','QwErT7');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('ana.ramirez@hotmail.com','Ana','Ramírez','ZxTyU2');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('pablo.flores@yahoo.com','Pablo','Flores','KjHgF4');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('clara.hernandez@gmail.com','Clara','Hernández','VbNmL0');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('oscar.ortega@hotmail.com','Óscar','Ortega','PoiUy6');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('sofia.estrada@yahoo.com','Sofía','Estrada','NmLkJ9');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('luisa.mendez@yahoo.com','Luisa','Méndez','L0pKj8');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('david.fernandez@hotmail.com','David','Fernández','ZxAsD5');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('juan.rodriguez@gmail.com','Juan','Rodríguez','aBc123');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('ana.perez@hotmail.com','Ana','Pérez','qWe456');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('carlos.sanchez@yahoo.com','Carlos','Sánchez','zXc789');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('laura.garcia@gmail.com','Laura','García','sEd123');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('pedro.lopez@hotmail.com','Pedro','López','dFg456');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('maria.martin@yahoo.com','María','Martín','gHi789');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('jose.fernandez@hotmail.com','José','Fernández','jKl123');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('lucia.gonzalez@gmail.com','Lucía','González','mNo456');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('pablo.ruiz@yahoo.com','Pablo','Ruiz','pQr789');
+INSERT INTO usuario(email, nombre, apellido, contraseña) VALUES ('clara.hernandez@hotmail.com','Clara','Hernández','tUv123');
 
 /*INSERTS - CLIENTE*/
 
