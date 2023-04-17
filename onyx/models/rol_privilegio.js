@@ -22,3 +22,4 @@ class RolPrivilegio {
       
 }
 
+module.exports = RolPrivilegio;
