@@ -1,0 +1,32 @@
+<%- include('includes/head.ejs') %>
+
+<div class="container">
+    <div class="container mt-5">
+        <br />
+        <br />
+        <h1 class="fw-bold text-start">Subir foto</h1>
+        <p class="lead text-start">
+            Sube una foto de perfil
+        </p>
+    </div>
+
+    <!-- form for upload photo -->
+    <div class="container">
+        <form method="POST" action="/onyx/fotoperfil" enctype="multipart/form-data">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <div class="mb-3">
+                <label for="photo" class="form-label">Foto</label>
+                <input
+                    type="file"
+                    class="form-control"
+                    id="user_pic"
+                    name="user_pic"
+                    value="registrar"
+                    required/>
+            </div>
+            <button type="submit" class="btn btn-primary" id="changePassword">Submit</button>
+            <!-- cancelar -->
+        </form>
+</div>
+
+<%- include('includes/foot.ejs') %>

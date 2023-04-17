@@ -1,4 +1,7 @@
 <%- include('includes/head.ejs') %>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script
     src="https://kit.fontawesome.com/77587b01e9.js"
@@ -7,39 +10,105 @@
 
 <!-- profile page -->
 <div class="p-lg-5">
+    <div class="row col-8 rounded mx-auto mt-5 p-2">
+        <div class="col-4">
+            <% for (let i=0; i < usuario.length; i++) { %>
 
-<div class="row col-8  rounded mx-auto mt-5 p-2">
-    <div class="col-4">
-        <% for (let i=0; i < usuario.length; i++) { %>
+            <img
+                src="/uploads/<%= usuario[i].foto %>"
+                alt="profile-pic"
+                class="img-fluid rounded-circle d-flex justify-content-center"
+                style="width: 180px; height: 180px; object-fit: cover"
+            />
+            <div class="text-center p-3">
+                <a href="/onyx/cambiarpassword"><i class="fas fa-key"></i></a>
+                <a href="/onyx/fotoperfil"><i class="fas fa-camera"></i></a>
+                <!-- Button to trigger the modal -->
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#uploadModal"
+                >
+                    Upload Photo
+                </button>
 
-        <img src="/assets/manu.jpeg" alt="profile-pic"  class="img-fluid rounded-circle d-flex justify-content-center" style="width: 180px; height: 180px; object-fit: cover;"/>
-        <div class="text-center p-3">
-            <a href="/onyx/cambiarpassword"><i class="fas fa-key"></i></a>
-            <!-- <button class="mx-auto m-1 btn-sm btn btn-warning">Eliminar</button> -->
+                <!-- Modal -->
+                <div
+                    class="modal fade"
+                    id="uploadModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="uploadModalLabel"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="uploadModalLabel">
+                                    Upload Photo
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form
+                                action="/onyx/cuenta"
+                                method="POST"
+                                enctype="multipart/form-data"
+                                >
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                                    <div class="form-group">
+                                        <label for="user_pic">Select Photo</label>
+                                        <input
+                                            type="file"
+                                            class="form-control-file"
+                                            id="user_pic"
+                                            name="user_pic"
+                                        />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        Upload
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </div>
-    <div class="col-8 mt-3 p-5 mx-auto">
-        <div class="usuario-info">
-            <h3 class="text-start fw-bold"><%= usuario[i].nombre %> <%= usuario[i].apellido %> </h3>
-            <h3 class="text-start fw-bold"> Email: <%= usuario[i].email %> </h3>
-            <h3 class="text-start fw-bold"> Objetivo: <%= cliente[i].objetivo %> </h3>
-
+        <div class="col-8 mt-3 p-5 mx-auto">
+            <div class="usuario-info">
+                <h3 class="text-start fw-bold">
+                    <%= usuario[i].nombre %> <%= usuario[i].apellido %>
+                </h3>
+                <h3 class="text-start fw-bold">
+                    Email: <%= usuario[i].email %>
+                </h3>
+                <h3 class="text-start fw-bold">
+                    Objetivo: <%= cliente[i].objetivo %>
+                </h3>
+            </div>
+            <% } %>
         </div>
-        <% } %>
     </div>
 
-    <!-- render tallas page if user click on tallas button -->
-    <div id="tallaspage"></div>
-
+    <!-- modal upload photo -->
 </div>
-
-
-</div>
-
-
-
-
-
 
 <%- include('includes/foot.ejs') %>
