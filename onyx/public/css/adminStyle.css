@@ -480,3 +480,14 @@ td, th {
 .dash{
     margin-left: 200px;
 }
+
+.ico_regrol{
+
+    transition: transform 0.2s ease-in;
+
+
+}
+
+.ico_regrol:hover{
+   transform: translateY(-10px);
+}

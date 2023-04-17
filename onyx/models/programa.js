@@ -35,6 +35,7 @@ module.exports = class Programa {
         return db.execute('SELECT * FROM programa WHERE id_programa = ?', [id_programa]);
     }
 
+    //Editar programa
     update() {
         return db.execute(
             'UPDATE programa SET frecuencia = ?, nombre_programa = ?, descripcion_programa = ?, imagen_programa = ?',
@@ -42,6 +43,7 @@ module.exports = class Programa {
         );
     }
 
+    //Eliminar programa
     static deleteById(id_programa) {
         return db.execute('DELETE FROM programa WHERE id_programa = ?', [id_programa]);
     }

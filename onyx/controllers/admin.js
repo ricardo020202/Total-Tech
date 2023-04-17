@@ -12,62 +12,10 @@ const Rol = require('../models/rol');
 const usuario = require("../models/usuario");
 const RolUsuario = require('../models/rol_usuario');
 const RolPrivilegio = require('../models/rol_privilegio');
+const Privilegio = require('../models/privilegio');
 const db = require('../util/database');
 
 
-
-exports.getadminreg_rol = (req, res, next) => {
-    Rol.fetchAll()
-      .then(([rows]) => {
-        const csrfToken = req.csrfToken();
-        const roles = rows.map(row => {
-        return {id: row.id_rol, nombre: row.nombreRol};
-        });
-
-        res.render('reg_rol', { 
-            
-          pagetitle: 'Registrar Rol',
-          mensaje: req.session.mensaje, 
-          user: req.session.email,
-          roles: rows ,
-          csrfToken: csrfToken
-          
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-exports.postadminreg_rol = function (req, res) {
-    const nombreRol = req.body.nombreRol;
-    const { id_rol, id_cu } = req.body;
-    const ids_casos_uso = id_cu.split(',');
-    const rol = new Rol({nombre: nombreRol});
-    const email = req.session.email;
-    const tipoRol = req.body.id_rol;
-    let insertedIdRol;
-    req.session.mensaje = "Rol Registrado Correctamente.";
-
-    rol.save()
-        .then(([result]) => {
-            insertedIdRol = result.insertId;
-            const promises = ids_casos_uso.map((id_caso_uso) => {
-                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
-                console.log(`Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`);
-                return rolPrivilegio.save()
-                    .then(() => console.log(`Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`))
-                    .catch((error) => console.error(`Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`, error));
-            });
-            return Promise.all(promises);
-        })
-        .then(() => {
-            console.log(`Rol guardado correctamente`);
-            res.redirect('back');
-        })
-        .catch((error) => {
-            console.error(error);
-            req.session.mensaje = "Error al registrar el rol.";
-        });
-};
 
 exports.getAdminDashboardEjercicios= async (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -132,6 +80,41 @@ exports.getAdminNuevoPrograma = (req, res, next) => {
 };
 
 exports.postAdminNuevoPrograma = (req, res, next) => {
+    const programa = new EntrenamientoModel({
+        frecuencia: req.body.frecuencia,
+        descripcion_programa: req.body.descripcion_programa,
+        nombre_programa: req.body.nombre_programa,
+        ref_visual: req.body.ref_visual,
+        img_programa: req.body.img_programa,
+    });
+    programa
+        .save()
+        .then((result) => {
+            res.redirect("/admin/admindashboard/programas");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
+exports.getAdminEditarPrograma = (req, res, next) => {
+    res.render("adminEditarPrograma", {
+        pagetitle: "Editar Programa",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+
+exports.postAdminEditarPrograma = (req, res, next) => {
     const programa = new EntrenamientoModel({
         frecuencia: req.body.frecuencia,
         descripcion_programa: req.body.descripcion_programa,
@@ -400,5 +383,113 @@ exports.getAdminDashboard = async (req, res, next) => {
         total_ejercicio: total_ejercicio || "",
         total_cliente: total_cliente || "",
         total_programa: total_programa || "",
+        csrfToken: req.csrfToken()
     });
+};
+
+
+exports.getAdminModRol = (req, res, next) => {
+    let roles = [];
+    let privileges = [];
+    Privilegio.fetchAll()
+      .then(privilegesRows => {
+        privileges = privilegesRows;
+        return Rol.fetchAll();
+      })
+      .then(rolesRows => {
+        roles = rolesRows;
+        console.log(roles[0]);
+        console.log(privileges[0]);
+        res.render("modrol", {
+          roles: roles[0],
+          privileges: privileges[0],
+          pagetitle: "Modificar rol",
+          user: req.session.user || "",
+          csrfToken: req.csrfToken()
+        });
+      })
+      .catch(error => {
+        if (error.code === "PROTOCOL_CONNECTION_LOST") {
+          res.render("dbDown", {
+            pagetitle: "Error",
+            user: req.session.user || "",
+          });
+        } else {
+          console.log(error);
+        }
+      });    
+};
+  
+exports.postAdminModRol = (req, res, next) => {
+    const idRol = req.body.rol;
+    const privileges = req.body['privilege[]'];
+  
+    // Delete existing RolPrivilegio records for the given idRol
+    RolPrivilegio.deleteByRol(idRol)
+      .then(() => {
+        // Insert new RolPrivilegio records for each privilege in the array
+        privileges.forEach((privilege) => {
+          const rolPrivilegio = new RolPrivilegio(idRol, privilege);
+          rolPrivilegio.save();
+        });
+        res.redirect('/admin/adminDashboard/modrol');
+      })
+      .catch((err) => {
+        console.log(err);
+        next(err);
+      });
+  };
+  
+  exports.getadminreg_rol = (req, res, next) => {
+    Rol.fetchAll()
+      .then(([rows]) => {
+        const csrfToken = req.csrfToken();
+        const roles = rows.map(row => {
+        return {id: row.id_rol, nombre: row.nombreRol};
+        });
+
+        res.render('reg_rol', { 
+
+          pagetitle: 'Registrar Rol',
+          mensaje: req.session.mensaje, 
+          user: req.session.email,
+          roles: rows ,
+          csrfToken: csrfToken
+
+        });
+      })
+      .catch(err => console.log(err));
+      req.session.mensaje = "";
+  };
+
+exports.postadminreg_rol = function (req, res) {
+    const nombreRol = req.body.nombreRol;
+    const { id_rol, id_cu } = req.body;
+    const ids_casos_uso = id_cu.split(',');
+    const rol = new Rol({nombre: nombreRol});
+    const email = req.session.email;
+    const tipoRol = req.body.id_rol;
+    let insertedIdRol;
+    req.session.mensaje = "Rol Registrado Correctamente.";
+
+    rol.save()
+        .then(([result]) => {
+            insertedIdRol = result.insertId;
+            const promises = ids_casos_uso.map((id_caso_uso) => {
+                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
+                console.log(`Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`);
+                return rolPrivilegio.save()
+                    .then(() => console.log(`Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`))
+                    .catch((error) => console.error(`Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`, error));
+            });
+            return Promise.all(promises);
+        })
+        .then(() => {
+            console.log(`Rol guardado correctamente`);
+            res.redirect('back');
+        })
+        .catch((error) => {
+            console.error(error);
+            req.session.mensaje = "Error al registrar el rol.";
+        });
 };
