@@ -25,6 +25,7 @@ const pool = mysql.createPool({
 //     password: 'erik',
 //     port: 8889,
 // });
+<<<<<<< HEAD
 // // Windows database
 // const pool = mysql.createPool({
 //     host: 'localhost',
@@ -32,6 +33,15 @@ const pool = mysql.createPool({
 //     database: 'onyx2',
 //     password: '',
 // });
+=======
+// Windows database
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'onyx',
+    password: '',
+});
+>>>>>>> editar_programa
 
 
 module.exports = pool.promise();

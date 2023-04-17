@@ -157,6 +157,41 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
         });
 };
 
+exports.getAdminEditarPrograma = (req, res, next) => {
+    res.render("adminEditarPrograma", {
+        pagetitle: "Editar Programa",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+
+exports.postAdminEditarPrograma = (req, res, next) => {
+    const programa = new EntrenamientoModel({
+        frecuencia: req.body.frecuencia,
+        descripcion_programa: req.body.descripcion_programa,
+        nombre_programa: req.body.nombre_programa,
+        ref_visual: req.body.ref_visual,
+        img_programa: req.body.img_programa,
+    });
+    programa
+        .save()
+        .then((result) => {
+            res.redirect("/admin/admindashboard/programas");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+};
+
 exports.getAdminNuevaDieta = (req, res, next) => {
     res.render("adminNuevaDieta", {
         pagetitle: "Nueva Dieta",
