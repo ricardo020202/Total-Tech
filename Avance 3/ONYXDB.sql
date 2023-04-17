@@ -165,14 +165,19 @@ CREATE TABLE dieta_alimento(
 );
 
 
-CREATE TABLE programa_dieta_cliente(
-    id_programa INT NOT NULL,
+CREATE TABLE favoritos_dieta(
     id_dieta INT NOT NULL,
     email VARCHAR(30) NOT NULL,
-    tipo VARCHAR(20) NOT NULL,
-    PRIMARY KEY(id_programa, id_dieta, email, tipo),
-    FOREIGN KEY(id_programa) REFERENCES programa(id_programa),
+    PRIMARY KEY(id_dieta, email),
     FOREIGN KEY(id_dieta) REFERENCES dieta(id_dieta),
+    FOREIGN KEY(email) REFERENCES usuario(email)
+);
+
+CREATE TABLE favoritos_programa(
+    id_programa INT NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    PRIMARY KEY(id_programa, email),
+    FOREIGN KEY(id_programa) REFERENCES programa(id_programa),
     FOREIGN KEY(email) REFERENCES usuario(email)
 );
 
@@ -349,14 +354,6 @@ INSERT INTO admin(email) VALUES ('pablo.flores@yahoo.com');
 INSERT INTO admin(email) VALUES ('oscar.ortega@hotmail.com');
 INSERT INTO admin(email) VALUES ('jose.martinez@yahoo.com');
 
-/* INSERT - PROGRAMA_DIETA_CLIENTE */
-
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email,tipo) VALUES ('1','4','maria.gomez@gmail.com','dieta');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('1','4','maria.gomez@gmail.com', 'programa');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('2','2','sofia.estrada@yahoo.com', 'programa');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('4','3','clara.hernandez@gmail.com', 'programa');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('3','1','juan.sanchez@gmail.com', 'dieta');
-INSERT INTO programa_dieta_cliente(id_programa, id_dieta, email, tipo) VALUES ('2','3','pablo.flores@yahoo.com', 'dieta');
 
 /* INSERTS - rol_usuario */ 
 
@@ -391,7 +388,6 @@ ALTER TABLE programa_ejercicio ADD CONSTRAINT fk_programa_ejercicio_ejercicio FO
 ALTER TABLE programa_ejercicio ADD CONSTRAINT fk_programa_ejercicio_programa FOREIGN KEY (id_programa) REFERENCES programa(id_programa);
 ALTER TABLE dieta_alimento ADD CONSTRAINT fk_dieta_alimento_dieta FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta);
 ALTER TABLE dieta_alimento ADD CONSTRAINT fk_dieta_alimento_alimento FOREIGN KEY (id_alimento) REFERENCES alimento(id_alimento);
-ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_dieta FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta);
-ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_programa FOREIGN KEY (id_programa) REFERENCES programa(id_programa);
-ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_cliente FOREIGN KEY (email) REFERENCES cliente(email);
+ALTER TABLE favoritos_dieta ADD CONSTRAINT fk_favoritos_dieta FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta);
+ALTER TABLE favoritos_programa ADD CONSTRAINT fk_favoritos_programa FOREIGN KEY (id_programa) REFERENCES programa(id_programa);
 
