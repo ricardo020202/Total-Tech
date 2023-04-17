@@ -59,8 +59,8 @@ router.get("/cuenta", onyxController.getCuenta);
 
 router.get("/editar-cuenta", onyxController.getEditarCuenta);
 
-router.get('/reg_rol', onyxController.getreg_rol);
+//router.get('/reg_rol', onyxController.getreg_rol);
 
-router.post('/reg_rol', onyxController.postreg_rol);
+//router.post('/reg_rol', onyxController.postreg_rol);
 
 module.exports = router;
