@@ -770,4 +770,38 @@ exports.postFotoPerfil = (req, res, next) => {
                 console.log(err);
             }
         });
+}
+
+exports.getConsultaFav = async (req, res, next) => {
+    try {
+        let dietas = [];
+        let ejercicios = [];
+        const [rows] = await Favoritos.fetchByEmail(req.session.email);
+        for (let i = 0; i < rows.length; i++) {
+            if (rows[i].tipo == "dieta") {
+                const [rows2, fieldData] = await Dieta.fetchById(rows[i].id_dieta);
+                dietas.push(rows2[0]);
+            } else {
+                const [rows3, fieldData] = await EntrenamientoModel.fetchById(rows[i].id_programa);
+                ejercicios.push(rows3[0]);
+            }
+        }
+        res.render("favoritos", {
+            pagetitle: "Consulta Favoritos",
+            user: req.session.user || "",
+            favoritos_dietas: dietas,
+            favoritos_ejercicios: ejercicios,
+            csrfToken: req.csrfToken()
+        });
+    } catch (err) {
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+            });
+            return { medidas: [], fechas: [] };
+        } else {
+            console.log(err);
+        }
+    }
 };
