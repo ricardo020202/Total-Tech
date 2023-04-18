@@ -15,6 +15,11 @@ class RolPrivilegio {
     static fetchAll() {
         return db.execute('SELECT * FROM rol_privilegio');
     }
+
+    static deleteByRol(id) {
+        return db.execute('DELETE FROM rol_privilegio WHERE id_rol = ?', [id]);
+      }
+      
 }
 
 module.exports = RolPrivilegio;

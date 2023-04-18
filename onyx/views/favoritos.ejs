@@ -105,18 +105,6 @@
                             of the card's content.</p>
                         <a href="#" id="btnstart" class="btn btn-primary">START</a>
                         <br>
-                        <!--boton para eliminar de favoritos-->
-                        <form
-                            method="post"
-                            action="/onyx/favoritos/delete/<%= favoritos[i].id_dieta %>/<%= favoritos[i].id_programa %>/<%= favoritos[i].tipo %>"
-                        >
-                            <input
-                                type="hidden"
-                                name="_csrf"
-                                value="<%= csrfToken %>"
-                            />
-                            <button type="submit" class="btn btn-outline-dark">Eliminar de Favoritos </button>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -1,75 +1,74 @@
-<!-- vistas/registrar-rol.ejs -->
+<!DOCTYPE html>
+<html lang="en">
 <%- include('includes/head.ejs') %>
-<br><br>
-<br><br>
 <body>
-  <div class="container">
+  <br><br>
+  <div class="container mt-5">
     <h1 class="text-center">Registro de Roles - Onyx</h1>
     <div class="row justify-content-center">
-      <form class="col-6" action="/onyx/reg_rol" method="post">
+      <form class="col-md-6" action="/admin/adminDashboard/reg_rol" method="post">
         <div class="form-group">
           <% if (typeof mensaje !== 'undefined' && mensaje !== '') { %>
           <div class="alert alert-success">
-            <p><%= mensaje %></p>
+          <p><%=mensaje%></p>
           </div>
           <% } %>
           <label for="nombreRol">Nombre del Rol:</label>
           <input type="text" class="form-control" name="nombreRol" id="nombreRol" required>
         </div>
-        <div class="form-group">
-          <label for="id_cu">Privilegios (IDs separados por comas):</label>
-          <input type="text" name="id_cu" id="id_cu" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary mt-2">Registrar Rol</button>
-        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
-      </form>
-    </div>
-    <br><br>
-    <div class="row">
-      <div class="col-6">
+        <label>Privilegios:</label>
         <table class="table table-bordered">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Privilegio</th>
+              <th>Privilegios</th>
+              <th>Selec.</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
               <td>Registrar Bitacora</td>
+              <td><input type="checkbox" name="privilegios" value="1"></td>
             </tr>
             <tr>
               <td>2</td>
               <td>Registrar Alimento</td>
+              <td><input type="checkbox" name="privilegios" value="2"></td>
             </tr>
             <tr>
               <td>3</td>
               <td>Registrar Dieta</td>
+              <td><input type="checkbox" name="privilegios" value="3"></td>
             </tr>
             <tr>
               <td>4</td>
               <td>Registrar Entrenamiento</td>
+              <td><input type="checkbox" name="privilegios" value="4"></td>
             </tr>
             <tr>
               <td>5</td>
               <td>Registrar Rutina</td>
+              <td><input type="checkbox" name="privilegios" value="5"></td>
             </tr>
             <tr>
               <td>6</td>
               <td>Registrar Usuario</td>
+              <td><input type="checkbox" name="privilegios" value="6"></td>
             </tr>
             <tr>
               <td>7</td>
               <td>Registrar Rol</td>
+              <td><input type="checkbox" name="privilegios" value="7"></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="col-6">
-        <div class="table-container" style="height: 300px; overflow-y: scroll;">
-          <table class="table table-bordered">
-            <thead>
+      <div class="col-md-6">
+      <label>Roles Registrados:</label>
+        <div class="table-container" style="height: 300px; overflow-y: scroll; overflow-y: auto; "> 
+          <table class="table table-bordered" id="tabla-roles">
+            <thead class="sticky-header">
               <tr>
                 <th>ID</th>
                 <th>Nombre del Rol</th>
@@ -87,6 +86,12 @@
         </div>
       </div>
     </div>
+    <div class="d-flex justify-content-center mt-2">
+      <button type="submit" class="btn btn-primary">Registrar Rol</button>
+    </div>
+    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+  </form>
+  </div>
   </div>
   <%- include('includes/foot.ejs') %>
 </body>

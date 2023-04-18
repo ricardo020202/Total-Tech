@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="/css/adminStyle.css">
 <%- include('includes/headAdmin.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
+<br>
+
+<H1 style="margin-left:300px ;">Registrar dieta</H1>
 
 
 
@@ -10,7 +13,6 @@
       <div class="col-3">
       </div>
       <div class="col">
-        <h1>Registrar dieta</h1>
         <form action="/admin/admindashboard/diets/add" method="POST">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
           <label for="no_calorias">No. de Calorias:</label>

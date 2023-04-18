@@ -658,6 +658,17 @@ header .current-date {
   transition: 0.3s;
 }
 
+#changePassword {
+  background: #d2ca03;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 #cancelar {
   border: none;
   padding: 10px 20px;
@@ -784,11 +795,19 @@ tbody {
 
 .table-dark th,
 .table-dark td {
-  color: white;
+  color: rgb(238, 255, 0);
 }
 
 .fav{
   color: #d2ca03;
   font-size: 120%;
   margin-right: 0;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #d2ca03;
+  color: #000000;
+  z-index: 100;
 }

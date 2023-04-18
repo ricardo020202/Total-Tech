@@ -57,10 +57,18 @@ router.post('/modificar-tallas', onyxController.postTallas);
 
 router.get("/cuenta", onyxController.getCuenta);
 
-router.get("/editar-cuenta", onyxController.getEditarCuenta);
+router.get("/cambiarPassword", onyxController.getCambiarPassword);
 
-router.get('/reg_rol', onyxController.getreg_rol);
+router.post("/cambiarPassword", onyxController.postCambiarPassword);
 
-router.post('/reg_rol', onyxController.postreg_rol);
+router.post("/cuenta", onyxController.postCuenta);
+
+router.get("/fotoperfil", onyxController.getFotoPerfil);
+
+router.post("/fotoperfil", onyxController.postFotoPerfil);
+
+//router.get('/reg_rol', onyxController.getreg_rol);
+
+//router.post('/reg_rol', onyxController.postreg_rol);
 
 module.exports = router;

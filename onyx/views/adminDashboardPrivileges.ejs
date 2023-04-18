@@ -45,6 +45,7 @@
                                         </a>
                                         <br><br>
                                         <form
+                                            id="delete-form"
                                             method="post"
                                             action="/admin/admindashboard/userprivileges/delete/<%= user.email %>"
                                         >
@@ -53,8 +54,21 @@
                                                 name="_csrf"
                                                 value="<%= csrfToken %>"
                                             />
-                                            <button type="submit" class="btn btn-outline-dark">Delete </button>
+                                            <button type="submit" class="btn btn-outline-dark">Delete</button>
                                         </form>
+
+                                        <div id="confirm-delete" class="confirm-dialog">
+                                            <div class="confirm-dialog-content">
+                                                <h2>Confirm Delete</h2>
+                                                <p>Are you sure you want to delete this item?</p>
+                                                <div class="confirm-dialog-buttons">
+                                                    <button id="confirm-delete-yes" class="btn btn-danger">Yes</button>
+                                                    <button id="confirm-delete-no" class="btn btn-secondary">No</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         
                                     </td>
                                 </tr>
@@ -63,3 +77,22 @@
                     </tbody>
                 </table>
             </div>
+            <script>
+                const deleteForm = document.getElementById('delete-form');
+                const confirmDelete = document.getElementById('confirm-delete');
+                const confirmDeleteYes = document.getElementById('confirm-delete-yes');
+                const confirmDeleteNo = document.getElementById('confirm-delete-no');
+    
+                deleteForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    confirmDelete.style.display = 'block';
+                });
+    
+                confirmDeleteYes.addEventListener('click', () => {
+                    deleteForm.submit();
+                });
+    
+                confirmDeleteNo.addEventListener('click', () => {
+                    confirmDelete.style.display = 'none';
+                });
+            </script>

@@ -2,28 +2,22 @@
 <%- include('includes/headAdmin.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
 
+<H1 style="margin-left:300px ;">Nuevo Programa</H1>
+
 
 <!-- make new programa page -->
 <div class="container" id="nuevo-programa">
-    <div class="row">
-        <div class="col-12" id="programa">
-            <h1 class="text-center">Nuevo Programa</h1>
-        </div>
-    </div>
 
     <!-- form for new programa -->
     <div class="container" id="form-nuevo-programa">
         <form action="/admin/admindashboard/programas/nuevoprograma" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            <div class="mb-3">
-                <label for="descripcion_programa" class="form-label">Descripcion</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="descripcion_programa"
-                    name="descripcion_programa"
-                    required/>
-            </div>
+            <label for="descripcion_programa" class="form-label">Descripcion</label>
+            <div class="input-group">  
+                <textarea class="form-control" aria-label="With textarea" id="descripcion_programa"
+                name="descripcion_programa"></textarea>
+             </div>
+            
 
             <div class="mb-3">
                 <label for="nombre_programa" class="form-label">Nombre Programa</label>

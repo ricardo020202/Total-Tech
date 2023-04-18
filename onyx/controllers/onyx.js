@@ -17,59 +17,6 @@ const Rol = require('../models/rol');
 const RolPrivilegio = require('../models/rol_privilegio');
 const db = require('../util/database');
 
-exports.getreg_rol = (req, res, next) => {
-    Rol.fetchAll()
-      .then(([rows]) => {
-        const csrfToken = req.csrfToken();
-        const roles = rows.map(row => {
-        return {id: row.id_rol, nombre: row.nombreRol};
-        });
-
-        res.render('reg_rol', { 
-
-          pagetitle: 'Registrar Rol',
-          mensaje: req.session.mensaje, 
-          user: req.session.email,
-          roles: rows ,
-          csrfToken: csrfToken
-
-        });
-      })
-      .catch(err => console.log(err));
-};
-
-exports.postreg_rol = function (req, res) {
-    const nombreRol = req.body.nombreRol;
-    const { id_rol, id_cu } = req.body;
-    const ids_casos_uso = id_cu.split(',');
-    const rol = new Rol({nombre: nombreRol});
-    const email = req.session.email;
-    const tipoRol = req.body.id_rol;
-    let insertedIdRol;
-    req.session.mensaje = "Rol Registrado Correctamente.";
-
-    rol.save()
-        .then(([result]) => {
-            insertedIdRol = result.insertId;
-            const promises = ids_casos_uso.map((id_caso_uso) => {
-                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
-                console.log(`Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`);
-                return rolPrivilegio.save()
-                    .then(() => console.log(`Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`))
-                    .catch((error) => console.error(`Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`, error));
-            });
-            return Promise.all(promises);
-        })
-        .then(() => {
-            console.log(`Rol guardado correctamente`);
-            res.redirect('back');
-        })
-        .catch((error) => {
-            console.error(error);
-            req.session.mensaje = "Error al registrar el rol.";
-        });
-};
-
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
@@ -715,23 +662,97 @@ exports.getCuenta = (req, res, next) => {
         );
 };
 
+exports.postCuenta = (req, res, next) => {
 
-exports.getEditarCuenta = (req, res, next) => {
-    res.render("editarCuenta", {
-        pagetitle: "Editar Cuenta",
+    console.log(req.file);
+    const usuario = new Usuario({
+        email: req.session.email,
+        nombre: req.body.inputNombre,
+        apellidos: req.body.inputApellidos,
+        user_pic: req.file.filename,
+    });
+    usuario
+        .save()
+        .then((result) => {
+            console.log(rows);
+            console.log(result);
+            console.log("Usuario actualizado");
+            res.redirect("/onyx/cuenta");
+            res.status(300).redirect("/onyx/cuenta");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+
+exports.getCambiarPassword= (req, res, next) => {
+    res.render("cambiarPassword", {
+        pagetitle: "Cambiar Password",
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
     });
 };
 
-exports.postEditarCuenta = (req, res, next) => {
-    const usuario = new UsuarioModel({
+
+exports.postCambiarPassword = (req, res, next) => {
+    const { contraseña, newPassword, confirmPassword } = req.body;
+
+    if (newPassword !== confirmPassword) {
+        return res.redirect("/onyx/cambiarPassword");
+    }
+
+    if (newPassword === contraseña) {
+        return res.redirect("/onyx/cambiarPassword");
+    }
+
+    Usuario.fetchOne(req.session.email)
+        .then(([rows, fieldData]) => {
+            if (rows.length > 0) {
+                bcrypt.compare(req.body.password, rows[0].contraseña).then((doMatch) => {
+                    if (doMatch) {
+                        usuario.changePassword(req.session.email, newPassword)
+                            .then((result) => {
+                                console.log(result);
+                                console.log("Password cambiada");
+                                res.redirect("/onyx/cuenta");
+                            }
+                            )
+                            .catch((err) => {
+                                console.log(err);
+                            });
+                    } else {
+                        res.redirect("/onyx/cambiarPassword");
+                    }
+                });
+            }
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        }
+        );
+};
+
+exports.getFotoPerfil = (req, res, next) => {
+    res.render("fotoperfil", {
+        pagetitle: "Foto de Perfil",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postFotoPerfil = (req, res, next) => {
+    const usuario = new Usuario({
         email: req.session.email,
-        nombre: req.body.inputNombre,
-        apellido: req.body.inputApellido,
-        telefono: req.body.inputTelefono,
-        direccion: req.body.inputDireccion,
-        password: req.body.inputPassword,
+        user_pic: req.file.filename,
     });
     usuario
         .save()
@@ -749,4 +770,4 @@ exports.postEditarCuenta = (req, res, next) => {
                 console.log(err);
             }
         });
-}
+};
