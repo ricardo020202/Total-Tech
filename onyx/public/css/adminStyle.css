@@ -528,3 +528,9 @@ td, th {
 .confirm-dialog-buttons button {
     margin-right: 10px;
 }
+
+#agregarenadmin
+{
+    background-color: #D2CA03;
+    color: #000000;
+}
