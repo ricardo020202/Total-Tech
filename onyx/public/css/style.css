@@ -70,8 +70,7 @@ body {
 }
 
 footer {
-  position:absolute;
-  bottom:0;
+  bottom: 0;
   width: 100%;
   position: static;
 }
@@ -650,7 +649,7 @@ header .current-date {
 /* buttun for submit new event */
 #nuevabitacora {
   background: #d2ca03;
-  color: black;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -800,7 +799,7 @@ tbody {
 }
 
 .fav{
-  color: #d2ca03;
+  color: #ffffff;
   font-size: 120%;
   margin-right: 0;
 }
