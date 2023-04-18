@@ -9,7 +9,7 @@ const mysql = require('mysql2');
     database: 'Onyx',
     port: 8889,
     password: 'root',
-});
+});+*/
 // const pool = mysql.createPool({
 //     host: 'localhost',
 //     user: 'root',
