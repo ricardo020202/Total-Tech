@@ -18,6 +18,10 @@ module.exports = class ProgramaDietaCliente {
         return db.execute('SELECT * FROM programa_dieta_cliente');
     }
 
+    static fetchByEmail(email) {
+        return db.execute('SELECT * FROM programa_dieta_cliente WHERE email = ?', [email]);
+    }
+
 
     static deleteById(id_dieta,id_programa,tipo) {
         return db.execute('DELETE FROM programa_dieta_cliente WHERE id_dieta = ? AND id_programa = ? AND tipo = ?', [id_dieta, id_programa,tipo]);

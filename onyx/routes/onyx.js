@@ -23,7 +23,7 @@ router.get("/dietas/:start/:numcal", onyxController.getDieta);
 
 router.get("/bitacora", onyxController.getBitacora);
 
-router.get("/favoritos", onyxController.getFavoritos);
+router.get("/favoritos", onyxController.getConsultaFav);
 
 router.get("/favoritos/delete/:id_dieta/:id_programa/:tipo", onyxController.deleteFavoritos);
 
