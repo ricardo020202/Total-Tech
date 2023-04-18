@@ -27,7 +27,13 @@
             <label>Privilegios:</label>
             <br>
             <% privileges.forEach(function(privilege) { %>
-              <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privilege[]" value="<%= privilege.id_cu %>" class="form-check-input" checked>
+              <% var checked = false; %>
+              <% rolPrivilegio.forEach(function(rp) { %>
+                <% if (rp.id_rol === roles[0].id_rol && rp.id_cu === privilege.id_cu) { %>
+                  <% checked = true; %>
+                <% } %>
+              <% }); %>
+              <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privilege[]" value="<%= privilege.id_cu %>" class="form-check-input" <% if (checked) { %>checked<% } %>>
               <label for="privilege_<%= privilege.id_cu %>" class="form-check-label"><%= privilege.nombrecu %></label>
               <br>
             <% }); %>
@@ -39,4 +45,3 @@
     </div>
   </body>
 </html>
-
