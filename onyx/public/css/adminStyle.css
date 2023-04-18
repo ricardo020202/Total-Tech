@@ -529,8 +529,16 @@ td, th {
     margin-right: 10px;
 }
 
-#agregarenadmin
-{
-    background-color: #D2CA03;
-    color: #000000;
+.table-privilegios{
+    margin: auto;
+    padding: 100px;
+    
 }
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #d2ca03;
+    color: #000000;
+    z-index: 100;
+  }
