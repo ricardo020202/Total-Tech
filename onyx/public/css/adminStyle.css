@@ -492,6 +492,15 @@ td, th {
    transform: translateY(-10px);
 }
 
+.ico_signout{
+
+    transition: transform 0.2s ease-in;
+}
+
+.ico_signout:hover{
+   transform: translateY(-10px);
+}
+
 .confirm-dialog {
     display: none;
     position: fixed;

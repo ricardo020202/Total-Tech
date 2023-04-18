@@ -13,8 +13,13 @@
           <p><%=mensaje%></p>
         </div>
         <% } %>
-        <label for="nombreRol">Nombre del Rol:</label>
-        <input type="text" class="form-control" name="nombreRol" id="nombreRol" required>
+        <div class="form-group">
+          <label for="nombreRol">Nombre del Rol:</label>
+          <input type="text" class="form-control" name="nombreRol" id="nombreRol" required>
+          <div class="form-group text-center mt-2" style="width: 100px;">
+          <button type="submit" class="btn btn-custom">Registrar</button>
+        </div>
+      </div>
       </div>
       <br>
       <label>Privilegios:</label>
@@ -89,9 +94,7 @@
         </div>
       </div>
       <br>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary justify-content-center">Registrar</button>
-      </div>
+      
     </form>
   </div>
 </div>
