@@ -33,5 +33,14 @@ const pool = mysql.createPool({
     password: '',
 });
 
+// Windows database
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'onyx',
+    password: '',
+});
+
+
 
 module.exports = pool.promise();
