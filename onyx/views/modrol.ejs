@@ -27,7 +27,7 @@
             <label>Privilegios:</label>
             <br>
             <% privileges.forEach(function(privilege) { %>
-              <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privilege[]" value="<%= privilege.id_cu %>" class="form-check-input">
+              <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privilege[]" value="<%= privilege.id_cu %>" class="form-check-input" checked>
               <label for="privilege_<%= privilege.id_cu %>" class="form-check-label"><%= privilege.nombrecu %></label>
               <br>
             <% }); %>

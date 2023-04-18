@@ -391,6 +391,7 @@ exports.getAdminDashboard = async (req, res, next) => {
 exports.getAdminModRol = (req, res, next) => {
     let roles = [];
     let privileges = [];
+    let rolPrivilegio = [];
     Privilegio.fetchAll()
       .then(privilegesRows => {
         privileges = privilegesRows;
