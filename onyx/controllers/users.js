@@ -18,6 +18,7 @@ exports.post_signup = (request, response, next) => {
         nombre: request.body.nombre,
         apellido: request.body.apellido,
         contraseña: request.body.password,
+        user_pic: null,
     });
     user_nuevo
         .save()
