@@ -392,6 +392,7 @@ exports.getAdminModRol = (req, res, next) => {
     let roles = [];
     let privileges = [];
     let rolPrivilegio = [];
+  
     Privilegio.fetchAll()
       .then(privilegesRows => {
         privileges = privilegesRows;
@@ -399,11 +400,21 @@ exports.getAdminModRol = (req, res, next) => {
       })
       .then(rolesRows => {
         roles = rolesRows;
+  
+        // Fetch all rolPrivilegio records
+        return RolPrivilegio.fetchAll();
+      })
+      .then(rolPrivilegioRows => {
+        rolPrivilegio = rolPrivilegioRows;
+  
         console.log(roles[0]);
         console.log(privileges[0]);
+        console.log(rolPrivilegio[0]);
+  
         res.render("modrol", {
           roles: roles[0],
           privileges: privileges[0],
+          rolPrivilegio: rolPrivilegio[0], // Pass the rolPrivilegio array to the view
           pagetitle: "Modificar rol",
           user: req.session.user || "",
           csrfToken: req.csrfToken()
@@ -419,7 +430,7 @@ exports.getAdminModRol = (req, res, next) => {
           console.log(error);
         }
       });    
-};
+  };
   
 exports.postAdminModRol = (req, res, next) => {
     const idRol = req.body.rol;
