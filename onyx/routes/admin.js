@@ -34,9 +34,9 @@ router.get('/admindashboard/programas/nuevoprograma', adminController.getAdminNu
 
 router.post('/admindashboard/programas/nuevoprograma', adminController.postAdminNuevoPrograma);
 
-router.get('/admindashboard/programas/editar-programa', adminController.getAdminEditarPrograma);
+router.get('/admindashboard/programas/editar-programa/:id_Programa', adminController.getAdminEditarPrograma);
 
-router.post('/admindashboard/programas/editar-programa', adminController.postAdminEditarPrograma);
+router.post('/admindashboard/programas/editar-programa/:id_Programa', adminController.postAdminEditarPrograma);
 
 router.get('/admindashboard/reg_rol', adminController.getadminreg_rol);
 

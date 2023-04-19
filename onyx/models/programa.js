@@ -30,22 +30,21 @@ module.exports = class Programa {
         return db.execute('SELECT count(*) as total FROM programa');
     }
 
-    static fetchById(id_programa)
-    {
+    static fetchById(id_programa) {
         return db.execute('SELECT * FROM programa WHERE id_programa = ?', [id_programa]);
     }
 
     //Editar programa
-    update() {
+    update(id_programa) {
         return db.execute(
-            'UPDATE programa SET frecuencia = ?, nombre_programa = ?, descripcion_programa = ?, imagen_programa = ?',
-            [this.frecuencia, this.nombre_programa, this.descripcion_programa, this.imagen_programa]
+            'UPDATE programa WHERE id_programa = ? SET frecuencia = ?, nombre_programa = ?, descripcion_programa = ?, imagen_programa = ?',
+            [id_programa, this.frecuencia, this.nombre_programa, this.descripcion_programa, this.imagen_programa]
         );
     }
 
     //Eliminar programa
-    static deleteById(id_programa) {
-        return db.execute('DELETE FROM programa WHERE id_programa = ?', [id_programa]);
+    static deleteById(idPrograma) {
+        return db.execute('DELETE FROM programa WHERE id_programa = ?', [idPrograma]);
     }
 
     static isFavorite(email, tipo) {

@@ -106,15 +106,32 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
 };
 
 exports.getAdminEditarPrograma = (req, res, next) => {
-    res.render("adminEditarPrograma", {
-        pagetitle: "Editar Programa",
-        user: req.session.user || "",
-        csrfToken: req.csrfToken(),
-    });
+    const idPrograma = req.params.id_Programa;
+    console.log(idPrograma);
+    EntrenamientoModel.fetchById(idPrograma)
+        .then(([rows, fieldData]) => {
+            res.render("adminEditarPrograma", {
+                pagetitle: "Editar Programa",
+                user: req.session.user || "",
+                programa: rows[0],
+                csrfToken: req.csrfToken(),
+            });
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                });
+            } else {
+                console.log(err);
+            }
+        });
 };
 
 
 exports.postAdminEditarPrograma = (req, res, next) => {
+    const idPrograma = req.params.id_Programa;
     const programa = new EntrenamientoModel({
         frecuencia: req.body.frecuencia,
         descripcion_programa: req.body.descripcion_programa,
@@ -123,7 +140,7 @@ exports.postAdminEditarPrograma = (req, res, next) => {
         img_programa: req.body.img_programa,
     });
     programa
-        .save()
+        .update(idPrograma)
         .then((result) => {
             res.redirect("/admin/admindashboard/programas");
         })
