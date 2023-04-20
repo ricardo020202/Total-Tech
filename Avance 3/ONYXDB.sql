@@ -278,22 +278,113 @@ INSERT INTO dieta_alimento(id_dieta, id_alimento) VALUES (2,5);
 
 /* INSERT - PRIVILEGIOS*/ 
 
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar cuenta');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar cuenta');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar cuenta');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar programa');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar dieta');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar datos iniciales');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar datos iniciales');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar datos iniciales');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar tallas');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar tallas');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar favoritos');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar favoritos');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar favoritos');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar bitácora');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar bitácora');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar bitácora');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar reporte de progreso');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar ejercicio');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar usuarios');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar usuarios');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar usuarios');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar usuarios');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar rol');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar rol');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar rol');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar rol');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar privilegio');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar privilegio');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar dieta');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar dieta');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar dieta');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar programa');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar programa');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar programa');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar alimento');
+INSERT INTO privilegio(nombrecu) VALUES ('Consultar alimento');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar alimento');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar alimento');
+INSERT INTO privilegio(nombrecu) VALUES ('Registrar ejercicio');
+INSERT INTO privilegio(nombrecu) VALUES ('Modificar ejercicio');
+INSERT INTO privilegio(nombrecu) VALUES ('Eliminar ejercicio');
 
-INSERT INTO privilegio(nombrecu) VALUES ('Registrar Bitacora');
-INSERT INTO privilegio(nombrecu) VALUES ('Registrar Alimento');
-INSERT INTO privilegio(nombrecu) VALUES ('Registrar Dieta');
-INSERT INTO privilegio(nombrecu) VALUES ('Registrar Entrenamiento');
-INSERT INTO privilegio(nombrecu) VALUES ('Registrar Rutina');
-INSERT INTO privilegio(nombrecu) VALUES ('Registrar Usuario');
-INSERT INTO privilegio(nombrecu) VALUES ('Registrar Rol');
+
 
 
 /* INSERTS - Rol de privilegio*/
 
-INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,2);
-INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,4);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,1);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,2);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,3);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,4);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,5);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,6);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,7);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,8);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,9);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,10);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,11);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,12);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,13);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,14);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,15);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,16);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,17);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,18);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,19);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,20);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,21);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,22);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,23);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,24);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,25);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,26);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,27);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,28);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,29);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,30);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,31);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,32);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,33);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,34);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,35);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,36);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,37);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,38);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,39);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,40);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,41);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,1);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,2);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,3);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,4);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,5);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,6);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,7);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,8);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,9);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,10);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,11);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,12);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,13);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,14);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,15);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,16);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,17);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,18);
+
 
 
 /*INSERTS - BITACORA*/
