@@ -80,6 +80,9 @@
               <tr>
                 <th>ID</th>
                 <th>Nombre del Rol</th>
+                <th>Acciones</th>
+              
+              
               </tr>
             </thead>
             <tbody>
@@ -87,6 +90,10 @@
               <tr>
                 <td><%= rol.id_rol %></td>
                 <td><%= rol.nombreRol %></td>
+                <td>
+                 <a href="/admin/adminDashboard/modrol/<%= rol.id_rol %>"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i></a>
+                  <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+                </td>
               </tr>
               <% }); %>
             </tbody>

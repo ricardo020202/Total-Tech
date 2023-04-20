@@ -61,10 +61,10 @@ router.get('/admindashboard/reg_rol', checkPrivilegio('Consultar rol'),
 router.post('/admindashboard/reg_rol', checkPrivilegio('Registrar rol'),
              adminController.postadminreg_rol);
 
-router.get("/admindashboard/modrol", checkPrivilegio('Modificar rol'),
+router.get("/admindashboard/modrol/:id", checkPrivilegio('Modificar rol'),
              adminController.getAdminModRol);
 
-router.post("/admindashboard/modrol", checkPrivilegio('Modificar rol'),
+router.post("/admindashboard/modrol/:id", checkPrivilegio('Modificar rol'),
              adminController.postAdminModRol);
 
 router.get("/admindashboard/grafclientes",adminController.getAdminInfoCliente);
