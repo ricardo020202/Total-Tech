@@ -18,13 +18,13 @@ const mysql = require('mysql2');
 //     password: 'lol23',
 // });
 //  Erik database
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'erik',
-//     database: 'onyx',
-//     password: 'erik',
-//     port: 8889,
-// });
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'erik',
+    database: 'onyx',
+    password: 'erik',
+    port: 8889,
+});
 // Windows database
 /*const pool = mysql.createPool({
     host: 'localhost',
@@ -34,12 +34,12 @@ const mysql = require('mysql2');
 });*/
 
 // Windows database
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'onyx2',
-    password: '',
-});
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'onyx2',
+//     password: '',
+// });
 // const pool = mysql.createPool({
 //     host: 'localhost',
 //     user: 'root',
