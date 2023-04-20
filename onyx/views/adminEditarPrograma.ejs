@@ -8,6 +8,14 @@
 
 <!-- make new programa page -->
 <div class="container" id="nuevo-programa">
+    <div class="row">
+        <div class="col-12" id="programa">
+            <h1 class="text-center">Editar Programa</h1>
+        </div>
+    </div>
+
+
+
     <!-- form for new programa -->
     <div class="container" id="form-nuevo-programa">
         <form action="/admin/admindashboard/programas/editar-programa" method="POST">
@@ -16,24 +24,21 @@
             <!-- Insertar doc txt insertar en adminEditarPrograma.ejs -->
 
             <div class="mb-3">
-                <label for="descripcion_programa" class="form-label">Descripcion</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="descripcion_programa"
-                    name="descripcion_programa"
-                    required/>
-            </div>
-
-            <div class="mb-3">
                 <label for="nombre_programa" class="form-label">Nombre Programa</label>
                 <input
                     type="text"
                     class="form-control"
                     id="nombre_programa"
                     name="nombre_programa"
+                    value="<%= programa.nombre_programa %>"
                     required/>
             </div>
+
+            <label for="descripcion_programa" class="form-label">Descripcion</label>
+            <div class="input-group">  
+                <textarea class="form-control" aria-label="With textarea" id="descripcion_programa"
+                name="descripcion_programa"></textarea>
+             </div>
 
             <div class="mb-3">
                 <label for="frecuencia" class="form-label">Frecuencia</label>
@@ -42,6 +47,7 @@
                     class="form-control"
                     id="frecuencia"
                     name="frecuencia"
+                    value="<%= programa.frecuencia %>"
                     required/>
             </div>
             <div class="mb-3">
@@ -51,7 +57,8 @@
                     class="form-control"
                     id="ref_visual"
                     name="ref_visual"
-                    required/>
+                    value="<%= programa.ref_visual %>"
+                    />
             </div>
             
             <div class="mb-3">
@@ -61,11 +68,12 @@
                     class="form-control"
                     id="img_programa"
                     name="img_programa"
-                    required/>
+                    value="<%= programa.img_programa %>"
+                    />
             </div>
-            <button type="submit" class="btn btn-primary" id="agregarenadmin">Agregar</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
             <!-- cancelar -->
-            <a href="/admin/admindashboard/programas">
+            <a href="/admin/admindashboard/programas"></a>
                 <button type="button" class="btn btn-danger">Cancelar</button>
             </a>
         </form>
