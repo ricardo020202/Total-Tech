@@ -507,7 +507,8 @@ exports.getadminreg_rol = (req, res, next) => {
               user: req.session.user,
               roles: rows,
               privilegios: privilegios, // Añade los privilegios aquí
-              csrfToken: csrfToken
+              csrfToken: csrfToken,
+              photo: req.session.photo || "",
             });
             res.locals.mensaje = "";
           });
