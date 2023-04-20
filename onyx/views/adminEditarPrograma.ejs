@@ -2,16 +2,11 @@
 <%- include('includes/headAdmin.ejs') %>
 <%- include('includes/sidebar.ejs') %> 
 
+<H1 style="margin-left:300px ;">Editar Programa</H1>
+
 
 <!-- make new programa page -->
 <div class="container" id="nuevo-programa">
-    <div class="row">
-        <div class="col-12" id="programa">
-            <h1 class="text-center">Editar Programa</h1>
-        </div>
-    </div>
-
-
 
     <!-- form for new programa -->
     <div class="container" id="form-nuevo-programa">
@@ -31,16 +26,11 @@
                     required/>
             </div>
 
-            <div class="mb-3">
-                <label for="descripcion_programa" class="form-label">Descripcion</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="descripcion_programa"
-                    name="descripcion_programa"
-                    value="<%= programa.descripcion_programa %>"
-                    required/>
-            </div>
+            <label for="descripcion_programa" class="form-label">Descripcion</label>
+            <div class="input-group">  
+                <textarea class="form-control" aria-label="With textarea" id="descripcion_programa"
+                name="descripcion_programa"></textarea>
+             </div>
 
             <div class="mb-3">
                 <label for="frecuencia" class="form-label">Frecuencia</label>
@@ -73,9 +63,7 @@
                     value="<%= programa.img_programa %>"
                     />
             </div>
-            <a href="/admin/admindashboard/programas/editar-programa/<%= programa.id_programa %>">
-                <button type="submit" class="btn btn-success">Submit</button>
-            </a>
+            <button type="submit" class="btn btn-success">Submit</button>
             <!-- cancelar -->
             <a href="/admin/admindashboard/programas"></a>
                 <button type="button" class="btn btn-danger">Cancelar</button>
