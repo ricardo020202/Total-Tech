@@ -102,6 +102,7 @@ exports.login = (request, response, next) => {
         user: request.session.user || "",
         mensaje: mensaje,
         csrfToken: request.csrfToken(),
+        photo: request.session.photo || "",
     });
 };
 
