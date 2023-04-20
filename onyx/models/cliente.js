@@ -49,6 +49,14 @@ module.exports = class Cliente {
         return db.execute('SELECT COUNT(*) as total FROM cliente');
     }
 
+    static getTotalMujeres(){
+        return db.execute(`SELECT COUNT(sexo) as TotalMujeres FROM cliente where sexo = 'Femenino'`);
+    }
+
+    static getTotalHombres(){
+        return db.execute(`SELECT COUNT(sexo) as TotalHombres FROM cliente where sexo = 'Masculino'`);
+    }
+
     static updateEmail(email, newEmail){
         return db.execute('UPDATE cliente SET email = ? WHERE email = ?', [newEmail, email]);
     }

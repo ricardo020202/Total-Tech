@@ -46,5 +46,7 @@ router.get("/admindashboard/modrol",adminController.getAdminModRol);
 
 router.post("/admindashboard/modrol",adminController.postAdminModRol);
 
+router.get("/admindashboard/grafclientes",adminController.getAdminInfoCliente);
+
 
 module.exports = router;

@@ -15,8 +15,6 @@ const RolPrivilegio = require('../models/rol_privilegio');
 const Privilegio = require('../models/privilegio');
 const db = require('../util/database');
 
-
-
 exports.getAdminDashboardEjercicios= async (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
@@ -112,7 +110,6 @@ exports.getAdminEditarPrograma = (req, res, next) => {
         csrfToken: req.csrfToken(),
     });
 };
-
 
 exports.postAdminEditarPrograma = (req, res, next) => {
     const programa = new EntrenamientoModel({
@@ -387,7 +384,6 @@ exports.getAdminDashboard = async (req, res, next) => {
     });
 };
 
-
 exports.getAdminModRol = (req, res, next) => {
     let roles = [];
     let privileges = [];
@@ -509,4 +505,22 @@ exports.postadminreg_rol = function (req, res) {
             console.error(error);
             req.session.mensaje = "Error al registrar el rol.";
         });
+};
+
+exports.getAdminInfoCliente = async (req, res, next) => {
+    const consulta_total_cliente = await Cliente.getTotal();
+    const totalClientes = consulta_total_cliente[0][0].total;
+    const consulta_total_mujeres = await Cliente.getTotalMujeres();
+    const clientesMujeres = consulta_total_mujeres[0][0].total;
+    const consulta_total_hombres = await Cliente.getTotalHombres();
+    const clienteHombres = consulta_total_hombres[0][0].total;
+
+    res.render("adminDashboardGrafClientes", {
+        pagetitle: "Grafica Clientes",
+        user: req.session.user || "",
+        totalClientes: totalClientes || "",
+        clientesMujeres: clientesMujeres || "",
+        clienteHombres: clienteHombres || "",
+        csrfToken: req.csrfToken()
+    });
 };
