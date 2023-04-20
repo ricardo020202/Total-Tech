@@ -4,72 +4,67 @@ const path = require("path");
 const onyxController = require("../controllers/onyx");
 const checkPrivilegio = require("../util/checkPrivilegios");
 
-router.get("/catejercicios", onyxController.getCatEjercicios);
+router.get("/catejercicios", checkPrivilegio('Consultar ejercicio'), onyxController.getCatEjercicios);
 
-router.get("/catentrenamientos", onyxController.getCatEntrenamientos);
+router.get("/catentrenamientos", checkPrivilegio('Consultar programa'), onyxController.getCatEntrenamientos);
 
-router.get("/catentrenamientos/:start", onyxController.getCatEntrenamientos);
+router.get("/catentrenamientos/:start", checkPrivilegio('Consultar programa'), onyxController.getCatEntrenamientos);
 
-router.get("/programa", onyxController.getDetallePrograma);
+router.get("/programa", checkPrivilegio('Consultar programa'), onyxController.getDetallePrograma);
 
-router.get("/programa/:id_programa", onyxController.getDetallePrograma);
+router.get("/programa/:id_programa", checkPrivilegio('Consultar programa'), onyxController.getDetallePrograma);
 
-router.get("/dieta", onyxController.getDetalleDieta);
+router.get("/dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetalleDieta);
 
-router.get("/dieta/:id_dieta", onyxController.getDetalleDieta);
+router.get("/dieta/:id_dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetalleDieta);
 
-router.get("/dietas", onyxController.getDieta);
+router.get("/dietas", checkPrivilegio('Consultar dieta'), onyxController.getDieta);
 
-router.get("/dietas/:start/:numcal", onyxController.getDieta);
+router.get("/dietas/:start/:numcal", checkPrivilegio('Consultar dieta'), onyxController.getDieta);
 
-router.get("/bitacora", onyxController.getBitacora);
+router.get("/favoritos", checkPrivilegio('Consultar favoritos'), onyxController.getConsultaFav);
 
-router.get("/favoritos", onyxController.getConsultaFav);
+router.get("/favoritos/delete/:id_dieta/:id_programa/:tipo", checkPrivilegio('Eliminar favoritos'),
+             onyxController.deleteFavoritos);
 
-router.get("/favoritos/delete/:id_dieta/:id_programa/:tipo", onyxController.deleteFavoritos);
+router.get("/favoritos/add/:id_dieta?/:id_programa?/:tipo", checkPrivilegio('Registrar favoritos'),
+             onyxController.postFavoritos);
 
-router.get("/favoritos/add/:id_dieta?/:id_programa?/:tipo", onyxController.postFavoritos);
+router.get("/dashboard", checkPrivilegio('Consultar reporte de progreso'), onyxController.getDashboard);
 
-router.get("/dashboard", onyxController.getDashboard);
+router.get("/bitacora", checkPrivilegio('Consultar bitácora'), onyxController.getBitacora);
 
-router.get("/bitacora", onyxController.getBitacora);
+router.get("/bitacora/:fecha", checkPrivilegio('Consultar bitácora'), onyxController.getBitacora);
 
-router.get("/bitacora/:fecha", onyxController.getBitacora);
+router.post("/bitacora/delete/:id_bitacora", checkPrivilegio('Eliminar bitácora'), onyxController.deleteBitacora);
 
-router.post("/bitacora/delete/:id_bitacora", onyxController.deleteBitacora);
+router.get("/nuevabitacora", checkPrivilegio('Registrar bitácora'), onyxController.getNuevaBitacora);
 
-router.get("/nuevabitacora", onyxController.getNuevaBitacora);
+router.post("/nuevabitacora", checkPrivilegio('Registrar bitácora'), onyxController.postNuevaBitacora);
 
-router.post("/nuevabitacora", onyxController.postNuevaBitacora);
+router.get("/datos-iniciales", checkPrivilegio('Consultar datos iniciales'), 
+            onyxController.getDatosIniciales);
 
-router.get("/datos-iniciales", onyxController.getDatosIniciales);
+router.get("/registrar-datos-iniciales", checkPrivilegio('Registrar datos iniciales'),
+            onyxController.getRegistrarDatosIniciales);
 
-router.get("/registrar-datos-iniciales", onyxController.getRegistrarDatosIniciales);
+router.post("/registrar-datos-iniciales", checkPrivilegio('Registrar datos iniciales'), 
+            checkPrivilegio('Modificar datos iniciales'), onyxController.postRegistrarDatosIniciales);
 
-router.post("/registrar-datos-iniciales", onyxController.postRegistrarDatosIniciales);
+router.get("/tallas", checkPrivilegio('Consultar tallas'), onyxController.getTallas);
 
-router.get("/tallas", onyxController.getTallas);
+router.post("/tallas", checkPrivilegio('Registrar tallas'), onyxController.postTallas);
 
-router.post("/tallas", onyxController.postTallas);
+router.get("/cuenta", checkPrivilegio('Consultar cuenta'), onyxController.getCuenta);
 
-router.get('/modificar-tallas', onyxController.getTallas);
+router.get("/cambiarPassword", checkPrivilegio('Modificar cuenta'), onyxController.getCambiarPassword);
 
-router.post('/modificar-tallas', onyxController.postTallas);
+router.post("/cambiarPassword", checkPrivilegio('Modificar cuenta'), onyxController.postCambiarPassword);
 
-router.get("/cuenta", onyxController.getCuenta);
+router.post("/cuenta", checkPrivilegio('Modificar cuenta'), onyxController.postCuenta);
 
-router.get("/cambiarPassword", onyxController.getCambiarPassword);
+router.get("/fotoperfil", checkPrivilegio('Modificar cuenta'), onyxController.getFotoPerfil);
 
-router.post("/cambiarPassword", onyxController.postCambiarPassword);
-
-router.post("/cuenta", onyxController.postCuenta);
-
-router.get("/fotoperfil", onyxController.getFotoPerfil);
-
-router.post("/fotoperfil", onyxController.postFotoPerfil);
-
-//router.get('/reg_rol', onyxController.getreg_rol);
-
-//router.post('/reg_rol', onyxController.postreg_rol);
+router.post("/fotoperfil", checkPrivilegio('Modificar cuenta'), onyxController.postFotoPerfil);
 
 module.exports = router;
