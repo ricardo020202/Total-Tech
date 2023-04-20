@@ -584,3 +584,31 @@ exports.getAdminInfoCliente = async (req, res, next) => {
         photo: req.session.photo || "",
     });
 };
+
+exports.deleteAdminRol = (req, res, next) => {
+    const idRol = req.params.idrol;
+
+    Rol.deleteById(idRol)
+        .then(([rows, fieldData]) => {
+            req.session.mensaje = "Rol desactivado correctamente.";
+            res.redirect("/admin/admindashboard/reg_rol");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+};
+
+exports.activateAdminRol = (req, res, next) => {
+    const idRol = req.params.idrol;
+
+    Rol.activateById(idRol)
+        .then(([rows, fieldData]) => {
+            req.session.mensaje = "Rol activado correctamente.";
+            res.redirect("/admin/admindashboard/reg_rol");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+};
