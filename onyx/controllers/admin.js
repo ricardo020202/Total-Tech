@@ -465,30 +465,32 @@ exports.postAdminModRol = (req, res, next) => {
       });
   };
   
-exports.getadminreg_rol = (req, res, next) => {
+  exports.getadminreg_rol = (req, res, next) => {
     const mensaje = req.query.mensaje === 'success' ? 'Rol registrado correctamente.' : '';
-
+  
     Rol.fetchAll()
       .then(([rows]) => {
         const csrfToken = req.csrfToken();
         const roles = rows.map(row => {
-        return {id: row.id_rol, nombre: row.nombreRol};
+          return {id: row.id_rol, nombre: row.nombreRol};
         });
-
-        
-        res.render('reg_rol', { 
-
-          pagetitle: 'Registrar Rol',
-          mensaje: mensaje, 
-          user: req.session.email,
-          roles: rows ,
-          csrfToken: csrfToken
-
-        });
-        res.locals.mensaje = "";
+  
+        // Busca todos los privilegios
+        return Privilegio.fetchAll()
+          .then(([privilegios]) => {
+            // Renderiza la vista con los roles y los privilegios
+            res.render('reg_rol', {
+              pagetitle: 'Registrar Rol',
+              mensaje: mensaje,
+              user: req.session.user,
+              roles: rows,
+              privilegios: privilegios, // Añade los privilegios aquí
+              csrfToken: csrfToken
+            });
+            res.locals.mensaje = "";
+          });
       })
       .catch(err => console.log(err));
-
   };
 
 exports.postadminreg_rol = function (req, res) {
@@ -523,6 +525,7 @@ exports.postadminreg_rol = function (req, res) {
             req.session.mensaje = "Error al registrar el rol.";
         });
 };
+
 
 exports.getAdminInfoCliente = async (req, res, next) => {
     const consulta_total_cliente = await Cliente.getTotal();

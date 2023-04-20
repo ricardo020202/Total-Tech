@@ -33,41 +33,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Registrar Bitacora</td>
-              <td><input type="checkbox" name="privilegios" value="1"></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Registrar Alimento</td>
-              <td><input type="checkbox" name="privilegios" value="2"></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Registrar Dieta</td>
-              <td><input type="checkbox" name="privilegios" value="3"></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Registrar Entrenamiento</td>
-              <td><input type="checkbox" name="privilegios" value="4"></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Registrar Rutina</td>
-              <td><input type="checkbox" name="privilegios" value="5"></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Registrar Usuario</td>
-              <td><input type="checkbox" name="privilegios" value="6"></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Registrar Rol</td>
-              <td><input type="checkbox" name="privilegios" value="7"></td>
-            </tr>
+            <% privilegios.forEach(function(privilegio) { %>
+              <tr>
+                <td><%= privilegio.id_cu %></td>
+                <td><%= privilegio.nombrecu %></td>
+                <td><input type="checkbox" name="privilegios" value="<%= privilegio.id_cu %>"></td>
+              </tr>
+            <% }); %>
           </tbody>
         </table>
       </div>
