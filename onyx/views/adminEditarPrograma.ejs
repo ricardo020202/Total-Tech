@@ -1,74 +1,56 @@
 <link rel="stylesheet" href="/css/adminStyle.css">
 <%- include('includes/headAdmin.ejs') %>
-<%- include('includes/sidebar.ejs') %> 
-<br>
-<br>
-<h1 style="margin-left: 350px;">Editar Programa</h1>
+    <%- include('includes/sidebar.ejs') %>
+        <br>
+        <br>
+        <h1 style="margin-left: 350px;">Editar Programa</h1>
 
 
-<!-- make new programa page -->
-<div class="container" id="nuevo-programa">
+        <!-- make new programa page -->
+        <div class="container" id="nuevo-programa">
 
-    <!-- form for new programa -->
-    <div class="container" id="form-nuevo-programa">
-        <form action="/admin/admindashboard/programas/editar-programa" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            
-            <!-- Insertar doc txt insertar en adminEditarPrograma.ejs -->
+            <!-- form for new programa -->
+            <div class="container" id="form-nuevo-programa">
+                <form action="/admin/admindashboard/programas/editar-programa" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
-            <div class="mb-3">
-                <label for="nombre_programa" class="form-label">Nombre Programa</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="nombre_programa"
-                    name="nombre_programa"
-                    value="<%= programa.nombre_programa %>"
-                    required/>
+                    <!-- Insertar doc txt insertar en adminEditarPrograma.ejs -->
+
+                    <div class="mb-3">
+                        <label for="nombre_programa" class="form-label">Nombre Programa</label>
+                        <input type="text" class="form-control" id="nombre_programa" name="nombre_programa"
+                            value="<%= programa.nombre_programa %>" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre_programa" class="form-label">Descripcion</label>
+                        <input type="text" class="form-control" id="nombre_programa" name="nombre_programa"
+                            value="<%= programa.descripcion_programa %>" style="height: 100px;" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="frecuencia" class="form-label">Frecuencia</label>
+                        <input type="number" class="form-control" id="frecuencia" name="frecuencia"
+                            value="<%= programa.frecuencia %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="ref_visual" class="form-label">Referencia Visual</label>
+                        <input type="text" class="form-control" id="ref_visual" name="ref_visual"
+                            value="<%= programa.ref_visual %>" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="img_programa" class="form-label">Imagen Programa</label>
+                        <input type="text" class="form-control" id="img_programa" name="img_programa"
+                            value="<%= programa.img_programa %>" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <!-- cancelar -->
+                    <a href="/admin/admindashboard/programas"></a>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    </a>
+                </form>
+
+
             </div>
-
-            <label for="descripcion_programa" class="form-label">Descripcion</label>
-            <div class="input-group">  
-                <textarea class="form-control" aria-label="With textarea" id="descripcion_programa"
-                name="descripcion_programa"></textarea>
-             </div>
-
-            <div class="mb-3">
-                <label for="frecuencia" class="form-label">Frecuencia</label>
-                <input
-                    type="number"
-                    class="form-control"
-                    id="frecuencia"
-                    name="frecuencia"
-                    value="<%= programa.frecuencia %>"
-                    required/>
-            </div>
-            <div class="mb-3">
-                <label for="ref_visual" class="form-label">Referencia Visual</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="ref_visual"
-                    name="ref_visual"
-                    value="<%= programa.ref_visual %>"
-                    />
-            </div>
-            
-            <div class="mb-3">
-                <label for="img_programa" class="form-label">Imagen Programa</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="img_programa"
-                    name="img_programa"
-                    value="<%= programa.img_programa %>"
-                    />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <!-- cancelar -->
-            <a href="/admin/admindashboard/programas"></a>
-                <button type="button" class="btn btn-danger">Cancelar</button>
-            </a>
-        </form>
-    </div>
-</div>
+        </div>
