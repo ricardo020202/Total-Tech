@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const onyxController = require("../controllers/onyx");
+const checkPrivilegio = require("../util/checkPrivilegios");
 
 router.get("/catejercicios", onyxController.getCatEjercicios);
 
