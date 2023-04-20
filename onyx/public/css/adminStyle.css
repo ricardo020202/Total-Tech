@@ -542,3 +542,8 @@ td, th {
     color: #000000;
     z-index: 100;
   }
+
+.privilegios-table-container {
+    max-height: 300px; /* Altura máxima del contenedor de la tabla. Ajusta según tus necesidades. */
+    overflow-y: auto; /* Habilita el scroll vertical si el contenido excede la altura máxima. */
+  }
