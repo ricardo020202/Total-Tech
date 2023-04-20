@@ -80,6 +80,7 @@
               <tr>
                 <th>ID</th>
                 <th>Nombre del Rol</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -87,6 +88,15 @@
               <tr>
                 <td><%= rol.id_rol %></td>
                 <td><%= rol.nombreRol %></td>
+                <% if (rol.statusRol == 'on') { %>
+                <td>
+                  <a href="/admin/adminDashboard/reg_rol/delete/<%= rol.id_rol %>" class="btn btn-custom">Desactivar</a>
+                </td>
+                <% } else { %>
+                <td>
+                  <a href="/admin/adminDashboard/reg_rol/activate/<%= rol.id_rol %>" class="btn btn-custom">Activar</a>
+                </td>
+                <% } %>
               </tr>
               <% }); %>
             </tbody>
