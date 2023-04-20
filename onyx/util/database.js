@@ -40,6 +40,12 @@ const pool = mysql.createPool({
     database: 'onyx2',
     password: '',
 });
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'onyx',
+//     password: '',
+// });
 
 
 

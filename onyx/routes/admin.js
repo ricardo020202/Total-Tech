@@ -66,5 +66,7 @@ router.get("/admindashboard/modrol", checkPrivilegio('Modificar rol'),
 router.post("/admindashboard/modrol", checkPrivilegio('Modificar rol'),
              adminController.postAdminModRol);
 
+router.get("/admindashboard/grafclientes",adminController.getAdminInfoCliente);
+
 
 module.exports = router;

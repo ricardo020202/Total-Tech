@@ -685,7 +685,6 @@ exports.postCuenta = (req, res, next) => {
         });
 };
 
-
 exports.getCambiarPassword= (req, res, next) => {
     res.render("cambiarPassword", {
         pagetitle: "Cambiar Password",
@@ -693,7 +692,6 @@ exports.getCambiarPassword= (req, res, next) => {
         csrfToken: req.csrfToken(),
     });
 };
-
 
 exports.postCambiarPassword = (req, res, next) => {
     const { contraseña, newPassword, confirmPassword } = req.body;
@@ -770,7 +768,7 @@ exports.postFotoPerfil = (req, res, next) => {
                 console.log(err);
             }
         });
-}
+};
 
 exports.getConsultaFav = async (req, res, next) => {
     try {
