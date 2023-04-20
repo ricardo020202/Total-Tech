@@ -576,8 +576,9 @@ exports.getTallas = (req, res, next) => {
                         pantorrillaI: req.session.pantorrilla_izquierda || "",
                         pantorrillaD: req.session.pantorrilla_derecha || "",
                         cuello: req.session.cuello || "",
+                        photo: req.session.photo || "",
                         sexo: req.session.sex || "",
-                        csrfToken: req.csrfToken(),
+                        csrfToken: req.csrfToken()
                     });
                 })
                 .catch((err) => {
