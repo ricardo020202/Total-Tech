@@ -22,7 +22,7 @@ router.post("/admindashboard/userprivileges/add", checkPrivilegio('Registrar usu
 router.post("/admindashboard/userprivileges/delete/:email", checkPrivilegio('Eliminar usuarios'),
              adminController.deleteAdminDashboarUser);
 
-router.get("/admindashboard/diets", checkPrivilegio('Consultar dieta'),
+router.get("/admindashboard/diets", checkPrivilegio('Consultar dieta'), checkPrivilegio('Registrar dieta'),
              adminController.getAdminDashboardDietas);
 
 router.get("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
@@ -31,7 +31,7 @@ router.get("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
 router.post("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
              adminController.postAdminNuevaDieta);
 
-router.get("/admindashboard/ejercicios", checkPrivilegio('Consultar ejercicio'),
+router.get("/admindashboard/ejercicios", checkPrivilegio('Consultar ejercicio'), checkPrivilegio('Registrar ejercicio'),
              adminController.getAdminDashboardEjercicios);
 
 router.get('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registrar ejercicio'),
@@ -40,7 +40,7 @@ router.get('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registr
 router.post('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registrar ejercicio'),
              adminController.postAdminNuevoEjercicio);
 
-router.get("/admindashboard/programas", checkPrivilegio('Consultar programa'),
+router.get("/admindashboard/programas", checkPrivilegio('Consultar programa'), checkPrivilegio('Registrar programa'),
             adminController.getAdminDashboardProgramas);
 
 router.get('/admindashboard/programas/nuevoprograma', checkPrivilegio('Registrar programa'),
@@ -66,6 +66,12 @@ router.get("/admindashboard/modrol/:id", checkPrivilegio('Modificar rol'),
 
 router.post("/admindashboard/modrol/:id", checkPrivilegio('Modificar rol'),
              adminController.postAdminModRol);
+
+router.get("/admindashboard/reg_rol/delete/:idrol", checkPrivilegio('Modificar rol'),
+            adminController.deleteAdminRol);
+
+router.get("/admindashboard/reg_rol/activate/:idrol", checkPrivilegio('Modificar rol'),
+            adminController.activateAdminRol);
 
 router.get("/admindashboard/grafclientes",adminController.getAdminInfoCliente);
 

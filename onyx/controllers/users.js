@@ -7,6 +7,7 @@ exports.get_signup = (request, response, next) => {
         pagetitle: "Sign up",
         isLoggedIn: request.session.isLoggedIn || false,
         user: request.session.user || "",
+        photo: request.session.photo || "",
         csrfToken: request.csrfToken(),
         mensaje: request.session.mensaje || "",
     });
@@ -18,7 +19,7 @@ exports.post_signup = (request, response, next) => {
         nombre: request.body.nombre,
         apellido: request.body.apellido,
         contraseña: request.body.password,
-        user_pic: null,
+        user_pic: 'default.png',
     });
     user_nuevo
         .save()
@@ -36,6 +37,7 @@ exports.post_signup = (request, response, next) => {
                                     request.session.isLoggedIn = true;
                                     request.session.user = rows[0].nombre;
                                     request.session.email = rows[0].email;
+                                    request.session.photo = rows[0].user_pic;
                                     user.addRol(request.body.email, 2, new Date());
                                     user.getPrivilegiosOne(rows[0].email)
                                         .then(([consulta_privilegios, fieldData]) => {
@@ -122,6 +124,7 @@ exports.post_login = (request, response, next) => {
                             request.session.isLoggedIn = true;
                             request.session.user = rows[0].nombre;
                             request.session.email = rows[0].email;
+                            request.session.photo = rows[0].user_pic;
                             user.getPrivilegiosOne(rows[0].email)
                                 .then(([consulta_privilegios, fieldData]) => {
                                     console.log(consulta_privilegios);

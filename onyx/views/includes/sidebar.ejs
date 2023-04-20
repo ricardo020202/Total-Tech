@@ -15,13 +15,17 @@
                 <h4 class="text-center">Admin Dashboard</h4>
             </li>
             <li class="d-flex justify-content-center">
+                <a href="/onyx/fotoperfil">
                 <img
-                    src="/assets/admin.png"
+                    src="/uploads/<%= photo %>"
                     alt=""
-                    class="rounded-circle mb-4 mt-5"
+                    class="img-fluid rounded-circle d-flex justify-content-center"
+                    style="width: 180px; height: 180px; object-fit: cover"
                 />
+                </a>
             </li>
             <li>
+                <br/>
                 <h5><%=user%></h5>
             </li>
             <li>
@@ -71,7 +75,7 @@
                 <div class="row ico_regrol">
                 <a href="/admin/adminDashboard/reg_rol" class="nav-link2 text-white" id="ico_regrol">
                     <i class="fa-regular fa-address-book fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
-                    <span class="nav-link-text">Registrar Rol</span>
+                    <span class="nav-link-text">Roles</span>
                 </a>
              </div>
             </li>

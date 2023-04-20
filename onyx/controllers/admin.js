@@ -8,20 +8,21 @@ const TallaModel = require("../models/talla");
 const bcrypt = require("bcryptjs");
 const Bitacora = require("../models/bitacora");
 const Cliente = require("../models/cliente");
-const Rol = require('../models/rol');
+const Rol = require("../models/rol");
 const usuario = require("../models/usuario");
-const RolUsuario = require('../models/rol_usuario');
-const RolPrivilegio = require('../models/rol_privilegio');
-const Privilegio = require('../models/privilegio');
-const db = require('../util/database');
+const RolUsuario = require("../models/rol_usuario");
+const RolPrivilegio = require("../models/rol_privilegio");
+const Privilegio = require("../models/privilegio");
+const db = require("../util/database");
 
-exports.getAdminDashboardEjercicios= async (req, res, next) => {
+exports.getAdminDashboardEjercicios = async (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
             res.render("adminDashboardEjercicio", {
                 ejercicio: rows,
                 pagetitle: "adminEjercicios",
                 user: req.session.user || "",
+                photo: req.session.photo || "",
             });
         })
         .catch((err) => {
@@ -29,6 +30,7 @@ exports.getAdminDashboardEjercicios= async (req, res, next) => {
                 res.render("dbDown", {
                     pagetitle: "Error",
                     user: req.session.user || "",
+                    photo: req.session.photo || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -37,7 +39,7 @@ exports.getAdminDashboardEjercicios= async (req, res, next) => {
         });
 };
 
-exports.getAdminDashboardProgramas= async (req, res, next) => {
+exports.getAdminDashboardProgramas = async (req, res, next) => {
     EntrenamientoModel.fetchAll()
         .then(([rows, fieldData]) => {
             res.render("adminDashboardProgramas", {
@@ -45,6 +47,7 @@ exports.getAdminDashboardProgramas= async (req, res, next) => {
                 pagetitle: "adminProgramas",
                 user: req.session.user || "",
                 path: "/adminDashboardProgramas",
+                photo: req.session.photo || "",
             });
         })
         .catch((err) => {
@@ -52,6 +55,7 @@ exports.getAdminDashboardProgramas= async (req, res, next) => {
                 res.render("dbDown", {
                     pagetitle: "Error",
                     user: req.session.user || "",
+                    photo: req.session.photo || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -66,6 +70,7 @@ exports.getAdminNuevoEjercicio = (req, res, next) => {
         user: req.session.user || "",
         path: "adminNuevoEjercicio",
         csrfToken: req.csrfToken(),
+        photo: req.session.photo || "",
     });
 };
 
@@ -74,6 +79,7 @@ exports.getAdminNuevoPrograma = (req, res, next) => {
         pagetitle: "Nuevo Programa",
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
+        photo: req.session.photo || "",
     });
 };
 
@@ -95,6 +101,7 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
                 res.render("dbDown", {
                     pagetitle: "Error",
                     user: req.session.user || "",
+                    photo: req.session.photo || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -113,6 +120,7 @@ exports.getAdminEditarPrograma = (req, res, next) => {
                 user: req.session.user || "",
                 programa: rows[0],
                 csrfToken: req.csrfToken(),
+                photo: req.session.photo || "",
             });
         })
         .catch((err) => {
@@ -120,6 +128,7 @@ exports.getAdminEditarPrograma = (req, res, next) => {
                 res.render("dbDown", {
                     pagetitle: "Error",
                     user: req.session.user || "",
+                    photo: req.session.photo || "",
                 });
             } else {
                 console.log(err);
@@ -146,6 +155,7 @@ exports.postAdminEditarPrograma = (req, res, next) => {
                 res.render("dbDown", {
                     pagetitle: "Error",
                     user: req.session.user || "",
+                    photo: req.session.photo || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -160,6 +170,7 @@ exports.getAdminNuevaDieta = (req, res, next) => {
         user: req.session.user || "",
         path: "adminNuevaDieta",
         csrfToken: req.csrfToken(),
+        photo: req.session.photo || "",
     });
 };
 
@@ -181,43 +192,44 @@ exports.postAdminNuevaDieta = (req, res, next) => {
     });
 
     if (dieta) {
-           dieta
-    .save()
-    .then((result) => {
-        res.redirect("/admin/admindashboard/diets");
-    })
-    .catch((err) => {
-        if (err.code === "PROTOCOL_CONNECTION_LOST") {
-            res.render("dbDown", {
-                pagetitle: "Error",
-                user: req.session.user || "",
+        dieta
+            .save()
+            .then((result) => {
+                res.redirect("/admin/admindashboard/diets");
+            })
+            .catch((err) => {
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        photo: req.session.photo || "",
+                    });
+                    return { medidas: [], fechas: [] };
+                } else {
+                    console.log(err);
+                }
             });
-            return { medidas: [], fechas: [] };
-        } else {
-            console.log(err);
-        }
-    });
     }
     if (alimento) {
         alimento
-    .save()
-    .then((result) => {
-        res.redirect("/admin/admindashboard/diets");
-    })
-    .catch((err) => {
-        if (err.code === "PROTOCOL_CONNECTION_LOST") {
-            res.render("dbDown", {
-                pagetitle: "Error",
-                user: req.session.user || "",
+            .save()
+            .then((result) => {
+                res.redirect("/admin/admindashboard/diets");
+            })
+            .catch((err) => {
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        photo: req.session.photo || "",
+                    });
+                    return { medidas: [], fechas: [] };
+                } else {
+                    console.log(err);
+                }
             });
-            return { medidas: [], fechas: [] };
-        } else {
-            console.log(err);
-        }
     }
-    );
 };
-};    
 
 exports.postAdminNuevoEjercicio = (req, res, next) => {
     const ejercicio = new EjercicioModel({
@@ -238,6 +250,7 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
                 res.render("dbDown", {
                     pagetitle: "Error",
                     user: req.session.user || "",
+                    photo: req.session.photo || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -249,7 +262,6 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
 exports.getAdminDashboardAddUser = (req, res, next) => {
     Rol.fetchAllButUsers()
         .then(([rows]) => {
-
             res.render("adminNuevoUsuario", {
                 pagetitle: "Agregar usuario",
                 user: req.session.user || "",
@@ -257,59 +269,61 @@ exports.getAdminDashboardAddUser = (req, res, next) => {
                 csrfToken: req.csrfToken(),
                 mensaje: "",
                 email: req.params.email,
+                photo: req.session.photo || "",
             });
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
 };
 
 exports.postAdminDashboardAddUser = async (req, res, next) => {
     const email = req.body.email;
     const role = req.body.role;
-    
-    try {
-      // Check if user exists
-      const [users] = await usuario.fetch(email);
-      if (!users.length) {
-        return res.render("adminNuevoUsuario", {
-          pagetitle: "Agregar usuario",
-          user: req.session.user || "",
-          roles: await Rol.fetchAll(),
-          csrfToken: req.csrfToken(),
-          mensaje: "Usuario no registrado"
-        });
-      }
-  
-      // Delete the email from the rol_usuario table and add it again
-      RolUsuario.delete(email);
-      const modificar = new RolUsuario(role, email);
 
-      modificar
-      .save()
-      .then((result) => {
-            res.render("adminNuevoUsuario", {
-            pagetitle: "Agregar usuario",
-            user: req.session.user || "",
-            roles: Rol.fetchAll(),
-            csrfToken: req.csrfToken(),
-            mensaje: "Usuario agregado exitosamente"
-          });
-      })
-      .catch((err) => {
-          if (err.code === "PROTOCOL_CONNECTION_LOST") {
-              res.render("dbDown", {
-                  pagetitle: "Error",
-                  user: req.session.user || "",
-              });
-              return { medidas: [], fechas: [] };
-          } else {
-              console.log(err);
-          }
-      })
-  
-      
+    try {
+        // Check if user exists
+        const [users] = await usuario.fetch(email);
+        if (!users.length) {
+            return res.render("adminNuevoUsuario", {
+                pagetitle: "Agregar usuario",
+                user: req.session.user || "",
+                roles: await Rol.fetchAll(),
+                csrfToken: req.csrfToken(),
+                mensaje: "Usuario no registrado",
+                photo: req.session.photo || "",
+            });
+        }
+
+        // Delete the email from the rol_usuario table and add it again
+        RolUsuario.delete(email);
+        const modificar = new RolUsuario(role, email);
+
+        modificar
+            .save()
+            .then((result) => {
+                res.render("adminNuevoUsuario", {
+                    pagetitle: "Agregar usuario",
+                    user: req.session.user || "",
+                    roles: Rol.fetchAll(),
+                    csrfToken: req.csrfToken(),
+                    mensaje: "Usuario agregado exitosamente",
+                    photo: req.session.photo || "",
+                });
+            })
+            .catch((err) => {
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        photo: req.session.photo || "",
+                    });
+                    return { medidas: [], fechas: [] };
+                } else {
+                    console.log(err);
+                }
+            });
     } catch (err) {
-      console.log(err);
-      res.redirect("/");
+        console.log(err);
+        res.redirect("/");
     }
 };
 
@@ -326,58 +340,62 @@ exports.deleteAdminDashboarUser = (req, res, next) => {
         .catch((err) => {
             console.log(err);
         });
-
 };
-  
+
 exports.getAdminDashboardDietas = async (req, res, next) => {
     Dieta.fetchAll()
-    .then(([rows, fieldData]) => {
-        res.render("adminDashboardDietas", {
-            dieta: rows,
-            pagetitle: "Catálogo de Dietas",
-            user: req.session.user || "",
-            path: "/adminDashboardDietas",
-        });
-    })
-    .catch((err) => {
-        if (err.code === "PROTOCOL_CONNECTION_LOST") {
-            res.render("dbDown", {
-                pagetitle: "Error",
+        .then(([rows, fieldData]) => {
+            res.render("adminDashboardDietas", {
+                dieta: rows,
+                pagetitle: "Catálogo de Dietas",
                 user: req.session.user || "",
+                path: "/adminDashboardDietas",
+                photo: req.session.photo || "",
             });
-            return { medidas: [], fechas: [] };
-        } else {
-            console.log(err);
-        }
-    });
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
 };
 
-exports.getAdminDashboardPrivileges=(req, res, next) => {
+exports.getAdminDashboardPrivileges = (req, res, next) => {
     let results = [];
 
-    usuario.getPrivilegios()
-      .then(rows => {
-        rows.forEach(row => {
-          results.push(row);
-        });
-        res.render("adminDashboardPrivileges", {
-            usersArray:rows[0],
-            pagetitle: "Users",
-            user: req.session.user || "",
-            csrfToken: req.csrfToken(),
-        });
-      })
-      .catch(error => {
-        if (error.code === "PROTOCOL_CONNECTION_LOST") {
-            res.render("dbDown", {
-                pagetitle: "Error",
-                user: req.session.user || "",
+    usuario
+        .getPrivilegios()
+        .then((rows) => {
+            rows.forEach((row) => {
+                results.push(row);
             });
-            return { medidas: [], fechas: [] };
-        } else {
-            console.log(error);
-        }
-      });
+            res.render("adminDashboardPrivileges", {
+                usersArray: rows[0],
+                pagetitle: "Users",
+                user: req.session.user || "",
+                csrfToken: req.csrfToken(),
+                photo: req.session.photo || "",
+            });
+        })
+        .catch((error) => {
+            if (error.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+                return { medidas: [], fechas: [] };
+            } else {
+                console.log(error);
+            }
+        });
 };
 
 exports.getAdminDashboard = async (req, res, next) => {
@@ -397,7 +415,8 @@ exports.getAdminDashboard = async (req, res, next) => {
         total_ejercicio: total_ejercicio || "",
         total_cliente: total_cliente || "",
         total_programa: total_programa || "",
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        photo: req.session.photo || "",
     });
 };
 
@@ -406,7 +425,7 @@ exports.getAdminModRol = (req, res, next) => {
     let roles = [];
     let privileges = [];
     let rolPrivilegio = [];
-  
+
     Privilegio.fetchAll()
       .then(privilegesRows => {
         privileges = privilegesRows;
@@ -473,63 +492,84 @@ exports.postAdminModRol = (req, res, next) => {
   
   
 exports.getadminreg_rol = (req, res, next) => {
-    const mensaje = req.query.mensaje === 'success' ? 'Rol registrado correctamente.' : '';
+    const mensaje =
+        req.query.mensaje === "success" ? "Rol registrado correctamente." : "";
 
     Rol.fetchAll()
       .then(([rows]) => {
         const csrfToken = req.csrfToken();
         const roles = rows.map(row => {
-        return {id: row.id_rol, nombre: row.nombreRol};
+          return {id: row.id_rol, nombre: row.nombreRol};
         });
-
-        
-        res.render('reg_rol', { 
-
-          pagetitle: 'Registrar Rol',
-          mensaje: mensaje, 
-          user: req.session.email,
-          roles: rows ,
-          csrfToken: csrfToken
-
-        });
-        res.locals.mensaje = "";
+  
+        // Busca todos los privilegios
+        return Privilegio.fetchAll()
+          .then(([privilegios]) => {
+            // Renderiza la vista con los roles y los privilegios
+            res.render('reg_rol', {
+              pagetitle: 'Registrar Rol',
+              mensaje: mensaje,
+              user: req.session.user,
+              roles: rows,
+              privilegios: privilegios, // Añade los privilegios aquí
+              csrfToken: csrfToken,
+              photo: req.session.photo || "",
+            });
+            res.locals.mensaje = "";
+          });
       })
       .catch(err => console.log(err));
-
   };
 
 exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
     const { id_rol, privilegios } = req.body;
-    const ids_casos_uso = Array.isArray(privilegios) ? privilegios : [privilegios];
-    const rol = new Rol({nombre: nombreRol});
+    const ids_casos_uso = Array.isArray(privilegios)
+        ? privilegios
+        : [privilegios];
+    const rol = new Rol({ nombre: nombreRol });
     const email = req.session.email;
     const tipoRol = req.body.id_rol;
     let insertedIdRol;
-    
 
     rol.save()
         .then(([result]) => {
             req.app.locals.mensaje = "Rol Registrado Correctamente.";
             insertedIdRol = result.insertId;
             const promises = ids_casos_uso.map((id_caso_uso) => {
-                const rolPrivilegio = new RolPrivilegio(insertedIdRol, id_caso_uso.trim());
-                console.log(`Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`);
-                return rolPrivilegio.save()
-                    .then(() => console.log(`Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`))
-                    .catch((error) => console.error(`Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`, error));
+                const rolPrivilegio = new RolPrivilegio(
+                    insertedIdRol,
+                    id_caso_uso.trim()
+                );
+                console.log(
+                    `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`
+                );
+                return rolPrivilegio
+                    .save()
+                    .then(() =>
+                        console.log(
+                            `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`
+                        )
+                    )
+                    .catch((error) =>
+                        console.error(
+                            `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`,
+                            error
+                        )
+                    );
             });
             return Promise.all(promises);
         })
         .then(() => {
             console.log(`Rol guardado correctamente`);
-            res.redirect('/admin/adminDashboard/reg_rol?mensaje=success');
+            res.redirect("/admin/adminDashboard/reg_rol?mensaje=success");
         })
         .catch((error) => {
             console.error(error);
             req.session.mensaje = "Error al registrar el rol.";
         });
 };
+
 
 exports.getAdminInfoCliente = async (req, res, next) => {
     const consulta_total_cliente = await Cliente.getTotal();
@@ -545,6 +585,35 @@ exports.getAdminInfoCliente = async (req, res, next) => {
         totalClientes: totalClientes || "",
         clientesMujeres: clientesMujeres || "",
         clienteHombres: clienteHombres || "",
-        csrfToken: req.csrfToken()
+        csrfToken: req.csrfToken(),
+        photo: req.session.photo || "",
     });
+};
+
+exports.deleteAdminRol = (req, res, next) => {
+    const idRol = req.params.idrol;
+
+    Rol.deleteById(idRol)
+        .then(([rows, fieldData]) => {
+            req.session.mensaje = "Rol desactivado correctamente.";
+            res.redirect("/admin/admindashboard/reg_rol");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+};
+
+exports.activateAdminRol = (req, res, next) => {
+    const idRol = req.params.idrol;
+
+    Rol.activateById(idRol)
+        .then(([rows, fieldData]) => {
+            req.session.mensaje = "Rol activado correctamente.";
+            res.redirect("/admin/admindashboard/reg_rol");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
 };
