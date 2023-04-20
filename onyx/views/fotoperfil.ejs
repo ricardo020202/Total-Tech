@@ -15,12 +15,13 @@
         <form method="POST" action="/onyx/fotoperfil" enctype="multipart/form-data">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="mb-3">
+            <div class="mb-3">
                 <label for="photo" class="form-label">Foto</label>
                 <input
                     type="file"
                     class="form-control"
                     id="user_pic"
-                    name="user_pic"
+                    name="image"
                     value="registrar"
                     required/>
             </div>

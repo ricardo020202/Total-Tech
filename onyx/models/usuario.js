@@ -71,4 +71,8 @@ module.exports = class Usuario {
             AND rp.id_rol = r.id_rol AND rp.id_cu = p.id_cu
         `, [email]);
     }  
+
+    static savePhoto(email, photo) {
+        return db.execute('UPDATE usuario SET user_pic = ? WHERE email = ?', [photo, email]);
+    }
 }
