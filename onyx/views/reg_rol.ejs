@@ -25,7 +25,7 @@
       <label>Privilegios:</label>
       <div class="container">
         <div class="container privilegios-table-container">
-        <table class="table table-active table-striped" style="margin: 0 auto;">
+        <table class="table table-active table-striped" style="margin: 0 auto; height: 85px;">
           <thead class="sticky-top">
             <tr>
               <th>ID</th>
@@ -39,10 +39,10 @@
                 <td><%= privilegio.id_cu %></td>
                 <td><%= privilegio.nombrecu %></td>
                 <td>
-                  <div class="form-check form-switch" role="group">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"  name="privilegios" value="<%= privilegio.id_cu %>"  />
-                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                </div>
+                  <label class="switch">
+                    <input type="checkbox" class="input__check" id="flexSwitchCheckDefault"  name="privilegios">
+                    <span class="slider"></span>
+                  </label>
                 </td>
               </tr>
             <% }); %>
