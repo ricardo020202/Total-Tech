@@ -23,9 +23,10 @@
       </div>
       <br>
       <label>Privilegios:</label>
-      <div class="container col-md-10">
+      <div class="container">
+        <div class="container privilegios-table-container">
         <table class="table table-active table-striped" style="margin: 0 auto;">
-          <thead>
+          <thead class="sticky-top">
             <tr>
               <th>ID</th>
               <th>Privilegios</th>
@@ -33,43 +34,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Registrar Bitacora</td>
-              <td><input type="checkbox" name="privilegios" value="1"></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Registrar Alimento</td>
-              <td><input type="checkbox" name="privilegios" value="2"></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Registrar Dieta</td>
-              <td><input type="checkbox" name="privilegios" value="3"></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Registrar Entrenamiento</td>
-              <td><input type="checkbox" name="privilegios" value="4"></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Registrar Rutina</td>
-              <td><input type="checkbox" name="privilegios" value="5"></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Registrar Usuario</td>
-              <td><input type="checkbox" name="privilegios" value="6"></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Registrar Rol</td>
-              <td><input type="checkbox" name="privilegios" value="7"></td>
-            </tr>
+            <% privilegios.forEach(function(privilegio) { %>
+              <tr>
+                <td><%= privilegio.id_cu %></td>
+                <td><%= privilegio.nombrecu %></td>
+                <td>
+                  <div class="form-check form-switch" role="group">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"  name="privilegios" value="<%= privilegio.id_cu %>"  />
+                    <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+                </td>
+              </tr>
+            <% }); %>
           </tbody>
         </table>
+      </div>
       </div>
       <br>
       <label>Roles Registrados:</label>
