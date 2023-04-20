@@ -26,7 +26,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const csrfProtection = csrf();
-app.use(csrfProtection);
 
 const fileStorage = multer.diskStorage({
     destination: (request, file, callback) => {
@@ -39,11 +38,12 @@ const fileStorage = multer.diskStorage({
             // new Date().toISOString()
             //En Windows
             new Date().getMilliseconds() + "-" + file.originalname
-        );
-    },
-});
-
-app.use(multer({ storage: fileStorage }).single("image"));
+            );
+        },
+    });
+    
+    app.use(multer({ storage: fileStorage }).single("image"));
+    app.use(csrfProtection);
 
 const userRoutes = require("./routes/users");
 app.use("/users", userRoutes);

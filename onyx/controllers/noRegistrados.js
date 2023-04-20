@@ -3,5 +3,6 @@ exports.getHome = (req, res, next) => {
         pagetitle: "Onyx",
         user: req.session.user || "",
         rol: req.session.rol || "",
+        photo : req.session.photo,
     });
 };
