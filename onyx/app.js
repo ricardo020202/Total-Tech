@@ -6,7 +6,6 @@ const app = express();
 const session = require("express-session");
 const csrf = require("csurf");
 const isAuth = require("./util/is-auth");
-const isAdmin = require("./util/is-admin");
 const flash = require("connect-flash");
 const multer = require("multer");
 
@@ -57,7 +56,7 @@ const onyxRoutes = require("./routes/onyx");
 app.use("/onyx", isAuth, onyxRoutes);
 
 const adminRoutes = require("./routes/admin");
-app.use("/admin", isAuth, isAdmin, adminRoutes);
+app.use("/admin", isAuth, adminRoutes);
 
 app.use((req, res, next) => {
     res.status(404);

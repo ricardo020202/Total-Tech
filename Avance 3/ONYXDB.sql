@@ -319,6 +319,7 @@ INSERT INTO privilegio(nombrecu) VALUES ('Eliminar alimento');
 INSERT INTO privilegio(nombrecu) VALUES ('Registrar ejercicio');
 INSERT INTO privilegio(nombrecu) VALUES ('Modificar ejercicio');
 INSERT INTO privilegio(nombrecu) VALUES ('Eliminar ejercicio');
+INSERT INTO privilegio(nombrecu) VALUES ('Admin dashboard');
 
 
 
@@ -366,6 +367,7 @@ INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,38);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,39);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,40);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,41);
+INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (1,42);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,1);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,2);
 INSERT INTO rol_privilegio(id_rol, id_cu) VALUES (2,3);

@@ -4,7 +4,8 @@ const path = require("path");
 const checkPrivilegio = require("../util/checkPrivilegios");
 const adminController = require("../controllers/admin");
 
-router.get("/admindashboard", adminController.getAdminDashboard);
+router.get("/admindashboard", checkPrivilegio('Admin dashboard'),
+             adminController.getAdminDashboard);
 
 router.get("/admindashboard/userprivileges", checkPrivilegio('Consultar usuarios'),
              adminController.getAdminDashboardPrivileges);
