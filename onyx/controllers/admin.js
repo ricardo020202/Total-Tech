@@ -576,9 +576,9 @@ exports.getAdminInfoCliente = async (req, res, next) => {
     const consulta_total_cliente = await Cliente.getTotal();
     const totalClientes = consulta_total_cliente[0][0].total;
     const consulta_total_mujeres = await Cliente.getTotalMujeres();
-    const clientesMujeres = consulta_total_mujeres[0][0].total;
+    const clientesMujeres = consulta_total_mujeres[0][0].TotalMujeres;
     const consulta_total_hombres = await Cliente.getTotalHombres();
-    const clienteHombres = consulta_total_hombres[0][0].total;
+    const clienteHombres = consulta_total_hombres[0][0].TotalHombres;
 
     res.render("adminDashboardGrafClientes", {
         pagetitle: "Grafica Clientes",
@@ -588,6 +588,8 @@ exports.getAdminInfoCliente = async (req, res, next) => {
         clienteHombres: clienteHombres || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
+        mujeres: consulta_total_mujeres,
+        hombres: consulta_total_hombres,
     });
 };
 
