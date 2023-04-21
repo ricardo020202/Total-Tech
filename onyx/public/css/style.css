@@ -54,6 +54,47 @@ body {
   background-color: #d2ca03;
 }
 
+#botonsignup
+{
+  transition: transform 0.4s ease;
+}
+
+#botonsignup:hover
+{
+  transform: scale(1.1);
+}
+
+#botonlogout
+{
+  transition: transform 0.4s ease;
+}
+
+#botonlogout:hover
+{
+  transform: scale(1.1);
+}
+
+#btnlogin
+{
+  transition: transform 0.4s ease;
+}
+
+#btnlogin:hover
+{
+  transform: scale(1.1);
+}
+
+.form-control 
+{
+  transition: transform 0.4s ease;
+}
+
+.form-control:hover 
+{
+  transform: scale(1.1);
+}
+
+
 .bg-custom1 {
   background-color: #151515;
   z-index: 2;
@@ -86,6 +127,12 @@ footer {
 
 .nav-item {
   font-family: "DM Sans", sans-serif;
+  transition: transform 0.4s ease;
+}
+
+.nav-item:hover {
+  font-family: "DM Sans", sans-serif;
+  transform: scale(1.1);
 }
 
 .search-bar {
@@ -458,6 +505,17 @@ a:hover {
   margin: 30px;
   background-color: #151515;
   border-radius: 20px;
+  transition: transform 0.4s ease;
+  
+}
+
+.cards:hover {
+  margin: 30px;
+  
+  border-radius: 20px;
+  background-color: #222222;
+  box-shadow: 0 0 10px #d2ca03;
+  transform: scale(1.05);
 }
 
 .card-img-top {
@@ -473,11 +531,14 @@ a:hover {
   margin: 10px;
   border-radius: 40px;
   width: 65%;
+  transition: transform 0.4s ease;
 }
 
 #btnstart:hover {
-  background-color: #222222;
-  color: #ffffff;
+  background-color: #151515;
+  color: #d2ca03;
+  box-shadow: 0 0 12px #cdc005;
+  transform: scale(1.1);
 }
 
 .masinfo {
@@ -626,7 +687,7 @@ header .current-date {
 
 #add-event {
   background: #d2ca03;
-  color: #fff;
+  color: #151515;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
