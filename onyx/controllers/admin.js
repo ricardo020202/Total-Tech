@@ -452,6 +452,7 @@ exports.getAdminModRol = (req, res, next) => {
           pagetitle: "Modificar rol",
           user: req.session.user || "",
           csrfToken: req.csrfToken(),
+          photo: req.session.photo || "",
         });
       })
       .catch(error => {
