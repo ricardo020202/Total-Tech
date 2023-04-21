@@ -157,7 +157,23 @@ exports.postAdminEditarPrograma = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
+            } else {
+                console.log(err);
+            }
+        });
+    programa
+        .deleteById(idPrograma)
+        .then(() => {
+            // Si se eliminó el programa correctamente, redirigir a la página principal o mostrar un mensaje de éxito
+            res.redirect('/admin/admindashboard/programas');
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
             } else {
                 console.log(err);
             }
