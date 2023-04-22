@@ -561,7 +561,7 @@ exports.getTallas = (req, res, next) => {
             });
             Cliente.getSex(req.session.email)
                 .then(([rows, fieldData]) => {
-                    //req.session.sex = rows[0].sexo;
+                    req.session.sex = rows[0].sexo;
                     res.render("tallas", {
                         pagetitle: "Tallas",
                         user: req.session.user || "",
