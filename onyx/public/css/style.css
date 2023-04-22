@@ -94,6 +94,27 @@ body {
   transform: scale(1.1);
 }
 
+.form-select
+{
+  transition: transform 0.4s ease;  
+}
+
+.form-select:hover 
+{
+  transform: scale(1.1);
+}
+
+#btnregdatos
+{
+  transition: transform 0.4s ease;
+}
+
+#btnregdatos:hover
+{
+  transform: scale(1.2);
+}
+
+
 
 .bg-custom1 {
   background-color: #151515;
@@ -537,7 +558,7 @@ a:hover {
 #btnstart:hover {
   background-color: #151515;
   color: #d2ca03;
-  box-shadow: 0 0 12px #cdc005;
+  box-shadow: 0 0 12px #000000;
   transform: scale(1.1);
 }
 
@@ -863,6 +884,12 @@ tbody {
   color: #ffffff;
   font-size: 120%;
   margin-right: 0;
+  transition: transform 0.4s ease;
+}
+
+.fav:hover{
+  transform: scale(1.5);
+
 }
 
 .sticky-header {
