@@ -4,6 +4,7 @@ module.exports = (request, response, next) => {
             pagetitle: "Error",
             user: request.session.user || "",
             rol: request.session.rol || "",
+            photo: request.session.photo || 'default.png',
         });
     }
     next();

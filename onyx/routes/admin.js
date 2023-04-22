@@ -68,12 +68,13 @@ router.post("/admindashboard/modrol/:id", checkPrivilegio('Modificar rol'),
              adminController.postAdminModRol);
 
 router.get("/admindashboard/reg_rol/delete/:idrol", checkPrivilegio('Modificar rol'),
-            adminController.deleteAdminRol);
+             adminController.deleteAdminRol);
 
 router.get("/admindashboard/reg_rol/activate/:idrol", checkPrivilegio('Modificar rol'),
-            adminController.activateAdminRol);
+             adminController.activateAdminRol);
 
-router.get("/admindashboard/grafclientes",adminController.getAdminInfoCliente);
+router.get("/admindashboard/grafclientes", checkPrivilegio('Consultar usuarios'),
+             adminController.getAdminInfoCliente);
 
 
 module.exports = router;
