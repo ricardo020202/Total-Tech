@@ -810,6 +810,10 @@ tbody {
   height: 100%;
 }
 
+.talla{
+  filter: drop-shadow(0 0px 3px rgba(210, 202, 3, 0.7)); 
+}
+
 .inp-i {
   margin-right: 100%;
 }
