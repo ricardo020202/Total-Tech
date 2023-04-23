@@ -24,7 +24,7 @@
         <thead class="table-header">
             <tr>
                 <th scope="col">Id Programa</th>
-                <th scope="col">Descripcion</th>
+                <th scope="col">Descripción</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Frecuencia</th>
                 <th scope="col">Referencia Visual</th>
@@ -45,11 +45,12 @@
                 <td class="cell-class"><%= programa[i].ref_visual %></td>
                 <td><%= programa[i].img_programa %></td>
                 <td class="crud button">
+                    
                     <a href="/admin/admindashboard/programas/editar-programa/<%= programa[i].id_programa %>"><i
                         class="fa-solid fa-pen-to-square fa-lg"
                         style="color: #000"
                     > </i></a>
-                    <a href=""><i
+                    <a href="/admin/admindashboard/programas/eliminar-programa/<%= programa[i].id_programa %>"><i
                         class="fa-sharp fa-solid fa-trash fa-lg"
                         style="color: #000"
                     ></i></a>
@@ -59,3 +60,5 @@
         </tbody>
     </table>
 </div>
+
+<%- include('includes/footAdmin.ejs') %>

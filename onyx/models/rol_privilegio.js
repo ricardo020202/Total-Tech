@@ -21,7 +21,7 @@ class RolPrivilegio {
       }
 
       static getByIdRol(id) {
-        return db.execute('SELECT FROM rol_privilegio WHERE id_rol = ?', [id]);
+        return db.execute('SELECT * FROM rol_privilegio WHERE id_rol = ?', [id]);
       }
 
 

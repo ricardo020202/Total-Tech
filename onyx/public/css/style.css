@@ -1,7 +1,7 @@
 body {
   background-color: #151515;
   font-family: "DM Sans", sans-serif;
-  color: #ffffff;
+  color: #d4d4d4;
   height: 100vh;
 }
 
@@ -54,6 +54,68 @@ body {
   background-color: #d2ca03;
 }
 
+#botonsignup
+{
+  transition: transform 0.4s ease;
+}
+
+#botonsignup:hover
+{
+  transform: scale(1.1);
+}
+
+#botonlogout
+{
+  transition: transform 0.4s ease;
+}
+
+#botonlogout:hover
+{
+  transform: scale(1.1);
+}
+
+#btnlogin
+{
+  transition: transform 0.4s ease;
+}
+
+#btnlogin:hover
+{
+  transform: scale(1.1);
+}
+
+.form-control 
+{
+  transition: transform 0.4s ease;
+}
+
+.form-control:hover 
+{
+  transform: scale(1.1);
+}
+
+.form-select
+{
+  transition: transform 0.4s ease;  
+}
+
+.form-select:hover 
+{
+  transform: scale(1.1);
+}
+
+#btnregdatos
+{
+  transition: transform 0.4s ease;
+}
+
+#btnregdatos:hover
+{
+  transform: scale(1.2);
+}
+
+
+
 .bg-custom1 {
   background-color: #151515;
   z-index: 2;
@@ -86,12 +148,12 @@ footer {
 
 .nav-item {
   font-family: "DM Sans", sans-serif;
+  transition: transform 0.4s ease;
 }
 
-.search-bar {
-  background-color: black;
-  width: 336px;
-  height: 35px;
+.nav-item:hover {
+  font-family: "DM Sans", sans-serif;
+  transform: scale(1.1);
 }
 
 .bg-image {
@@ -158,38 +220,38 @@ footer {
 }
 
 .accordion {
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 .accordion-item {
   background-color: #151515;
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 .accordion-button {
   background-color: rgb(43, 43, 43);
-  color: #ffffff;
+  color: #d4d4d4;
   font-weight: 700;
 }
 
 .accordion-button:hover {
   background-color: #151515;
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 .accordion-button:focus {
   background-color: rgb(43, 43, 43);
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 .accordion-button:not(.collapsed) {
   background-color: rgb(43, 43, 43);
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 li {
   list-style: none;
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 .buttonChido {
@@ -281,7 +343,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: #d4d4d4;
   font-weight: 600;
 }
 
@@ -355,7 +417,7 @@ a:hover {
 #calendario {
   border: 4px double black;
   max-width: 536px;
-  background-color: #fffafa;
+  background-color: #d4d4d4;
   text-align: center;
 }
 
@@ -408,7 +470,7 @@ a:hover {
 
 #buscafecha select,
 #buscafecha input {
-  background-color: #ffffff;
+  background-color: #d4d4d4;
   color: #000000;
   font: bold 12pt arial;
 }
@@ -458,6 +520,17 @@ a:hover {
   margin: 30px;
   background-color: #151515;
   border-radius: 20px;
+  transition: transform 0.4s ease;
+  
+}
+
+.cards:hover {
+  margin: 30px;
+  
+  border-radius: 20px;
+  background-color: #222222;
+  box-shadow: 0 0 10px #d2ca03;
+  transform: scale(1.05);
 }
 
 .card-img-top {
@@ -473,11 +546,14 @@ a:hover {
   margin: 10px;
   border-radius: 40px;
   width: 65%;
+  transition: transform 0.4s ease;
 }
 
 #btnstart:hover {
-  background-color: #222222;
-  color: #ffffff;
+  background-color: #151515;
+  color: #d2ca03;
+  box-shadow: 0 0 12px #000000;
+  transform: scale(1.1);
 }
 
 .masinfo {
@@ -486,7 +562,7 @@ a:hover {
 }
 
 .masinfo:hover {
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 /*card body center*/
@@ -526,7 +602,7 @@ a:hover {
   align-items: center;
   padding: 25px 30px 10px;
   justify-content: space-between;
-  color: #fff;
+  color: #d4d4d4;
   font-weight: 1000;
   font-size: 1.5rem;
 }
@@ -577,7 +653,7 @@ header .current-date {
 }
 
 .calendar li {
-  color: #fff;
+  color: #d4d4d4;
   width: calc(100% / 7);
   font-size: 1.07rem;
 }
@@ -599,7 +675,7 @@ header .current-date {
 }
 
 .days li.active {
-  color: #fff;
+  color: #d4d4d4;
 }
 
 .days li::before {
@@ -619,14 +695,14 @@ header .current-date {
 }
 
 .days li:not(.active):hover::before {
-  background: #f2f2f2;
+  background: #d4d4d4;
 }
 
 /*  button in the right side of the calendar */
 
 #add-event {
   background: #d2ca03;
-  color: #fff;
+  color: #151515;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -642,14 +718,14 @@ header .current-date {
 }
 
 #add-event:hover {
-  background: #fff;
+  background: #d4d4d4;
   color: #000000;
 }
 
 /* buttun for submit new event */
 #nuevabitacora {
   background: #d2ca03;
-  color: #fff;
+  color: #d4d4d4;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -660,7 +736,7 @@ header .current-date {
 
 #changePassword {
   background: #d2ca03;
-  color: #fff;
+  color: #d4d4d4;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -679,12 +755,12 @@ header .current-date {
 }
 
 #cancelar:hover {
-  background: #fff;
+  background: #d4d4d4;
   color: #000000;
 }
 
 #nuevabitacora:hover {
-  background: #fff;
+  background: #d4d4d4;
   color: #000000;
 }
 
@@ -694,7 +770,7 @@ thead {
 }
 
 tbody {
-  background-color: #ffffff;
+  background-color: #d4d4d4;
   color: #000000;
 }
 
@@ -721,7 +797,7 @@ tbody {
 
 .btn-talla:hover {
   background-color: #222222;
-  color: #ffffff;
+  color: #d4d4d4;
 }
 
 .posAb {
@@ -732,6 +808,10 @@ tbody {
 .image-tallas {
   width: 30%;
   height: 100%;
+}
+
+.talla{
+  filter: drop-shadow(0 0px 3px rgba(210, 202, 3, 0.7)); 
 }
 
 .inp-i {
@@ -748,7 +828,7 @@ tbody {
   font-size: 16px;
   border-radius: 9999px;
   box-shadow: inset 2px 5px 10px rgb(0, 0, 0);
-  color: #fff;
+  color: #d4d4d4;
 }
 
 /* Dropdown chido para la parte de workouts En proceso... Ayudenme si se les ocurre algo pls xd
@@ -799,9 +879,15 @@ tbody {
 }
 
 .fav{
-  color: #ffffff;
+  color: #d2ca03;
   font-size: 120%;
   margin-right: 0;
+  transition: transform 0.4s ease;
+}
+
+.fav:hover{
+  transform: scale(1.5);
+
 }
 
 .sticky-header {

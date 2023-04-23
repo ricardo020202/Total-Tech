@@ -9,18 +9,6 @@
     <div class="container">
         <h2 id="titulopagina">PROGRAMAS PARA TI</h2>
 
-        <div id="orderby">
-            <li id="OrderBy" class="nav-item dropdown">
-                <a id="orderbybtn" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Ordenar por
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/onyx/catentrenamientos/0">Nombre</a></li>
-                </ul>
-            </li>
-        </div>
-
     </div>
 
         <div class="container text-center">
@@ -31,9 +19,8 @@
                         <img style="object-fit: cover;" src="<%programa[i].img_programa%>"
                             class="card-img-top" alt="<%programa[i].ref_visual%>">
                         <div class="card-body">
-                            <h5 class="card-title"><%= programa[i].nombre_programa%></h5>
-                            <p class="card-text"><%= programa[i].descripcion_programa%></p>
-                            <p class="card-text"><%= programa[i].frequencia%></p>
+                            <h4 style="text-align:left;" class="card-title"><%= programa[i].nombre_programa%></h4>
+                            <p style="text-align: left;" class="card-text">Frecuencia: <%= programa[i].frecuencia%></p>
                             <!-- que va a hacer el boton start -->
                             <a href="/onyx/programa/<%= programa[i].id_programa%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                             <br>

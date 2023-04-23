@@ -1,0 +1,35 @@
+<%- include('includes/headAdmin.ejs') %>
+<%- include('includes/sidebar.ejs') %> 
+<link rel="stylesheet" href="/css/adminStyle.css">
+<br>
+
+<h1 style="margin-left:300px ;">Modificar Alimento</h1>
+
+
+
+<div class="container">
+    <div class="spacer"></div>
+    <div class="row">
+      <div class="col-3">
+      </div>
+      <div class="col">
+        <form action="/admin/admindashboard/diets/modAlimento/<%= id %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <label for="unidad">Unidad:</label>
+            <input type="text" name="unidad" required><br><br>
+      
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" name="cantidad" required><br><br>
+      
+            <label for="descripcion_alimento">Descripción del Alimento:</label>
+            <input type="text" name="descripcion_alimento" required><br><br>
+  
+            <input type="submit" value="Modificar Alimento">
+          </form>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+
+  <%- include('includes/footAdmin.ejs') %>

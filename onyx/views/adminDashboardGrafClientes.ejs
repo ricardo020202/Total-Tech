@@ -12,11 +12,13 @@
                     Onyx
                 </span>
             </h2>
+            <p><%=mujeres%></p>
         </div>
         <div class="row">
             <div class="col d-flex justify-content-center" id="graph">
 
             </div>
+
         </div>
         <div class="spacer"></div>
         <div class="row">
@@ -37,16 +39,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-dark">
-                        <tr>
-                            <td>
-                                <%= pecho[pecho.length - 1] %> 
-                            </td>
-                            <td>
-                                <% if (pecho.length == 0) {%>0<%} else {%><%=Math.max(...pecho)%><%} %> cm
-                            </td>
-                            <td>
-                                <% if (pecho.length == 0) {%>0<%} else {%><%=Math.min(...pecho)%><%} %> cm
-                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -64,8 +57,7 @@
         }
 
         const totalClientes = createTrace(<%= JSON.stringify(totalClientes) %>, 'Total');
-        const clientesMujeres = createTrace(<%= JSON.stringify(clientesMujeres) %>, 'Brazo Izquierdo');
-        const clientesHombres = createTrace(<%= JSON.stringify(clientesHombres) %>, 'Brazo Derecho');
+
 
 
         const layout = {
@@ -89,4 +81,4 @@
 
     </script>
 
-    <%- include('includes/foot.ejs') %>
+<%- include('includes/footAdmin.ejs') %>

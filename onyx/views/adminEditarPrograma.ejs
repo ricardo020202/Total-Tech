@@ -1,6 +1,6 @@
 <%- include('includes/headAdmin.ejs') %>
-<%- include('includes/sidebar.ejs') %>
-<link rel="stylesheet" href="/css/adminStyle.css">
+    <%- include('includes/sidebar.ejs') %>
+        <link rel="stylesheet" href="/css/adminStyle.css">
         <br>
         <br>
         <h1 style="margin-left: 350px;">Editar Programa</h1>
@@ -11,7 +11,7 @@
 
             <!-- form for new programa -->
             <div class="container" id="form-nuevo-programa">
-                <form action="/admin/admindashboard/programas/editar-programa" method="POST">
+                <form action="/admin/admindashboard/programas/editar-programa/<% programa.idPrograma %>" method="POST">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
                     <!-- Insertar doc txt insertar en adminEditarPrograma.ejs -->
@@ -22,10 +22,10 @@
                             value="<%= programa.nombre_programa %>" required />
                     </div>
 
-                    <div class="mb-3">
-                        <label for="nombre_programa" class="form-label">Descripcion</label>
-                        <input type="text" class="form-control" id="nombre_programa" name="nombre_programa"
-                            value="<%= programa.descripcion_programa %>" style="height: 100px;" required />
+                    <label for="descripcion_programa" class="form-label">Descripción</label>
+                    <div class="input-group">
+                        <textarea class="form-control" aria-label="With textarea" id="descripcion_programa"
+                            name="descripcion_programa"><%= programa.descripcion_programa %></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -45,12 +45,10 @@
                             value="<%= programa.img_programa %>" />
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <!-- cancelar -->
-                    <a href="/admin/admindashboard/programas"></a>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
-                    </a>
                 </form>
 
 
             </div>
         </div>
+
+<%- include('includes/footAdmin.ejs') %>

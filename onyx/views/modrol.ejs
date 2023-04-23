@@ -1,47 +1,36 @@
-<!DOCTYPE html>
 <%- include('includes/headAdmin.ejs') %>
 <%- include('includes/sidebar.ejs') %>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Modificar rol</title>
     <link rel="stylesheet" href="/css/adminStyle.css">
-  </head>
-  <body>
     <div class="container">
       <div class="spacer"></div>
       <div class="row">
         <div class="col"></div>
         <div class="col">
-          <h1>Modificar rol</h1>
-          <br><br><br>
-          <form action="/admin/admindashboard/modrol" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            <label for="rol">Selecciona un rol:</label>
-            <select id="rol" name="rol">
-              <% roles.forEach(function(role) { %>
-                <option value="<%= role.id_rol %>"><%= role.nombreRol %></option>
-              <% }); %>
-            </select>
+          <h1>Modificar Privilegio</h1>
+          
+          
             <br>
-            <label>Privilegios:</label>
-            <br>
-            <% privileges.forEach(function(privilege) { %>
-              <% var checked = false; %>
-              <% rolPrivilegio.forEach(function(rp) { %>
-                <% if (rp.id_rol === roles[0].id_rol && rp.id_cu === privilege.id_cu) { %>
-                  <% checked = true; %>
-                <% } %>
-              <% }); %>
-              <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privilege[]" value="<%= privilege.id_cu %>" class="form-check-input" <% if (checked) { %>checked<% } %>>
-              <label for="privilege_<%= privilege.id_cu %>" class="form-check-label"><%= privilege.nombrecu %></label>
+            <form action="/admin/admindashboard/modrol/<%= id %>" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <br>
-            <% }); %>
-            <br><br>
-            <input type="submit" value="Modificar rol">
-          </form>
+              <label>Privilegios:</label>
+              <br>
+              <% privileges.forEach(function(privilege) { %>
+                <% var checked = false; %>
+                <% rolPrivilegio.forEach(function(rp) { %>
+                  <% if (rp.id_rol == id && rp.id_cu == privilege.id_cu) { %>
+                    <% checked = true; %>
+                  <% } %>
+                <% }); %>
+                <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privilege[]" value="<%= privilege.id_cu %>" class="form-check-input" <% if (checked) { %>checked<% } %>>
+                <label for="privilege_<%= privilege.id_cu %>" class="form-check-label"><%= privilege.nombrecu %></label>
+                <br>
+              <% }); %>
+              <br><br>
+              <input type="submit" value="Modificar rol">
+            </form>            
         </div>
       </div>
     </div>
-  </body>
-</html>
+
+<%- include('includes/footAdmin.ejs') %>

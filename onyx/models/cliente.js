@@ -50,11 +50,11 @@ module.exports = class Cliente {
     }
 
     static getTotalMujeres(){
-        return db.execute(`SELECT COUNT(sexo) as TotalMujeres FROM cliente where sexo = 'Femenino'`);
+        return db.execute(`SELECT COUNT(*) as TotalMujeres FROM cliente WHERE sexo = 'Femenino'`);
     }
 
     static getTotalHombres(){
-        return db.execute(`SELECT COUNT(sexo) as TotalHombres FROM cliente where sexo = 'Masculino'`);
+        return db.execute(`SELECT COUNT(*) as TotalHombres FROM cliente WHERE sexo = 'Masculino'`);
     }
 
     static updateEmail(email, newEmail){

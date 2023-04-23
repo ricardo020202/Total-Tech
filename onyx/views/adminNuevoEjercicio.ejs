@@ -14,7 +14,7 @@
         <form action="/admin/admindashboard/ejercicios/nuevoejercicio" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <div class="mb-3">
-                <label for="categoria" class="form-label">Categoria</label>
+                <label for="categoria" class="form-label">Categoría</label>
                 <input
                     type="text"
                     class="form-control"
@@ -23,7 +23,7 @@
                     required/>
             </div>
             <div class="mb-3">
-                <label for="nivel_intensidad" class="form-label">Nivel Intensidad</label>
+                <label for="nivel_intensidad" class="form-label">Nivel de intensidad</label>
                 <input
                     type="text"
                     class="form-control"
@@ -41,7 +41,7 @@
                     required/>
             </div>
             <div class="mb-3">
-                <label for="descripcion_ejercicio" class="form-label">Descripcion Ejercicio</label>
+                <label for="descripcion_ejercicio" class="form-label">Descripción del ejercicio</label>
                 <input
                     type="text"
                     class="form-control"
@@ -50,7 +50,7 @@
                     required/>
             </div>
             <div class="mb-3">
-                <label for="nombre_ejercicio" class="form-label">Nombre Ejercicio</label>
+                <label for="nombre_ejercicio" class="form-label">Nombre del ejercicio</label>
                 <input
                     type="text"
                     class="form-control"
@@ -75,3 +75,5 @@
         </form>
     </div>
 </div>
+
+<%- include('includes/footAdmin.ejs') %>

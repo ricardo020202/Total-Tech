@@ -8,6 +8,7 @@ module.exports = (privilegio) => {
                 pagetitle: "Error",
                 user: request.session.user || "",
                 rol: request.session.rol || "",
+                photo: request.session.photo || 'default.png',
             });
         }
     };
