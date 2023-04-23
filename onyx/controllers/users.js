@@ -10,6 +10,7 @@ exports.get_signup = (request, response, next) => {
         photo: request.session.photo || 'default.pn',
         csrfToken: request.csrfToken(),
         mensaje: request.session.mensaje || "",
+        
     });
 };
 
@@ -138,6 +139,7 @@ exports.post_signup = async (request, response, next) => {
                 response.render("dbDown", {
                     pagetitle: "Error",
                     user: request.session.user || "",
+                    
                 });
             }
         });
