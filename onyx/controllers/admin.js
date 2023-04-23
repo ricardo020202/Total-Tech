@@ -518,18 +518,29 @@ exports.getAdminModRol = (req, res, next) => {
   
 exports.postAdminModRol = (req, res, next) => {
     const id = req.params.id;
-    const privileges = Array.isArray(req.body['privilege[]']) ? req.body['privilege[]'] : [req.body['privilege[]']];
-  
+    let privileges = Array.isArray(req.body['privilege[]']) ? req.body['privilege[]'] : [req.body['privilege[]']];
+    var rolPrivilegioNuevo;
+    
+    // Set privileges to an empty array if it is undefined or null
+    if (privileges && privileges[0] === undefined) {
+        privileges = [];
+        console.log("Done");
+      }
+      console.log(privileges);      
     // Delete existing RolPrivilegio records for the given idRol
     RolPrivilegio.deleteByRol(id)
       .then(() => {
-        // Insert new RolPrivilegio records for each privilege in the array
-        if (privileges.length) {
-          privileges.forEach((privilege) => {
-            const rolPrivilegio = new RolPrivilegio(id, privilege);
-            rolPrivilegio.save();
-          });
+        // Only continue if privileges have a length greater than 0
+        if (!privileges.length) {
+          res.redirect('/admin/adminDashboard/modrol/'+id);
+          return;
         }
+        
+        // Insert new RolPrivilegio records for each privilege in the array
+        privileges.forEach((privilege) => {
+          rolPrivilegioNuevo = new RolPrivilegio(id, privilege);
+          rolPrivilegioNuevo.save();
+        });
         res.redirect('/admin/adminDashboard/modrol/'+id);
       })
       .catch((err) => {
@@ -537,6 +548,9 @@ exports.postAdminModRol = (req, res, next) => {
         next(err);
       });
   };
+  
+  
+
 
 exports.getAdminModAlimento = (req, res, next) => {
     const id = req.params.id;
