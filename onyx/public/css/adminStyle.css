@@ -547,3 +547,10 @@ td, th {
     max-height: 300px; /* Altura máxima del contenedor de la tabla. Ajusta según tus necesidades. */
     overflow-y: auto; /* Habilita el scroll vertical si el contenido excede la altura máxima. */
   }
+
+
+
+
+.form-container {
+    margin-left: 10; /* adjust the margin as needed */
+}

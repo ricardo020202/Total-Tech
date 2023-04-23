@@ -80,7 +80,7 @@
         <h2><b>Alimentos</b></h2>
       </div>
       <div class="col-sm-6">
-        <a href="/admin/admindashboard/foods/add" class="btn btn-success"><i class="material-icons"></i> <span>Agregar nuevo alimento</span></a>
+        <a href="" class="btn btn-success"><i class="material-icons"></i> <span>Agregar nuevo alimento</span></a>
       </div>
     </div>
   </div>
@@ -110,8 +110,12 @@
             <%= alimento[i].cantidad %>
           </td>
           <td>
-            <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
-            <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+            <a href="/admin/admindashboard/diets/modAlimento/<%= alimento[i].id_alimento %>">
+              <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+            </a>
+            <a href="/admin/admindashboard/diets/deleteFood/<%= alimento[i].id_alimento %>">
+              <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+            </a>
           </td>
         </tr>
         <% } %>

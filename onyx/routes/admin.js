@@ -22,6 +22,15 @@ router.post("/admindashboard/userprivileges/add", checkPrivilegio('Registrar usu
 router.post("/admindashboard/userprivileges/delete/:email", checkPrivilegio('Eliminar usuarios'),
              adminController.deleteAdminDashboarUser);
 
+router.get("/admindashboard/diets/modAlimento/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
+             adminController.getAdminModAlimento);
+
+router.get("/admindashboard/diets/deleteFood/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
+                adminController.getAdminDeleteAlimento);
+
+router.post("/admindashboard/diets/modAlimento/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
+                adminController.postAdminModAlimento);
+
 router.get("/admindashboard/diets", checkPrivilegio('Consultar dieta'), checkPrivilegio('Registrar dieta'),
              adminController.getAdminDashboardDietas);
 
@@ -78,6 +87,7 @@ router.get("/admindashboard/reg_rol/activate/:idrol", checkPrivilegio('Modificar
 
 router.get("/admindashboard/grafclientes", checkPrivilegio('Consultar usuarios'),
              adminController.getAdminInfoCliente);
+
 
 
 module.exports = router;

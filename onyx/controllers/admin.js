@@ -525,6 +525,57 @@ exports.postAdminModRol = (req, res, next) => {
         next(err);
       });
   };
+
+exports.getAdminModAlimento = (req, res, next) => {
+    const id = req.params.id;
+    var mensaje = "";
+    res.render("adminModificarAlimento", {
+        pagetitle: "Modificar alimento",
+        user: req.session.user || "",
+        id: id,
+        csrfToken: req.csrfToken(),
+        mensaje: mensaje,
+        photo: req.session.photo || "",
+    });
+};
+
+exports.postAdminModAlimento = (req, res, next) => {
+    const id = req.params.id;
+    const descripcion = req.body.descripcion_alimento;
+    const unidad = req.body.unidad;
+    const cantidad = req.body.cantidad;
+
+    Alimento.update(id, descripcion, unidad, cantidad)
+        .then(() => {
+            const mensaje = "Alimento actualizado correctamente";
+            res.render("adminModificarAlimento", {
+                pagetitle: "Modificar alimento",
+                user: req.session.user || "",
+                id: id,
+                csrfToken: req.csrfToken(),
+                mensaje: mensaje,
+                photo: req.session.photo || "",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
+};
+
+    
+exports.getAdminDeleteAlimento = (req, res, next) => {
+    const id = req.params.id;
+
+    Alimento.delete(id)
+        .then(() => {
+            res.redirect("/admin/adminDashboard/diets");
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
+};
   
   
   
@@ -654,5 +705,4 @@ exports.activateAdminRol = (req, res, next) => {
         .catch((err) => {
             console.log(err);
         });
-
 };
