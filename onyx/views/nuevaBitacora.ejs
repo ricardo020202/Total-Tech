@@ -1,54 +1,44 @@
 <%- include('includes/head.ejs') %>
-<!-- make new bitacora page -->
+    <!-- make new bitacora page -->
 
-<div class="container">
-    <div class="container mt-5">
-        <br />
-        <br />
-        <h1 class="fw-bold text-start">Bitácora</h1>
-        <p class="lead text-start">
-            Llena los campos necesarios para añadir una nueva bitácora
-        </p>
+    <div class="container">
+        <div class="container mt-5">
+            <br />
+            <br />
+            <h1 class="fw-bold text-start">Bitácora</h1>
+            <p class="lead text-start">
+                Llena los campos necesarios para añadir una nueva bitácora
+            </p>
+        </div>
+
+        <!-- form for new bitacora -->
+        <div class="container">
+            <form action="/onyx/nuevabitacora" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha"
+                        value="<%= new Date().toISOString().slice(0, 10) %>" />
+                </div>
+
+                <label for="contenido" class="form-label">Contenido</label>
+                <div class="input-group">
+                    <textarea class="form-control" aria-label="Contenido" id="contenido" name="contenido"></textarea>
+                </div>
+                <br>
+
+                <div class="mb-3">
+                    <label for="entreno" class="form-label">Entreno</label>
+                    <input type="text" class="form-control" id="entreno" name="entreno" required />
+                </div>
+                <button type="submit" class="btn btn-primary" id="nuevabitacora">Agregar</button>
+                <!-- cancelar -->
+                <a href="/onyx/bitacora" class="btn btn-danger" id="cancelar">Cancelar</a>
+            </form>
+
+        </div>
+
     </div>
 
-    <!-- form for new bitacora -->
-    <div class="container">
-        <form action="/onyx/nuevabitacora" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha</label>
-                <input
-                    type="date"
-                    class="form-control"
-                    id="fecha"
-                    name="fecha"
-                    value="<%= new Date().toISOString().slice(0, 10) %>"
 
-                />
-            </div>
-            
-                <label for="contenido" class="form-label">Contenido</label>
-                <div class="input-group">  
-                    <textarea class="form-control" aria-label="Contenido" id="contenido"
-                    name="contenido"></textarea>
-                 </div>
-                 <br>
-            
-            <div class="mb-3">
-                <label for="entreno" class="form-label">Entreno</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="entreno"
-                    name="entreno"
-                    required/>
-            </div>
-            <button type="submit" class="btn btn-primary" id="nuevabitacora">Agregar</button>
-            <!-- cancelar -->
-            <a href="/onyx/bitacora" class="btn btn-danger" id="cancelar">Cancelar</a>
-        </form>
-
-</div>
-
-
-<%- include('includes/foot.ejs') %>
+    <%- include('includes/foot.ejs') %>
