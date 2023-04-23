@@ -45,8 +45,12 @@ module.exports = class Programa {
 
     //Eliminar programa
     static deleteById(idPrograma) {
-        return db.execute('DELETE FROM programa WHERE id_programa = ?', [idPrograma]);
-    }
+        return db.execute('DELETE FROM programa_ejercicio WHERE id_programa = ?', [idPrograma])
+          .then(() => {
+            return db.execute('DELETE FROM programa WHERE id_programa = ?', [idPrograma]);
+          });
+      }      
+      
 
     static isFavorite(email, tipo) {
         return db.execute('SELECT id_programa FROM programa_dieta_cliente WHERE email = ? AND tipo = ?', [email, tipo]);
