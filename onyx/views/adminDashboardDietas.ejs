@@ -32,8 +32,8 @@
         <th scope="col">Proteínas</th>
         <th scope="col">Calorías</th>
         <th scope="col">Carbohidratos</th>
-        <th scope="col">Micronutrientes</th>
-        <th scope="col">Macronutrientes</th>
+        <th scope="col">Grasas</th>
+        <th scope="col">Fibra</th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>
@@ -53,20 +53,24 @@
             <%= dieta[i].proteinas %>
           </td>
           <td>
-            <%= dieta[i].no_calorias %>
+            <%= dieta[i].calorias %>
           </td>
           <td>
             <%= dieta[i].carbohidratos %>
           </td>
           <td>
-            <%= dieta[i].micronutrientes %>
+            <%= dieta[i].grasas %>
           </td>
           <td>
-            <%= dieta[i].macronutrientes %>
+            <%= dieta[i].fibra_total %>
           </td>
           <td>
-            <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
-            <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+            <a href="">
+              <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+            </a>
+            <a href="" onclick="return confirm('¿Está seguro que quieres eliminar esta dieta?')">
+              <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+            </a>
           </td>
         </tr>
         <% } %>
@@ -80,7 +84,7 @@
         <h2><b>Alimentos</b></h2>
       </div>
       <div class="col-sm-6">
-        <a href="" class="btn btn-success"><i class="material-icons"></i> <span>Agregar nuevo alimento</span></a>
+        <a href="/admin/admindashboard/diets/Alimento/add" class="btn btn-success"><i class="material-icons"></i> <span>Agregar nuevo alimento</span></a>
       </div>
     </div>
   </div>
@@ -113,7 +117,7 @@
             <a href="/admin/admindashboard/diets/modAlimento/<%= alimento[i].id_alimento %>">
               <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
             </a>
-            <a href="/admin/admindashboard/diets/deleteFood/<%= alimento[i].id_alimento %>">
+            <a href="/admin/admindashboard/diets/deleteFood/<%= alimento[i].id_alimento %>" onclick="return confirm('¿Estás seguro de que quieres eliminar este alimento? Se eliminarán los registros de dieta asociados')">
               <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
             </a>
           </td>

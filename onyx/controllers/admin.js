@@ -197,12 +197,32 @@ exports.getAdminNuevaDieta = (req, res, next) => {
 exports.postAdminNuevaDieta = (req, res, next) => {
     const dieta = new Dieta({
         nombre_dieta: req.body.nombre_dieta,
-        no_calorias: req.body.no_calorias,
+        calorias: req.body.no_calorias,
         proteinas: req.body.proteinas,
-        carbohidratos: req.body.carbohidratos,
         grasas: req.body.grasas,
-        micronutrientes: req.body.micronutrientes,
-        macronutrientes: req.body.macronutrientes,
+        carbohidratos: req.body.carbohidratos,
+        fibra_total: req.body.fibra_total,
+        ceniza: req.body.ceniza,
+        calcio: req.body.calcio,
+        fosforo: req.body.fosforo,
+        hierro: req.body.hierro,
+        tiamina: req.body.tiamina,
+        riboflavina: req.body.riboflavina,
+        niacina: req.body.niacina,
+        vitamina_c: req.body.vitamina_c,
+        vitamina_a: req.body.vitamina_a,
+        ac_graso_mono: req.body.ac_graso_mono,
+        ac_graso_poli: req.body.ac_graso_poli,
+        ac_graso_saturado: req.body.ac_graso_saturado,
+        colesterol: req.body.colesterol,
+        potasio: req.body.potasio,
+        sodio: req.body.sodio,
+        zinc: req.body.zinc,
+        magnesio: req.body.magnesio,
+        vit_b6: req.body.vit_b6,
+        vit_b12: req.body.vit_b12,
+        ac_folico: req.body.ac_folico,
+        folato: req.body.folato
     });
 
     const alimento = new Alimento({
@@ -213,22 +233,11 @@ exports.postAdminNuevaDieta = (req, res, next) => {
 
     if (dieta) {
         dieta
-            .save()
-            .then((result) => {
-                res.redirect("/admin/admindashboard/diets");
-            })
-            .catch((err) => {
-                if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                    res.render("dbDown", {
-                        pagetitle: "Error",
-                        user: req.session.user || "",
-                        photo: req.session.photo || "",
-                    });
-                    return { medidas: [], fechas: [] };
-                } else {
-                    console.log(err);
-                }
-            });
+        .save()
+        .then(() => {
+          res.redirect('/admin/admindashboard/diets');
+        })
+        .catch(err => console.log(err));
     }
     if (alimento) {
         alimento
@@ -567,7 +576,10 @@ exports.postAdminModAlimento = (req, res, next) => {
 exports.getAdminDeleteAlimento = (req, res, next) => {
     const id = req.params.id;
 
-    Alimento.delete(id)
+    DietaAlimento.delete(id) // delete associated records in dieta_alimento table
+        .then(() => {
+            return Alimento.delete(id); // delete record from alimento table
+        })
         .then(() => {
             res.redirect("/admin/adminDashboard/diets");
         })
@@ -576,7 +588,7 @@ exports.getAdminDeleteAlimento = (req, res, next) => {
             next(err);
         });
 };
-  
+
   
   
 exports.getadminreg_rol = (req, res, next) => {
@@ -608,6 +620,19 @@ exports.getadminreg_rol = (req, res, next) => {
       })
       .catch(err => console.log(err));
   };
+
+exports.getAdminAddAlimento = (req, res, next) => {
+    const mensaje = "";
+    res.render("adminNuevoAlimento", {
+        pagetitle: "Nuevo alimento",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+        mensaje: mensaje,
+        photo: req.session.photo || "",
+    });
+};
+
+
 
 exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;

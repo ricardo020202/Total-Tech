@@ -1,70 +1,101 @@
 <%- include('includes/headAdmin.ejs') %>
-<%- include('includes/sidebar.ejs') %> 
+<%- include('includes/sidebar.ejs') %>
 <link rel="stylesheet" href="/css/adminStyle.css">
 <br>
 
-<h1 style="margin-left:300px ;">Registrar dieta</h1>
-
-
+<h1 style="margin-left:300px;">Registrar dieta</h1>
 
 <div class="container">
-    <div class="spacer"></div>
-    <div class="row">
-      <div class="col-3">
-      </div>
-      <div class="col">
-        <form action="/admin/admindashboard/diets/add" method="POST">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-          <label for="no_calorias">No. de Calorias:</label>
-          <input type="number" name="no_calorias" required><br><br>
-    
-          <label for="proteinas">Proteinas:</label>
-          <input type="number" name="proteinas" required><br><br>
-    
-          <label for="grasas">Grasas:</label>
-          <input type="number" name="grasas" required><br><br>
-    
-          <label for="carbohidratos">Carbohidratos:</label>
-          <input type="number" name="carbohidratos" required><br><br>
-    
-          <label for="micronutrientes">Micronutrientes:</label>
-          <input type="text" name="micronutrientes" required><br><br>
-    
-          <label for="macronutrientes">Macronutrientes:</label>
-          <input type="text" name="macronutrientes" required><br><br>
-    
-          <label for="nombre_dieta">Nombre de la Dieta:</label>
-          <input type="text" name="nombre_dieta" required><br><br>
-    
-          <label for="alimento">Alimento:</label>
-          <select name="alimento">
-            <option value="pollo">Pollo</option>
-            <option value="carne">Carne</option>
-            <option value="pescado">Pescado</option>
-          </select><br><br>
-    
-          <div id="alimentos"></div>
-        
-          <input type="submit" value="Crear Dieta">
-        </form>
-      </div>
-      <div class="col">
-        <h1>Registrar Alimento</h1>
-        <form action="/admin/admindashboard/diets/add" method="POST">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-          <label for="unidad">Unidad:</label>
-          <input type="text" name="unidad" required><br><br>
-    
-          <label for="cantidad">Cantidad:</label>
-          <input type="number" name="cantidad" required><br><br>
-    
-          <label for="descripcion_alimento">Descripcion del Alimento:</label>
-          <input type="text" name="descripcion_alimento" required><br><br>
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col">
+      <form action="/admin/admindashboard/diets/add" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
-          <input type="submit" value="Crear Alimento">
-        </form>
+        <label for="nombre_dieta">Nombre dieta:</label>
+        <input type="text" name="nombre_dieta" required><br><br>
+
+        <label for="no_calorias">No. de Calorias:</label>
+        <input type="number" name="no_calorias" required><br><br>
+
+        <label for="proteinas">Proteinas:</label>
+        <input type="number" name="proteinas" required><br><br>
+
+        <label for="grasas">Grasas:</label>
+        <input type="number" name="grasas" required><br><br>
+
+        <label for="carbohidratos">Carbohidratos:</label>
+        <input type="number" name="carbohidratos" required><br><br>
+
+        <label for="fibra_total">Fibra Total:</label>
+        <input type="number" name="fibra_total"><br><br>
+
+        <label for="ceniza">Ceniza:</label>
+        <input type="number" name="ceniza"><br><br>
+
+        <label for="calcio">Calcio:</label>
+        <input type="number" name="calcio"><br><br>
+
+        <label for="fosforo">Fosforo:</label>
+        <input type="number" name="fosforo"><br><br>
+
+        <label for="hierro">Hierro:</label>
+        <input type="number" name="hierro"><br><br>
+
+        <label for="tiamina">Tiamina:</label>
+        <input type="number" name="tiamina"><br><br>
+
+        <label for="riboflavina">Riboflavina:</label>
+        <input type="number" name="riboflavina"><br><br>
+
+        <label for="niacina">Niacina:</label>
+        <input type="number" name="niacina"><br><br>
+
+        <label for="vitamina_c">Vitamina C:</label>
+        <input type="number" name="vitamina_c"><br><br>
+
+        <label for="vitamina_a">Vitamina A:</label>
+        <input type="number" name="vitamina_a"><br><br>
+
+        <label for="ac_graso_mono">Acido Graso Monoinsaturado:</label>
+        <input type="number" name="ac_graso_mono"><br><br>
+
+        <label for="ac_graso_poli">Acido Graso Poliinsaturado:</label>
+        <input type="number" name="ac_graso_poli"><br><br>
+
+        <label for="ac_graso_saturado">Acido Graso Saturado:</label>
+        <input type="number" name="ac_graso_saturado"><br><br>
+
+        <label for="colesterol">Colesterol:</label>
+        <input type="number" step="0.01" name="colesterol"><br><br>
+
+        <label for="potasio">Potasio:</label>
+        <input type="number" step="0.01" name="potasio"><br><br>
+
+        <label for="sodio">Sodio:</label>
+        <input type="number" step="0.01" name="sodio"><br><br>
+
+        <label for="zinc">Zinc:</label>
+        <input type="number" step="0.01" name="zinc"><br><br>
+
+        <label for="magnesio">Magnesio:</label>
+        <input type="number" step="0.01" name="magnesio"><br><br>
+
+        <label for="vit_b6">Vitamina B6:</label>
+        <input type="number" step="0.01" name="vit_b6"><br><br>
+
+        <label for="vit_b12">Vitamina B12:</label>
+        <input type="number" step="0.01" name="vit_b12"><br><br>
+
+        <label for="ac_folico">Ácido Fólico:</label>
+        <input type="number" step="0.01" name="ac_folico"><br><br>
+
+        <label for="folato">Folato:</label>
+        <input type="number" step="0.01" name="folato"><br><br>
+
+        <input type="submit" value="Agregar Dieta">
+      </form>
       </div>
-    </div>
   </div>
-
-  
+</div>
