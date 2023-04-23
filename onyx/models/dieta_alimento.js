@@ -15,4 +15,8 @@ module.exports = class DietaAlimento {
     static fetchAll() {
         return db.execute('SELECT * FROM dieta_alimento');
     }
+
+    static delete(id) {
+        return db.execute('DELETE FROM dieta_alimento WHERE id_alimento = ?', [id]);
+    }
 }
