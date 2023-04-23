@@ -2,6 +2,7 @@ const db = require('../util/database');
 
 module.exports = class Programa {
     constructor(programa) {
+        this.idPrograma = programa.idPrograma;
         this.frecuencia = programa.frecuencia;
         this.nombre_programa = programa.nombre_programa;
         this.descripcion_programa = programa.descripcion_programa;
@@ -37,8 +38,8 @@ module.exports = class Programa {
     //Editar programa
     update(id_programa) {
         return db.execute(
-            'UPDATE programa WHERE id_programa = ? SET frecuencia = ?, nombre_programa = ?, descripcion_programa = ?, imagen_programa = ?',
-            [id_programa, this.frecuencia, this.nombre_programa, this.descripcion_programa, this.imagen_programa]
+            'UPDATE programa WHERE id_programa = ? SET frecuencia = ?, descripcion_programa = ?, nombre_programa = ?, ref_visual = ?, img_programa = ?',
+            [id_programa, this.frecuencia, this.descripcion_programa, this.nombre_programa, this.ref_visual, this.imagen_programa]
         );
     }
 
