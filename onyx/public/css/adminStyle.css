@@ -554,26 +554,12 @@ td, th {
 
 /* The switch - the box around the slider */
 .switch {
+    --circle-dim: 1.4em;
     font-size: 17px;
     position: relative;
     display: inline-block;
-    width: 3.2em;
-    height: 1.6em;
-    transform-style: preserve-3d;
-    perspective: 500px;
-  }
-  
-  .switch::before {
-    content: "";
-    position: center;
-    width: 100%;
-    height: 100%;
-    left: auto;
-    top: auto;
-    filter: blur(20px);
-    z-index: -1;
-    border-radius: 50px;
-
+    width: 3.3em;
+    height: 1.5em;
   }
   
   /* Hide default HTML checkbox */
@@ -589,98 +575,55 @@ td, th {
     cursor: pointer;
     top: 0;
     left: 0;
-    right: 0;
+    right: .3em;
     bottom: 0;
-    background-color: #fdfdfedc;
+    background-color: #322b2b;
     transition: .4s;
-    border-radius: 30px;
+    border-radius: 50px;
   }
   
-  .slider:before {
+  .slider-card {
     position: absolute;
     content: "";
-    height: 1em;
-    width: 1em;
-    left: 0.3em;
-    bottom: 0.35em;
-    transition: .4s;
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.17) 0px -10px 10px 0px inset,
-       rgba(0, 0, 0, 0.09) 0px -1px 15px -8px;
-    background-color: #D2CA03;
+    height: var(--circle-dim);
+    width: var(--circle-dim);
+    border-radius: 50px;
+    left: 0.05em;
+    bottom: 0.05em;
+    transition: .5s;
+    pointer-events: none;
   }
   
-  .input__check:checked + .slider {
-    background-color: #17202A;
+  .slider-card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    border-radius: 75%;
+    transition: .4s transform;
   }
   
-  .input__check:checked + .slider:before {
+  .slider-card-front {
+    background-color: #6c5c5c;
+  }
+  
+  .slider-card-back {
+    background-color: #ab9d00;
+    transform: rotateY(180deg);
+  }
+  
+  input:checked ~ .slider-card .slider-card-back {
+    transform: rotateY(0);
+  }
+  
+  input:checked ~ .slider-card .slider-card-front {
+    transform: rotateY(-180deg);
+  }
+  
+  input:checked ~ .slider-card {
     transform: translateX(1.5em);
   }
   
-  @keyframes toggle__animation {
-    0%, 100% {
-      transform: translateY(-10px) rotateX(15deg) rotateY(-20deg);
-    }
-  
-    50% {
-      transform: translateY(0px) rotateX(15deg) rotateY(-20deg);
-    }
-  }
-
-  .botonamong {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 0 10px;
-    color: white;
-    text-shadow: 2px 2px rgb(116, 116, 116);
-    text-transform: uppercase;
-    border: solid 2px black;
-    letter-spacing: 1px;
-    font-weight: 600;
-    font-size: 17px;
-    background-color: hsl(49deg 98% 60%);
-    border-radius: 50px;
-    position: relative;
-    overflow: hidden;
-    transition: all .5s ease;
-  }
-  
-  button:active {
-    transform: scale(.9);
-    transition: all 100ms ease;
-  }
-  
-  button svg {
-    transition: all .5s ease;
-    z-index: 2;
-  }
-  
-.play {
-    transition: all .5s ease;
-    transition-delay: 300ms;
-  }
-  
-  button:hover svg {
-    transform: scale(3) translate(50%);
-  }
-  
- .now {
-    position: absolute;
-    left: 0;
-    transform: translateX(-100%);
-    transition: all .5s ease;
-    z-index: 2;
-  }
-  
-  button:hover .now {
-    transform: translateX(10px);
-    transition-delay: 300ms;
-  }
-  
-  button:hover .play {
-    transform: translateX(200%);
-    transition-delay: 300ms;
+  input:checked ~ .slider {
+    background-color: #d2ca03;
   }
