@@ -143,8 +143,8 @@ exports.postAdminEditarPrograma = (req, res, next) => {
         frecuencia: req.body.frecuencia,
         descripcion_programa: req.body.descripcion_programa,
         nombre_programa: req.body.nombre_programa,
-        ref_visual: req.body.ref_visual,
-        img_programa: req.body.img_programa,
+        ref_visual: req.body.ref_visual || null,
+        img_programa: req.body.img_programa || null,
     });
     programa
         .update(idPrograma)

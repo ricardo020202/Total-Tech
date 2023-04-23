@@ -38,8 +38,8 @@ module.exports = class Programa {
     //Editar programa
     update(id_programa) {
         return db.execute(
-            'UPDATE programa WHERE id_programa = ? SET frecuencia = ?, descripcion_programa = ?, nombre_programa = ?, ref_visual = ?, img_programa = ?',
-            [id_programa, this.frecuencia, this.descripcion_programa, this.nombre_programa, this.ref_visual, this.imagen_programa]
+            'UPDATE programa SET frecuencia=?, descripcion_programa=?, nombre_programa=?, ref_visual=?, img_programa=? WHERE id_programa=?',
+            [this.frecuencia, this.descripcion_programa, this.nombre_programa, this.ref_visual || null, this.img_programa || null, id_programa]
         );
     }
 

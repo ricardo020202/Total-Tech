@@ -11,7 +11,7 @@
 
             <!-- form for new programa -->
             <div class="container" id="form-nuevo-programa">
-                <form action="/admin/admindashboard/programas/editar-programa/<% programa.idPrograma %>" method="POST">
+                <form action="/admin/admindashboard/programas/editar-programa/<%= programa.id_programa %>" method="POST">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
                     <!-- Insertar doc txt insertar en adminEditarPrograma.ejs -->
