@@ -363,15 +363,31 @@ exports.deleteAdminDashboarUser = (req, res, next) => {
 };
 
 exports.getAdminDashboardDietas = async (req, res, next) => {
-    Dieta.fetchAll()
-        .then(([rows, fieldData]) => {
-            res.render("adminDashboardDietas", {
-                dieta: rows,
-                pagetitle: "Catálogo de Dietas",
-                user: req.session.user || "",
-                path: "/adminDashboardDietas",
-                photo: req.session.photo || "",
-            });
+    Alimento.fetchAll()
+        .then(([alimentoRows, alimentoFields]) => {
+            Dieta.fetchAll()
+                .then(([dietaRows, dietaFields]) => {
+                    res.render("adminDashboardDietas", {
+                        alimento: alimentoRows,
+                        dieta: dietaRows,
+                        pagetitle: "Catálogo de Dietas",
+                        user: req.session.user || "",
+                        path: "/adminDashboardDietas",
+                        photo: req.session.photo || "",
+                    });
+                })
+                .catch((err) => {
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            photo: req.session.photo || "",
+                        });
+                        return { medidas: [], fechas: [] };
+                    } else {
+                        console.log(err);
+                    }
+                });
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
