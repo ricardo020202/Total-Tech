@@ -10,13 +10,13 @@ const mysql = require('mysql2');
 //     port: 8889,
 //     password: 'root',
 // });
-const pool = mysql.createPool({
+/* const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'Onyx',
     port: 8889,
     password: 'lol23',
-});
+}); */
 //  Erik database
 // const pool = mysql.createPool({
 //     host: 'localhost',
@@ -37,7 +37,7 @@ const pool = mysql.createPool({
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    database: 'onyx2',
+    database: 'onyx',
     password: '',
 });
 // const pool = mysql.createPool({
