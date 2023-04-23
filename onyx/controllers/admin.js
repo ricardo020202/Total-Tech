@@ -95,6 +95,7 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
         .save()
         .then((result) => {
             res.redirect("/admin/admindashboard/programas");
+            
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -268,7 +269,7 @@ exports.getAdminDashboardAddUser = (req, res, next) => {
                 roles: rows,
                 csrfToken: req.csrfToken(),
                 mensaje: "",
-                email: req.params.email,
+                email: req.body.email,
                 photo: req.session.photo || "",
             });
         })
@@ -286,6 +287,7 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
             return res.render("adminNuevoUsuario", {
                 pagetitle: "Agregar usuario",
                 user: req.session.user || "",
+                email: email,
                 roles: await Rol.fetchAll(),
                 csrfToken: req.csrfToken(),
                 mensaje: "Usuario no registrado",
@@ -460,6 +462,7 @@ exports.getAdminModRol = (req, res, next) => {
           res.render("dbDown", {
             pagetitle: "Error",
             user: req.session.user || "",
+            photo: req.session.photo || "",
           });
         } else {
           console.log(error);

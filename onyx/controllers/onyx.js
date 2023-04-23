@@ -273,6 +273,7 @@ exports.getBitacora = (req, res, next) => {
                 res.render("error", {
                     message: "Error deleting bitacora record",
                     error: err,
+                    photo: req.session.photo || "",
                 });
             });
     } else {
@@ -578,7 +579,8 @@ exports.getTallas = (req, res, next) => {
                         cuello: req.session.cuello || "",
                         photo: req.session.photo || "",
                         sexo: req.session.sex || "",
-                        csrfToken: req.csrfToken()
+                        csrfToken: req.csrfToken(),
+                        photo: req.session.photo || "",
                     });
                 })
                 .catch((err) => {
