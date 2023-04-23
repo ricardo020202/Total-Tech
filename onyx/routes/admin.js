@@ -55,6 +55,9 @@ router.get('/admindashboard/programas/editar-programa/:id_Programa', checkPrivil
 router.post('/admindashboard/programas/editar-programa/:id_Programa', checkPrivilegio('Modificar programa'),
              adminController.postAdminEditarPrograma);
 
+router.get('/admindashboard/programas/eliminar-programa/:id_Programa', checkPrivilegio('Eliminar programa'),
+            adminController.postAdminEliminarPrograma);
+
 router.get('/admindashboard/reg_rol', checkPrivilegio('Consultar rol'),
              adminController.getadminreg_rol);
 

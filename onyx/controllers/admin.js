@@ -161,7 +161,11 @@ exports.postAdminEditarPrograma = (req, res, next) => {
                 console.log(err);
             }
         });
-    programa
+};
+
+exports.postAdminEliminarPrograma = (req, res, next) => {
+    const idPrograma = req.params.id_Programa;
+    EntrenamientoModel
         .deleteById(idPrograma)
         .then(() => {
             // Si se eliminó el programa correctamente, redirigir a la página principal o mostrar un mensaje de éxito
