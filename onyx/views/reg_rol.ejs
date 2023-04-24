@@ -63,22 +63,40 @@
               <tr>
                 <th>ID</th>
                 <th>Nombre del Rol</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               <% roles.forEach(function(rol) { %>
-              <tr>
-                <td><%= rol.id_rol %></td>
-                <td><%= rol.nombreRol %></td>
-              </tr>
-              <% }); %>
+                <tr>
+                  <td>
+                    <%= rol.id_rol %>
+                  </td>
+                  <td>
+                    <%= rol.nombreRol %>
+                  </td>
+                  <td>
+                    <a href="/admin/adminDashboard/modrol/<%= rol.id_rol %>"><i
+                        class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i></a>
+                  <% if (rol.statusRol=='on' ) { %>
+                    <a href="/admin/adminDashboard/reg_rol/delete/<%= rol.id_rol %>"
+                      class="btn btn-custom">Desactivar</a>
+                  <% } else { %>
+                      <a href="/admin/adminDashboard/reg_rol/activate/<%= rol.id_rol %>"
+                        class="btn btn-custom">Activar</a>
+                    <% } %>
+                      </td>
+                </tr>
+                <% }); %>
             </tbody>
           </table>
         </div>
       </div>
       <br>
-      
+
     </form>
   </div>
 </div>
+
+<%- include('includes/footAdmin.ejs') %>
 

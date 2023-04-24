@@ -548,9 +548,9 @@ td, th {
     overflow-y: auto; /* Habilita el scroll vertical si el contenido excede la altura máxima. */
   }
 
-.form-container {
-    margin-left: 10; /* adjust the margin as needed */
-}
+  
+
+/* BOTON */
 
 /* The switch - the box around the slider */
 .switch {
@@ -604,7 +604,7 @@ td, th {
   }
   
   .slider-card-front {
-    background-color: #6c5c5c;
+    background-color: #d5d3c5;
   }
   
   .slider-card-back {
