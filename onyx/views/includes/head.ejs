@@ -124,6 +124,13 @@
                                     >Favoritos</a
                                 >
                             </li>
+                            <% if (rol === 'administrador') { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/adminDashboard"
+                                    >Admin dashboard</a
+                                >
+                            </li>
+                            <% } %>
                         </ul>
                         <% if (user){ %>
                         <li class="nav-item dropdown">
