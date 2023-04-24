@@ -279,8 +279,7 @@ exports.postAdminEliminarDieta = (req, res, next) =>
     
         Dieta.deleteById(id_dieta)
         .then(() => {
-            res.redirect('/admin/admindashboard/dietas');
-            csrfToken: req.csrfToken();
+            res.redirect('/admin/admindashboard/diets');
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -622,7 +621,6 @@ exports.postAdminModAlimento = (req, res, next) => {
         });
 };
 
-
 exports.getAdminDeleteAlimento = (req, res, next) => {
     const id = req.params.id;
 
@@ -668,7 +666,6 @@ exports.getadminreg_rol = (req, res, next) => {
       })
       .catch(err => console.log(err));
   };
-
 
   exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
@@ -722,8 +719,6 @@ exports.getadminreg_rol = (req, res, next) => {
         });
 };
 
-
-
 exports.getAdminAddAlimento = (req, res, next) => {
     const mensaje = "";
     res.render("adminNuevoAlimento", {
@@ -734,7 +729,6 @@ exports.getAdminAddAlimento = (req, res, next) => {
         photo: req.session.photo || "",
     });
 };
-
 
 exports.getAdminInfoCliente = async (req, res, next) => {
     const consulta_total_cliente = await Cliente.getTotal();
