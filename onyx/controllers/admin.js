@@ -280,6 +280,7 @@ exports.postAdminEliminarDieta = (req, res, next) =>
         Dieta.deleteById(id_dieta)
         .then(() => {
             res.redirect('/admin/admindashboard/diets');
+            console.log(id_dieta);
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
