@@ -222,6 +222,10 @@ button:active {
     background-color: #F0F9FF;
 }
 
+.bg-role {
+    background-color: #FEF6FB;
+}
+
 .bg-dietas {
     background-color: #FEF6FB;
 }
@@ -242,6 +246,13 @@ button:active {
 .icon-users {
     /* change the color of the icon */
     fill: #74C1ED;
+}
+
+.icon-role {
+    /* change the color of the icon */
+    fill: #D2CA03;
+    width: 6rem;
+    height: 6rem;
 }
 
 .icon-dietas {
