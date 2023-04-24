@@ -97,6 +97,13 @@ router.get("/admindashboard/reg_rol/activate/:idrol", checkPrivilegio('Modificar
 router.get("/admindashboard/grafclientes", checkPrivilegio('Consultar usuarios'),
              adminController.getAdminInfoCliente);
 
+router.get("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
+                adminController.getmodificarEjercicio);
+
+router.post("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
+                adminController.postmodificarEjercicio);
+
+
 
 
 module.exports = router;
