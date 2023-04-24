@@ -216,6 +216,7 @@ exports.postAdminNuevaDieta = (req, res, next) => {
             .save()
             .then((result) => {
                 res.redirect("/admin/admindashboard/diets");
+                csrfToken: req.csrfToken();
             })
             .catch((err) => {
                 if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -250,6 +251,29 @@ exports.postAdminNuevaDieta = (req, res, next) => {
             });
     }
 };
+
+exports.postAdminEliminarDieta = (req, res, next) =>
+{
+    const id_dieta = req.params.id_dieta;
+    
+        Dieta.deleteById(id_dieta)
+        .then(() => {
+            res.redirect('/admin/admindashboard/dietas');
+            csrfToken: req.csrfToken();
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+            } else {
+                console.log(err);
+            }
+        });
+
+}
 
 exports.postAdminNuevoEjercicio = (req, res, next) => {
     const ejercicio = new EjercicioModel({
@@ -371,6 +395,7 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                         alimento: alimentoRows,
                         dieta: dietaRows,
                         pagetitle: "Catálogo de Dietas",
+                        csrfToken: req.csrfToken(),
                         user: req.session.user || "",
                         path: "/adminDashboardDietas",
                         photo: req.session.photo || "",
@@ -525,8 +550,6 @@ exports.postAdminModRol = (req, res, next) => {
         next(err);
       });
   };
-  
-  
   
 exports.getadminreg_rol = (req, res, next) => {
     const mensaje =

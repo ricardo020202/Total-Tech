@@ -1,98 +1,85 @@
-<%- include('includes/headAdmin.ejs') %> 
-<%- include('includes/sidebar.ejs') %>
+<%- include('includes/headAdmin.ejs') %>
+    <%- include('includes/sidebar.ejs') %>
 
-<link rel="stylesheet" href="/css/adminStyle.css" />
-<div class="table-responsive">
-    <div class="table-title">
-        <div class="row">
-        <div class="col-sm-6">
-            <h2><b>Usuarios</b></h2>
-        </div>
-        <div class="col-sm-6">
-            <a href="/admin/admindashboard/userprivileges/add" class="btn btn-success"><i class="material-icons"></i> <span>Agregar Nuevo Usuario</span></a>
-        </div>
-        </div>
-    </div>
-    <table class="table-active table-striped">
-        <thead class="table-header">
-            <tr>
-                <th scope="col">Nombre de usuario</th>
-                <th scope="col">Email</th>               
-                <th scope="col">Rol</th>
-                <th scope="col">Acciones</th>
-            </tr>
-                    </thead>
-                    <tbody>
-                        <% usersArray.forEach(user=> { %>
-                            <% if (user.rol == "administrador") { %>
-                                <tr>
-                                    <td><%= user.nombre %></td>
-                                    <td><%= user.email %></td>
-                                    <td>
-                                        <span
-                                            class="user-role"
-                                            data-toggle="tooltip"
-                                            data-bs-placement="top"
-                                            title="<%= user.privileges %>">
-                                            <%= user.rol %>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a
-                                            href="/admin/admindashboard/userprivileges/add/<%= user.email %>"
-                                            class="btn btn-custom"
-                                            role="button"> Editar
-                                        </a>
-                                        <br><br>
-                                        <form
-                                            id="delete-form"
-                                            method="post"
-                                            action="/admin/admindashboard/userprivileges/delete/<%= user.email %>"
-                                        >
-                                            <input
-                                                type="hidden"
-                                                name="_csrf"
-                                                value="<%= csrfToken %>"
-                                            />
-                                            <button type="submit" class="btn btn-outline-dark">Eliminar</button>
-                                        </form>
+        <link rel="stylesheet" href="/css/adminStyle.css" />
+        <div class="table-responsive">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2><b>Usuarios</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="/admin/admindashboard/userprivileges/add" class="btn btn-success"><i
+                                class="material-icons"></i> <span>Agregar Nuevo Usuario</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table-active table-striped">
+                <thead class="table-header">
+                    <tr>
+                        <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% usersArray.forEach(user=> { %>
+                        <% if (user.rol=="administrador" ) { %>
+                            <tr>
+                                <td>
+                                    <%= user.nombre %>
+                                </td>
+                                <td>
+                                    <%= user.email %>
+                                </td>
+                                <td>
+                                    <span class="user-role" data-toggle="tooltip" data-bs-placement="top"
+                                        title="<%= user.privileges %>">
+                                        <%= user.rol %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="/admin/admindashboard/userprivileges/add/<%= user.email %>"
+                                        class="btn btn-custom" role="button"> Editar
+                                    </a>
+                                    <br><br>
 
-                                        <div id="confirm-delete" class="confirm-dialog">
-                                            <div class="confirm-dialog-content">
-                                                <h2>Confirmar Eliminar</h2>
-                                                <p>¿Estás seguro que quieres eliminar a este usuario?</p>
-                                                <div class="confirm-dialog-buttons">
-                                                    <button id="confirm-delete-yes" class="btn btn-danger">Eliminar</button>
-                                                    <button id="confirm-delete-no" class="btn btn-secondary">Cancelar</button>
+                                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Eliminar
+                                    </button>
+
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar eliminación</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
+                                                <form id="delete-form" method="post"
+                                                    action="/admin/admindashboard/userprivileges/delete/<%= user.email %>">
+                                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                                                    <div class="modal-body">
+                                                        ¿Deseas eliminar este usuario?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-success">Eliminar</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
-
-
-                                        
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                            </tr>
                             <% } %>
-                        <% }); %>
-                    </tbody>
-                </table>
-            </div>
-            <script>
-                const deleteForm = document.getElementById('delete-form');
-                const confirmDelete = document.getElementById('confirm-delete');
-                const confirmDeleteYes = document.getElementById('confirm-delete-yes');
-                const confirmDeleteNo = document.getElementById('confirm-delete-no');
-    
-                deleteForm.addEventListener('submit', (event) => {
-                    event.preventDefault();
-                    confirmDelete.style.display = 'block';
-                });
-    
-                confirmDeleteYes.addEventListener('click', () => {
-                    deleteForm.submit();
-                });
-    
-                confirmDeleteNo.addEventListener('click', () => {
-                    confirmDelete.style.display = 'none';
-                });
-            </script>
+                                <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+<%- include('includes/footAdmin.ejs') %>
