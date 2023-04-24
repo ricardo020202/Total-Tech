@@ -1,4 +1,6 @@
 <%- include('includes/head.ejs') %>
+<link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
     <div class="spacer"></div>
     <div class="container">
         <div class="row">
@@ -8,7 +10,7 @@
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
                     <div class="p-5 rounded-5 text-dark shadow rounded bg-custom-login" style="width: 25rem">
                         <div class="d-flex justify-content-center">
-                            <img src="../assets/login-icon.svg" alt="login-icon" style="height: 7rem; width: auto;" />
+                            <i class="bi bi-person-circle"></i>
                         </div>
                         <div class="text-center fs-1 fw-bold">Sign up</div>
                         <div class="input-group mt-4">

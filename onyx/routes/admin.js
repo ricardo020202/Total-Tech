@@ -43,11 +43,8 @@ router.get("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
 router.post("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
              adminController.postAdminNuevaDieta);
 
-router.post("/admindashboard/diets/delete", checkPrivilegio('Eliminar dieta'), 
-adminController.postAdminEliminarDieta);
-
 router.post("/admindashboard/diets/delete/:id_dieta", checkPrivilegio('Eliminar dieta'), 
-adminController.postAdminEliminarDieta);
+            adminController.postAdminEliminarDieta);
 
 router.get("/admindashboard/ejercicios", checkPrivilegio('Consultar ejercicio'), checkPrivilegio('Registrar ejercicio'),
              adminController.getAdminDashboardEjercicios);

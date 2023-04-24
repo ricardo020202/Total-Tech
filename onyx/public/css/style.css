@@ -897,3 +897,8 @@ tbody {
   color: #000000;
   z-index: 100;
 }
+
+.bi-person-circle{
+  font-size: 8rem;
+  color: #151515;
+}
