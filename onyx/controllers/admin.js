@@ -669,20 +669,8 @@ exports.getadminreg_rol = (req, res, next) => {
       .catch(err => console.log(err));
   };
 
-exports.getAdminAddAlimento = (req, res, next) => {
-    const mensaje = "";
-    res.render("adminNuevoAlimento", {
-        pagetitle: "Nuevo alimento",
-        user: req.session.user || "",
-        csrfToken: req.csrfToken(),
-        mensaje: mensaje,
-        photo: req.session.photo || "",
-    });
-};
 
-
-
-exports.postadminreg_rol = function (req, res) {
+  exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
     const { id_rol, privilegios } = req.body;
     const ids_casos_uso = Array.isArray(privilegios)
@@ -698,26 +686,29 @@ exports.postadminreg_rol = function (req, res) {
             req.app.locals.mensaje = "Rol Registrado Correctamente.";
             insertedIdRol = result.insertId;
             const promises = ids_casos_uso.map((id_caso_uso) => {
-                const rolPrivilegio = new RolPrivilegio(
-                    insertedIdRol,
-                    id_caso_uso.trim()
-                );
-                console.log(
-                    `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`
-                );
-                return rolPrivilegio
-                    .save()
-                    .then(() =>
-                        console.log(
-                            `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`
-                        )
-                    )
-                    .catch((error) =>
-                        console.error(
-                            `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`,
-                            error
-                        )
+                if (id_caso_uso) {
+                    const trimmedIdCasoUso = id_caso_uso.trim();
+                    const rolPrivilegio = new RolPrivilegio(
+                        insertedIdRol,
+                        trimmedIdCasoUso
                     );
+                    console.log(
+                        `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${trimmedIdCasoUso}`
+                    );
+                    return rolPrivilegio
+                        .save()
+                        .then(() =>
+                            console.log(
+                                `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${trimmedIdCasoUso}`
+                            )
+                        )
+                        .catch((error) =>
+                            console.error(
+                                `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${trimmedIdCasoUso}:`,
+                                error
+                            )
+                        );
+                }
             });
             return Promise.all(promises);
         })
@@ -729,6 +720,19 @@ exports.postadminreg_rol = function (req, res) {
             console.error(error);
             req.session.mensaje = "Error al registrar el rol.";
         });
+};
+
+
+
+exports.getAdminAddAlimento = (req, res, next) => {
+    const mensaje = "";
+    res.render("adminNuevoAlimento", {
+        pagetitle: "Nuevo alimento",
+        user: req.session.user || "",
+        csrfToken: req.csrfToken(),
+        mensaje: mensaje,
+        photo: req.session.photo || "",
+    });
 };
 
 
