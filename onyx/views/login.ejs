@@ -1,9 +1,11 @@
+/*login.ejs */
+
 <%- include('includes/head.ejs') %>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <link rel="stylesheet" href=
-"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
     <div class="spacer"></div>
     <div class="container">
         <div class="row">
@@ -15,7 +17,7 @@
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <div class="p-5 rounded-5 text-dark shadow rounded bg-custom-login" style="width: 25rem">
                         <div class="d-flex justify-content-center">
-                        <i class="bi bi-person-circle"></i>
+                            <i class="bi bi-person-circle"></i>
                         </div>
                         <div class="text-center fs-1 fw-bold">Login</div>
                         <div class="input-group mt-4">
@@ -55,25 +57,42 @@
                                 <span class="bg-white px-3">o</span>
                             </div>
                         </div>
-                        <div 
-                            id="g_id_onload"
-                            data-client_id="1036627205543-3t0kbtpj27o15dk1uffh68gvha6k3i6c.apps.googleusercontent.com"
-                            data-context="signin" 
-                            data-ux_mode="popup"
-                            data-auto_prompt="false">
+                        <div id="g_id_onload"
+                            data-client_id="141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com"
+                            data-context="signin" data-ux_mode="popup" data-auto_prompt="true">
                         </div>
-                        <div class="g_id_signin mt-3" 
-                            data-type="standard" 
-                            data-shape="rectangular"
-                            data-theme="filled_black" 
-                            data-text="signin_with" 
-                            data-size="large"
+                        <div class="g_id_signin mt-3" data-type="standard" data-shape="rectangular"
+                            data-theme="filled_black" data-text="signin_with" data-size="large"
                             data-logo_alignment="left">
                         </div>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        function handleCredentialResponse(response) {
+            console.log('Credential Response:', response);
+            // Aquí puedes enviar la respuesta al servidor para autenticar al usuario.
+            // Por ejemplo, puedes usar un objeto XMLHttpRequest para enviar una solicitud POST al servidor.
+        }
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com",
+                callback: handleCredentialResponse,
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("google-signin-button"),
+                {
+                    theme: "filled_black",
+                    size: "large",
+                    width: "100%",
+                    height: "50",
+                    locale: "es",
+                }
+            );
+            google.accounts.id.prompt(); // Esta función activa el aviso automático para el inicio de sesión.
+        };
+    </script>
+
 
     <%- include('includes/foot.ejs') %>
