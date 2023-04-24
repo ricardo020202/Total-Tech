@@ -234,11 +234,23 @@ exports.postAdminNuevaDieta = (req, res, next) => {
 
     if (dieta) {
         dieta
-        .save()
-        .then(() => {
-          res.redirect('/admin/admindashboard/diets');
-        })
-        .catch(err => console.log(err));
+            .save()
+            .then((result) => {
+                res.redirect("/admin/admindashboard/diets");
+                csrfToken: req.csrfToken();
+            })
+            .catch((err) => {
+                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                    res.render("dbDown", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        photo: req.session.photo || "",
+                    });
+                    return { medidas: [], fechas: [] };
+                } else {
+                    console.log(err);
+                }
+            });
     }
     if (alimento) {
         alimento
@@ -260,6 +272,29 @@ exports.postAdminNuevaDieta = (req, res, next) => {
             });
     }
 };
+
+exports.postAdminEliminarDieta = (req, res, next) =>
+{
+    const id_dieta = req.params.id_dieta;
+    
+        Dieta.deleteById(id_dieta)
+        .then(() => {
+            res.redirect('/admin/admindashboard/dietas');
+            csrfToken: req.csrfToken();
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+            } else {
+                console.log(err);
+            }
+        });
+
+}
 
 exports.postAdminNuevoEjercicio = (req, res, next) => {
     const ejercicio = new EjercicioModel({
@@ -382,6 +417,7 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                         alimento: alimentoRows,
                         dieta: dietaRows,
                         pagetitle: "Catálogo de Dietas",
+                        csrfToken: req.csrfToken(),
                         user: req.session.user || "",
                         path: "/adminDashboardDietas",
                         photo: req.session.photo || "",
@@ -548,65 +584,6 @@ exports.postAdminModRol = (req, res, next) => {
         next(err);
       });
   };
-  
-  
-
-
-exports.getAdminModAlimento = (req, res, next) => {
-    const id = req.params.id;
-    var mensaje = "";
-    res.render("adminModificarAlimento", {
-        pagetitle: "Modificar alimento",
-        user: req.session.user || "",
-        id: id,
-        csrfToken: req.csrfToken(),
-        mensaje: mensaje,
-        photo: req.session.photo || "",
-    });
-};
-
-exports.postAdminModAlimento = (req, res, next) => {
-    const id = req.params.id;
-    const descripcion = req.body.descripcion_alimento;
-    const unidad = req.body.unidad;
-    const cantidad = req.body.cantidad;
-
-    Alimento.update(id, descripcion, unidad, cantidad)
-        .then(() => {
-            const mensaje = "Alimento actualizado correctamente";
-            res.render("adminModificarAlimento", {
-                pagetitle: "Modificar alimento",
-                user: req.session.user || "",
-                id: id,
-                csrfToken: req.csrfToken(),
-                mensaje: mensaje,
-                photo: req.session.photo || "",
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
-        });
-};
-
-    
-exports.getAdminDeleteAlimento = (req, res, next) => {
-    const id = req.params.id;
-
-    DietaAlimento.delete(id) // delete associated records in dieta_alimento table
-        .then(() => {
-            return Alimento.delete(id); // delete record from alimento table
-        })
-        .then(() => {
-            res.redirect("/admin/adminDashboard/diets");
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
-        });
-};
-
-  
   
 exports.getadminreg_rol = (req, res, next) => {
     const mensaje =

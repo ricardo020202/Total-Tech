@@ -65,12 +65,32 @@
             <%= dieta[i].fibra_total %>
           </td>
           <td>
-            <a href="">
-              <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
-            </a>
-            <a href="" onclick="return confirm('¿Está seguro que quieres eliminar esta dieta?')">
-              <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
-            </a>
+            <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+            <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
+            <form
+              id="delete-form"
+              method="post"
+              action="/admin/admindashboard/diets/delete/<%= dieta[i].id_dieta %>"
+            >
+                <input
+                    type="hidden"
+                    name="_csrf"
+                    value="<%= csrfToken %>"
+                />
+                <button type="submit" class="btn btn-outline-dark">Eliminar</button>
+            </form>
+
+            <div id="confirm-delete" class="confirm-dialog">
+                <div class="confirm-dialog-content">
+                    <h2>Confirmar Eliminar</h2>
+                    <p>¿Estás seguro que quieres eliminar esta dieta?</p>
+                    <div class="confirm-dialog-buttons">
+                        <button id="confirm-delete-yes" class="btn btn-danger">Eliminar</button>
+                        <button id="confirm-delete-no" class="btn btn-secondary">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
           </td>
         </tr>
         <% } %>
@@ -126,6 +146,26 @@
     </tbody>
   </table>
 </div>
+
+<script>
+  const deleteForm = document.getElementById('delete-form');
+  const confirmDelete = document.getElementById('confirm-delete');
+  const confirmDeleteYes = document.getElementById('confirm-delete-yes');
+  const confirmDeleteNo = document.getElementById('confirm-delete-no');
+
+  deleteForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      confirmDelete.style.display = 'block';
+  });
+
+  confirmDeleteYes.addEventListener('click', () => {
+      deleteForm.submit();
+  });
+
+  confirmDeleteNo.addEventListener('click', () => {
+      confirmDelete.style.display = 'none';
+  });
+</script>
 
 <%- include('includes/footAdmin.ejs') %>
 
