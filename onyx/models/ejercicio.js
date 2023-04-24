@@ -2,13 +2,13 @@ const db = require("../util/database");
 
 module.exports = class Ejercicio {
     constructor(ejercicio) {
-        this.id_ejercicio = ejercicio.id_ejercicio;
-        this.categoria = ejercicio.categoria;
-        this.nivel_intensidad = ejercicio.nivel_intensidad;
-        this.referencia_visual = ejercicio.referencia_visual;
-        this.descripcion_ejercicio = ejercicio.descripcion_ejercicio;
-        this.nombre_ejercicio = ejercicio.nombre_ejercicio;
-        this.imagen_ejercicio = ejercicio.imagen_ejercicio;
+        this.id_ejercicio = ejercicio.id_ejercicio || null;
+        this.categoria = ejercicio.categoria || null;
+        this.nivel_intensidad = ejercicio.nivel_intensidad || null;
+        this.referencia_visual = ejercicio.referencia_visual || null;
+        this.descripcion_ejercicio = ejercicio.descripcion_ejercicio || null;
+        this.nombre_ejercicio = ejercicio.nombre_ejercicio || null;
+        this.imagen_ejercicio = ejercicio.imagen_ejercicio || null;
     }
 
     save() {
@@ -58,5 +58,20 @@ module.exports = class Ejercicio {
 
     static getTotal() {
         return db.execute("SELECT COUNT(*) as total FROM ejercicio");
+    }
+
+    updateById(id_ejercicio) {
+        return db.execute(
+            "UPDATE ejercicio SET categoria = ?, nivel_intensidad = ?, referencia_visual = ?, descripcion_ejercicio = ?, nombre_ejercicio = ?, imagen_ejercicio = ? WHERE id_ejercicio = ?",
+            [
+                this.categoria || null,
+                this.nivel_intensidad || null,
+                this.referencia_visual || null,
+                this.descripcion_ejercicio || null,
+                this.nombre_ejercicio || null,
+                this.imagen_ejercicio || null,
+                id_ejercicio,
+            ]
+        );
     }
 };

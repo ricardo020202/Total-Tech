@@ -43,11 +43,8 @@ router.get("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
 router.post("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
              adminController.postAdminNuevaDieta);
 
-router.post("/admindashboard/diets/delete", checkPrivilegio('Eliminar dieta'), 
-adminController.postAdminEliminarDieta);
-
 router.post("/admindashboard/diets/delete/:id_dieta", checkPrivilegio('Eliminar dieta'), 
-adminController.postAdminEliminarDieta);
+            adminController.postAdminEliminarDieta);
 
 router.get("/admindashboard/ejercicios", checkPrivilegio('Consultar ejercicio'), checkPrivilegio('Registrar ejercicio'),
              adminController.getAdminDashboardEjercicios);
@@ -96,6 +93,13 @@ router.get("/admindashboard/reg_rol/activate/:idrol", checkPrivilegio('Modificar
 
 router.get("/admindashboard/grafclientes", checkPrivilegio('Consultar usuarios'),
              adminController.getAdminInfoCliente);
+
+router.get("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
+                adminController.getmodificarEjercicio);
+
+router.post("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
+                adminController.postmodificarEjercicio);
+
 
 
 
