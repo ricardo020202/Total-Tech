@@ -24,4 +24,13 @@ module.exports = class Alimento {
     static fetchAll() {
         return db.execute('SELECT * FROM alimento');
     }
+
+    static checkIfAlimentoExists(descripcion) {
+        return db.execute('SELECT COUNT(*) as count FROM alimento WHERE descripcion_alimento = ?', [descripcion])
+            .then(([rows]) => {
+                const count = rows[0].count;
+                return count > 0;
+            });
+    }
+    
 }

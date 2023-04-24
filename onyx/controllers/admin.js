@@ -189,6 +189,7 @@ exports.getAdminNuevaDieta = (req, res, next) => {
     res.render("adminNuevaDieta", {
         pagetitle: "Nueva Dieta",
         user: req.session.user || "",
+        Message: "",
         path: "adminNuevaDieta",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
@@ -232,46 +233,36 @@ exports.postAdminNuevaDieta = (req, res, next) => {
         cantidad: req.body.cantidad,
     });
 
-    if (dieta) {
-        dieta
-            .save()
-            .then((result) => {
-                res.redirect("/admin/admindashboard/diets");
-                csrfToken: req.csrfToken();
-            })
-            .catch((err) => {
-                if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                    res.render("dbDown", {
-                        pagetitle: "Error",
-                        user: req.session.user || "",
-                        photo: req.session.photo || "",
+    Alimento.checkIfAlimentoExists(alimento.descripcion)
+        .then((alimentoExists) => {
+            if (alimentoExists) {
+                res.render("adminNuevoAlimento", {
+                    pagetitle: "Nueva dieta",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    Message: "Alimento ya existente"
+                });
+            } else {
+                alimento.save()
+                    .then(() => {
+                        res.redirect("/admin/admindashboard/diets");
+                    })
+                    .catch((err) => {
+                        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                            res.render("dbDown", {
+                                pagetitle: "Error",
+                                user: req.session.user || "",
+                                photo: req.session.photo || "",
+                            });
+                        } else {
+                            console.log(err);
+                        }
                     });
-                    return { medidas: [], fechas: [] };
-                } else {
-                    console.log(err);
-                }
-            });
-    }
-    if (alimento) {
-        alimento
-            .save()
-            .then((result) => {
-                res.redirect("/admin/admindashboard/diets");
-            })
-            .catch((err) => {
-                if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                    res.render("dbDown", {
-                        pagetitle: "Error",
-                        user: req.session.user || "",
-                        photo: req.session.photo || "",
-                    });
-                    return { medidas: [], fechas: [] };
-                } else {
-                    console.log(err);
-                }
-            });
-    }
+            }
+        });
 };
+
 
 exports.postAdminEliminarDieta = (req, res, next) =>
 {
@@ -730,7 +721,7 @@ exports.getAdminAddAlimento = (req, res, next) => {
         pagetitle: "Nuevo alimento",
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
-        mensaje: mensaje,
+        Message: mensaje,
         photo: req.session.photo || "",
     });
 };
