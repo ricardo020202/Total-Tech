@@ -723,7 +723,6 @@ exports.getadminreg_rol = (req, res, next) => {
 };
 
 
-
 exports.getAdminAddAlimento = (req, res, next) => {
     const mensaje = "";
     res.render("adminNuevoAlimento", {
