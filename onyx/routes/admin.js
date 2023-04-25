@@ -25,7 +25,7 @@ router.post("/admindashboard/userprivileges/delete/:email", checkPrivilegio('Eli
 router.get("/admindashboard/diets/modAlimento/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
              adminController.getAdminModAlimento);
 
-router.get("/admindashboard/diets/deleteFood/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
+router.post("/admindashboard/diets/deleteFood/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
                 adminController.getAdminDeleteAlimento);
 
 router.get('/admindashboard/diets/Alimento/add', //CAMBIAR Y AÑADIR PRIVILEGIO'
@@ -70,7 +70,7 @@ router.get('/admindashboard/programas/editar-programa/:id_Programa', checkPrivil
 router.post('/admindashboard/programas/editar-programa/:id_Programa', checkPrivilegio('Modificar programa'),
              adminController.postAdminEditarPrograma);
 
-router.get('/admindashboard/programas/eliminar-programa/:id_Programa', checkPrivilegio('Eliminar programa'),
+router.post('/admindashboard/programas/eliminar-programa/:id_Programa', checkPrivilegio('Eliminar programa'),
             adminController.postAdminEliminarPrograma);
 
 router.get('/admindashboard/reg_rol', checkPrivilegio('Consultar rol'),

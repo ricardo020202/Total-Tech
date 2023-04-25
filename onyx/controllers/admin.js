@@ -48,6 +48,7 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                 user: req.session.user || "",
                 path: "/adminDashboardProgramas",
                 photo: req.session.photo || "",
+                csrfToken: req.csrfToken(),
             });
         })
         .catch((err) => {

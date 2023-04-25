@@ -24,33 +24,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% usersArray.forEach(user=> { %>
-                        <% if (user.rol=="administrador" ) { %>
+                    <% for (let i = 0; i < usersArray.length; i++) { %>
+                        <% if (usersArray[i].rol=="administrador" ) { %>
                             <tr>
                                 <td>
-                                    <%= user.nombre %>
+                                    <%= usersArray[i].nombre %>
                                 </td>
                                 <td>
-                                    <%= user.email %>
+                                    <%= usersArray[i].email %>
                                 </td>
                                 <td>
                                     <span class="user-role" data-toggle="tooltip" data-bs-placement="top"
-                                        title="<%= user.privileges %>">
-                                        <%= user.rol %>
+                                        title="<%= usersArray[i].privileges %>">
+                                        <%= usersArray[i].rol %>
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="/admin/admindashboard/userprivileges/add/<%= user.email %>"
+                                    <a href="/admin/admindashboard/usersArray[i]privileges/add/<%= usersArray[i].email %>"
                                         class="btn btn-custom" role="button"> Editar
                                     </a>
                                     <br><br>
 
                                     <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
+                                        data-bs-target="#userModal<%= i %>">
                                         Eliminar
                                     </button>
 
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    <div class="modal fade" id="userModal<%= i %>" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -60,10 +60,10 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <form id="delete-form" method="post"
-                                                    action="/admin/admindashboard/userprivileges/delete/<%= user.email %>">
+                                                    action="/admin/admindashboard/userprivileges/delete/<%= usersArray[i].email %>">
                                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                                                     <div class="modal-body">
-                                                        ¿Deseas eliminar este usuario?
+                                                        ¿Deseas eliminar el usuario <%= usersArray[i].nombre %>?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger"
@@ -77,7 +77,7 @@
                                 </td>
                             </tr>
                             <% } %>
-                                <% }); %>
+                                <% } %>
                 </tbody>
             </table>
         </div>
