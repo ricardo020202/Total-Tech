@@ -129,10 +129,12 @@
                         class="card-img-top" alt="..." />
                         <!--<img style="object-fit: cover;" src="<%= dietas[i].imagen_dieta%>"-->
                     <div class="card-body">
-                        <h5 class="card-title"> <%= dietas[i].nombre_dieta %></h5>
-                        <p class="card-text">Macronutrientes: <%= dietas[i].macronutrientes%></p>
-                        <p class="card-text">Micronutrientes: <%=dietas[i].micronutrientes%></p>
-                        <p class="card-text">Num Calorías: <%=dietas[i].no_calorias%></p>
+                        
+                        <h3 class="card-title"> <%= dietas[i].nombre_dieta %></h3>
+                        <p style="margin: -0.5px;">Proteinas: <%= dietas[i].proteinas%></p>
+                        <p style="margin: -0.5px;">Carbohidratos: <%=dietas[i].carbohidratos%></p>
+                        <p style="margin: -0.5px;">Grasas: <%=dietas[i].grasas%></p>
+                        <br>
                         
                         <a href="/onyx/dieta/<%= dietas[i].id_dieta%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
                         <br />
