@@ -8,15 +8,27 @@
 
         <div class="col">
             <h1>Agregar usuarios</h1>
-            <h1><%= mensaje %></h1>
+            <p><%= mensaje %></p>
             <br /><br /><br />
-            <form
+
+            
+            <% if (rol) { %>
+                <form 
+                action="/admin/admindashboard/userprivileges/add/<%= usuario.email %>"
+                method="POST"
+            >
+            <% } else { %>
+                <form 
                 action="/admin/admindashboard/userprivileges/add"
                 method="POST"
             >
+            <% } %>
+            
+
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                 <label for="email" class="form-label">Email:</label>
                 <input
+                    value="<%= usuario.email %>"
                     type="text"
                     name="email"
                     class="form-control"
@@ -24,6 +36,9 @@
                 /><br /><br />
                 <label for="role" class="form-label">Rol:</label>
                 <select name="role" class="form-select" required>
+                    <% if (rol) { %>
+                        <option value="<%= rol.nombreRol %>"> <%= rol.nombreRol %></option>
+                    <% } %>
                     <% for (let i = 0; i < roles.length; i++) { %>
                     <option value="<%= roles[i].id_rol %>">
                         <%= roles[i].nombreRol %>

@@ -14,7 +14,10 @@ router.get("/admindashboard/userprivileges/add", checkPrivilegio('Registrar usua
              adminController.getAdminDashboardAddUser);
 
 router.get("/admindashboard/userprivileges/add/:email", checkPrivilegio('Modificar usuarios'),
-             adminController.getAdminDashboardAddUser);
+             adminController.getAdminDashboardModUser);
+
+router.post("/admindashboard/userprivileges/add/:email", checkPrivilegio('Modificar usuarios'),
+            adminController.postAdminDashboardModUser);
 
 router.post("/admindashboard/userprivileges/add", checkPrivilegio('Registrar usuarios'),
              adminController.postAdminDashboardAddUser);
