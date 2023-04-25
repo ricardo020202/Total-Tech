@@ -29,7 +29,6 @@
                 <th scope="col">Referencia Visual</th>
                 <th scope="col">Imagen Ejercicio</th>
                 <th scope="col">Acciones</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -38,21 +37,41 @@
                 <th scope="row"><%= ejercicio[i].id_ejercicio %></th>
                 <td><%= ejercicio[i].categoria %></td>
                 <td><%= ejercicio[i].nivel_intensidad %></td>
-                <td><%= ejercicio[i].referencia_visual %></td>
+                <td><%= ejercicio[i].nombre_ejercicio %></td>
                 <!-- dont show all the text -->
                 <td class="cell-class"><%= ejercicio[i].descripcion_ejercicio %></td>
-                <td><%= ejercicio[i].nombre_ejercicio %></td>
+                <td><%= ejercicio[i].referencia_visual%></td>
                 <td class="cell-class"><%= ejercicio[i].imagen_ejercicio %></td>
-                <td class="crud button">
+                <td>
                     <a href="/admin/admindashboard/ejercicios/modificarejercicio/<%= ejercicio[i].id_ejercicio %>">
-                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
-                </a>
-                </td>
-                <td class="crud button">
-                    <a href="/admin/admindashboard/ejercicios/delete/<%= ejercicio[i].id_ejercicio %>">
-                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;">
-                    </i>
-                </td>
+                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
+                    </a>
+                    <i type="button" class="fa-sharp fa-solid fa-trash fa-lg" data-bs-toggle="modal"
+                      data-bs-target="#ejercicioModal<%= i %>" style="color: #000"></i>
+    
+                    <div class="modal fade" id="ejercicioModal<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar eliminación</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <form id="delete-form" method="post"
+                            action="/admin/admindashboard/ejercicios/delete/<%= ejercicio[i].id_ejercicio %>">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                            <div class="modal-body">
+                              ¿Deseas eliminar el ejercicio <%= ejercicio[i].nombre_ejercicio %>?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                              <button type="submit" class="btn btn-success">Eliminar</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
             </tr>
             <% } %>
 
