@@ -644,7 +644,7 @@ td, th {
     left: 0;
     right: .3em;
     bottom: 0;
-    background-color: #322b2b;
+    background-color: #cdcdcd;
     transition: .4s;
     border-radius: 50px;
   }
@@ -671,7 +671,7 @@ td, th {
   }
   
   .slider-card-front {
-    background-color: #d5d3c5;
+    background-color: #222227;
   }
   
   .slider-card-back {
