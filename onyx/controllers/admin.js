@@ -13,6 +13,7 @@ const usuario = require("../models/usuario");
 const RolUsuario = require("../models/rol_usuario");
 const RolPrivilegio = require("../models/rol_privilegio");
 const Privilegio = require("../models/privilegio");
+const ProgramaEjercicio = require("../models/programa_ejercicio");
 const db = require("../util/database");
 
 exports.getAdminDashboardEjercicios = async (req, res, next) => {
@@ -23,6 +24,7 @@ exports.getAdminDashboardEjercicios = async (req, res, next) => {
                 pagetitle: "adminEjercicios",
                 user: req.session.user || "",
                 photo: req.session.photo || "",
+                csrfToken: req.csrfToken(),
             });
         })
         .catch((err) => {
@@ -313,6 +315,22 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
             } else {
                 console.log(err);
             }
+        });
+};
+
+exports.deleteAdminEjercicio = (req, res, next) => {
+    const id = req.params.id_ejercicio;
+
+    console.log(id)
+
+    ProgramaEjercicio.deleteById(id)
+    EjercicioModel.deleteById(id)
+        .then(([rows, fieldData]) => {
+            req.flash("success", "Se elimino ejercicio");
+            res.redirect("/admin/admindashboard/ejercicios");
+        })
+        .catch((err) => {
+            console.log(err);
         });
 };
 

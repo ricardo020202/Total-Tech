@@ -55,6 +55,9 @@ router.get('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registr
 router.post('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registrar ejercicio'),
              adminController.postAdminNuevoEjercicio);
 
+router.get("/admindashboard/ejercicios/delete/:id_ejercicio", checkPrivilegio('Registrar ejercicio'),
+            adminController.deleteAdminEjercicio);
+
 router.get("/admindashboard/programas", checkPrivilegio('Consultar programa'), checkPrivilegio('Registrar programa'),
             adminController.getAdminDashboardProgramas);
 
