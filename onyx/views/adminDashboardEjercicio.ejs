@@ -29,6 +29,7 @@
                 <th scope="col">Referencia Visual</th>
                 <th scope="col">Imagen Ejercicio</th>
                 <th scope="col">Acciones</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -43,9 +44,14 @@
                 <td><%= ejercicio[i].nombre_ejercicio %></td>
                 <td class="cell-class"><%= ejercicio[i].imagen_ejercicio %></td>
                 <td class="crud button">
+                    <a href="/admin/admindashboard/ejercicios/editarejercicio/<%= ejercicio[i].id_ejercicio %>">
                     <i class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i>
-                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;"></i>
-                        </td>
+                </td>
+                <td class="crud button">
+                    <a href="/admin/admindashboard/ejercicios/delete/<%= ejercicio[i].id_ejercicio %>">
+                    <i class="fa-sharp fa-solid fa-trash fa-lg" style="color: #000;">
+                    </i>
+                </td>
             </tr>
             <% } %>
 
