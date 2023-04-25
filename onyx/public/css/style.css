@@ -89,7 +89,7 @@ body {
   transition: transform 0.4s ease;
 }
 
-.form-control:hover 
+.form-control:focus 
 {
   transform: scale(1.1);
 }
@@ -99,7 +99,7 @@ body {
   transition: transform 0.4s ease;  
 }
 
-.form-select:hover 
+.form-select:focus 
 {
   transform: scale(1.1);
 }
@@ -896,4 +896,9 @@ tbody {
   background-color: #d2ca03;
   color: #000000;
   z-index: 100;
+}
+
+.bi-person-circle{
+  font-size: 8rem;
+  color: #151515;
 }

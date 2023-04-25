@@ -222,6 +222,10 @@ button:active {
     background-color: #F0F9FF;
 }
 
+.bg-role {
+    background-color: #FEF6FB;
+}
+
 .bg-dietas {
     background-color: #FEF6FB;
 }
@@ -242,6 +246,13 @@ button:active {
 .icon-users {
     /* change the color of the icon */
     fill: #74C1ED;
+}
+
+.icon-role {
+    /* change the color of the icon */
+    fill: #D2CA03;
+    width: 6rem;
+    height: 6rem;
 }
 
 .icon-dietas {
@@ -333,6 +344,31 @@ td, th {
 }
 
 /* =============== Nuevo Ejericio =============== */
+#modifcar-ejercicio{
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    display: flex;
+    margin-left: 10rem;
+
+}
+
 #nuevo-ejercicio{
     /* make that div a grid */
     display: grid;
@@ -364,6 +400,13 @@ td, th {
     max-width: 100%;
 }
 
+#modifcar-ejercicio input {
+    /* white search bar */
+    background: #FFFFFF;
+    max-width: 100%;
+    width: 100%;
+}
+
 #ejercicio {
     margin-left: 8rem;
     margin-top: 15rem;
@@ -389,6 +432,29 @@ td, th {
     1fr = 1fr
     */
     grid-gap: 1rem;
+    /* 1rem = 16px */
+    margin-top: 5rem;
+}
+
+#form-modificar-ejercicio {
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 10fr 10fr;
+    /* 2 rows */
+    grid-template-rows: 3fr 10fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 6rem;
     /* 1rem = 16px */
     margin-top: 5rem;
 }
@@ -547,6 +613,7 @@ td, th {
     max-height: 300px; /* Altura máxima del contenedor de la tabla. Ajusta según tus necesidades. */
     overflow-y: auto; /* Habilita el scroll vertical si el contenido excede la altura máxima. */
   }
+
 
   
 

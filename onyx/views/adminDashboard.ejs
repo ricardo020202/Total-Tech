@@ -1,5 +1,4 @@
-<%- include('includes/headAdmin.ejs') %> 
-<%- include('includes/sidebar.ejs') %>
+<%- include('includes/headAdmin.ejs') %> <%- include('includes/sidebar.ejs') %>
 
 <link rel="stylesheet" href="/css/adminStyle.css" />
 
@@ -21,7 +20,9 @@
                             />
                         </svg>
                         <h5 class="card-title">Dietas</h5>
-                        <p class="number card-text text-end"><%= total_dieta %></p>
+                        <p class="number card-text text-end">
+                            <%= total_dieta %>
+                        </p>
                     </div>
                 </div>
             </a>
@@ -41,7 +42,9 @@
                             />
                         </svg>
                         <h5 class="card-title">Ejercicios</h5>
-                        <p class="number card-text text-end"><%= total_ejercicio %></p>
+                        <p class="number card-text text-end">
+                            <%= total_ejercicio %>
+                        </p>
                     </div>
                 </div>
             </a>
@@ -61,7 +64,9 @@
                             />
                         </svg>
                         <h5 class="card-title">Programas</h5>
-                        <p class="number card-text text-end"><%= total_programa %></p>
+                        <p class="number card-text text-end">
+                            <%= total_programa %>
+                        </p>
                     </div>
                 </div>
             </a>
@@ -81,10 +86,35 @@
                             />
                         </svg>
                         <h5>Usuarios</h5>
-                        <p class="number card-text text-end"><%= total_cliente %></p>
+                        <p class="number card-text text-end">
+                            <%= total_cliente %>
+                        </p>
                     </div>
                 </div>
             </a>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <div class="col">
+                <a href="/admin/admindashboard/reg_rol">
+                    <div class="card bg-role">
+                        <div class="card-body text-dark">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                                class="icon-role"
+                            >
+                                <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M384 48c8.8 0 16 7.2 16 16V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H384zM96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM240 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H208zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z"
+                                />
+                            </svg>
+                            <h5>Rol</h5>
+                            <p class="number card-text text-end">2</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>

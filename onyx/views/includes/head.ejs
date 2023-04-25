@@ -32,11 +32,7 @@
 
         <script src="/js/script.js" defer></script>
 
-        <link
-            rel="shortcut icon"
-            href="/assets/favicon.ico"
-            type="image/x-icon"
-        />
+        <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 
         <title><%= pagetitle%></title>
     </head>
@@ -126,6 +122,15 @@
                             </li>
                         </ul>
                         <% if (user){ %>
+                            <% if (rol != 'cliente') { %>
+                                <ul class="navbar-nav mb-2 mb-lg-0 ms-2">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/admin/adminDashboard"
+                                            >Admin dashboard</a
+                                        >
+                                    </li>
+                                </ul>
+                                <% } %>
                         <li class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle text-dark"

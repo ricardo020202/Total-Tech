@@ -50,6 +50,7 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                 user: req.session.user || "",
                 path: "/adminDashboardProgramas",
                 photo: req.session.photo || "",
+                csrfToken: req.csrfToken(),
             });
         })
         .catch((err) => {
@@ -191,6 +192,7 @@ exports.getAdminNuevaDieta = (req, res, next) => {
     res.render("adminNuevaDieta", {
         pagetitle: "Nueva Dieta",
         user: req.session.user || "",
+        Message: "",
         path: "adminNuevaDieta",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
@@ -234,46 +236,36 @@ exports.postAdminNuevaDieta = (req, res, next) => {
         cantidad: req.body.cantidad,
     });
 
-    if (dieta) {
-        dieta
-            .save()
-            .then((result) => {
-                res.redirect("/admin/admindashboard/diets");
-                csrfToken: req.csrfToken();
-            })
-            .catch((err) => {
-                if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                    res.render("dbDown", {
-                        pagetitle: "Error",
-                        user: req.session.user || "",
-                        photo: req.session.photo || "",
+    Alimento.checkIfAlimentoExists(alimento.descripcion)
+        .then((alimentoExists) => {
+            if (alimentoExists) {
+                res.render("adminNuevoAlimento", {
+                    pagetitle: "Nueva dieta",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    Message: "Alimento ya existente"
+                });
+            } else {
+                alimento.save()
+                    .then(() => {
+                        res.redirect("/admin/admindashboard/diets");
+                    })
+                    .catch((err) => {
+                        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                            res.render("dbDown", {
+                                pagetitle: "Error",
+                                user: req.session.user || "",
+                                photo: req.session.photo || "",
+                            });
+                        } else {
+                            console.log(err);
+                        }
                     });
-                    return { medidas: [], fechas: [] };
-                } else {
-                    console.log(err);
-                }
-            });
-    }
-    if (alimento) {
-        alimento
-            .save()
-            .then((result) => {
-                res.redirect("/admin/admindashboard/diets");
-            })
-            .catch((err) => {
-                if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                    res.render("dbDown", {
-                        pagetitle: "Error",
-                        user: req.session.user || "",
-                        photo: req.session.photo || "",
-                    });
-                    return { medidas: [], fechas: [] };
-                } else {
-                    console.log(err);
-                }
-            });
-    }
+            }
+        });
 };
+
 
 exports.postAdminEliminarDieta = (req, res, next) =>
 {
@@ -281,8 +273,8 @@ exports.postAdminEliminarDieta = (req, res, next) =>
     
         Dieta.deleteById(id_dieta)
         .then(() => {
-            res.redirect('/admin/admindashboard/dietas');
-            csrfToken: req.csrfToken();
+            res.redirect('/admin/admindashboard/diets');
+            console.log(id_dieta);
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -640,7 +632,6 @@ exports.postAdminModAlimento = (req, res, next) => {
         });
 };
 
-
 exports.getAdminDeleteAlimento = (req, res, next) => {
     const id = req.params.id;
 
@@ -686,7 +677,6 @@ exports.getadminreg_rol = (req, res, next) => {
       })
       .catch(err => console.log(err));
   };
-
 
   exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
@@ -740,19 +730,16 @@ exports.getadminreg_rol = (req, res, next) => {
         });
 };
 
-
-
 exports.getAdminAddAlimento = (req, res, next) => {
     const mensaje = "";
     res.render("adminNuevoAlimento", {
         pagetitle: "Nuevo alimento",
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
-        mensaje: mensaje,
+        Message: mensaje,
         photo: req.session.photo || "",
     });
 };
-
 
 exports.getAdminInfoCliente = async (req, res, next) => {
     const consulta_total_cliente = await Cliente.getTotal();
@@ -799,5 +786,58 @@ exports.activateAdminRol = (req, res, next) => {
         })
         .catch((err) => {
             console.log(err);
+        });
+};
+
+
+exports.getmodificarEjercicio = (req, res, next) => {
+    const id_ejercicio = req.params.id_ejercicio;
+
+    EjercicioModel.fetchById(id_ejercicio)
+        .then(([rows, fieldData]) => {
+            const mensaje = "";
+            res.render("modificarEjercicio", {
+                pagetitle: "Modificar ejercicio",
+                user: req.session.user || "",
+                ejercicio: rows[0],
+                csrfToken: req.csrfToken(),
+                mensaje: mensaje,
+                photo: req.session.photo || "",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
+}
+
+exports.postmodificarEjercicio = (req, res, next) => {
+
+    const id_ejercicio = req.params.id_ejercicio;
+
+    const ejercicio = new EjercicioModel({
+        categoria: req.body.categoria,
+        nivel_intensidad: req.body.nivel_intensidad,
+        referencia_visual: req.body.referencia_visual,
+        descripcion_ejercicio: req.body.descripcion_ejercicio,
+        nombre_ejercicio: req.body.nombre_ejercicio,
+        imagen_ejercicio: req.body.imagen_ejercicio,
+    });
+    ejercicio
+        .updateById(id_ejercicio)
+        .then(([rows, fieldData]) => {
+            req.session.mensaje = "Ejercicio modificado correctamente.";
+            res.redirect("/admin/admindashboard/ejercicios");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 };
