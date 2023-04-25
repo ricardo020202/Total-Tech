@@ -17,3 +17,6 @@ exports.getTerms= (req, res, next) => {
         photo : req.session.photo,
     });
 };
+
+
+
