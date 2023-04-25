@@ -219,23 +219,23 @@ button:active {
 }
 
 .bg-users {
-    background-color: #F0F9FF;
+    background-color: #1c2d38;
 }
 
 .bg-role {
-    background-color: #FEF6FB;
+    background-color: #112111;
 }
 
 .bg-dietas {
-    background-color: #FEF6FB;
+    background-color: #322b2b;
 }
 
 .bg-programas {
-    background-color: #FEFBEC;
+    background-color: #2d2020;
 }
 
 .bg-ejercicio {
-    background-color: #F1FFDE;
+    background-color: #2a1d31;
 }
 
 .card {
@@ -290,8 +290,8 @@ table {
 }
 
 tbody{
-    background-color: #F0F9FF;
-    color: #000000;
+    background-color: #2c343a;
+    color: #cdcdcd;
 }
 
 td, th {
@@ -644,7 +644,7 @@ td, th {
     left: 0;
     right: .3em;
     bottom: 0;
-    background-color: #322b2b;
+    background-color: #cdcdcd;
     transition: .4s;
     border-radius: 50px;
   }
@@ -671,7 +671,7 @@ td, th {
   }
   
   .slider-card-front {
-    background-color: #d5d3c5;
+    background-color: #222227;
   }
   
   .slider-card-back {

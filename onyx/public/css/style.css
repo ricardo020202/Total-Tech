@@ -76,22 +76,32 @@ body {
 
 #btnlogin
 {
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
 }
 
 #btnlogin:hover
 {
-  transform: scale(1.1);
+  background-color: #3c4043;
 }
 
-.form-control 
+.btnreg:hover
+{
+  background-color: #3c4043;
+}
+
+/* .form-control 
+{
+  
+} */
+
+/* .form-control:focus 
+{
+
+} */
+
+.focus
 {
   transition: transform 0.4s ease;
-}
-
-.form-control:hover 
-{
-  transform: scale(1.1);
 }
 
 .form-select
@@ -99,7 +109,19 @@ body {
   transition: transform 0.4s ease;  
 }
 
-.form-select:hover 
+#inputlogin
+{
+  transition: transform 0.4s ease;
+
+}
+
+#inputlogin-select
+{
+  transform: scale(1.1);
+
+}
+
+.form-select:focus 
 {
   transform: scale(1.1);
 }
