@@ -1,64 +1,94 @@
 <%- include('includes/headAdmin.ejs') %>
-<%- include('includes/sidebar.ejs') %>
-<link rel="stylesheet" href="/css/adminStyle.css">
+    <%- include('includes/sidebar.ejs') %>
+        <link rel="stylesheet" href="/css/adminStyle.css">
 
 
-<!-- Admin Dashboard Programa -->
-<div class="table-responsive">
-    <div class="table-title">
-        <div class="row">
-            <div class="col-sm-6">
-                <h2><b>Programas</b></h2>
+        <!-- Admin Dashboard Programa -->
+        <div class="table-responsive">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2><b>Programas</b></h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="/admin/admindashboard/programas/nuevoprograma" class="btn btn-success"><i
+                                class="material-icons"></i>
+                            <span>Agregar Nuevo Programa</span></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <a
-                    href="/admin/admindashboard/programas/nuevoprograma"
-                    class="btn btn-success"
-                    ><i class="material-icons"></i>
-                    <span>Agregar Nuevo Programa</span></a
-                >
-            </div>
+            <table class="table-active table-striped">
+                <thead class="table-header">
+                    <tr>
+                        <th scope="col">Id Programa</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Frecuencia</th>
+                        <th scope="col">Referencia Visual</th>
+                        <th scope="col">Imagen Programa</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i=0; i < programa.length; i++) { %>
+                        <tr>
+                            <th scope="row">
+                                <%= programa[i].id_programa %>
+                            </th>
+                            <td class="cell-class">
+                                <%= programa[i].descripcion_programa %>
+                            </td>
+                            <td>
+                                <%= programa[i].nombre_programa %>
+                            </td>
+                            <td>
+                                <%= programa[i].frecuencia %>
+                            </td>
+                            <!-- dont show all the text -->
+                            <td class="cell-class">
+                                <%= programa[i].ref_visual %>
+                            </td>
+                            <td>
+                                <%= programa[i].img_programa %>
+                            </td>
+                            <td>
+                                <a
+                                    href="/admin/admindashboard/programas/editar-programa/<%= programa[i].id_programa %>"><i
+                                        class="fa-solid fa-pen-to-square fa-lg" style="color: #cdcdcd"> </i></a>
+
+                                <i type="button" class="fa-sharp fa-solid fa-trash fa-lg" data-bs-toggle="modal"
+                                    data-bs-target="#programaModal<%= i %>" style="color: #cdcdcd"></i>
+
+                                <div class="modal fade" id="programaModal<%= i %>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar
+                                                    eliminación</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <form id="delete-form" method="post"
+                                                action="/admin/admindashboard/programas/eliminar-programa/<%= programa[i].id_programa %>">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                                                <div class="modal-body">
+                                                    ¿Deseas eliminar el programa <%= programa[i].nombre_programa %>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-success">Eliminar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
         </div>
-    </div>
-    <table class="table-active table-striped">
-        <thead class="table-header">
-            <tr>
-                <th scope="col">Id Programa</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Frecuencia</th>
-                <th scope="col">Referencia Visual</th>
-                <th scope="col">Imagen Programa</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (let i=0; i < programa.length; i++) { %>
-            <tr>
-                <th scope="row"><%= programa[i].id_programa %></th>
-                <td class="cell-class">
-                    <%= programa[i].descripcion_programa %>
-                </td>
-                <td><%= programa[i].nombre_programa %></td>
-                <td><%= programa[i].frecuencia %></td>
-                <!-- dont show all the text -->
-                <td class="cell-class"><%= programa[i].ref_visual %></td>
-                <td><%= programa[i].img_programa %></td>
-                <td class="crud button">
-                    
-                    <a href="/admin/admindashboard/programas/editar-programa/<%= programa[i].id_programa %>"><i
-                        class="fa-solid fa-pen-to-square fa-lg"
-                        style="color: #000"
-                    > </i></a>
-                    <a href="/admin/admindashboard/programas/eliminar-programa/<%= programa[i].id_programa %>"><i
-                        class="fa-sharp fa-solid fa-trash fa-lg"
-                        style="color: #000"
-                    ></i></a>
-                </td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
-</div>
 
-<%- include('includes/footAdmin.ejs') %>
+        <%- include('includes/footAdmin.ejs') %>

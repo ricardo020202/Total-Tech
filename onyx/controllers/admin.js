@@ -13,6 +13,7 @@ const usuario = require("../models/usuario");
 const RolUsuario = require("../models/rol_usuario");
 const RolPrivilegio = require("../models/rol_privilegio");
 const Privilegio = require("../models/privilegio");
+const ProgramaEjercicio = require("../models/programa_ejercicio");
 const db = require("../util/database");
 
 exports.getAdminDashboardEjercicios = async (req, res, next) => {
@@ -23,6 +24,7 @@ exports.getAdminDashboardEjercicios = async (req, res, next) => {
                 pagetitle: "adminEjercicios",
                 user: req.session.user || "",
                 photo: req.session.photo || "",
+                csrfToken: req.csrfToken(),
             });
         })
         .catch((err) => {
@@ -48,6 +50,7 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                 user: req.session.user || "",
                 path: "/adminDashboardProgramas",
                 photo: req.session.photo || "",
+                csrfToken: req.csrfToken(),
             });
         })
         .catch((err) => {
@@ -315,7 +318,25 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
         });
 };
 
+exports.deleteAdminEjercicio = (req, res, next) => {
+    const id = req.params.id_ejercicio;
+
+    console.log(id)
+
+    ProgramaEjercicio.deleteById(id)
+    EjercicioModel.deleteById(id)
+        .then(([rows, fieldData]) => {
+            req.flash("success", "Se elimino ejercicio");
+            res.redirect("/admin/admindashboard/ejercicios");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
 exports.getAdminDashboardAddUser = (req, res, next) => {
+    const id = req.params.email || "";
+    
     Rol.fetchAllButUsers()
         .then(([rows]) => {
             res.render("adminNuevoUsuario", {
@@ -326,9 +347,61 @@ exports.getAdminDashboardAddUser = (req, res, next) => {
                 mensaje: "",
                 email: req.body.email,
                 photo: req.session.photo || "",
+                id: id || "",
+                rol: "",
+                usuario: "",
             });
         })
         .catch((err) => console.log(err));
+};
+
+exports.getAdminDashboardModUser = async (req, res, next) => {
+    const id = req.params.email;
+
+    const consultaRoles = await Rol.fetchAllButUsers();
+    const roles = consultaRoles[0];
+
+    RolUsuario.fetch(id)
+        .then(([rows, fieldData]) => {
+            const mensaje = "Usuario actualizado correctamente";
+            Rol.fetch(rows[0].id_rol)
+                .then(([rows2, fieldData]) => {
+                    console.log(rows2[0])
+                    res.render("adminNuevoUsuario", {
+                        pagetitle: "Modificar usuario",
+                        user: req.session.user || "",
+                        usuario: rows[0],
+                        rol: rows2[0],
+                        csrfToken: req.csrfToken(),
+                        mensaje: mensaje,
+                        photo: req.session.photo || "",
+                        roles: roles,
+                    });
+                })
+                .catch((err) => {    
+                    console.log(err);
+                    next(err);
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
+};
+
+exports.postAdminDashboardModUser = (req, res, next) => {
+    const id = req.params.email;
+    const rol = req.body.role;
+
+    RolUsuario.update(id, rol)
+        .then(() => {
+            const mensaje = "Usuario actualizado correctamente";
+            res.redirect("/admin/admindashboard/userprivileges");
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
 };
 
 exports.postAdminDashboardAddUser = async (req, res, next) => {
@@ -347,6 +420,8 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
                 csrfToken: req.csrfToken(),
                 mensaje: "Usuario no registrado",
                 photo: req.session.photo || "",
+                rol: "",
+                usuario: "",
             });
         }
 
@@ -357,14 +432,7 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
         modificar
             .save()
             .then((result) => {
-                res.render("adminNuevoUsuario", {
-                    pagetitle: "Agregar usuario",
-                    user: req.session.user || "",
-                    roles: Rol.fetchAll(),
-                    csrfToken: req.csrfToken(),
-                    mensaje: "Usuario agregado exitosamente",
-                    photo: req.session.photo || "",
-                });
+                res.redirect("/admin/admindashboard/userprivileges");
             })
             .catch((err) => {
                 if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -447,6 +515,7 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
     usuario
         .getPrivilegios()
         .then((rows) => {
+            console.log(rows);
             rows.forEach((row) => {
                 results.push(row);
             });

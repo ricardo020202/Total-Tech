@@ -10,12 +10,6 @@ const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 const mysql = require('mysql2');
 const googleAuthController = require('../controllers/googleAuthController');
 const passport = require('passport');
-const connection = mysql.createConnection({
-host: 'localhost',
-user: 'root',
-password: '',
-database: 'onyx'
-});
 
 
 router.get("/", noRegController.getHome);

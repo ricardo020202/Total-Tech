@@ -12,6 +12,10 @@ module.exports = class Rol {
         }
         return db.execute('INSERT INTO rol (nombreRol, statusRol) VALUES (?, ?)', [this.nombre, this.status]);
       }
+    
+    update(id) {
+        return db.execute('UPDATE rol SET nombreRol = ? WHERE id_rol = ?', [this.nombre, id]);
+    }
 
     static fetchAll() {
         return db.execute('SELECT * FROM rol');

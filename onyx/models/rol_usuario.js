@@ -12,6 +12,11 @@ module.exports = class RolUsuario {
             [this.id_rol, this.email, new Date().toISOString().slice(0, 10)]);
     }
 
+    static update(email, id_rol) {
+        return db.execute('UPDATE rol_usuario SET id_rol = ? WHERE email = ?',
+            [id_rol, email]);
+    }
+
     static delete(emailA){
         return db.execute('DELETE FROM rol_usuario WHERE email = ?',
             [emailA]);
@@ -19,6 +24,10 @@ module.exports = class RolUsuario {
 
     static fetchAll() {
         return db.execute('SELECT * FROM rol_usuario');
+    }
+
+    static fetch(email) {
+        return db.execute('SELECT * FROM rol_usuario WHERE email = ?', [email]);
     }
 
     static deleteById(email) {
