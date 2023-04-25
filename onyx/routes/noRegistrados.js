@@ -24,5 +24,4 @@ router.get("/TermYCond", noRegController.getTerms);
 
 router.post('/auth/google/callback', googleAuthController.callbackPost);
 
-
 module.exports = router;
