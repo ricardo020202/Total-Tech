@@ -38,12 +38,12 @@ const fileStorage = multer.diskStorage({
             // new Date().toISOString()
             //En Windows
             new Date().getMilliseconds() + "-" + file.originalname
-            );
-        },
-    });
-    
-    app.use(multer({ storage: fileStorage }).single("image"));
-    app.use(csrfProtection);
+        );
+    },
+});
+
+app.use(multer({ storage: fileStorage }).single("image"));
+app.use(csrfProtection);
 
 const userRoutes = require("./routes/users");
 app.use("/users", userRoutes);

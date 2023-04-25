@@ -1,3 +1,6 @@
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+
 exports.getHome = (req, res, next) => {
     res.render("home", {
         pagetitle: "Onyx",
@@ -16,4 +19,25 @@ exports.getTerms= (req, res, next) => {
         rol: req.session.rol || "",
         photo : req.session.photo,
     });
+};
+
+// Crear reset password
+exports.getForgotPassword = (req, res, next) => {
+    res.render("olvidarPassword", {
+        pagetitle: "Olvide mi Contraseña",
+        user: req.session.user || "",
+        rol: req.session.rol || "",
+        photo : req.session.photo,
+        csrfToken: req.csrfToken(),
+    });
+};
+
+exports.postForgotPassword = (req, res, next) => {
+
+};
+
+exports.getResetPassword = (req, res, next) => {
+};
+
+exports.postResetPassword = (req, res, next) => {
 };
