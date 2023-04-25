@@ -41,6 +41,16 @@ body {
   transform: skew(25deg);
 }
 
+#nutrient-chart {
+  width: 800px;
+  height: 600px;
+}
+
+#nutrient-chart2 {
+  width: 800px;
+  height: 600px;
+}
+
 .bg-custom {
   background-color: #d2ca03;
   z-index: 2;

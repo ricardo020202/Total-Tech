@@ -7,6 +7,7 @@
 
     <div class="container">
         <h2 id="titulopagina">Detalles de Dieta</h2>
+        <br>
     </div>
 
 <!-- Include the Chart.js library -->
@@ -18,24 +19,42 @@
 <!-- Add a script to generate the chart -->
 <script>
 // Get the nutrient values from the server
-const calorias = <%= detalles.calorias%>;
-const proteinas = <%= detalles.proteinas%>;
-const carbohidratos = <%= detalles.carbohidratos%>;
-const grasas = <%= detalles.grasas%>;
+
 const sodio = <%= detalles.sodio%>;
 const fibra = <%= detalles.fibra_total%>;
+const ceniza = <%= detalles.ceniza%>;
+const calcio = <%= detalles.calcio%>;
+const fosforo = <%= detalles.fosforo%>;
+const hierro = <%= detalles.hierro%>;
+
+const Tiamina = <%= detalles.tiamina%>;
+const Riboflavina = <%= detalles.riboflavina%>;
+const Niacina = <%= detalles.niacina%>;
+const Vitamina_c = <%= detalles.vitamina_c%>;
+const Vitamina_a = <%= detalles.vitamina_a%>;
+const Ac_graso_mono = <%= detalles.ac_graso_mono%>;
+const Ac_graso_poli = <%= detalles.ac_graso_poli%>;
+const Ac_graso_saturado = <%= detalles.ac_graso_saturado%>;
+const Colesterol = <%= detalles.colesterol%>;
+const Potasio = <%= detalles.potasio%>;
+const Zinc = <%= detalles.zinc%>;
+const Magnesio = <%= detalles.magnesio%>;
+const Vit_b6 = <%= detalles.vit_b6%>;
+const Vit_b12 = <%= detalles.vit_b12%>;
+const Ac_folico = <%= detalles.ac_folico%>;
+const Folato = <%= detalles.folato%>;
 
 // Create a bar chart
 const ctx = document.getElementById('nutrient-chart').getContext('2d');
 const nutrientChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Calorías', 'Proteínas', 'Carbohidratos', 'Grasas', 'Sodio', 'Fibra'],
+    labels: ['Sodio', 'Fibra', 'Ceniza', 'Calcio', 'Fosforo', 'Hierro', 'Tiamina', 'Riboflavina', 'Niacina', 'Vitamina_c', 'Vitamina_a', 'Ac_graso_mono', 'Ac_graso_poli', 'Ac_graso_saturado', 'Colesterol', 'Potasio', 'Zinc', 'Magnesio', 'Vit_b6', 'Vit_b12', 'Ac_folico, Folato'],
     datasets: [{
-      label: 'Cantidad',
-      data: [calorias, proteinas, carbohidratos, grasas, sodio, fibra],
-      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)'],
+      label: 'Micronutrientes',
+      data: [sodio, fibra, ceniza, calcio, fosforo, hierro, Tiamina, Riboflavina, Niacina, Vitamina_c, Vitamina_a, Ac_graso_mono, Ac_graso_poli, Ac_graso_saturado, Colesterol, Potasio, Zinc, Magnesio, Vit_b6, Vit_b12, Ac_folico, Folato],
+      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)','rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)','rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)','rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)',],
+      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
       borderWidth: 1
     }]
   },
@@ -49,6 +68,47 @@ const nutrientChart = new Chart(ctx, {
     }
   }
 });
+
+</script>
+
+<br>
+
+
+<canvas id="nutrient-chart2"></canvas>
+
+<!-- Add a script to generate the chart -->
+<script>
+// Get the nutrient values from the server
+const calorias = <%= detalles.calorias%>;
+const proteinas = <%= detalles.proteinas%>;
+const carbohidratos = <%= detalles.carbohidratos%>;
+const grasas = <%= detalles.grasas%>;
+
+// Create a bar chart
+const ctx2 = document.getElementById('nutrient-chart2').getContext('2d');
+const nutrientChart2 = new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: ['Calorías', 'Proteínas', 'Carbohidratos', 'Grasas'],
+    datasets: [{
+      label: 'Macronutrientes',
+      data: [calorias, proteinas, carbohidratos, grasas],
+      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'],
+      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
 </script>
 
 
