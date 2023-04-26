@@ -10,7 +10,7 @@ exports.get_signup = (request, response, next) => {
         photo: request.session.photo || 'default.pn',
         csrfToken: request.csrfToken(),
         mensaje: request.session.mensaje || "",
-        
+
     });
 };
 
@@ -29,8 +29,8 @@ exports.post_signup = async (request, response, next) => {
             // Loguear al usuario recién registrado
             user.fetch(request.body.email)
                 .then(([rows, fieldData]) => {
-                    request.session.photo = rows[0].user_pic;
                     if (rows.length > 0) {
+                        request.session.photo = rows[0].user_pic;
                         bcrypt
                             .compare(request.body.password, rows[0].contraseña)
                             .then((doMatch) => {
@@ -107,7 +107,7 @@ exports.post_signup = async (request, response, next) => {
                                 }
                             });
                     } else {
-                        request.session.mensaje = "Usuario no registrado.";
+                        request.session.mensaje = "Usuario y/o contraseña incorrecta.";
                         response.redirect("/users/login");
                     }
                 })
@@ -139,7 +139,7 @@ exports.post_signup = async (request, response, next) => {
                 response.render("dbDown", {
                     pagetitle: "Error",
                     user: request.session.user || "",
-                    
+
                 });
             }
         });
@@ -163,18 +163,19 @@ exports.login = (request, response, next) => {
 };
 
 exports.post_login = (request, response, next) => {
-    user.getRol(request.body.email)
-        .then(([rows, fieldData]) => {
-            request.session.rol = rows[0].nombreRol;
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-
     user.fetch(request.body.email)
         .then(([rows, fieldData]) => {
-            request.session.photo = rows[0].user_pic;
             if (rows.length > 0) {
+                request.session.photo = rows[0].user_pic;
+
+                user.getRol(request.body.email)
+                    .then(([rows, fieldData]) => {
+                        request.session.rol = rows[0].nombreRol;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
                 bcrypt
                     .compare(request.body.password, rows[0].contraseña)
                     .then((doMatch) => {
@@ -205,7 +206,7 @@ exports.post_login = (request, response, next) => {
                                                     response.redirect("/onyx/");
                                                 }
                                             })
-                                            .catch((err) => {
+                                            .catch((error) => {
                                                 console.log(error);
                                                 if (error.code === "ER_DUP_ENTRY") {
                                                     request.session.mensaje = "El correo electrónico ya está registrado.";
@@ -264,7 +265,7 @@ exports.post_login = (request, response, next) => {
                         }
                     });
             } else {
-                request.session.mensaje = "Usuario no registrado.";
+                request.session.mensaje = "Usuario y/o contraseña incorrecta.";
                 response.redirect("/users/login");
             }
         })
