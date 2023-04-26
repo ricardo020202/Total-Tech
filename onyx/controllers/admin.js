@@ -116,7 +116,6 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
 
 exports.getAdminEditarPrograma = (req, res, next) => {
     const idPrograma = req.params.id_Programa;
-    console.log(idPrograma);
     EntrenamientoModel.fetchById(idPrograma)
         .then(([rows, fieldData]) => {
             res.render("adminEditarPrograma", {
@@ -274,7 +273,6 @@ exports.postAdminEliminarDieta = (req, res, next) =>
         Dieta.deleteById(id_dieta)
         .then(() => {
             res.redirect('/admin/admindashboard/diets');
-            console.log(id_dieta);
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -321,7 +319,6 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
 exports.deleteAdminEjercicio = (req, res, next) => {
     const id = req.params.id_ejercicio;
 
-    console.log(id)
 
     ProgramaEjercicio.deleteById(id)
     EjercicioModel.deleteById(id)
@@ -455,7 +452,6 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
 exports.deleteAdminDashboarUser = (req, res, next) => {
     const email = req.params.email;
 
-    console.log(email);
 
     RolUsuario.deleteById(email)
         .then(([rows, fieldData]) => {
@@ -583,10 +579,6 @@ exports.getAdminModRol = (req, res, next) => {
       .then(rolPrivilegioRows => {
         rolPrivilegio = rolPrivilegioRows;
   
-        console.log(roles[0]);
-        console.log(privileges[0]);
-        console.log(rolPrivilegio[0]);
-  
         res.render("modrol", {
           roles: roles[0],
           privileges: privileges[0],
@@ -620,9 +612,7 @@ exports.postAdminModRol = (req, res, next) => {
     // Set privileges to an empty array if it is undefined or null
     if (privileges && privileges[0] === undefined) {
         privileges = [];
-        console.log("Done");
-      }
-      console.log(privileges);      
+      } 
     // Delete existing RolPrivilegio records for the given idRol
     RolPrivilegio.deleteByRol(id)
       .then(() => {
