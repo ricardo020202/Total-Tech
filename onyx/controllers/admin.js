@@ -364,7 +364,6 @@ exports.getAdminDashboardModUser = async (req, res, next) => {
             const mensaje = "Usuario actualizado correctamente";
             Rol.fetch(rows[0].id_rol)
                 .then(([rows2, fieldData]) => {
-                    console.log(rows2[0])
                     res.render("adminNuevoUsuario", {
                         pagetitle: "Modificar usuario",
                         user: req.session.user || "",

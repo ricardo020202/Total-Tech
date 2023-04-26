@@ -47,7 +47,7 @@ exports.post_signup = async (request, response, next) => {
                                                     for (let privilegio of consulta_privilegios) {
                                                         privilegios.push(privilegio.nombrecu);
                                                     }
-                                                    console.log(privilegios);
+                                                    
                                                     request.session.privilegios = privilegios;
 
                                                     return request.session.save((error) => {
@@ -88,7 +88,7 @@ exports.post_signup = async (request, response, next) => {
                                 } else {
                                     request.session.mensaje = "Usuario y/o contraseña incorrecta.";
                                     response.redirect("/users/login");
-                                    console.log(rows);
+                                    
                                 }
                             })
                             .catch((error) => {
@@ -185,12 +185,12 @@ exports.post_login = (request, response, next) => {
                             request.session.email = rows[0].email;
                             user.getPrivilegiosOne(rows[0].email)
                                 .then(([consulta_privilegios, fieldData]) => {
-                                    console.log(consulta_privilegios);
+                                    
                                     const privilegios = [];
                                     for (let privilegio of consulta_privilegios) {
                                         privilegios.push(privilegio.nombrecu);
                                     }
-                                    console.log(privilegios);
+                                    
                                     request.session.privilegios = privilegios;
 
                                     return request.session.save((error) => {
@@ -246,7 +246,7 @@ exports.post_login = (request, response, next) => {
                             } else if (request.session.rol === "cliente") {
                                 response.redirect("/users/login");
                             }
-                            console.log(rows);
+                            
                         }
                     })
                     .catch((error) => {
