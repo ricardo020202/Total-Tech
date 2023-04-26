@@ -48,7 +48,7 @@ exports.post_signup = async (req, res, next) => {
                                                         privilegios.push(privilegio.nombrecu);
                                                     }
                                                 
-                                                    request.session.privilegios = privilegios;
+                                                    req.session.privilegios = privilegios;
 
                                                     return req.session.save((err) => {
                                                         res.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
@@ -86,8 +86,8 @@ exports.post_signup = async (req, res, next) => {
                                             }
                                         });
                                 } else {
-                                    request.session.mensaje = "Usuario y/o contraseña incorrecta.";
-                                    response.redirect("/users/login");
+                                    req.session.mensaje = "Usuario y/o contraseña incorrecta.";
+                                    res.redirect("/users/login");
                                     
                                 }
                             })
@@ -187,7 +187,7 @@ exports.post_login = (req, res, next) => {
                                     for (let privilegio of consulta_privilegios) {
                                         privilegios.push(privilegio.nombrecu);
                                     }
-                                    request.session.privilegios = privilegios;
+                                    req.session.privilegios = privilegios;
 
                                     return req.session.save((err) => {
                                         cliente.fetchOne(req.session.email)
