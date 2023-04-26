@@ -3,33 +3,37 @@
 <link rel="stylesheet" href="/css/adminStyle.css">
 <br>
 
-<h1 style="margin-left:300px ;">Modificar Alimento</h1>
-
-
+<h1 style="margin-left:300px;">Modificar Alimento</h1>
 
 <div class="container">
-    <div class="spacer"></div>
-    <div class="row">
-      <div class="col-3">
-      </div>
-      <div class="col">
-        <form action="/admin/admindashboard/diets/modAlimento/<%= id %>" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            <label for="unidad">Unidad:</label>
-            <input type="text" name="unidad" required><br><br>
-      
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" name="cantidad" required><br><br>
-      
-            <label for="descripcion_alimento">Descripción del Alimento:</label>
-            <input type="text" name="descripcion_alimento" required><br><br>
-  
-            <input type="submit" value="Modificar Alimento">
-          </form>
-      </div>
-      <div class="col">
-      </div>
+  <div class="spacer"></div>
+  <div class="row">
+    <div class="col-3">
     </div>
+    <div class="col">
+      <p>
+        <%= Message %>
+      </p>
+      <form action="/admin/admindashboard/diets/modAlimento/<%= id %>" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+        <label for="descripcion_alimento">Descripción del Alimento:</label>
+        <input type="text" name="descripcion_alimento" value="<%= alimento.descripcion_alimento %>" required><br><br>
+        <label for="unidad">Unidad:</label>
+        <select name="unidad" required>
+            <option value="litros" <%= alimento.unidad === 'litros' ? 'selected' : '' %>>Litros</option>
+            <option value="gramos" <%= alimento.unidad === 'gramos' ? 'selected' : '' %>>Gramos</option>
+            <option value="mililitros" <%= alimento.unidad === 'mililitros' ? 'selected' : '' %>>Mililitros</option>
+            <option value="piezas" <%= alimento.unidad === 'piezas' ? 'selected' : '' %>>Piezas</option>
+            <option value="kilogramos" <%= alimento.unidad === 'kilogramos' ? 'selected' : '' %>>Kilogramos</option>
+        </select><br><br>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" name="cantidad" min="0" value="<%= alimento.cantidad %>" required><br><br>
+        <input type="submit" value="Modificar">
+    </form>
+    
+    </div>
+    <div class="col"></div>
   </div>
+</div>
 
-  <%- include('includes/footAdmin.ejs') %>
+<%- include('includes/footAdmin.ejs') %>

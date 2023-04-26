@@ -645,18 +645,27 @@ exports.postAdminModRol = (req, res, next) => {
       });
   };
 
-  exports.getAdminModAlimento = (req, res, next) => {
+exports.getAdminModAlimento = (req, res, next) => {
     const id = req.params.id;
-    var mensaje = "";
-    res.render("adminModificarAlimento", {
-        pagetitle: "Modificar alimento",
-        user: req.session.user || "",
-        id: id,
-        csrfToken: req.csrfToken(),
-        mensaje: mensaje,
-        photo: req.session.photo || "",
-    });
+    Alimento.fetchOne(id)
+        .then(([rows]) => {
+            const alimento = rows[0];
+            res.render("adminModificarAlimento", {
+                pagetitle: "Modificar alimento",
+                user: req.session.user || "",
+                id: id,
+                csrfToken: req.csrfToken(),
+                Message: "",
+                photo: req.session.photo || "",
+                alimento: alimento
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
 };
+
 
 exports.postAdminModAlimento = (req, res, next) => {
     const id = req.params.id;
@@ -667,14 +676,24 @@ exports.postAdminModAlimento = (req, res, next) => {
     Alimento.update(id, descripcion, unidad, cantidad)
         .then(() => {
             const mensaje = "Alimento actualizado correctamente";
-            res.render("adminModificarAlimento", {
-                pagetitle: "Modificar alimento",
-                user: req.session.user || "",
-                id: id,
-                csrfToken: req.csrfToken(),
-                mensaje: mensaje,
-                photo: req.session.photo || "",
-            });
+            // Fetch the updated alimento from the database and render the view with its values as default content
+            Alimento.fetchOne(id)
+                .then(([rows]) => {
+                    const alimento = rows[0];
+                    res.render("adminModificarAlimento", {
+                        pagetitle: "Modificar alimento",
+                        user: req.session.user || "",
+                        id: id,
+                        csrfToken: req.csrfToken(),
+                        Message: mensaje,
+                        photo: req.session.photo || "",
+                        alimento: alimento  // Add the updated alimento to the view
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    next(err);
+                });
         })
         .catch((err) => {
             console.log(err);
