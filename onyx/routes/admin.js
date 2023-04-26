@@ -34,6 +34,9 @@ router.post("/admindashboard/diets/deleteFood/:id", //CAMBIAR Y AÑADIR PRIVILEG
 router.get('/admindashboard/diets/Alimento/add', //CAMBIAR Y AÑADIR PRIVILEGIO'
                 adminController.getAdminAddAlimento);
 
+router.post('/admindashboard/diets/Alimento/add', //CAMBIAR Y AÑADIR PRIVILEGIO
+                adminController.postAdminAddAlimento);
+
 router.post("/admindashboard/diets/modAlimento/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
                 adminController.postAdminModAlimento);
 
