@@ -696,7 +696,7 @@ header .current-date {
 }
 
 .days li.active {
-  color: #d4d4d4;
+  color: #151515
 }
 
 .days li::before {

@@ -10,7 +10,7 @@ exports.get_signup = (req, res, next) => {
         photo: req.session.photo || 'default.pn',
         csrfToken: req.csrfToken(),
         mensaje: req.session.mensaje || "",
-        
+
     });
 };
 
@@ -139,7 +139,7 @@ exports.post_signup = async (req, res, next) => {
                 res.render("dbDown", {
                     pagetitle: "Error",
                     user: req.session.user || "",
-                    
+
                 });
             }
         });
@@ -197,8 +197,11 @@ exports.post_login = (req, res, next) => {
                                                 if (rows.length === 0 && req.session.rol === "cliente") {
                                                     return res.redirect("/onyx/registrar-datos-iniciales");
                                                 }
-                                                else {
+                                                else if (req.session.rol === "administrador") {
                                                     res.redirect("/admin/adminDashboard");
+                                                }
+                                                else {
+                                                    res.redirect("/onyx/");
                                                 }
                                             })
                                             .catch((err) => {

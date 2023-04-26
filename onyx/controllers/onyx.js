@@ -548,10 +548,11 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
-                    rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                cliente.update().then(([rows, fieldData]) => {
+                    res.redirect("/onyx/datos-iniciales");
+                });
             }
         });
 };
