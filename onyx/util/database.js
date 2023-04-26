@@ -26,12 +26,12 @@ const mysql = require('mysql2');
 //     port: 8889,
 // });
 // Windows database
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     database: 'onyx',
-//     password: '',
-// });
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    database: 'onyx',
+    password: '',
+});
 
 // Windows database
 const pool = mysql.createPool({
