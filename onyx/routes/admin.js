@@ -103,7 +103,7 @@ router.get("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkP
 router.post("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
                 adminController.postmodificarEjercicio);
 
-
-
+router.get("/admindashboard/ejercicios/grafica", checkPrivilegio('Consultar ejercicio'),
+                adminController.getGraficaEjercicios);
 
 module.exports = router;

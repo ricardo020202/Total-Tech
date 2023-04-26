@@ -15,6 +15,7 @@ const RolPrivilegio = require("../models/rol_privilegio");
 const Privilegio = require("../models/privilegio");
 const ProgramaEjercicio = require("../models/programa_ejercicio");
 const db = require("../util/database");
+const { parse } = require("path");
 
 exports.getAdminDashboardEjercicios = async (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -841,3 +842,35 @@ exports.postmodificarEjercicio = (req, res, next) => {
             }
         });
 };
+
+exports.getGraficaEjercicios = (req, res, next) => {
+
+    async function getHipertrofiaCount() {
+        const result = await EjercicioModel.getTotalHipertrofia();
+        console.log(result);
+        // get total count
+        console.log(typeof result);
+        const count = result[0][0].total;
+        console.log(count);
+        console.log(typeof count);
+        return count;
+    }
+
+    EjercicioModel.fetchAll()
+        .then(([rows, fieldData]) => {
+            const mensaje = "";
+            res.render("graficaEjercicios", {
+                pagetitle: "Grafica Ejercicios",
+                user: req.session.user || "",
+                ejercicios: rows,
+                csrfToken: req.csrfToken(),
+                mensaje: mensaje,
+                hipertrofia: getHipertrofiaCount(),
+                photo: req.session.photo || "",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
+}

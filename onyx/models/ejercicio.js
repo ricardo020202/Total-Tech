@@ -74,4 +74,10 @@ module.exports = class Ejercicio {
             ]
         );
     }
+
+    static getTotalHipertrofia() {
+        return db.execute(
+            "SELECT COUNT(*) as total FROM ejercicio WHERE categoria = 'Hipertrofia'"
+        );
+    }
 };
