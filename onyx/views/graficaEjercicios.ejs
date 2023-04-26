@@ -6,28 +6,29 @@
     <div class="row">
         <div class="col-12">
         <h1 style="margin-left: 100px; margin-top: 10px;">Gráfica de Ejercicios</h1>
+        <p style="margin-left: 100px; margin-top: 10px;">Esta gráfica muestra la cantidad de ejercicios que hay en cada categoría.</p>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <canvas id="myChart" width="400" height="400"></canvas>
 
+
     <script>
 
-        const Hipertrofia = <% hipertrofia %>;
-        const Fuerza = 15;
-        const Resistencia = 6;
-        const Push = 6;
-        const Pull = 2;
-        const Aerobico = 20;
+        const Hipertrofia = <%= hipertrofiaCount %>;
+        const Fuerza = <%= fuerzaCount %>;
+        const Resistencia = <%= resistenciaCount %>;
+        const Push = <%= pushCount %>;
+        const Pull = <%= pullCount %>;
     
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Fuerza', 'Hipertrofia', 'Resistencia', 'Push', 'Pull', 'Aerobico 6'],
+                labels: ['Fuerza', 'Hipertrofia', 'Resistencia', 'Push', 'Pull'],
                 datasets: [{
                     label: 'Conteo de Ejercicios',
-                    data: [Fuerza, Hipertrofia, Resistencia, Push, Pull, Aerobico],
+                    data: [Fuerza, Hipertrofia, Resistencia, Push, Pull],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.5)',
                         'rgba(54, 162, 235, 0.5)',
@@ -44,7 +45,8 @@
                         'rgba(153, 152, 255, 0.5)',
                         'rgba(255, 159, 64, 0.5)'
                     ],
-                    borderWidth: 1
+                    borderWidth: 1,
+                    
                 }]
             },
             options: {

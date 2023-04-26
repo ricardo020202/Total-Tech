@@ -843,34 +843,70 @@ exports.postmodificarEjercicio = (req, res, next) => {
         });
 };
 
-exports.getGraficaEjercicios = (req, res, next) => {
+exports.getGraficaEjercicios = async (req, res, next) => {
 
     async function getHipertrofiaCount() {
         const result = await EjercicioModel.getTotalHipertrofia();
-        console.log(result);
         // get total count
-        console.log(typeof result);
         const count = result[0][0].total;
-        console.log(count);
-        console.log(typeof count);
         return count;
     }
 
-    EjercicioModel.fetchAll()
-        .then(([rows, fieldData]) => {
-            const mensaje = "";
-            res.render("graficaEjercicios", {
-                pagetitle: "Grafica Ejercicios",
-                user: req.session.user || "",
-                ejercicios: rows,
-                csrfToken: req.csrfToken(),
-                mensaje: mensaje,
-                hipertrofia: getHipertrofiaCount(),
-                photo: req.session.photo || "",
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
+    async function getFuerzaCount() {
+        const result = await EjercicioModel.getTotalFuerza();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getResistenciaCount() {
+        const result = await EjercicioModel.getTotalResistencia();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getPushCount() {
+        const result = await EjercicioModel.getTotalPush();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getPullCount() {
+        const result = await EjercicioModel.getTotalPull();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getFullbodyCount() {
+        const result = await EjercicioModel.getTotalFullbody();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+
+    try {
+        const hipertrofiaCount = await getHipertrofiaCount();
+        const fuerzaCount = await getFuerzaCount();
+        const resistenciaCount = await getResistenciaCount();
+        const pushCount = await getPushCount();
+        const pullCount = await getPullCount();
+
+        res.render("graficaEjercicios", {
+            pagetitle: "Grafica Ejercicios",
+            user: req.session.user || "",
+            hipertrofiaCount: hipertrofiaCount || "",
+            fuerzaCount: fuerzaCount || "",
+            resistenciaCount: resistenciaCount || "",
+            pushCount: pushCount || "",
+            pullCount: pullCount || "",
+            photo: req.session.photo || "",
         });
-}
+    }
+    catch (err) {
+        console.log(err);
+    }
+};
