@@ -42,13 +42,13 @@ exports.post_signup = async (req, res, next) => {
                                         .then(([rows, fieldData]) => {
                                             user.getPrivilegiosOne(req.session.email)
                                                 .then(([consulta_privilegios, fieldData]) => {
-                                                    console.log(consulta_privilegios);
+                            
                                                     const privilegios = [];
                                                     for (let privilegio of consulta_privilegios) {
                                                         privilegios.push(privilegio.nombrecu);
                                                     }
-                                                    console.log(privilegios);
-                                                    req.session.privilegios = privilegios;
+                                                
+                                                    request.session.privilegios = privilegios;
 
                                                     return req.session.save((err) => {
                                                         res.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
@@ -86,9 +86,9 @@ exports.post_signup = async (req, res, next) => {
                                             }
                                         });
                                 } else {
-                                    req.session.mensaje = "Usuario y/o contraseña incorrecta.";
-                                    res.redirect("/users/login");
-                                    console.log(rows);
+                                    request.session.mensaje = "Usuario y/o contraseña incorrecta.";
+                                    response.redirect("/users/login");
+                                    
                                 }
                             })
                             .catch((err) => {
@@ -183,13 +183,11 @@ exports.post_login = (req, res, next) => {
                             req.session.email = rows[0].email;
                             user.getPrivilegiosOne(rows[0].email)
                                 .then(([consulta_privilegios, fieldData]) => {
-                                    console.log(consulta_privilegios);
                                     const privilegios = [];
                                     for (let privilegio of consulta_privilegios) {
                                         privilegios.push(privilegio.nombrecu);
                                     }
-                                    console.log(privilegios);
-                                    req.session.privilegios = privilegios;
+                                    request.session.privilegios = privilegios;
 
                                     return req.session.save((err) => {
                                         cliente.fetchOne(req.session.email)
@@ -244,7 +242,7 @@ exports.post_login = (req, res, next) => {
                             } else if (req.session.rol === "cliente") {
                                 res.redirect("/users/login");
                             }
-                            console.log(rows);
+                            
                         }
                     })
                     .catch((err) => {
