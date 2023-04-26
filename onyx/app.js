@@ -64,7 +64,12 @@ app.use("/admin", isAuth, adminRoutes);
 
 app.use((req, res, next) => {
     res.status(404);
-    res.send("404 - Page not found");
+    return res.render("404", {
+        pagetitle: "Error",
+        user: req.session.user || "",
+        rol: req.session.rol || "",
+        photo: req.session.photo || 'default.png',
+    });
 });
 
 app.listen(3000, () => {

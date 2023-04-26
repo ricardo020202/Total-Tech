@@ -2,45 +2,45 @@ const user = require("../models/usuario");
 const cliente = require("../models/cliente");
 const bcrypt = require("bcryptjs");
 
-exports.get_signup = (request, response, next) => {
-    response.render("signUp", {
+exports.get_signup = (req, res, next) => {
+    res.render("signUp", {
         pagetitle: "Sign up",
-        isLoggedIn: request.session.isLoggedIn || false,
-        user: request.session.user || "",
-        photo: request.session.photo || 'default.pn',
-        csrfToken: request.csrfToken(),
-        mensaje: request.session.mensaje || "",
+        isLoggedIn: req.session.isLoggedIn || false,
+        user: req.session.user || "",
+        photo: req.session.photo || 'default.pn',
+        csrfToken: req.csrfToken(),
+        mensaje: req.session.mensaje || "",
         
     });
 };
 
-exports.post_signup = async (request, response, next) => {
+exports.post_signup = async (req, res, next) => {
     const user_nuevo = new user({
-        email: request.body.email,
-        nombre: request.body.nombre,
-        apellido: request.body.apellido,
-        contraseña: request.body.password,
+        email: req.body.email,
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        contraseña: req.body.password,
         user_pic: 'default.png',
     });
     user_nuevo
         .save()
         .then(([rows, fieldData]) => {
-            request.session.mensaje = "Usuario registrado.";
+            req.session.mensaje = "Usuario registrado.";
             // Loguear al usuario recién registrado
-            user.fetch(request.body.email)
+            user.fetch(req.body.email)
                 .then(([rows, fieldData]) => {
-                    request.session.photo = rows[0].user_pic;
+                    req.session.photo = rows[0].user_pic;
                     if (rows.length > 0) {
                         bcrypt
-                            .compare(request.body.password, rows[0].contraseña)
+                            .compare(req.body.password, rows[0].contraseña)
                             .then((doMatch) => {
                                 if (doMatch) {
-                                    request.session.isLoggedIn = true;
-                                    request.session.user = rows[0].nombre;
-                                    request.session.email = rows[0].email;
-                                    user.addRol(request.body.email, 2, new Date())
+                                    req.session.isLoggedIn = true;
+                                    req.session.user = rows[0].nombre;
+                                    req.session.email = rows[0].email;
+                                    user.addRol(req.body.email, 2, new Date())
                                         .then(([rows, fieldData]) => {
-                                            user.getPrivilegiosOne(request.session.email)
+                                            user.getPrivilegiosOne(req.session.email)
                                                 .then(([consulta_privilegios, fieldData]) => {
                                                     console.log(consulta_privilegios);
                                                     const privilegios = [];
@@ -48,140 +48,139 @@ exports.post_signup = async (request, response, next) => {
                                                         privilegios.push(privilegio.nombrecu);
                                                     }
                                                     console.log(privilegios);
-                                                    request.session.privilegios = privilegios;
+                                                    req.session.privilegios = privilegios;
 
-                                                    return request.session.save((error) => {
-                                                        response.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
+                                                    return req.session.save((err) => {
+                                                        res.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
                                                     });
                                                 })
-                                                .catch((error) => {
-                                                    console.log(error);
-                                                    if (error.code === "ER_DUP_ENTRY") {
-                                                        request.session.mensaje = "El correo electrónico ya está registrado.";
-                                                        response.redirect("/users/signup");
-                                                    } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                                        request.session.mensaje = "Error Completar Registro.";
-                                                        response.redirect("/users/signUp");
+                                                .catch((err) => {
+                                                    console.log(err);
+                                                    if (err.code === "ER_DUP_ENTRY") {
+                                                        req.session.mensaje = "El correo electrónico ya está registrado.";
+                                                        res.redirect("/users/signup");
+                                                    } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                                                        req.session.mensaje = "Error Completar Registro.";
+                                                        res.redirect("/users/signUp");
                                                     } else {
-                                                        response.render("dbDown", {
+                                                        res.render("dbDown", {
                                                             pagetitle: "Error",
-                                                            user: request.session.user || "",
+                                                            user: req.session.user || "",
                                                         });
                                                     }
                                                 });
                                         })
-                                        .catch((error) => {
-                                            console.log(error);
-                                            if (error.code === "ER_DUP_ENTRY") {
-                                                request.session.mensaje = "El correo electrónico ya está registrado.";
-                                                response.redirect("/users/signup");
-                                            } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                                request.session.mensaje = "Error Completar Registro.";
-                                                response.redirect("/users/signUp");
+                                        .catch((err) => {
+                                            console.log(err);
+                                            if (err.code === "ER_DUP_ENTRY") {
+                                                req.session.mensaje = "Usuario y/o contraseña incorrecta.";
+                                                res.redirect("/users/signup");
+                                            } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                                                req.session.mensaje = "Error Completar Registro.";
+                                                res.redirect("/users/signUp");
                                             } else {
-                                                response.render("dbDown", {
+                                                res.render("dbDown", {
                                                     pagetitle: "Error",
-                                                    user: request.session.user || "",
+                                                    user: req.session.user || "",
                                                 });
                                             }
                                         });
                                 } else {
-                                    request.session.mensaje = "Usuario y/o contraseña incorrecta.";
-                                    response.redirect("/users/login");
+                                    req.session.mensaje = "Usuario y/o contraseña incorrecta.";
+                                    res.redirect("/users/login");
                                     console.log(rows);
                                 }
                             })
-                            .catch((error) => {
-                                console.log(error);
-                                if (error.code === "ER_DUP_ENTRY") {
-                                    request.session.mensaje = "El correo electrónico ya está registrado.";
-                                    response.redirect("/users/signup");
-                                } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                    request.session.mensaje = "Error Completar Registro.";
-                                    response.redirect("/users/signUp");
+                            .catch((err) => {
+                                console.log(err);
+                                if (err.code === "ER_DUP_ENTRY") {
+                                    req.session.mensaje = "El correo electrónico ya está registrado.";
+                                    res.redirect("/users/signup");
+                                } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                                    req.session.mensaje = "Error Completar Registro.";
+                                    res.redirect("/users/signUp");
                                 } else {
-                                    response.render("dbDown", {
+                                    res.render("dbDown", {
                                         pagetitle: "Error",
-                                        user: request.session.user || "",
+                                        user: req.session.user || "",
                                     });
                                 }
                             });
                     } else {
-                        request.session.mensaje = "Usuario no registrado.";
-                        response.redirect("/users/login");
+                        req.session.mensaje = "Usuario no registrado.";
+                        res.redirect("/users/login");
                     }
                 })
-                .catch((error) => {
-                    console.log(error);
-                    if (error.code === "ER_DUP_ENTRY") {
-                        request.session.mensaje = "El correo electrónico ya está registrado.";
-                        response.redirect("/users/signup");
-                    } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                        request.session.mensaje = "Error Completar Registro.";
-                        response.redirect("/users/signUp");
+                .catch((err) => {
+                    console.log(err);
+                    if (err.code === "ER_DUP_ENTRY") {
+                        req.session.mensaje = "Usuario y/o contraseña incorrecta.";
+                        res.redirect("/users/signup");
+                    } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        req.session.mensaje = "Error Completar Registro.";
+                        res.redirect("/users/signUp");
                     } else {
-                        response.render("dbDown", {
+                        res.render("dbDown", {
                             pagetitle: "Error",
-                            user: request.session.user || "",
+                            user: req.session.user || "",
                         });
                     }
                 });
         })
-        .catch((error) => {
-            console.log(error);
-            if (error.code === "ER_DUP_ENTRY") {
-                request.session.mensaje = "El correo electrónico ya está registrado.";
-                response.redirect("/users/signup");
-            } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                request.session.mensaje = "Error Completar Registro.";
-                response.redirect("/users/signUp");
+        .catch((err) => {
+            console.log(err);
+            if (err.code === "ER_DUP_ENTRY") {
+                req.session.mensaje = "Usuario y/o contraseña incorrecta.";
+                res.redirect("/users/signup");
+            } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                req.session.mensaje = "Error Completar Registro.";
+                res.redirect("/users/signUp");
             } else {
-                response.render("dbDown", {
+                res.render("dbDown", {
                     pagetitle: "Error",
-                    user: request.session.user || "",
+                    user: req.session.user || "",
                     
                 });
             }
         });
 };
 
-exports.login = (request, response, next) => {
+exports.login = (req, res, next) => {
     let mensaje = "";
-    if (request.session.mensaje) {
-        mensaje = request.session.mensaje;
-        request.session.mensaje = "";
+    if (req.session.mensaje) {
+        mensaje = req.session.mensaje;
+        req.session.mensaje = "";
     }
 
-    response.render("login", {
+    res.render("login", {
         pagetitle: "Login",
-        isLoggedIn: request.session.isLoggedIn || false,
-        user: request.session.user || "",
+        isLoggedIn: req.session.isLoggedIn || false,
+        user: req.session.user || "",
         mensaje: mensaje,
-        csrfToken: request.csrfToken(),
-        photo: request.session.photo || 'default.png',
+        csrfToken: req.csrfToken(),
+        photo: req.session.photo || 'default.png',
     });
 };
 
-exports.post_login = (request, response, next) => {
-    user.getRol(request.body.email)
+exports.post_login = (req, res, next) => {
+    user.getRol(req.body.email)
         .then(([rows, fieldData]) => {
-            request.session.rol = rows[0].nombreRol;
+            req.session.rol = rows[0].nombreRol;
         })
-        .catch((error) => {
-            console.log(error);
+        .catch((err) => {
+            console.log(err);
         });
-
-    user.fetch(request.body.email)
+    user.fetch(req.body.email)
         .then(([rows, fieldData]) => {
-            request.session.photo = rows[0].user_pic;
+            req.session.photo = rows[0].user_pic;
             if (rows.length > 0) {
                 bcrypt
-                    .compare(request.body.password, rows[0].contraseña)
+                    .compare(req.body.password, rows[0].contraseña)
                     .then((doMatch) => {
                         if (doMatch) {
-                            request.session.isLoggedIn = true;
-                            request.session.user = rows[0].nombre;
-                            request.session.email = rows[0].email;
+                            req.session.isLoggedIn = true;
+                            req.session.user = rows[0].nombre;
+                            req.session.email = rows[0].email;
                             user.getPrivilegiosOne(rows[0].email)
                                 .then(([consulta_privilegios, fieldData]) => {
                                     console.log(consulta_privilegios);
@@ -190,103 +189,100 @@ exports.post_login = (request, response, next) => {
                                         privilegios.push(privilegio.nombrecu);
                                     }
                                     console.log(privilegios);
-                                    request.session.privilegios = privilegios;
+                                    req.session.privilegios = privilegios;
 
-                                    return request.session.save((error) => {
-                                        cliente.fetchOne(request.session.email)
+                                    return req.session.save((err) => {
+                                        cliente.fetchOne(req.session.email)
                                             .then(([rows, fieldData]) => {
-                                                if (rows.length === 0 && request.session.rol === "cliente") {
-                                                    return response.redirect("/onyx/registrar-datos-iniciales");
-                                                }
-                                                else if (request.session.rol === "administrador") {
-                                                    response.redirect("/admin/adminDashboard");
+                                                if (rows.length === 0 && req.session.rol === "cliente") {
+                                                    return res.redirect("/onyx/registrar-datos-iniciales");
                                                 }
                                                 else {
-                                                    response.redirect("/onyx/");
+                                                    res.redirect("/admin/adminDashboard");
                                                 }
                                             })
                                             .catch((err) => {
-                                                console.log(error);
-                                                if (error.code === "ER_DUP_ENTRY") {
-                                                    request.session.mensaje = "El correo electrónico ya está registrado.";
-                                                    response.redirect("/users/signup");
-                                                } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                                    request.session.mensaje = "Error Completar Registro.";
-                                                    response.redirect("/users/signUp");
+                                                console.log(err);
+                                                if (err.code === "ER_DUP_ENTRY") {
+                                                    req.session.mensaje = "El correo electrónico ya está registrado.";
+                                                    res.redirect("/users/signup");
+                                                } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                                                    req.session.mensaje = "Error Completar Registro.";
+                                                    res.redirect("/users/signUp");
                                                 } else {
-                                                    response.render("dbDown", {
+                                                    res.render("dbDown", {
                                                         pagetitle: "Error",
-                                                        user: request.session.user || "",
+                                                        user: req.session.user || "",
                                                     });
                                                 }
                                             });
                                     });
                                 })
-                                .catch((error) => {
-                                    console.log(error);
-                                    if (error.code === "ER_DUP_ENTRY") {
-                                        request.session.mensaje = "El correo electrónico ya está registrado.";
-                                        response.redirect("/users/signup");
-                                    } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                        request.session.mensaje = "Error Completar Registro.";
-                                        response.redirect("/users/signUp");
+                                .catch((err) => {
+                                    console.log(err);
+                                    if (err.code === "ER_DUP_ENTRY") {
+                                        req.session.mensaje = "El correo electrónico ya está registrado.";
+                                        res.redirect("/users/signup");
+                                    } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                                        req.session.mensaje = "Error Completar Registro.";
+                                        res.redirect("/users/signUp");
                                     } else {
-                                        response.render("dbDown", {
+                                        res.render("dbDown", {
                                             pagetitle: "Error",
-                                            user: request.session.user || "",
+                                            user: req.session.user || "",
                                         });
                                     }
                                 });
                         } else {
-                            request.session.mensaje =
+                            req.session.mensaje =
                                 "Usuario y/o contraseña incorrecta.";
-                            if (request.session.rol === "administrador") {
-                                response.redirect("/admin/adminDashboard");
-                            } else if (request.session.rol === "cliente") {
-                                response.redirect("/users/login");
+                            if (req.session.rol === "administrador") {
+                                res.redirect("/admin/adminDashboard");
+                            } else if (req.session.rol === "cliente") {
+                                res.redirect("/users/login");
                             }
                             console.log(rows);
                         }
                     })
-                    .catch((error) => {
-                        console.log(error);
-                        if (error.code === "ER_DUP_ENTRY") {
-                            request.session.mensaje = "El correo electrónico ya está registrado.";
-                            response.redirect("/users/signup");
-                        } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                            request.session.mensaje = "Error Completar Registro.";
-                            response.redirect("/users/signUp");
+                    .catch((err) => {
+                        console.log(err);
+                        if (err.code === "ER_DUP_ENTRY") {
+                            req.session.mensaje = "El correo electrónico ya está registrado.";
+                            res.redirect("/users/signup");
+                        } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                            req.session.mensaje = "Error Completar Registro.";
+                            res.redirect("/users/signUp");
                         } else {
-                            response.render("dbDown", {
+                            res.render("dbDown", {
                                 pagetitle: "Error",
-                                user: request.session.user || "",
+                                user: req.session.user || "",
                             });
                         }
                     });
             } else {
-                request.session.mensaje = "Usuario no registrado.";
-                response.redirect("/users/login");
+                req.session.mensaje = "Usuario no registrado.";
+                res.redirect("/users/login");
             }
         })
-        .catch((error) => {
-            console.log(error);
-            if (error.code === "ER_DUP_ENTRY") {
-                request.session.mensaje = "El correo electrónico ya está registrado.";
-                response.redirect("/users/signup");
-            } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                request.session.mensaje = "Error Completar Registro.";
-                response.redirect("/users/signUp");
+        .catch((err) => {
+            console.log(err);
+            if (err.code === "ER_DUP_ENTRY") {
+                req.session.mensaje = "El correo electrónico ya está registrado.";
+                res.redirect("/users/signup");
+            } else if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                req.session.mensaje = "Error Completar Registro.";
+                res.redirect("/users/signUp");
             } else {
-                response.render("dbDown", {
+                res.render("dbDown", {
                     pagetitle: "Error",
-                    user: request.session.user || "",
+                    user: req.session.user || "",
                 });
             }
         });
 };
 
-exports.logout = (request, response, next) => {
-    request.session.destroy(() => {
-        response.redirect("/users/login"); //Este código se ejecuta cuando la sesión se elimina.
+exports.logout = (req, res, next) => {
+    req.session.destroy(() => {
+        res.redirect("/users/login");
     });
 };
