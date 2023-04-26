@@ -1,19 +1,284 @@
 <%- include('includes/head.ejs') %>
 
 
-<div class="container">
-    <div class="spacer">
-    </div>
 
+<div class="container">
+    <div class="spacer"></div>
     <div class="container">
         <h2 id="titulopagina">Detalles de Dieta</h2>
+        <div class="spacer"></div>
+        <!-- Add the toggle button -->
+        <button class="btn btn-custom" id="toggle-button" onclick="toggleDisplay()">Cambiar de Vista</button>
+        <div class="spacer"></div>
+        <!-- Create a canvas element where the chart will be displayed -->
+        <canvas id="nutrient-chart"></canvas>
+        <!-- Create a table element to display the nutrient values -->
+        <table id="nutrient-table" style="display:none" class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th scope="col" class="bg-custom" >Nutrient</th>
+                    <th scope="col" class="bg-custom" >Value</th>
+                </tr>
+            </thead>
+            <tbody class="table-dark">
+                <tr>
+                    <td>Sodio</td>
+                    <td><%= detalles.sodio%></td>
+                </tr>
+                <tr>
+                    <td>Fibra</td>
+                    <td><%= detalles.fibra_total%></td>
+                </tr>
+                <tr>
+                    <td>Ceniza</td>
+                    <td><%= detalles.ceniza%></td>
+                </tr>
+                <tr>
+                    <td>calcio</td>
+                    <td><%= detalles.calcio%></td>
+                </tr>
+                <tr>
+                    <td>fosforo</td>
+                    <td><%= detalles.fosforo%></td>
+                </tr>
+                <tr>
+                    <td>Fibra</td>
+                    <td><%= detalles.fibra_total%></td>
+                </tr>
+                <tr>
+                    <td>hierro</td>
+                    <td><%= detalles.hierro%></td>
+                </tr>
+                <tr>
+                    <td>tiamina</td>
+                    <td><%= detalles.tiamina%></td>
+                </tr>
+                <tr>
+                    <td>riboflavina</td>
+                    <td><%= detalles.riboflavina%></td>
+                </tr>
+                <tr>
+                    <td>niacina</td>
+                    <td><%= detalles.niacina%></td>
+                </tr>
+                <tr>
+                    <td>vitamina_c</td>
+                    <td><%= detalles.vitamina_c%></td>
+                </tr>
+                <tr>
+                    <td>vitamina_a</td>
+                    <td><%= detalles.vitamina_a%></td>
+                </tr>
+                <tr>
+                    <td>ac_graso_mono</td>
+                    <td><%= detalles.ac_graso_mono%></td>
+                </tr>
+                <tr>
+                    <td>ac_graso_poli</td>
+                    <td><%= detalles.ac_graso_poli%></td>
+                </tr>
+                <tr>
+                    <td>Ac Graso Saturado</td>
+                    <td><%= detalles.ac_graso_saturado%></td>
+                </tr>
+                <tr>
+                    <td>Colesterol</td>
+                    <td><%= detalles.colesterol%></td>
+                </tr>
+                <tr>
+                    <td>Potasio</td>
+                    <td><%= detalles.potasio%></td>
+                </tr>
+                <tr>
+                    <td>Zinc</td>
+                    <td><%= detalles.zinc%></td>
+                </tr>
+                <tr>
+                    <td>Magnesio</td>
+                    <td><%= detalles.magnesio%></td>
+                </tr>
+                <tr>
+                    <td>Vit B6</td>
+                    <td><%= detalles.vit_b6%></td>
+                </tr>
+                <tr>
+                    <td>Vit B12</td>
+                    <td><%= detalles.vit_b12%></td>
+                </tr>
+                <tr>
+                    <td>Ac Folico</td>
+                    <td><%= detalles.ac_folico%></td>
+                </tr>
+                <tr>
+                    <td>Folato</td>
+                    <td><%= detalles.folato%></td>
+                </tr>
+
+            </tbody>
+        </table>
     </div>
+</div>
 
 <!-- Include the Chart.js library -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Create a canvas element where the chart will be displayed -->
-<canvas id="nutrient-chart"></canvas>
+<!-- Add a script to generate the chart -->
+<script>
+    // Get the nutrient values from the server
+    const nutrients = [
+        {
+            name: 'Sodio',
+            value: <%= detalles.sodio%>
+        },
+        {
+            name: 'Fibra',
+            value: <%= detalles.fibra_total%>
+        },
+        {
+            name: 'Ceniza',
+            value: <%= detalles.ceniza%>
+        },
+
+        {
+            name: 'Calcio',
+            value: <%= detalles.calcio%>,
+        },
+        {
+            name: 'fosforo',
+            value: <%= detalles.fosforo%>,
+        },
+        {
+            name: 'Fibra',
+            value: <%= detalles.fibra_total%>,
+        },
+        {
+            name: 'hierro',
+            value: <%= detalles.hierro%>,
+        },
+        {
+            name: 'tiamina',
+            value: <%= detalles.tiamina%>,
+        },
+        {
+            name: 'riboflavina',
+            value: <%= detalles.riboflavina%>,
+        },
+        {
+            name: 'niacina',
+            value: <%= detalles.niacina%>,
+        },
+        {
+            name: 'vitamina_c',
+            value: <%= detalles.vitamina_c%>,
+        },
+        {
+            name: 'vitamina_a',
+            value: <%= detalles.vitamina_a%>,
+        },
+        {
+            name: 'ac_graso_mono',
+            value: <%= detalles.ac_graso_mono%>,
+        },
+        {
+            name: 'ac_graso_poli',
+            value: <%= detalles.ac_graso_poli%>,
+        },
+        {
+            name: 'Ac Graso Saturado',
+            value: <%= detalles.ac_graso_saturado%>,
+        },
+        {
+            name: 'Colesterol',
+            value: <%= detalles.colesterol%>,
+        },
+        {
+            name: 'Potasio',
+            value: <%= detalles.potasio%>,
+        },
+        {
+            name: 'Zinc',
+            value: <%= detalles.zinc%>,
+        },
+        {
+            name: 'Magnesio',
+            value: <%= detalles.magnesio%>,
+        },
+        {
+            name: 'Vit B6',
+            value: <%= detalles.vit_b6%>,
+        },
+        {
+            name: 'Vit B12',
+            value: <%= detalles.vit_b12%>,
+        },
+        {
+            name: 'Ac Folico',
+            value: <%= detalles.ac_folico%>,
+        },
+        {
+            name: 'Folato',
+            value: <%= detalles.folato%>,
+        }
+    ];
+
+    // Create a bar chart
+    const ctx = document.getElementById('nutrient-chart').getContext('2d');
+    const nutrientChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: nutrients.map(nutrient => nutrient.name),
+            datasets: [{
+                label: 'Micronutrientes',
+                data: nutrients.map(nutrient => nutrient.value),
+                backgroundColor: 'rgba(200, 206, 86, 0.3)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    // Add a function to toggle the display of the chart and table
+    function toggleDisplay() {
+        const chart = document.getElementById('nutrient-chart');
+        const table = document.getElementById('nutrient-table');
+        if (chart.style.display === 'none') {
+            chart.style.display = 'block';
+            table.style.display = 'none';
+        } else {
+            chart.style.display = 'none';
+            table.style.display = 'table';
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<canvas id="nutrient-chart2"></canvas>
 
 <!-- Add a script to generate the chart -->
 <script>
@@ -22,20 +287,18 @@ const calorias = <%= detalles.calorias%>;
 const proteinas = <%= detalles.proteinas%>;
 const carbohidratos = <%= detalles.carbohidratos%>;
 const grasas = <%= detalles.grasas%>;
-const sodio = <%= detalles.sodio%>;
-const fibra = <%= detalles.fibra_total%>;
 
 // Create a bar chart
-const ctx = document.getElementById('nutrient-chart').getContext('2d');
-const nutrientChart = new Chart(ctx, {
+const ctx2 = document.getElementById('nutrient-chart2').getContext('2d');
+const nutrientChart2 = new Chart(ctx2, {
   type: 'bar',
   data: {
-    labels: ['Calorías', 'Proteínas', 'Carbohidratos', 'Grasas', 'Sodio', 'Fibra'],
+    labels: ['Calorías', 'Proteínas', 'Carbohidratos', 'Grasas'],
     datasets: [{
-      label: 'Cantidad',
-      data: [calorias, proteinas, carbohidratos, grasas, sodio, fibra],
-      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(153, 102, 255, 1)'],
+      label: 'Macronutrientes',
+      data: [calorias, proteinas, carbohidratos, grasas],
+      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)'],
+      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
       borderWidth: 1
     }]
   },
@@ -49,6 +312,7 @@ const nutrientChart = new Chart(ctx, {
     }
   }
 });
+
 </script>
 
 
