@@ -16,6 +16,14 @@ router.get("/", noRegController.getHome);
 
 router.get("/TermYCond", noRegController.getTerms);
 
+router.get('/olvidePassword', noRegController.getForgotPassword);
+
+router.post('/olvidePassword', noRegController.postForgotPassword);
+
+router.get('/resetPassword/:token', noRegController.getResetPassword);
+
+router.post('/resetPassword', noRegController.postResetPassword);
+
 router.post('/auth/google/callback', googleAuthController.callbackPost);
 
 module.exports = router;

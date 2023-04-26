@@ -1,102 +1,74 @@
 <%- include('includes/head.ejs') %>
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
-<div class="spacer"></div>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h1 id="titulopagina">Mis Favoritos</h1>
-    </div>
-  </div>
-  <h3>Dietas Favoritas</h3>
-  <div class="row mt-5">
-    <% if(favoritos_dietas.length > 0) { %> <%
-    favoritos_dietas.forEach(function(dieta) { %>
-    <div class="col">
-      <div class="cards" style="width: 18rem">
-        <img
-          src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/health/wp-content/uploads/2022/01/foods_to_eat_to_lose_weight.jpeg"
-          class="card-img-top"
-          alt="Imagen de <%= dieta.nombre_dieta %>"
-        />
-        <div class="card-body">
-          <h5 class="card-title"><%= dieta.nombre_dieta %></h5>
-          <p class="card-text">
-            <strong> Proteína:</strong> <%= dieta.proteinas %> <br />
-            <strong>Calorías:</strong> <%=dieta.calorias %> <br />
-            <strong>Carbohidratos</strong> <%=dieta.carbohidratos %> <br />
-            
-          </p>
-          <a href="/dietas/<%= dieta.id_dieta %>" class="btn btn-primary"
-            >Ver más</a
-          >
-          <br />
-          <form
-            action="/dietas/favoritas/<%= dieta.id_dieta %>?_method=DELETE"
-            method="POST"
-            style="display: inline"
-          >
-            <a
-              href="/onyx/favoritos/delete/<%= dieta.id_dieta %>/1/dieta"
-              class="fav"
-              ><i class="bi bi-star-fill"></i
-            ></a>
-          </form>
-        </div>
+  <div class="spacer"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 id="titulopagina">Mis Favoritos</h1>
       </div>
     </div>
-    <% }) %> <% } else { %>
-    <div class="col">
-      <p>No has agregado dietas a tus favoritos aún</p>
+    <h3>Dietas Favoritas</h3>
+    <div class="row mt-5">
+      <% if(favoritos_dietas.length> 0) { %> <% favoritos_dietas.forEach(function(dieta) { %>
+          <div class="col">
+            <div class="cards" style="width: 18rem">
+              <img
+                src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/health/wp-content/uploads/2022/01/foods_to_eat_to_lose_weight.jpeg"
+                class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h3 class="card-title">
+                  <%= dieta.nombre_dieta %>
+                </h3>
+                <p style="margin: -0.5px;">Proteinas: <%= dieta.proteinas%>
+                </p>
+                <p style="margin: -0.5px;">Carbohidratos: <%=dieta.carbohidratos%>
+                </p>
+                <p style="margin: -0.5px;">Grasas: <%=dieta.grasas%>
+                </p>
+                <br>
+                <a href="/onyx/dieta/<%= dieta.id_dieta%>" id="btnstart" class="btn btn-primary">EMPEZAR</a>
+                <br />
+                <a href="/onyx/favoritos/delete/<%= dieta.id_dieta%>/1/dieta" class="fav"><i
+                    class="bi bi-star-fill"></i></a>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+            <% } else { %>
+              <div class="col">
+                <p>No has agregado dietas a tus favoritos aún</p>
+              </div>
+              <% } %>
+                <h3>Ejercicios Favoritos</h3>
+                <% if(favoritos_ejercicios.length> 0) { %> <% favoritos_ejercicios.forEach(function(ejercicio) { %>
+                    <div class="col">
+                      <div class="cards" style="width: 18rem;">
+                        <img style="object-fit: cover;" src="<%ejercicio.img_programa%>" class="card-img-top"
+                          alt="<%ejercicio.ref_visual%>">
+                        <div class="card-body">
+                          <h4 class="card-title">
+                            <%= ejercicio.nombre_programa%>
+                          </h4>
+                          <p style="text-align: left;" class="card-text">Frecuencia: <%= ejercicio.frecuencia%>
+                          </p>
+                          <!-- que va a hacer el boton start -->
+                          <a href="/onyx/programa/<%= ejercicio.id_programa%>" id="btnstart"
+                            class="btn btn-primary">EMPEZAR</a>
+                          <br>
+                          <a href="/onyx/favoritos/delete/1/<%= ejercicio.id_programa%>/programa" class="fav"><i
+                              class="bi bi-star-fill"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <% }) %>
+                      <% } else { %>
+                        <div class="col">
+                          <p>No has agregado dietas a tus favoritos aún</p>
+                        </div>
+                        <% } %>
     </div>
-    <% } %>
-    <h3>Ejercicios Favoritos</h3>
-    <% if(favoritos_ejercicios.length > 0) { %> <%
-    favoritos_ejercicios.forEach(function(ejercicio) { %>
-    <div class="col">
-      <div class="cards" style="width: 18rem">
-        <img
-          src="<%= ejercicio.imagen_programa %>"
-          class="card-img-top"
-          alt="Imagen de <%= ejercicio.nombre_programa %>"
-        />
-        <div class="card-body">
-          <h5 class="card-title"><%= ejercicio.nombre_programa %></h5>
-          <p>
-            <strong>Descripción:</strong> <%= ejercicio.descripcion_programa %>
-            <br/>
-            <strong>Frecuencia:</strong> <%= ejercicio.frecuencia%>
-          </p>
-          <a
-            href="/ejercicio/<%= ejercicio.id_ejercicio %>"
-            class="btn btn-primary"
-            >Ver más</a
-          >
-          <br />
-          <form
-            action="/ejercicio/favoritos/<%= ejercicio.id_programa %>?_method=DELETE"
-            method="POST"
-            style="display: inline"
-          >
-            <a
-              href="/onyx/favoritos/delete/1/<%= ejercicio.id_programa %>/programa"
-              class="fav"
-              ><i class="bi bi-star-fill"></i
-            ></a>
-          </form>
-        </div>
-      </div>
-    </div>
-    <% }) %> <% } else { %>
-    <div class="col">
-      <p>No has agregado dietas a tus favoritos aún</p>
-    </div>
-    <% } %>
   </div>
-</div>
 
-<%- include('includes/foot.ejs') %>
+  <%- include('includes/foot.ejs') %>

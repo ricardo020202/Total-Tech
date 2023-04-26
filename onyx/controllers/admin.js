@@ -791,6 +791,36 @@ exports.getAdminAddAlimento = (req, res, next) => {
     });
 };
 
+exports.postAdminAddAlimento = (req, res, next) => {
+    const descripcion = req.body.descripcion_alimento;
+    const unidad = req.body.unidad;
+    const cantidad = req.body.cantidad;
+    const id_dieta = req.body.id_dieta;
+
+    const alimento = new Alimento({ descripcion: descripcion, unidad: unidad, cantidad: cantidad });
+
+    alimento.save()
+        .then((id_alimento) => {
+            console.log("id_alimento", id_alimento); // Agrega esta línea
+            return Alimento.addToDietaAlimento(id_dieta, id_alimento);
+        })
+        .then(() => {
+            const mensaje = "Alimento registrado correctamente";
+            res.render("adminNuevoAlimento", {
+                pagetitle: "Nuevo alimento",
+                user: req.session.user || "",
+                csrfToken: req.csrfToken(),
+                Message: mensaje,
+                photo: req.session.photo || "",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
+};
+
+
 exports.getAdminInfoCliente = async (req, res, next) => {
     const consulta_total_cliente = await Cliente.getTotal();
     const totalClientes = consulta_total_cliente[0][0].total;

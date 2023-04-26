@@ -42,12 +42,12 @@ const fileStorage = multer.diskStorage({
             // new Date().toISOString()
             //En Windows
             new Date().getMilliseconds() + "-" + file.originalname
-            );
-        },
-    });
-    
-    app.use(multer({ storage: fileStorage }).single("image"));
-    app.use(csrfProtection);
+        );
+    },
+});
+
+app.use(multer({ storage: fileStorage }).single("image"));
+app.use(csrfProtection);
 
 const userRoutes = require("./routes/users");
 app.use("/users", userRoutes);
@@ -64,7 +64,12 @@ app.use("/admin", isAuth, adminRoutes);
 
 app.use((req, res, next) => {
     res.status(404);
-    res.send("404 - Page not found");
+    return res.render("404", {
+        pagetitle: "Error",
+        user: req.session.user || "",
+        rol: req.session.rol || "",
+        photo: req.session.photo || 'default.png',
+    });
 });
 
 app.listen(3000, () => {

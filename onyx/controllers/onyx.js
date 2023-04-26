@@ -258,7 +258,16 @@ exports.deleteFavoritos = (req, res, next) => {
             }
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -347,7 +356,16 @@ exports.deleteBitacora = (req, res, next) => {
             res.redirect("/onyx/bitacora");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 
     res.locals.messeges = req.flash();
@@ -384,7 +402,6 @@ exports.postNuevaBitacora = (req, res, next) => {
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -490,7 +507,6 @@ exports.getDatosIniciales = (req, res, next) => {
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -534,11 +550,8 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
-                cliente.update().then(([rows, fieldData]) => {
-                    res.redirect("/onyx/datos-iniciales");
-                });
+                console.log(err);
             }
         });
 };
@@ -572,9 +585,7 @@ exports.getTallas = (req, res, next) => {
                         user: req.session.user || "",
                         photo: req.session.photo || 'default.png',
                         rol: req.session.rol || "",
-
                     });
-                    return { medidas: [], fechas: [] };
                 } else {
                     console.log(err);
                 }
@@ -619,7 +630,6 @@ exports.getTallas = (req, res, next) => {
                             photo: req.session.photo || 'default.png',
                             rol: req.session.rol || "",
                         });
-                        return { medidas: [], fechas: [] };
                     } else {
                         console.log(err);
                     }
@@ -633,7 +643,6 @@ exports.getTallas = (req, res, next) => {
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -677,7 +686,6 @@ exports.postTallas = (req, res, next) => {
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -709,12 +717,10 @@ exports.getCuenta = (req, res, next) => {
                             photo: req.session.photo || 'default.png',
                             rol: req.session.rol || "",
                         });
-                        return { medidas: [], fechas: [] };
                     } else {
                         console.log(err);
                     }
-                }
-                );
+                });
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -722,14 +728,12 @@ exports.getCuenta = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
-                    rol: req.session.rol
+                    rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
-        }
-        );
+        });
 };
 
 exports.postCuenta = (req, res, next) => {
@@ -751,7 +755,16 @@ exports.postCuenta = (req, res, next) => {
             res.status(300).redirect("/onyx/cuenta");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -805,12 +818,10 @@ exports.postCambiarPassword = (req, res, next) => {
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
-        }
-        );
+        });
 };
 
 exports.getFotoPerfil = (req, res, next) => {
@@ -837,7 +848,16 @@ exports.postFotoPerfil = (req, res, next) => {
             res.redirect("/onyx/cuenta");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -872,7 +892,6 @@ exports.getConsultaFav = async (req, res, next) => {
                 photo: req.session.photo || 'default.png',
                 rol: req.session.rol || "",
             });
-            return { medidas: [], fechas: [] };
         } else {
             console.log(err);
         }

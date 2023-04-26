@@ -9,7 +9,12 @@ module.exports = class Alimento {
 
     save() {
         return db.execute('INSERT INTO alimento (descripcion_alimento, unidad, cantidad) VALUES (?, ?, ?)',
-            [this.descripcion, this.unidad, this.cantidad]);
+            [this.descripcion, this.unidad, this.cantidad])
+        
+            .then(([result]) => {
+                return db.execute('INSERT INTO dieta_alimento (id_dieta, id_alimento) VALUES (?, ?)',
+                    [1, result.insertId]);
+            });
     }
 
     static delete(id) {
@@ -31,6 +36,11 @@ module.exports = class Alimento {
                 const count = rows[0].count;
                 return count > 0;
             });
+    }
+    
+    static addToDietaAlimento(id_dieta, id_alimento) {
+        return db.execute('INSERT INTO dieta_alimento (id_dieta, id_alimento) VALUES (?, ?)',
+            [id_dieta, id_alimento]);
     }
     
 }
