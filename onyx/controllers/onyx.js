@@ -547,6 +547,7 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
                 });
+                return { medidas: [], fechas: [] };
             } else {
                 cliente.update().then(([rows, fieldData]) => {
                     res.redirect("/onyx/datos-iniciales");
