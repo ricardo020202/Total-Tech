@@ -30,6 +30,10 @@ module.exports = class Alimento {
         return db.execute('SELECT * FROM alimento');
     }
 
+    static fetchOne(id) {
+        return db.execute('SELECT * FROM alimento WHERE id_alimento = ?', [id]);
+    }
+
     static checkIfAlimentoExists(descripcion) {
         return db.execute('SELECT COUNT(*) as count FROM alimento WHERE descripcion_alimento = ?', [descripcion])
             .then(([rows]) => {

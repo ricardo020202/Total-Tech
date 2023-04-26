@@ -99,7 +99,6 @@ exports.getDetallePrograma = (req, res, next) => {
 
     EntrenamientoModel.fetchById(id_programa)
         .then(([rows, fieldData]) => {
-            console.log(rows[0])
             res.render("programaDetallado", {
                 detalles: rows[0],
                 pagetitle: "Detalles de Programa",
@@ -130,7 +129,6 @@ exports.getDetalleDieta = (req, res, next) => {
 
     Dieta.fetchById(id_dieta)
         .then(([rows, fieldData]) => {
-            console.log(rows)
             res.render("dietaDetallada", {
                 detalles: rows[0],
                 pagetitle: "Detalles de dieta",
@@ -738,7 +736,7 @@ exports.getCuenta = (req, res, next) => {
 
 exports.postCuenta = (req, res, next) => {
 
-    console.log(req.file);
+    
     const usuario = new Usuario({
         email: req.session.email,
         nombre: req.body.inputNombre,
@@ -748,8 +746,7 @@ exports.postCuenta = (req, res, next) => {
     usuario
         .save()
         .then((result) => {
-            console.log(rows);
-            console.log(result);
+            
             console.log("Usuario actualizado");
             res.redirect("/onyx/cuenta");
             res.status(300).redirect("/onyx/cuenta");
@@ -796,8 +793,7 @@ exports.postCambiarPassword = (req, res, next) => {
                     if (doMatch) {
                         usuario.changePassword(req.session.email, newPassword)
                             .then((result) => {
-                                console.log(result);
-                                console.log("Password cambiada");
+                                
                                 res.redirect("/onyx/cuenta");
                             }
                             )
@@ -842,9 +838,7 @@ exports.postFotoPerfil = (req, res, next) => {
     usuario
         .savePhoto(email, user_pic)
         .then((result) => {
-            console.log(result);
             req.session.photo = user_pic;
-            console.log("Foto de perfil actualizada");
             res.redirect("/onyx/cuenta");
         })
         .catch((err) => {
