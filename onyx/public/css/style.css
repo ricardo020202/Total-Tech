@@ -1,5 +1,5 @@
 body {
-  background-color: #151515;
+  background-color: #181818;
   font-family: "DM Sans", sans-serif;
   color: #d4d4d4;
   height: 100vh;
@@ -40,6 +40,18 @@ body {
   rotate: -65.84deg;
   transform: skew(25deg);
 }
+
+.form-control
+{
+  transition: transform 0.4s ease;
+}
+
+.form-control:focus
+{
+  transform: scale(1.1);
+}
+
+
 
 #nutrient-chart {
   width: 800px;
@@ -99,42 +111,12 @@ body {
   background-color: #3c4043;
 }
 
-/* .form-control 
-{
-  
-} */
-
-/* .form-control:focus 
-{
-
-} */
 
 .focus
 {
   transition: transform 0.4s ease;
 }
 
-.form-select
-{
-  transition: transform 0.4s ease;  
-}
-
-#inputlogin
-{
-  transition: transform 0.4s ease;
-
-}
-
-#inputlogin-select
-{
-  transform: scale(1.1);
-
-}
-
-.form-select:focus 
-{
-  transform: scale(1.1);
-}
 
 #btnregdatos
 {
@@ -180,12 +162,19 @@ footer {
 
 .nav-item {
   font-family: "DM Sans", sans-serif;
-  transition: transform 0.4s ease;
 }
 
-.nav-item:hover {
-  font-family: "DM Sans", sans-serif;
+
+#navbaritem
+{
+  transition: transform 0.4s ease;
+
+}
+
+#navbaritem:hover
+{
   transform: scale(1.1);
+
 }
 
 .bg-image {
@@ -560,7 +549,7 @@ a:hover {
   margin: 30px;
   
   border-radius: 20px;
-  background-color: #222222;
+  background-color: #262626;
   box-shadow: 0 0 10px #d2ca03;
   transform: scale(1.05);
 }
