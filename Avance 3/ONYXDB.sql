@@ -1,7 +1,7 @@
 /* Proyecto ONYX - Tecnologico de Monterrey - Campus Queretaro BASE DE DATOS DE ONYX */
 /* Creado por el equipo de desarrollo de bases de datos de Total-Tech*/
 
-DROP DATABASE Onyx;
+DROP DATABASE IF EXISTS Onyx;
 CREATE DATABASE Onyx;
 USE Onyx;
 

@@ -26,5 +26,4 @@ router.post('/resetPassword', noRegController.postResetPassword);
 
 router.post('/auth/google/callback', googleAuthController.callbackPost);
 
-
 module.exports = router;

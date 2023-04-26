@@ -8,6 +8,10 @@ const csrf = require("csurf");
 const isAuth = require("./util/is-auth");
 const flash = require("connect-flash");
 const multer = require("multer");
+const mysql = require('mysql2/promise');
+const {OAuth2Client} = require('google-auth-library');
+const CLIENT_ID = '141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com';
+const client = new OAuth2Client(CLIENT_ID);
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -71,3 +75,43 @@ app.use((req, res, next) => {
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });
+
+app.post('/auth/google/callback', async (req, res) => {
+    const token = req.body.idtoken;
+  
+    try {
+      const ticket = await client.verifyIdToken({
+          idToken: token,
+          audience: CLIENT_ID,
+      });
+  
+      const payload = ticket.getPayload();
+      const userId = payload['sub'];
+  
+      // Aquí es donde se recupera la información del usuario y se inserta en las tablas de Onyx
+  
+      const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'onyx'
+      });
+  
+      const [rows, fields] = await connection.execute('SELECT * FROM usuarios WHERE google_id = ?', [userId]);
+      let user = null;
+  
+      if (rows.length == 0) {
+        const [insertedRow] = await connection.execute('INSERT INTO usuarios (google_id, nombre, email) VALUES (?, ?, ?)', [userId, payload['name'], payload['email']]);
+        user = insertedRow.insertId;
+      } else {
+        user = rows[0].id;
+      }
+  
+      const [insertedRow] = await connection.execute('INSERT INTO sesiones (usuario_id, fecha) VALUES (?, NOW())', [user]);
+  
+      res.send('OK');
+    } catch (error) {
+      console.error(error);
+      res.status(401).send('Unauthorized');
+    }
+  });

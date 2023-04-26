@@ -1,44 +1,42 @@
 <%- include('includes/headAdmin.ejs') %>
-<%- include('includes/sidebar.ejs') %> 
-<link rel="stylesheet" href="/css/adminStyle.css">
-<br>
+  <%- include('includes/sidebar.ejs') %>
+    <link rel="stylesheet" href="/css/adminStyle.css">
+    <br>
 
-<h1 style="margin-left:300px;">Nuevo Alimento</h1>
+    <h1 style="margin-left:300px;">Nuevo Alimento</h1>
 
-<div class="container">
-  <div class="spacer"></div>
-  <div class="row">
-    <div class="col-3">
-      <h1>
-        <%= Message %>
-      </h1>
-     
+    <div class="container">
+      <div class="spacer"></div>
+      <div class="row">
+        <div class="col-3">
+          <h1>
+            <%= Message %>
+          </h1>
+
+        </div>
+        <div class="col">
+          <form action="/admin/admindashboard/diets/add" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+            <label for="unidad">Unidad:</label>
+            <select name="unidad" required>
+              <option value="litros">Litros</option>
+              <option value="gramos">Gramos</option>
+              <option value="mililitros">Mililitros</option>
+              <option value="piezas">Piezas</option>
+              <option value="kilogramos">Kilogramos</option>
+            </select><br><br>
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" name="cantidad" min="0" required><br><br>
+            <label for="descripcion_alimento">Descripción del Alimento:</label>
+            <input type="text" name="descripcion_alimento" required><br><br>
+            <input type="submit" value="Nuevo Alimento">
+            
+          </form>
+        </div>
+        <div class="col"></div>
+      </div>
     </div>
-    <div class="col">
-      <form action="/admin/admindashboard/diets/add" method="POST">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-        
-        <label for="unidad">Unidad:</label>
-        <select name="unidad" required>
-          <option value="litros">Litros</option>
-          <option value="gramos">Gramos</option>
-          <option value="mililitros">Mililitros</option>
-          <option value="piezas">Piezas</option>
-          <option value="kilogramos">Kilogramos</option>
-        </select><br><br>
-      
-        <label for="cantidad">Cantidad:</label>
-        <input type="number" name="cantidad" min="0" required><br><br>
-      
-        <label for="descripcion_alimento">Descripción del Alimento:</label>
-        <input type="text" name="descripcion_alimento" required><br><br>
-  
-        <input type="submit" value="Nuevo Alimento">
-      </form>
-    </div>
-    <div class="col"></div>
-  </div>
-</div>
 
 
-<%- include('includes/footAdmin.ejs') %>
+    <%- include('includes/footAdmin.ejs') %>
