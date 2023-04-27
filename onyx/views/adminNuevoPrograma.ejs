@@ -2,19 +2,21 @@
 <%- include('includes/sidebar.ejs') %> 
 <link rel="stylesheet" href="/css/adminStyle.css">
 
-<H1 style="margin-left:300px ;">Nuevo Programa</H1>
+<div class="spacer"></div>
+<H1 style="margin-left:20% ;">Nuevo Programa</H1>
+
+<div class="spacer-nuevoprograma"></div>
 
 
 <!-- make new programa page -->
-<div class="container" id="nuevo-programa">
+<div id="nuevoprograma-area">
 
     <!-- form for new programa -->
-    <div class="container" id="form-nuevo-programa">
         <form action="/admin/admindashboard/programas/nuevoprograma" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <label for="descripcion_programa" class="form-label">Descripción</label>
             <div class="input-group">  
-                <textarea class="form-control" aria-label="With textarea" id="descripcion_programa"
+                <textarea id="descripcion_programa_text" class="form-control" aria-label="With textarea" id="descripcion_programa"
                 name="descripcion_programa"></textarea>
              </div>
             
@@ -50,12 +52,7 @@
             
             <div class="mb-3">
                 <label for="img_programa" class="form-label">Imagen Programa</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="img_programa"
-                    name="img_programa"
-                    required/>
+                <input type="file" class="form-control" id="img_programa" name="img_programa" value="registrar" accept=".jpg, .jpeg, .png, .gif" required/>
             </div>
             <button type="submit" class="btn btn-primary" id="agregarenadmin">Agregar</button>
             <!-- cancelar -->
@@ -63,7 +60,6 @@
                 <button type="button" class="btn btn-danger">Cancelar</button>
             </a>
         </form>
-    </div>
 </div>
 
 <%- include('includes/footAdmin.ejs') %>
