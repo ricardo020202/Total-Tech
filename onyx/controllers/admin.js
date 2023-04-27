@@ -831,25 +831,22 @@ exports.postAdminAddAlimento = (req, res, next) => {
 
 
 exports.getAdminInfoCliente = async (req, res, next) => {
-    const consulta_total_cliente = await Cliente.getTotal();
-    const totalClientes = consulta_total_cliente[0][0].total;
-    const consulta_total_mujeres = await Cliente.getTotalMujeres();
-    const clientesMujeres = consulta_total_mujeres[0][0].TotalMujeres;
-    const consulta_total_hombres = await Cliente.getTotalHombres();
-    const clienteHombres = consulta_total_hombres[0][0].TotalHombres;
-
+    const total = (await Cliente.getTotal())[0][0].total;
+    const clientesMujeres = (await Cliente.getTotalMujeres())[0][0].TotalMujeres;
+    const clienteHombres = (await Cliente.getTotalHombres())[0][0].TotalHombres;
+  
     res.render("adminDashboardGrafClientes", {
-        pagetitle: "Grafica Clientes",
-        user: req.session.user || "",
-        totalClientes: totalClientes || "",
-        clientesMujeres: clientesMujeres || "",
-        clienteHombres: clienteHombres || "",
-        csrfToken: req.csrfToken(),
-        photo: req.session.photo || "",
-        mujeres: consulta_total_mujeres,
-        hombres: consulta_total_hombres,
+      pagetitle: "Grafica Clientes",
+      user: req.session.user || "",
+      totalClientes: total || "",
+      mujeres: clientesMujeres || "",
+      hombres: clienteHombres || "",
+      csrfToken: req.csrfToken(),
+      photo: req.session.photo || "",
     });
-};
+  };
+  
+
 
 exports.deleteAdminRol = (req, res, next) => {
     const idRol = req.params.idrol;

@@ -2,83 +2,36 @@
 <%- include('includes/sidebar.ejs') %>
 <link rel="stylesheet" href="/css/adminStyle.css">
 
-    <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
 
-    <div class="spacer"></div>
-    <div class="container">
-        <div class="row mb-5">
-            <h2 class="text-center">
-                Reporte de los usuarios de  <span style="color: #D2CA03;">
-                    Onyx
-                </span>
-            </h2>
-            <p><%=mujeres%></p>
-        </div>
-        <div class="row">
-            <div class="col d-flex justify-content-center" id="graph">
-
-            </div>
-
-        </div>
-        <div class="spacer"></div>
-        <div class="row">
-            <h3 class="text-center">Porcentaje de Usuarios</h3>
-            <div class="col d-flex justify-content-center mt-3">
-                <table class="table table-hover text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="bg-custom">
-                                Total
-                            </th>
-                            <th scope="col">
-                                Mujeres
-                            </th>
-                            <th scope="col">
-                                Hombres
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-dark">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="spacer"></div>
+<div class="container">
+    <div class="row mb-5">
+        <h2 class="text-center">
+            Reporte de los usuarios de  <span style="color: #D2CA03;">
+                Onyx
+            </span>
+        </h2>
     </div>
-
-    <script>
-        function createTrace(data, name, date) {
-            return {
-                x: date,
-                y: data,
-                type: 'scatter',
-                name: name
-            };
-        }
-
-        const totalClientes = createTrace(<%= JSON.stringify(totalClientes) %>, 'Total');
-
-
-
+    <div class="col d-flex justify-content-center" id="graph">
+        <div id="plotly-chart"></div>
+      </div>
+      
+      <script>
+        const mujeres = <%= mujeres %>;
+        const hombres = <%= hombres %>;
+      
+        const data = [{
+          type: 'pie',
+          values: [mujeres, hombres],
+          labels: ['Mujeres', 'Hombres']
+        }];
+      
         const layout = {
-            autosize: true,
-            title: 'Cantidad de clientes',
-            xaxis: {
-                title: 'numero de clientes',
-                zeroline: false
-            },
-            yaxis: {
-                title: 'Total de clientes',
-            },
-            paper_bgcolor: "rgb(17,17,17)",
-            plot_bgcolor: "rgb(17,17,17)",
-            height: 600,
-            width: 900,
+          height: 400,
+          width: 500
         };
-        const data = [totalClientes, clientesMujeres, clientesHombres];
-        Plotly.newPlot(graph, data, layout, { theme: "plotly_dark" });
-        graph = document.getElementById('graph');
-
-    </script>
-
-<%- include('includes/footAdmin.ejs') %>
+      
+        Plotly.newPlot('plotly-chart', data, layout);
+      </script>
+</div>
