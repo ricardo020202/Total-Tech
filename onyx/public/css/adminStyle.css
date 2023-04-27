@@ -238,6 +238,10 @@ button:active {
     background-color: #2a1d31;
 }
 
+.bg-historial {
+    background-color: #38351c;
+}
+
 .card {
     /* width and height are optional */
     height: 300px;
@@ -268,6 +272,11 @@ button:active {
 .icon-ejercicio {
     /* change the color of the icon */
     fill: #A8FF33;
+}
+
+.icon-historial {
+    /* change the color of the icon */
+    fill: #ffbb33;
 }
 
 
