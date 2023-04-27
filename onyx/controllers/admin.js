@@ -15,6 +15,7 @@ const RolPrivilegio = require("../models/rol_privilegio");
 const Privilegio = require("../models/privilegio");
 const ProgramaEjercicio = require("../models/programa_ejercicio");
 const db = require("../util/database");
+const { parse } = require("path");
 
 exports.getAdminDashboardEjercicios = async (req, res, next) => {
     EjercicioModel.fetchAll()
@@ -363,7 +364,6 @@ exports.getAdminDashboardModUser = async (req, res, next) => {
             const mensaje = "Usuario actualizado correctamente";
             Rol.fetch(rows[0].id_rol)
                 .then(([rows2, fieldData]) => {
-                    console.log(rows2[0])
                     res.render("adminNuevoUsuario", {
                         pagetitle: "Modificar usuario",
                         user: req.session.user || "",
@@ -929,4 +929,72 @@ exports.postmodificarEjercicio = (req, res, next) => {
                 console.log(err);
             }
         });
+};
+
+exports.getGraficaEjercicios = async (req, res, next) => {
+
+    async function getHipertrofiaCount() {
+        const result = await EjercicioModel.getTotalHipertrofia();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getFuerzaCount() {
+        const result = await EjercicioModel.getTotalFuerza();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getResistenciaCount() {
+        const result = await EjercicioModel.getTotalResistencia();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getPushCount() {
+        const result = await EjercicioModel.getTotalPush();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getPullCount() {
+        const result = await EjercicioModel.getTotalPull();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+    async function getFullbodyCount() {
+        const result = await EjercicioModel.getTotalFullbody();
+        // get total count
+        const count = result[0][0].total;
+        return count;
+    }
+
+
+    try {
+        const hipertrofiaCount = await getHipertrofiaCount();
+        const fuerzaCount = await getFuerzaCount();
+        const resistenciaCount = await getResistenciaCount();
+        const pushCount = await getPushCount();
+        const pullCount = await getPullCount();
+
+        res.render("graficaEjercicios", {
+            pagetitle: "Grafica Ejercicios",
+            user: req.session.user || "",
+            hipertrofiaCount: hipertrofiaCount || "",
+            fuerzaCount: fuerzaCount || "",
+            resistenciaCount: resistenciaCount || "",
+            pushCount: pushCount || "",
+            pullCount: pullCount || "",
+            photo: req.session.photo || "",
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
 };

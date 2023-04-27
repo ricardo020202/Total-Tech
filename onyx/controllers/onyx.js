@@ -749,7 +749,7 @@ exports.postCuenta = (req, res, next) => {
         .save()
         .then((result) => {
             
-            console.log("Usuario actualizado");
+            
             res.redirect("/onyx/cuenta");
             res.status(300).redirect("/onyx/cuenta");
         })

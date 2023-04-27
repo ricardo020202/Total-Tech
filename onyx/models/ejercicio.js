@@ -74,4 +74,40 @@ module.exports = class Ejercicio {
             ]
         );
     }
+
+    static getTotalHipertrofia() {
+        return db.execute(
+            "SELECT COUNT(*) as total FROM ejercicio WHERE categoria = 'Hipertrofia'"
+        );
+    }
+
+    static getTotalFuerza() {
+        return db.execute(
+            "SELECT COUNT(*) as total FROM ejercicio WHERE categoria = 'Fuerza'"
+        );
+    }
+
+    static getTotalResistencia() {
+        return db.execute(
+            "SELECT COUNT(*) as total FROM ejercicio WHERE categoria = 'Resistencia'"
+        );
+    }
+
+    static getTotalPush() {
+        return db.execute(
+            "SELECT COUNT(*) as total FROM ejercicio WHERE categoria = 'Push'"
+        );
+    }
+
+    static getTotalPull() {
+        return db.execute(
+            "SELECT COUNT(*) as total FROM ejercicio WHERE categoria = 'Pull'"
+        );
+    }
+
+    static getTotalFullBody() {
+        return db.execute(
+            "SELECT COUNT(*) as total FROM ejercicio WHERE categoria = 'Full-Body'"
+        );
+    }
 };
