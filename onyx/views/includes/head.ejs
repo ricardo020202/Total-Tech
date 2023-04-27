@@ -122,11 +122,11 @@
                             </li>
                         </ul>
                         <% if (user){ %>
-                            <% if (rol != 'cliente' || rol != '') { %>
+                            <% if (rol !== "cliente") { %>
                                 <ul class="navbar-nav mb-2 mb-lg-0 ms-2">
                                     <li class="nav-item">
                                         <a class="nav-link" href="/admin/adminDashboard"
-                                            >Admin dashboard</a
+                                            ><%= rol %></a
                                         >
                                     </li>
                                 </ul>
