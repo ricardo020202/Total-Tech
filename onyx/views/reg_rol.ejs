@@ -80,10 +80,10 @@
                         class="fa-solid fa-pen-to-square fa-lg" style="color: #cdcdcd;"></i></a>
                   <% if (rol.statusRol=='on' ) { %>
                     <a href="/admin/adminDashboard/reg_rol/delete/<%= rol.id_rol %>"
-                      class="btn btn-custom">Desactivar</a>
+                      class="btn btn-dark text-light">Desactivar</a>
                   <% } else { %>
                       <a href="/admin/adminDashboard/reg_rol/activate/<%= rol.id_rol %>"
-                        class="btn btn-dark text-light">Activar</a>
+                        class="btn btn-custom">Activar</a>
                     <% } %>
                       </td>
                 </tr>
