@@ -612,6 +612,7 @@ td, th {
 .privilegios-table-container {
     max-height: 300px; /* Altura máxima del contenedor de la tabla. Ajusta según tus necesidades. */
     overflow-y: auto; /* Habilita el scroll vertical si el contenido excede la altura máxima. */
+    
   }
 
 
@@ -645,7 +646,7 @@ td, th {
     right: .3em;
     bottom: 0;
     background-color: #cdcdcd;
-    transition: .4s;
+    transition: .6s;
     border-radius: 50px;
   }
   
@@ -654,10 +655,10 @@ td, th {
     content: "";
     height: var(--circle-dim);
     width: var(--circle-dim);
-    border-radius: 50px;
-    left: 0.05em;
+    border-radius: 0px;
+    left: 0.0em;
     bottom: 0.05em;
-    transition: .5s;
+    transition: .6s;
     pointer-events: none;
   }
   
@@ -665,8 +666,8 @@ td, th {
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
-    perspective: 1000px;
-    border-radius: 75%;
+    perspective: 900px;
+    border-radius: 100%;
     transition: .4s transform;
   }
   
