@@ -46,17 +46,17 @@ const mysql = require('mysql2');
 //     database: 'onyx2',
 //     password: '',
 // });
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     database: 'onyx2',
-//     password: '',
-// });
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    database: 'onyx',
+    database: 'onyx2',
     password: '',
 });
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'onyx',
+//     password: '',
+// });
 
 module.exports = pool.promise();
