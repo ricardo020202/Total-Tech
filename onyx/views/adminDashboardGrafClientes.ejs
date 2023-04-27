@@ -27,15 +27,16 @@
           labels: ['Mujeres', 'Hombres'],
           marker: {
             colors: ['#5f3075', '#306375'],
-            opacity: 0.7
+            opacity: 0.2,
           }
         }];
       
         const layout = {
-          height: 400,
-          width: 500,
+          height: 600,
+          width: 800,
           plot_bgcolor: 'rgba(0,0,0,0)',
-          paper_bgcolor: 'rgba(0,0,0,0)'
+          paper_bgcolor: 'rgba(0,0,0,0)',
+          
         };
       
         Plotly.newPlot('plotly-chart', data, layout);

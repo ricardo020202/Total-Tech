@@ -695,3 +695,14 @@ td, th {
 .modal-content{
     background-color: #2c343a;
 }
+
+#plotly-chart
+{
+    transition: transform 0.4 ease;
+}
+
+
+#plotly-chart
+{
+    transform: scale(1.1);
+}
