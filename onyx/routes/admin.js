@@ -25,20 +25,20 @@ router.post("/admindashboard/userprivileges/add", checkPrivilegio('Registrar usu
 router.post("/admindashboard/userprivileges/delete/:email", checkPrivilegio('Eliminar usuarios'),
              adminController.deleteAdminDashboarUser);
 
-router.get("/admindashboard/diets/modAlimento/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
-             adminController.getAdminModAlimento);
-
-router.post("/admindashboard/diets/deleteFood/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
+router.post("/admindashboard/diets/deleteFood/:id", checkPrivilegio('Eliminar alimento'), 
                 adminController.getAdminDeleteAlimento);
 
-router.get('/admindashboard/diets/Alimento/add', //CAMBIAR Y AÑADIR PRIVILEGIO'
+router.get('/admindashboard/diets/Alimento/add', checkPrivilegio('Consultar alimento'),
                 adminController.getAdminAddAlimento);
 
-router.post('/admindashboard/diets/Alimento/add', //CAMBIAR Y AÑADIR PRIVILEGIO
+router.post('/admindashboard/diets/Alimento/add', checkPrivilegio('Registrar alimento'),
                 adminController.postAdminAddAlimento);
 
-router.post("/admindashboard/diets/modAlimento/:id", //CAMBIAR Y AÑADIR PRIVILEGIO
+router.post("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar alimento'),
                 adminController.postAdminModAlimento);
+
+router.get("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar alimento'),
+             adminController.getAdminModAlimento);
 
 router.get("/admindashboard/diets", checkPrivilegio('Consultar dieta'), checkPrivilegio('Registrar dieta'),
              adminController.getAdminDashboardDietas);
