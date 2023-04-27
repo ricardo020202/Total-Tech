@@ -18,6 +18,12 @@ router.get("/dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetal
 
 router.get("/dieta/:id_dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetalleDieta);
 
+router.get("/dieta", checkPrivilegio('Consultar dieta'), onyxController.getDietaAlimento);
+
+router.get("/dieta/:id_dieta", checkPrivilegio('Consultar dieta'), onyxController.getDietaAlimento);
+
+router.get("/dieta/:id_dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetalleDieta);
+
 router.get("/dietas", checkPrivilegio('Consultar dieta'), onyxController.getDieta);
 
 router.get("/dietas/:start/:numcal", checkPrivilegio('Consultar dieta'), onyxController.getDieta);

@@ -1,37 +1,21 @@
 <%- include('includes/head.ejs') %>
 
-
 <div class="container">
-    <div class="spacer">
-    </div>
-
+    <div class="spacer"></div>
+  
     <div class="container">
-        <h2 id="titulopagina">Detalles de programa</h2>
-
+      <h2 id="titulopagina"> <%= detalles.nombre_programa%></h2>
     </div>
-
-        <div class="container text-center">
-            <div class="row align-items-start">
-                <div class="col">
-                    <div class="cards" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre: <%= detalles.nombre_programa%></h5>
-                            <p class="card-text">Descripción: <%= detalles.descripcion_programa%></p>
-                            <p class="card-text">Frecuencia: <%= detalles.frecuencia%></p>
-                            <br>
-                            <!--quitar el más info, no? -->
-                            <a href="/onyx/bitacora" class="btn btn-warning">Registrar en Bitácora</a>
-                            <br>
-                            <a href="/onyx/catentrenamientos" class="btn btn-warning">Regresar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-
-        <br>
-
-
-</div>
+  
+    <div class="spacer"></div>
+  
+    <div class="container">
+      <p><%= detalles.descripcion_programa%></p>
+      <p><%= detalles.frecuencia%> veces a la semana </p>
+      <div class="spacer"></div>
+      <a href="/onyx/bitacora" class="btn btn-custom">Registrar en Bitácora</a>
+    </div>
+  
+    <br>
+  </div>
 <%- include('includes/foot.ejs') %>

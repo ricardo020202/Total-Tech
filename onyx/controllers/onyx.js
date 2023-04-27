@@ -17,6 +17,7 @@ const Rol = require('../models/rol');
 const RolPrivilegio = require('../models/rol_privilegio');
 const db = require('../util/database');
 
+
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
@@ -130,7 +131,6 @@ exports.getDetalleDieta = (req, res, next) => {
 
     Dieta.fetchById(id_dieta)
         .then(([rows, fieldData]) => {
-            console.log(rows)
             res.render("dietaDetallada", {
                 detalles: rows[0],
                 pagetitle: "Detalles de dieta",
@@ -153,6 +153,36 @@ exports.getDetalleDieta = (req, res, next) => {
                 console.log(err);
             }
         });
+};
+
+exports.getDietaAlimento = (req, res, next) => {
+
+    const id_dieta = req.params.id_dieta;
+
+    DietaAlimento.fetchById(id_dieta)
+        .then(([rows, fieldData]) => {
+            res.render("dietaDetallada", {
+                alimentos: rows[0],
+                user: req.session.user || "",
+                photo: req.session.photo || 'default.png',
+                rol: req.session.rol || "",
+            });
+            
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+                return { detalles: [] };
+            } else {
+                console.log(err);
+            }
+        });
+
 };
 
 exports.getDieta = async (req, res, next) => {
