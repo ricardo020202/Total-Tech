@@ -57,7 +57,7 @@ module.exports = class Dieta {
     
     static fetchById(id_dieta)
     {
-        return db.execute('SELECT * FROM dieta WHERE id_dieta = ?', [id_dieta]);
+        return db.execute(`SELECT * FROM dieta WHERE id_dieta = ?`, [id_dieta]);
     }
 
     static fetchByCal(numcal, start)
