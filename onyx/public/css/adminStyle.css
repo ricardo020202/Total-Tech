@@ -678,3 +678,9 @@ td, th {
 {
     transform: scale(1.1);
 }
+
+.form-dieta td input {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
