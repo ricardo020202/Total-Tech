@@ -49,9 +49,15 @@ const fileStorage = multer.diskStorage({
 app.use(multer({ storage: fileStorage }).single("image"));
 app.use(csrfProtection);
 
+app.use(express.static(path.join(__dirname, "public")));
+
+// ruta / que redirige a /onyx
+app.get("/", (req, res, next) => {
+    res.redirect("/onyx");
+});
+
 const userRoutes = require("./routes/users");
 app.use("/users", userRoutes);
-app.use(express.static(path.join(__dirname, "public")));
 
 const noRegRoutes = require("./routes/noRegistrados");
 app.use("/onyx", noRegRoutes);

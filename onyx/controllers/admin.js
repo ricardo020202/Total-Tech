@@ -35,7 +35,6 @@ exports.getAdminDashboardEjercicios = async (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -61,7 +60,6 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -99,7 +97,7 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
         .save()
         .then((result) => {
             res.redirect("/admin/admindashboard/programas");
-            
+
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -108,7 +106,6 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -267,11 +264,10 @@ exports.postAdminNuevaDieta = (req, res, next) => {
 };
 
 
-exports.postAdminEliminarDieta = (req, res, next) =>
-{
+exports.postAdminEliminarDieta = (req, res, next) => {
     const id_dieta = req.params.id_dieta;
-    
-        Dieta.deleteById(id_dieta)
+
+    Dieta.deleteById(id_dieta)
         .then(() => {
             res.redirect('/admin/admindashboard/diets');
         })
@@ -310,7 +306,6 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -334,7 +329,7 @@ exports.deleteAdminEjercicio = (req, res, next) => {
 
 exports.getAdminDashboardAddUser = (req, res, next) => {
     const id = req.params.email || "";
-    
+
     Rol.fetchAllButUsers()
         .then(([rows]) => {
             res.render("adminNuevoUsuario", {
@@ -375,7 +370,7 @@ exports.getAdminDashboardModUser = async (req, res, next) => {
                         roles: roles,
                     });
                 })
-                .catch((err) => {    
+                .catch((err) => {
                     console.log(err);
                     next(err);
                 });
@@ -438,7 +433,7 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
                         user: req.session.user || "",
                         photo: req.session.photo || "",
                     });
-                    return { medidas: [], fechas: [] };
+
                 } else {
                     console.log(err);
                 }
@@ -485,7 +480,7 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                             user: req.session.user || "",
                             photo: req.session.photo || "",
                         });
-                        return { medidas: [], fechas: [] };
+    
                     } else {
                         console.log(err);
                     }
@@ -498,7 +493,6 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -530,7 +524,6 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(error);
             }
@@ -566,74 +559,74 @@ exports.getAdminModRol = (req, res, next) => {
     let rolPrivilegio = [];
 
     Privilegio.fetchAll()
-      .then(privilegesRows => {
-        privileges = privilegesRows;
-        return Rol.fetchAll();
-      })
-      .then(rolesRows => {
-        roles = rolesRows;
-  
-        // Fetch all rolPrivilegio records
-        return RolPrivilegio.getByIdRol(rol);
-      })
-      .then(rolPrivilegioRows => {
-        rolPrivilegio = rolPrivilegioRows;
-  
-        res.render("modrol", {
-          roles: roles[0],
-          privileges: privileges[0],
-          rolPrivilegio: rolPrivilegio[0], // Pass the rolPrivilegio array to the view
-          id: rol,
-          pagetitle: "Modificar rol",
-          user: req.session.user || "",
-          csrfToken: req.csrfToken(),
-          photo: req.session.photo || "",
+        .then(privilegesRows => {
+            privileges = privilegesRows;
+            return Rol.fetchAll();
+        })
+        .then(rolesRows => {
+            roles = rolesRows;
+
+            // Fetch all rolPrivilegio records
+            return RolPrivilegio.getByIdRol(rol);
+        })
+        .then(rolPrivilegioRows => {
+            rolPrivilegio = rolPrivilegioRows;
+
+            res.render("modrol", {
+                roles: roles[0],
+                privileges: privileges[0],
+                rolPrivilegio: rolPrivilegio[0], // Pass the rolPrivilegio array to the view
+                id: rol,
+                pagetitle: "Modificar rol",
+                user: req.session.user || "",
+                csrfToken: req.csrfToken(),
+                photo: req.session.photo || "",
+            });
+        })
+        .catch(error => {
+            if (error.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+            } else {
+                console.log(error);
+            }
         });
-      })
-      .catch(error => {
-        if (error.code === "PROTOCOL_CONNECTION_LOST") {
-          res.render("dbDown", {
-            pagetitle: "Error",
-            user: req.session.user || "",
-            photo: req.session.photo || "",
-          });
-        } else {
-          console.log(error);
-        }
-      });    
-  
+
 };
-  
+
 exports.postAdminModRol = (req, res, next) => {
     const id = req.params.id;
     let privileges = Array.isArray(req.body['privilege[]']) ? req.body['privilege[]'] : [req.body['privilege[]']];
     var rolPrivilegioNuevo;
-    
+
     // Set privileges to an empty array if it is undefined or null
     if (privileges && privileges[0] === undefined) {
         privileges = [];
-      } 
+    }
     // Delete existing RolPrivilegio records for the given idRol
     RolPrivilegio.deleteByRol(id)
-      .then(() => {
-        // Only continue if privileges have a length greater than 0
-        if (!privileges.length) {
-          res.redirect('/admin/adminDashboard/modrol/'+id);
-          return;
-        }
-        
-        // Insert new RolPrivilegio records for each privilege in the array
-        privileges.forEach((privilege) => {
-          rolPrivilegioNuevo = new RolPrivilegio(id, privilege);
-          rolPrivilegioNuevo.save();
+        .then(() => {
+            // Only continue if privileges have a length greater than 0
+            if (!privileges.length) {
+                res.redirect('/admin/adminDashboard/modrol/' + id);
+                return;
+            }
+
+            // Insert new RolPrivilegio records for each privilege in the array
+            privileges.forEach((privilege) => {
+                rolPrivilegioNuevo = new RolPrivilegio(id, privilege);
+                rolPrivilegioNuevo.save();
+            });
+            res.redirect('/admin/adminDashboard/modrol/' + id);
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
         });
-        res.redirect('/admin/adminDashboard/modrol/'+id);
-      })
-      .catch((err) => {
-        console.log(err);
-        next(err);
-      });
-  };
+};
 
 exports.getAdminModAlimento = (req, res, next) => {
     const id = req.params.id;
@@ -706,38 +699,38 @@ exports.getAdminDeleteAlimento = (req, res, next) => {
             next(err);
         });
 };
-  
+
 exports.getadminreg_rol = (req, res, next) => {
     const mensaje =
         req.query.mensaje === "success" ? "Rol registrado correctamente." : "";
 
     Rol.fetchAll()
-      .then(([rows]) => {
-        const csrfToken = req.csrfToken();
-        const roles = rows.map(row => {
-          return {id: row.id_rol, nombre: row.nombreRol};
-        });
-  
-        // Busca todos los privilegios
-        return Privilegio.fetchAll()
-          .then(([privilegios]) => {
-            // Renderiza la vista con los roles y los privilegios
-            res.render('reg_rol', {
-              pagetitle: 'Registrar Rol',
-              mensaje: mensaje,
-              user: req.session.user,
-              roles: rows,
-              privilegios: privilegios, // Añade los privilegios aquí
-              csrfToken: csrfToken,
-              photo: req.session.photo || "",
+        .then(([rows]) => {
+            const csrfToken = req.csrfToken();
+            const roles = rows.map(row => {
+                return { id: row.id_rol, nombre: row.nombreRol };
             });
-            res.locals.mensaje = "";
-          });
-      })
-      .catch(err => console.log(err));
-  };
 
-  exports.postadminreg_rol = function (req, res) {
+            // Busca todos los privilegios
+            return Privilegio.fetchAll()
+                .then(([privilegios]) => {
+                    // Renderiza la vista con los roles y los privilegios
+                    res.render('reg_rol', {
+                        pagetitle: 'Registrar Rol',
+                        mensaje: mensaje,
+                        user: req.session.user,
+                        roles: rows,
+                        privilegios: privilegios, // Añade los privilegios aquí
+                        csrfToken: csrfToken,
+                        photo: req.session.photo || "",
+                    });
+                    res.locals.mensaje = "";
+                });
+        })
+        .catch(err => console.log(err));
+};
+
+exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
     const { id_rol, privilegios } = req.body;
     const ids_casos_uso = Array.isArray(privilegios)
@@ -834,18 +827,18 @@ exports.getAdminInfoCliente = async (req, res, next) => {
     const total = (await Cliente.getTotal())[0][0].total;
     const clientesMujeres = (await Cliente.getTotalMujeres())[0][0].TotalMujeres;
     const clienteHombres = (await Cliente.getTotalHombres())[0][0].TotalHombres;
-  
+
     res.render("adminDashboardGrafClientes", {
-      pagetitle: "Grafica Clientes",
-      user: req.session.user || "",
-      totalClientes: total || "",
-      mujeres: clientesMujeres || "",
-      hombres: clienteHombres || "",
-      csrfToken: req.csrfToken(),
-      photo: req.session.photo || "",
+        pagetitle: "Grafica Clientes",
+        user: req.session.user || "",
+        totalClientes: total || "",
+        mujeres: clientesMujeres || "",
+        hombres: clienteHombres || "",
+        csrfToken: req.csrfToken(),
+        photo: req.session.photo || "",
     });
-  };
-  
+};
+
 
 
 exports.deleteAdminRol = (req, res, next) => {
