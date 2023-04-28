@@ -925,19 +925,19 @@ exports.getGraficaEjercicios = async (req, res, next) => {
 
     try {
         const hipertrofiaCount = (await EjercicioModel.getTotalHipertrofia())[0][0].total;
-        const fuerzaCount = (await EjercicioModel.getTotalFuerza())[0][0].total;
+        const fuerzaCountQuery = (await EjercicioModel.getTotalFuerza())[0][0].total;
         const resistenciaCount = (await EjercicioModel.getTotalPull())[0][0].total; 
         const pushCount = (await EjercicioModel.getTotalPush())[0][0].total; 
         const pullCount = (await EjercicioModel.getTotalPull())[0][0].total;
-
+  
         res.render("graficaEjercicios", {
             pagetitle: "Grafica Ejercicios",
-            user: req.session.user || "",
-            hipertrofiaCount: hipertrofiaCount || "",
-            fuerzaCount: fuerzaCount || "",
-            resistenciaCount: resistenciaCount || "",
-            pushCount: pushCount || "",
-            pullCount: pullCount || "",
+            user: req.session.user || 0,
+            hipertrofiaCount: hipertrofiaCount || 0,
+            fuerzaCount: fuerzaCountQuery || 0,
+            resistenciaCount: resistenciaCount || 0,
+            pushCount: pushCount || 0,
+            pullCount: pullCount || 0,
             photo: req.session.photo || "",
         });
     }
