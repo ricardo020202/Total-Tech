@@ -923,55 +923,12 @@ exports.postmodificarEjercicio = (req, res, next) => {
 
 exports.getGraficaEjercicios = async (req, res, next) => {
 
-    async function getHipertrofiaCount() {
-        const result = await EjercicioModel.getTotalHipertrofia();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getFuerzaCount() {
-        const result = await EjercicioModel.getTotalFuerza();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getResistenciaCount() {
-        const result = await EjercicioModel.getTotalResistencia();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getPushCount() {
-        const result = await EjercicioModel.getTotalPush();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getPullCount() {
-        const result = await EjercicioModel.getTotalPull();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getFullbodyCount() {
-        const result = await EjercicioModel.getTotalFullbody();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-
     try {
-        const hipertrofiaCount = await getHipertrofiaCount();
-        const fuerzaCount = await getFuerzaCount();
-        const resistenciaCount = await getResistenciaCount();
-        const pushCount = await getPushCount();
-        const pullCount = await getPullCount();
+        const hipertrofiaCount = (await EjercicioModel.getTotalHipertrofia())[0][0].total;
+        const fuerzaCount = (await EjercicioModel.getTotalFuerza())[0][0].total;
+        const resistenciaCount = (await EjercicioModel.getTotalPull())[0][0].total; 
+        const pushCount = (await EjercicioModel.getTotalPush())[0][0].total; 
+        const pullCount = (await EjercicioModel.getTotalPull())[0][0].total;
 
         res.render("graficaEjercicios", {
             pagetitle: "Grafica Ejercicios",
