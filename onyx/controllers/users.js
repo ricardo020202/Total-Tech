@@ -250,6 +250,11 @@ exports.post_login = (request, response, next) => {
                         } else {
                             request.session.mensaje =
                                 "Usuario y/o contraseña incorrecta.";
+                            if (request.session.rol === "administrador") {
+                                response.redirect("/admin/adminDashboard");
+                            } else if (request.session.rol === "cliente") {
+                                response.redirect("/users/login");
+                            }
                         }
                     })
                     .catch((error) => {
