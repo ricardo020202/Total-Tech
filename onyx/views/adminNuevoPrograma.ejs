@@ -1,65 +1,65 @@
 <%- include('includes/headAdmin.ejs') %>
-<%- include('includes/sidebar.ejs') %> 
-<link rel="stylesheet" href="/css/adminStyle.css">
+    <%- include('includes/sidebar.ejs') %>
+        <link rel="stylesheet" href="/css/adminStyle.css">
 
-<div class="spacer"></div>
-<H1 style="margin-left:20% ;">Nuevo Programa</H1>
+        <script type="text/javascript"
+            src='https://cdn.tiny.cloud/1/uz3ydfb6sutfqdre9fd9jk81pdjdml2kz44i2i5gphx1kbzj/tinymce/6/tinymce.min.js'
+            referrerpolicy="origin">
+            </script>
 
-<div class="spacer-nuevoprograma"></div>
+        <div class="spacer"></div>
+        <H1 style="margin-left:20% ;">Nuevo Programa</H1>
+
+        <div class="spacer-nuevoprograma"></div>
 
 
-<!-- make new programa page -->
-<div id="nuevoprograma-area">
+        <!-- make new programa page -->
+        <div id="nuevoprograma-area">
 
-    <!-- form for new programa -->
-        <form action="/admin/admindashboard/programas/nuevoprograma" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-            <label for="descripcion_programa" class="form-label">Descripción</label>
-            <div class="input-group">  
-                <textarea id="descripcion_programa_text" class="form-control" aria-label="With textarea" id="descripcion_programa"
-                name="descripcion_programa"></textarea>
-             </div>
+            <!-- form for new programa -->
+            <form action="/admin/admindashboard/programas/nuevoprograma" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             
+                <div class="mb-3">
+                    <label for="nombre_programa" class="form-label">Nombre del programa</label>
+                    <input type="text" class="form-control" id="nombre_programa" name="nombre_programa" required />
+                </div>
 
-            <div class="mb-3">
-                <label for="nombre_programa" class="form-label">Nombre del programa</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="nombre_programa"
-                    name="nombre_programa"
-                    required/>
-            </div>
+                <div class="mb-3">
+                    <label for="frecuencia" class="form-label">Frecuencia</label>
+                    <input type="number" class="form-control" id="frecuencia" name="frecuencia" required />
+                </div>
 
-            <div class="mb-3">
-                <label for="frecuencia" class="form-label">Frecuencia</label>
-                <input
-                    type="number"
-                    class="form-control"
-                    id="frecuencia"
-                    name="frecuencia"
-                    required/>
-            </div>
-            <div class="mb-3">
-                <label for="ref_visual" class="form-label">Referencia Visual</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="ref_visual"
-                    name="ref_visual"
-                    required/>
-            </div>
-            
-            <div class="mb-3">
-                <label for="img_programa" class="form-label">Imagen Programa</label>
-                <input type="file" class="form-control" id="img_programa" name="img_programa" value="registrar" accept=".jpg, .jpeg, .png, .gif" required/>
-            </div>
-            <button type="submit" class="btn btn-primary" id="agregarenadmin">Agregar</button>
-            <!-- cancelar -->
-            <a href="/admin/admindashboard/programas">
-                <button type="button" class="btn btn-danger">Cancelar</button>
-            </a>
-        </form>
-</div>
+                <div class="mb-3">
+                    <label for="ref_visual" class="form-label">Referencia Visual</label>
+                    <input type="text" class="form-control" id="ref_visual" name="ref_visual" required />
+                </div>
 
-<%- include('includes/footAdmin.ejs') %>
+                <div class="mb-3">
+                    <label for="myTextarea" class="form-label">Descripción</label>
+                    <textarea id="myTextarea" name="descripcion_programa"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="img_programa" class="form-label">Imagen Programa</label>
+                    <input type="file" class="form-control" id="img_programa" name="img_programa" value="registrar"
+                        accept=".jpg, .jpeg, .png, .gif" required />
+                </div>
+                <button type="submit" class="btn btn-primary" id="agregarenadmin">Agregar</button>
+                <!-- cancelar -->
+                <a href="/admin/admindashboard/programas">
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                </a>
+            </form>
+        </div>
+
+        <!-- JS TinyMCE -->
+        <script type="text/javascript">
+            tinymce.init({
+                selector: 'textarea#myTextarea',
+                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                toolbar_mode: 'floating',
+            });
+        </script>
+
+        <%- include('includes/footAdmin.ejs') %>

@@ -87,7 +87,7 @@ CREATE TABLE bitacora(
 CREATE TABLE programa (
     id_programa INT AUTO_INCREMENT NOT NULL,
     frecuencia INT NOT NULL,
-    descripcion_programa VARCHAR(200) NOT NULL,
+    descripcion_programa LONGTEXT NOT NULL,
     nombre_programa VARCHAR(100) NOT NULL,
     ref_visual VARCHAR(200),
     img_programa VARCHAR(200),
