@@ -16,6 +16,52 @@ const RolUsuario = require('../models/rol_usuario');
 const Rol = require('../models/rol');
 const RolPrivilegio = require('../models/rol_privilegio');
 const db = require('../util/database');
+const { OAuth2Client } = require('google-auth-library');
+const CLIENT_ID = '141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com';
+const CLIENT_SECRET = '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';
+const REDIRECT_URI = 'http://localhost:3000/onyx';
+const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+// Definimos el controlador
+exports.callbackPost = async (req, res) => {
+  const token = req.body.idtoken;
+
+  try {
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const userId = payload['sub'];
+
+    // Aquí es donde se recupera la información del usuario y se inserta en las tablas de Onyx
+
+    const connection = await mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'onyx'
+    });
+
+    const [rows, fields] = await connection.execute('SELECT * FROM usuarios WHERE google_id = ?', [userId]);
+    let user = null;
+
+    if (rows.length == 0) {
+      const [insertedRow] = await connection.execute('INSERT INTO usuarios (google_id, nombre, email) VALUES (?, ?, ?)', [userId, payload['name'], payload['email']]);
+      user = insertedRow.insertId;
+    } else {
+      user = rows[0].id;
+    }
+
+    const [insertedRow] = await connection.execute('INSERT INTO sesiones (usuario_id, fecha) VALUES (?, NOW())', [user]);
+
+    res.send('OK');
+  } catch (error) {
+    console.error(error);
+    res.status(401).send('Unauthorized');
+  }
+};
+
 
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()

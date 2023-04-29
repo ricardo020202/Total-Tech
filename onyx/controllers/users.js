@@ -167,6 +167,7 @@ exports.post_login = (request, response, next) => {
         .then(([rows, fieldData]) => {
             if (rows.length > 0) {
                 request.session.photo = rows[0].user_pic;
+                
 
                 user.getRol(request.body.email)
                     .then(([rows, fieldData]) => {

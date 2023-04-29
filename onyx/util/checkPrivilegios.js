@@ -1,6 +1,6 @@
 module.exports = (privilegio) => {
     return (request, response, next) => {
-        if (request.session.privilegios.includes(privilegio)) {
+        if (request.session && request.session.privilegios && request.session.privilegios.includes(privilegio)) {
             next();
         }
         else {

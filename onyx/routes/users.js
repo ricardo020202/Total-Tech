@@ -3,7 +3,10 @@ const path = require('path');
 const router = express.Router();
 const userController = require('../controllers/users');
 
-router.get('/login', userController.login);
+const csrf = require("csurf");
+const csrfProtecion = csrf();
+
+router.get('/login', csrfProtecion, userController.login);
 
 router.post('/login', userController.post_login);
 

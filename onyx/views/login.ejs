@@ -1,15 +1,13 @@
-/*login.ejs */
-
 <%- include('includes/head.ejs') %>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
-    
+
     <div class="spacer"></div>
     <div class="container">
         <div class="row">
             <div class="col d-flex justify-content-center">
                 <form action="/users/login" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <p>
                         <%=mensaje%>
                     </p>
@@ -23,8 +21,8 @@
                             <div class="input-group-text bg-signUp">
                                 <img src="/assets/username-icon.svg" alt="username-icon" style="height: 1rem" />
                             </div>
-                            <input id="inputlogin" class="form-control bg-light" style="z-index: 1;" type="text" placeholder="Correo"
-                                name="email" />
+                            <input id="inputlogin" class="form-control bg-light" style="z-index: 1;" type="text"
+                                placeholder="Correo" name="email" />
                         </div>
                         <div class="input-group mt-1">
                             <div class="input-group-text bg-signUp">
@@ -39,12 +37,14 @@
                                 <div class="pt-1" style="font-size: 0.9rem">Recuérdame</div>
                             </div>
                             <div class="pt-1">
-                                <a href="/onyx/olvidePassword" class="text-decoration-none text-white fw-semibold fst-italic"
+                                <a href="/onyx/olvidePassword"
+                                    class="text-decoration-none text-white fw-semibold fst-italic"
                                     style="font-size: 0.9rem">¿Olvidaste tu contraseña?</a>
                             </div>
                         </div>
                         <button id="btnlogin" class="btn bg-custom1 text-white w-100 mt-4 fw-semibold shadow-sm"
                             type="submit" name="action">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             Login
                         </button>
                         <div class="d-flex gap-1 justify-content-center mt-1">
@@ -58,40 +58,114 @@
                         </div>
                         <div id="g_id_onload"
                             data-client_id="141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com"
-                            data-context="signin" data-ux_mode="popup" data-auto_prompt="true">
+                            data-login_uri="http://localhost:3000/auth/google/callback"
+                            data-callback="handleCredentialResponse" data-auto_prompt="false">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         </div>
-                        <div class="g_id_signin mt-3" data-type="standard" data-shape="rectangular"
-                            data-theme="filled_black" data-text="signin_with" data-size="large"
-                            data-logo_alignment="left" data-width="300">
-                        </div>
+                        <!-- <div class="g_id_signin mt-3" id="google-signin-button" data-type="standard"
+                            data-shape="rectangular" data-theme="filled_black" data-text="signin_with" data-size="large"
+                            data-logo_alignment="left" data-width="300" data-onsuccess="onSignIn">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                            <body onload="init()">
+                        </div> -->
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <script>
-        function handleCredentialResponse(response) {
-            console.log('Credential Response:', response);
-            // Aquí puedes enviar la respuesta al servidor para autenticar al usuario.
-            // Por ejemplo, puedes usar un objeto XMLHttpRequest para enviar una solicitud POST al servidor.
-        }
-        window.onload = function () {
-            google.accounts.id.initialize({
-                client_id: "141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com",
-                callback: handleCredentialResponse,
+
+        // function onSignIn(googleUser) {
+        //     const idToken = googleUser.getAuthResponse().id_token;
+        //     console.log('ID TOKEN EN onSignIn: ', idToken);
+
+        //     fetch('/auth/google/callback', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({
+        //             idtoken: idToken,
+        //         }),
+        //     })
+        //         .then(res => {
+        //             if (res.status === 200) {
+        //                 // Redirige al usuario a la página deseada después del inicio de sesión exitoso
+        //                 window.location.href = '/';
+        //             } else {
+        //                 console.error('Error en el proceso de autenticación.');
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error('Error en la solicitud de autenticación:', error);
+        //         });
+        // }
+
+            function handleCredentialResponse(response) {
+                const idToken = response.credential;
+                console.log('ID TOKEN EN handleCredentialResponse: ', idToken);
+
+            fetch('/auth/google/callback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    idtoken: idToken,
+                })
+            })
+            .then(res => {
+                if (res.status === 200) {
+                    // Redirige al usuario a la página deseada después del inicio de sesión exitoso
+                    window.location.href = '/';
+                } else {
+                    console.error('Error en el proceso de autenticación.');
+                }
+            })
+            .catch(error => {
+                console.error('Error en la solicitud de autenticación:', error);
             });
+        }
+
+        window.onload = function () {
+
+            google.accounts.id.initialize({
+                client_id: '141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com',
+                callback: handleCredentialResponse,
+                auto_select: true,
+                cancel_on_tap_outside: false,
+                auto_prompt: false,
+            })
+
             google.accounts.id.renderButton(
-                document.getElementById("google-signin-button"),
+                document.getElementById('g_id_onload'),
                 {
-                    theme: "filled_black",
-                    size: "large",
-                    width: "100%",
-                    height: "50",
-                    locale: "es",
+                    theme: 'filled_black',
+                    size: 'large',
+                    text: 'continue_with',
+                    logo_alignment: 'left',
+                    width: '300',
                 }
             );
-            google.accounts.id.prompt(); // Esta función activa el aviso automático para el inicio de sesión.
+
+
+            gapi.load('auth2', async () => {
+                const auth2 = await gapi.auth2.init({
+                    client_id: '141860110384-4rkak3dc4oehtdj46ogd2aufa9vf34le.apps.googleusercontent.com',
+                });
+
+                auth2.attachClickHandler(
+                    document.getElementById('google-signin-button'),
+                    {},
+                    onSignIn,
+                    error => {
+                        console.error('Error en la solicitud de autenticación:', error);
+                    }
+                );
+            });
         };
+
     </script>
 
 
