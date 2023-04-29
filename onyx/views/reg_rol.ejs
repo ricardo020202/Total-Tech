@@ -1,102 +1,107 @@
 <%- include('includes/sidebar.ejs') %>
-<%- include('includes/headAdmin.ejs') %>
-<link rel="stylesheet" href="/css/adminStyle.css">
-<br>
-<div class="container">
-  <h1 class="text-center mt-2">Registro de Roles - Onyx</h1>
-  <div class="row justify-content-center">
-    <form class="col-md-6 mt-5" action="/admin/adminDashboard/reg_rol" method="post">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-      <div class="form-group">
-        <% if (typeof mensaje !== 'undefined' && mensaje !== '') { %>
-        <div class="alert alert-success">
-          <p><%=mensaje%></p>
-        </div>
-        <% } %>
-        <div class="form-group">
-          <label for="nombreRol">Nombre del Rol:</label>
-          <input type="text" class="form-control" name="nombreRol" id="nombreRol" required>
-          <div class="form-group text-center mt-2" style="width: 100px;">
-            <button type="submit" class="btn btn-custom">Registrar</button>
+  <%- include('includes/headAdmin.ejs') %>
+    <link rel="stylesheet" href="/css/adminStyle.css">
+    <br>
+    <div class="container">
+      <h1 class="text-center mt-2">Registro de Roles - Onyx</h1>
+      <div class="row justify-content-center">
+        <form class="col-md-6 mt-5" action="/admin/adminDashboard/reg_rol" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="form-group">
+            <% if (typeof mensaje !=='undefined' && mensaje !=='' ) { %>
+              <div class="alert alert-success">
+                <p>
+                  <%=mensaje%>
+                </p>
+              </div>
+              <% } %>
+                <div class="form-group">
+                  <label for="nombreRol">Nombre del Rol:</label>
+                  <input type="text" class="form-control" name="nombreRol" id="nombreRol" required>
+                  <div class="form-group text-center mt-2" style="width: 100px;">
+                    <button type="submit" class="btn btn-custom">Registrar</button>
+                  </div>
+                </div>
           </div>
-      </div>
-      </div>
-      <br>
-      <label>Privilegios:</label>
-      <div class="container">
-        <div class="container privilegios-table-container">
-        <table class="table table-active" style="margin: 0 auto; height: 86px;">
-          <thead class="sticky-top">
-            <tr>
-              <th>ID</th>
-              <th>Privilegios</th>
-              <th>Selec.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% privilegios.forEach(function(privilegio) { %>
-              <tr>
-                <td><%= privilegio.id_cu %></td>
-                <td><%= privilegio.nombrecu %></td>
-                <td>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <div class="slider"></div>
-                    <div class="slider-card">
-                      <div class="slider-card-face slider-card-front"></div>
-                      <div class="slider-card-face slider-card-back"></div>
-                    </div>
-                  </label>
-                </td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      </div>
-      <br>
-      <label>Roles Registrados:</label>
-      <div class="col-md-10">
-        <div class="container">
-          <table class="table table-active" style="margin: 0 auto;">
-            <thead class="sticky-top">
-              <tr>
-                <th>ID</th>
-                <th>Nombre del Rol</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% roles.forEach(function(rol) { %>
-                <tr>
-                  <td>
-                    <%= rol.id_rol %>
-                  </td>
-                  <td>
-                    <%= rol.nombreRol %>
-                  </td>
-                  <td>
-                    <a href="/admin/adminDashboard/modrol/<%= rol.id_rol %>"><i
-                        class="fa-solid fa-pen-to-square fa-lg" style="color: #cdcdcd;"></i></a>
-                  <% if (rol.statusRol=='on' ) { %>
-                    <a href="/admin/adminDashboard/reg_rol/delete/<%= rol.id_rol %>"
-                      class="btn btn-dark text-light">Desactivar</a>
-                  <% } else { %>
-                      <a href="/admin/adminDashboard/reg_rol/activate/<%= rol.id_rol %>"
-                        class="btn btn-custom">Activar</a>
-                    <% } %>
+          <br>
+          <label>Privilegios:</label>
+          <div class="container">
+            <div class="container privilegios-table-container">
+              <table class="table table-active" style="margin: 0 auto; height: 86px;">
+                <thead class="sticky-top">
+                  <tr>
+                    <th>ID</th>
+                    <th>Privilegios</th>
+                    <th>Selec.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% privilegios.forEach(function(privilegio) { %>
+                    <tr>
+                      <td>
+                        <%= privilegio.id_cu %>
                       </td>
-                </tr>
-                <% }); %>
-            </tbody>
-          </table>
-        </div>
+                      <td>
+                        <%= privilegio.nombrecu %>
+                      </td>
+                      <td>
+                        <label class="switch">
+                          <input type="checkbox" name="privilegios" value="<%= privilegio.id_cu %>">
+                          <div class="slider"></div>
+                          <div class="slider-card">
+                            <div class="slider-card-face slider-card-front"></div>
+                            <div class="slider-card-face slider-card-back"></div>
+                          </div>
+                        </label>
+                      </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+          <label>Roles Registrados:</label>
+          <div class="col-md-10">
+            <div class="container">
+              <table class="table table-active" style="margin: 0 auto;">
+                <thead class="sticky-top">
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre del Rol</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% roles.forEach(function(rol) { %>
+                    <tr>
+                      <td>
+                        <%= rol.id_rol %>
+                      </td>
+                      <td>
+                        <%= rol.nombreRol %>
+                      </td>
+                      <td>
+                        <a href="/admin/adminDashboard/modrol/<%= rol.id_rol %>"><i
+                            class="fa-solid fa-pen-to-square fa-lg" style="color: #cdcdcd;"></i></a>
+                        <% if (rol.statusRol=='on' ) { %>
+                          <a href="/admin/adminDashboard/reg_rol/delete/<%= rol.id_rol %>"
+                            class="btn btn-dark text-light">Desactivar</a>
+                          <% } else { %>
+                            <a href="/admin/adminDashboard/reg_rol/activate/<%= rol.id_rol %>"
+                              class="btn btn-custom">Activar</a>
+                            <% } %>
+                      </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+
+        </form>
       </div>
-      <br>
+    </div>
 
-    </form>
-  </div>
-</div>
-
-<%- include('includes/footAdmin.ejs') %>
-
+    <%- include('includes/footAdmin.ejs') %>

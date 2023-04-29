@@ -746,29 +746,26 @@ exports.postadminreg_rol = function (req, res) {
             req.app.locals.mensaje = "Rol Registrado Correctamente.";
             insertedIdRol = result.insertId;
             const promises = ids_casos_uso.map((id_caso_uso) => {
-                if (id_caso_uso) {
-                    const trimmedIdCasoUso = id_caso_uso.trim();
-                    const rolPrivilegio = new RolPrivilegio(
-                        insertedIdRol,
-                        trimmedIdCasoUso
-                    );
-                    console.log(
-                        `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${trimmedIdCasoUso}`
-                    );
-                    return rolPrivilegio
-                        .save()
-                        .then(() =>
-                            console.log(
-                                `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${trimmedIdCasoUso}`
-                            )
+                const rolPrivilegio = new RolPrivilegio(
+                    insertedIdRol,
+                    id_caso_uso.trim()
+                );
+                console.log(
+                    `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`
+                );
+                return rolPrivilegio
+                    .save()
+                    .then(() =>
+                        console.log(
+                            `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`
                         )
-                        .catch((error) =>
-                            console.error(
-                                `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${trimmedIdCasoUso}:`,
-                                error
-                            )
-                        );
-                }
+                    )
+                    .catch((error) =>
+                        console.error(
+                            `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`,
+                            error
+                        )
+                    );
             });
             return Promise.all(promises);
         })
