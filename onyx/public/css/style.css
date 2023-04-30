@@ -988,3 +988,8 @@ tbody {
   height: 100%;
   object-fit: cover;
 }
+
+.numcal {
+  font-size: 20px;
+  font-weight: bold;
+}	
