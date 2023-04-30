@@ -3,6 +3,8 @@ const router = express.Router();
 const path = require("path");
 const checkPrivilegio = require("../util/checkPrivilegios");
 const adminController = require("../controllers/admin");
+const csrf = require("csurf");
+const csrfProtection = csrf();
 
 router.get("/admindashboard", checkPrivilegio('Admin dashboard'),
              adminController.getAdminDashboard);
@@ -23,16 +25,16 @@ router.post("/admindashboard/userprivileges/add", checkPrivilegio('Registrar usu
              adminController.postAdminDashboardAddUser);
 
 router.post("/admindashboard/userprivileges/delete/:email", checkPrivilegio('Eliminar usuarios'),
-             adminController.deleteAdminDashboarUser);
+             adminController.deleteAdminDashboardUser);
 
 router.post("/admindashboard/diets/deleteFood/:id", checkPrivilegio('Eliminar alimento'), 
                 adminController.getAdminDeleteAlimento);
 
-router.get('/admindashboard/diets/Alimento/add', checkPrivilegio('Consultar alimento'),
-                adminController.getAdminAddAlimento);
+// router.get('/admindashboard/diets/Alimento/add', csrfProtection, checkPrivilegio('Consultar alimento'),
+//                 adminController.getAdminAddAlimento);
 
-router.post('/admindashboard/diets/Alimento/add', checkPrivilegio('Registrar alimento'),
-                adminController.postAdminAddAlimento);
+// router.post('/admindashboard/diets/Alimento/add',csrfProtection, checkPrivilegio('Registrar alimento'),
+//                 adminController.postAdminAddAlimento);
 
 router.post("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar alimento'),
                 adminController.postAdminModAlimento);
@@ -43,7 +45,7 @@ router.get("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar a
 router.get("/admindashboard/diets", checkPrivilegio('Consultar dieta'), checkPrivilegio('Registrar dieta'),
              adminController.getAdminDashboardDietas);
 
-router.get("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
+router.get("/admindashboard/diets/add", csrfProtection, checkPrivilegio('Registrar dieta'),
              adminController.getAdminNuevaDieta);
 
 router.post("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
