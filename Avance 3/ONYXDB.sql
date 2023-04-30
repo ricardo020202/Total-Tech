@@ -153,6 +153,8 @@ CREATE TABLE dieta(
     ac_folico FLOAT,
     folato FLOAT,
     nombre_dieta VARCHAR(100) NOT NULL,
+    alimento LONGTEXT NOT NULL,
+    foto_dieta VARCHAR(200),
     PRIMARY KEY(id_dieta)
 );
 
