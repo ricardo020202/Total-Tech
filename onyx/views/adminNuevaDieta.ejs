@@ -1,270 +1,298 @@
-<%- include('includes/headAdmin.ejs') %> <%- include('includes/sidebar.ejs') %>
+<%- include('includes/headAdmin.ejs') %>
+  <%- include('includes/sidebar.ejs') %>
     <link rel="stylesheet" href="/css/adminStyle.css" />
-
-
+    <script src='https://cdn.tiny.cloud/1/uz3ydfb6sutfqdre9fd9jk81pdjdml2kz44i2i5gphx1kbzj/tinymce/6/tinymce.min.js'>
+    </script>
+    <script>
+      tinymce.init({
+        selector: 'textarea#myTextarea',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        toolbar_mode: 'floating',
+      });
+    </script>
     <h1 style="margin-left: 300px">Registrar dieta</h1>
 
     <div id="nuevadietacontainer" class="container">
-      <form action="/admin/admindashboard/diets/add" method="POST">
-        <div class="row">
-          <div class="col">
-            <div class="row">
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <form action="/admin/admindashboard/diets/add" method="POST">
+
               <table class="form-dieta">
                 <thead>
                   <tr>
-                    <th scope="col">Macronutirntes</th>
+                    <th scope="col">Macronutrientes</th>
                     <th scope="col">Cantidad</th>
-
                   </tr>
                 </thead>
-                <tr>
-                  <td>
-                    <label for="nombre_dieta" class="form-label">Nombre dieta:</label>
-                  </td>
-                  <td>
-                    <input type="text" name="nombre_dieta" class="form-control w-50" required />
-                  </td>
-                </tr>
-                <tr>
-                  <td><label for="no_calorias" class="form-label">No. de Calorías:</label></td>
-                  <td>
-                    <input type="number" name="no_calorias" class="form-control w-50" required />
-                  </td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>
+                      <label for="nombre_dieta" class="form-label">Nombre dieta:</label>
+                    </td>
+                    <td>
+                      <input type="text" name="nombre_dieta" class="form-control w-50" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="no_calorias" class="form-label">No. de Calorías:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="no_calorias" class="form-control w-50" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="proteinas" class="form-label">Proteínas:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="proteinas" class="form-control w-50" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="grasas" class="form-label">Grasas:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="grasas" class="form-control w-50" required />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="carbohidratos" class="form-label">Carbohidratos:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="carbohidratos" class="form-control w-50" required />
+                    </td>
+                  </tr>
+                </tbody>
               </table>
-            </div>
 
-            <div class="row">
               <table class="form-dieta">
                 <thead>
                   <tr>
-                    <th scope="col">Macronutirntes</th>
+                    <th scope="col">Micronutrientes</th>
                     <th scope="col">Cantidad</th>
-
                   </tr>
                 </thead>
-                <tr>
-                  <td>
+                <tbody>
+                  <tr>
+                    <td>
+                      <label for="fibra_total" class="form-label">Fibra Total:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="fibra_total" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="ceniza" class="form-label">Ceniza:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="ceniza" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="calcio" class="form-label">Calcio:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="calcio" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
 
-                    <label for="proteinas" class="form-label">Proteínas:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="proteinas" class="form-control w-50" required />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label for="grasas" class="form-label">Grasas:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="grasas" class="form-control w-50" required />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label for="carbohidratos" class="form-label">Carbohidratos:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="carbohidratos" class="form-control w-50" required />
-                  </td>
-                </tr>
-              </table>
+                      <label for="fosforo" class="form-label">Fosforo:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="fosforo" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="hierro" class="form-label">Hierro:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="hierro" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="tiamina" class="form-label">Tiamina:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="tiamina" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="riboflavina" class="form-label">Riboflavina:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="riboflavina" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="niacina" class="form-label">Niacina:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="niacina" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="vitamina_c" class="form-label">Vitamina C:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="vitamina_c" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="vitamina_a" class="form-label">Vitamina A:</label>
+                    </td>
+                    <td>
+                      <input type="number" name="vitamina_a" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="colesterol" class="form-label">Colesterol:</label>
+                    </td>
+                    <td>
+
+                      <input type="number" step="0.01" name="colesterol" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="potasio" class="form-label">Potasio:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="potasio" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="sodio" class="form-label">Sodio:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="sodio" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="zinc" class="form-label">Zinc:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="zinc" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="magnesio" class="form-label">Magnesio:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="magnesio" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="vit_b6" class="form-label">Vitamina B6:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="vit_b6" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="vit_b12" class="form-label">Vitamina B12:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="vit_b12" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="ac_folico" class="form-label">Ácido Fólico:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="ac_folico" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+
+                      <label for="folato" class="form-label">Folato:</label>
+                    </td>
+                    <td>
+                      <input type="number" step="0.01" name="folato" class="form-control w-50" />
+                    </td>
+                  </tr>
+                  <tr>
+                    
+                    <td>
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <input type="submit" value="Añadir Dieta" class="btn btn-primary" />
+                    </td>
+                    <td>
+                      <a href="/admin/admindashboard/diets" class="btn btn-danger">Cancelar</a>
+                    </td>
+                  </tr>
+                  
+            </form>
+            </table>
+            <div class="form" style="text-align: center;">
+              <label for="myTextarea" class="form-dieta">Alimento</label>
+              <textarea id="myTextarea" name="alimento"></textarea>
             </div>
+
           </div>
 
-          <div class="col mx-5">
-            <div class="row">
-              <table class="form-dieta">
-                <thead>
-                  <tr>
-                    <th scope="col">Micronutriente</th>
-                    <th scope="col">Cantidad</th>
+        </div>
+        
+      </div>
 
-                  </tr>
-                </thead>
-                <tr>
-                  <td>
-
-                    <label for="fibra_total" class="form-label">Fibra Total:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="fibra_total" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label for="ceniza" class="form-label">Ceniza:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="ceniza" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label for="calcio" class="form-label">Calcio:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="calcio" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="fosforo" class="form-label">Fosforo:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="fosforo" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="hierro" class="form-label">Hierro:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="hierro" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="tiamina" class="form-label">Tiamina:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="tiamina" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="riboflavina" class="form-label">Riboflavina:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="riboflavina" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="niacina" class="form-label">Niacina:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="niacina" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label for="vitamina_c" class="form-label">Vitamina C:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="vitamina_c" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="vitamina_a" class="form-label">Vitamina A:</label>
-                  </td>
-                  <td>
-                    <input type="number" name="vitamina_a" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label for="colesterol" class="form-label">Colesterol:</label>
-                  </td>
-                  <td>
-
-                    <input type="number" step="0.01" name="colesterol" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="potasio" class="form-label">Potasio:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="potasio" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="sodio" class="form-label">Sodio:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="sodio" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="zinc" class="form-label">Zinc:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="zinc" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="magnesio" class="form-label">Magnesio:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="magnesio" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="vit_b6" class="form-label">Vitamina B6:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="vit_b6" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="vit_b12" class="form-label">Vitamina B12:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="vit_b12" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="ac_folico" class="form-label">Ácido Fólico:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="ac_folico" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-
-                    <label for="folato" class="form-label">Folato:</label>
-                  </td>
-                  <td>
-                    <input type="number" step="0.01" name="folato" class="form-control w-50" />
-                  </td>
-                </tr>
-                <tr>
-
-                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-                  <td>
-                    <input type="submit" value="Agregar Dieta" class="btn btn-primary" />
-                  </td>
-                  <td>
-                    <a href="/admin/admindashboard/diets" class="btn btn-danger">Cancelar</a>
-                  </td>
-
-                </tr>
-              </table>
-            </div>
-          </div>
-      </form>
     </div>
+
+    <script>
+      type = "text/javascript"
+      referrerpolicy = "origin" >
+        tinymce.init({
+          selector: 'textarea#myTextarea',
+          plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          toolbar_mode: 'floating',
+        });
+      document.getElementById("agregarAlimento").addEventListener("click", function () {
+        const descripcion = document.getElementById("descripcion_alimento").value;
+        const unidad = document.getElementById("unidad").value;
+        const cantidad = document.getElementById("cantidad").value;
+
+        if (descripcion && unidad && cantidad) {
+          const alimentoHtml = `<p><strong>Descripción:</strong> ${descripcion}, <strong>Unidad:</strong> ${unidad}, <strong>Cantidad:</strong> ${cantidad}</p>`;
+          tinymce.activeEditor.insertContent(alimentoHtml);
+        } else {
+          alert("Por favor, complete la información del alimento antes de agregarlo.");
+        }
+      });
+
+
+    </script>
+
 
     <%- include('includes/footAdmin.ejs') %>

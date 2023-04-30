@@ -186,6 +186,7 @@ exports.postAdminEliminarPrograma = (req, res, next) => {
 };
 
 exports.getAdminNuevaDieta = (req, res, next) => {
+    const csrfProctection = req.csrfToken();
     res.render("adminNuevaDieta", {
         pagetitle: "Nueva Dieta",
         user: req.session.user || "",
@@ -196,55 +197,56 @@ exports.getAdminNuevaDieta = (req, res, next) => {
     });
 };
 
-exports.postAdminNuevaDieta = (req, res, next) => {
+exports.postAdminNuevaDieta = async (req, res, next) => {
+   
+
+    const alimentohtml = req.body.alimento;
+
     const dieta = new Dieta({
         nombre_dieta: req.body.nombre_dieta,
         calorias: req.body.no_calorias,
         proteinas: req.body.proteinas,
         grasas: req.body.grasas,
         carbohidratos: req.body.carbohidratos,
-        fibra_total: req.body.fibra_total || 0,
-        ceniza: req.body.ceniza || 0,
-        calcio: req.body.calcio || 0,
-        fosforo: req.body.fosforo || 0,
-        hierro: req.body.hierro || 0,
-        tiamina: req.body.tiamina || 0,
-        riboflavina: req.body.riboflavina || 0,
-        niacina: req.body.niacina || 0,
-        vitamina_c: req.body.vitamina_c || 0,
-        vitamina_a: req.body.vitamina_a || 0,
-        ac_graso_mono: req.body.ac_graso_mono || 0,
-        ac_graso_poli: req.body.ac_graso_poli || 0,
-        ac_graso_saturado: req.body.ac_graso_saturado || 0,
-        colesterol: req.body.colesterol || 0,
-        potasio: req.body.potasio || 0,
-        sodio: req.body.sodio || 0,
-        zinc: req.body.zinc || 0,
-        magnesio: req.body.magnesio || 0,
-        vit_b6: req.body.vit_b6 || 0,
-        vit_b12: req.body.vit_b12 || 0,
-        ac_folico: req.body.ac_folico || 0,
-        folato: req.body.folato || 0,
+        fibra_total: req.body.fibra_total,
+        ceniza: req.body.ceniza,
+        calcio: req.body.calcio,
+        fosforo: req.body.fosforo,
+        hierro: req.body.hierro,
+        tiamina: req.body.tiamina,
+        riboflavina: req.body.riboflavina,
+        niacina: req.body.niacina,
+        vitamina_c: req.body.vitamina_c,
+        vitamina_a: req.body.vitamina_a,
+        ac_graso_mono: req.body.ac_graso_mono,
+        ac_graso_poli: req.body.ac_graso_poli,
+        ac_graso_saturado: req.body.ac_graso_saturado,
+        colesterol: req.body.colesterol,
+        potasio: req.body.potasio,
+        sodio: req.body.sodio,
+        zinc: req.body.zinc,
+        magnesio: req.body.magnesio,
+        vit_b6: req.body.vit_b6,
+        vit_b12: req.body.vit_b12,
+        ac_folico: req.body.ac_folico,
+        folato: req.body.folato,
+        alimento: alimentohtml,
     });
 
-    dieta
-        .save()
-        .then((result) => {
-            res.redirect("/admin/admindashboard/diets");
-        })
-        .catch((err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                    photo: req.session.photo || "",
-                });
-            } else {
-                console.log(err);
-            }
-        });
-};
 
+    try {
+        // Guarda la instancia de Dieta en la base de datos
+        const dietaGuardada = await dieta.save();
+
+
+        // Redirige al usuario a la página de dietas cuando se haya guardado correctamente
+        res.redirect('/admin/admindashboard/diets');
+    } catch (error) {
+        console.error(error);
+        // Maneja el error y renderiza una página de error o envía un mensaje de error al usuario
+        res.status(500).send('Error al guardar la dieta y el alimento');
+    }
+};
 
 exports.postAdminEliminarDieta = (req, res, next) => {
     const id_dieta = req.params.id_dieta;
@@ -259,6 +261,7 @@ exports.postAdminEliminarDieta = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
                 });
             } else {
                 console.log(err);
@@ -426,7 +429,7 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
     }
 };
 
-exports.deleteAdminDashboarUser = (req, res, next) => {
+exports.deleteAdminDashboardUser = (req, res, next) => {
     const email = req.params.email;
 
 
@@ -731,26 +734,29 @@ exports.postadminreg_rol = function (req, res) {
             req.app.locals.mensaje = "Rol Registrado Correctamente.";
             insertedIdRol = result.insertId;
             const promises = ids_casos_uso.map((id_caso_uso) => {
-                const rolPrivilegio = new RolPrivilegio(
-                    insertedIdRol,
-                    id_caso_uso.trim()
-                );
-                console.log(
-                    `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`
-                );
-                return rolPrivilegio
-                    .save()
-                    .then(() =>
-                        console.log(
-                            `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`
-                        )
-                    )
-                    .catch((error) =>
-                        console.error(
-                            `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`,
-                            error
-                        )
+                if (id_caso_uso) {
+                    const trimmedIdCasoUso = id_caso_uso.trim();
+                    const rolPrivilegio = new RolPrivilegio(
+                        insertedIdRol,
+                        trimmedIdCasoUso
                     );
+                    console.log(
+                        `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${trimmedIdCasoUso}`
+                    );
+                    return rolPrivilegio
+                        .save()
+                        .then(() =>
+                            console.log(
+                                `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${trimmedIdCasoUso}`
+                            )
+                        )
+                        .catch((error) =>
+                            console.error(
+                                `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${trimmedIdCasoUso}:`,
+                                error
+                            )
+                        );
+                }
             });
             return Promise.all(promises);
         })
@@ -761,46 +767,6 @@ exports.postadminreg_rol = function (req, res) {
         .catch((error) => {
             console.error(error);
             req.session.mensaje = "Error al registrar el rol.";
-        });
-};
-
-exports.getAdminAddAlimento = (req, res, next) => {
-    const mensaje = "";
-    res.render("adminNuevoAlimento", {
-        pagetitle: "Nuevo alimento",
-        user: req.session.user || "",
-        csrfToken: req.csrfToken(),
-        Message: mensaje,
-        photo: req.session.photo || "",
-    });
-};
-
-exports.postAdminAddAlimento = (req, res, next) => {
-    const descripcion = req.body.descripcion_alimento;
-    const unidad = req.body.unidad;
-    const cantidad = req.body.cantidad;
-    const id_dieta = req.body.id_dieta;
-
-    const alimento = new Alimento({ descripcion: descripcion, unidad: unidad, cantidad: cantidad });
-
-    alimento.save()
-        .then((id_alimento) => {
-            console.log("id_alimento", id_alimento); // Agrega esta línea
-            return Alimento.addToDietaAlimento(id_dieta, id_alimento);
-        })
-        .then(() => {
-            const mensaje = "Alimento registrado correctamente";
-            res.render("adminNuevoAlimento", {
-                pagetitle: "Nuevo alimento",
-                user: req.session.user || "",
-                csrfToken: req.csrfToken(),
-                Message: mensaje,
-                photo: req.session.photo || "",
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
         });
 };
 
@@ -927,3 +893,13 @@ exports.getGraficaEjercicios = async (req, res, next) => {
         console.log(err);
     }
 };
+
+// exports.getAdminAddAlimento = (req, res, next) => {
+//     res.render("adminNuevoAlimento", {
+//         pagetitle: "Nuevo alimento",
+//         user: req.session.user || "",
+//         photo: req.session.photo || "",
+//         csrfToken: req.csrfToken(),
+//     });
+// };
+
