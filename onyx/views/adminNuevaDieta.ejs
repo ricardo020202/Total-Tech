@@ -5,11 +5,11 @@
     <h1 style="margin-left: 300px">Registrar dieta</h1>
 
     <div id="nuevadietacontainer" class="container">
-      <div class="row">
-        <div class="col">
-          <div class="row">
-            <table class="form-dieta">
-              <form action="/admin/admindashboard/diets/add" method="POST">
+      <form action="/admin/admindashboard/diets/add" method="POST">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <table class="form-dieta">
                 <thead>
                   <tr>
                     <th scope="col">Macronutirntes</th>
@@ -17,7 +17,6 @@
 
                   </tr>
                 </thead>
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                 <tr>
                   <td>
                     <label for="nombre_dieta" class="form-label">Nombre dieta:</label>
@@ -32,13 +31,11 @@
                     <input type="number" name="no_calorias" class="form-control w-50" required />
                   </td>
                 </tr>
-              </form>
-            </table>
-          </div>
+              </table>
+            </div>
 
-          <div class="row">
-            <table class="form-dieta">
-              <form action="/admin/admindashboard/diets/add" method="POST">
+            <div class="row">
+              <table class="form-dieta">
                 <thead>
                   <tr>
                     <th scope="col">Macronutirntes</th>
@@ -46,7 +43,6 @@
 
                   </tr>
                 </thead>
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                 <tr>
                   <td>
 
@@ -66,33 +62,29 @@
                 </tr>
                 <tr>
                   <td>
-
                     <label for="carbohidratos" class="form-label">Carbohidratos:</label>
                   </td>
                   <td>
                     <input type="number" name="carbohidratos" class="form-control w-50" required />
                   </td>
                 </tr>
-              </form>
-            </table>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <div class="col mx-5">
-          <div class="row">
-            <table class="form-dieta">
-              <form action="/admin/admindashboard/diets/add" method="POST">
+          <div class="col mx-5">
+            <div class="row">
+              <table class="form-dieta">
                 <thead>
                   <tr>
                     <th scope="col">Micronutriente</th>
                     <th scope="col">Cantidad</th>
-  
+
                   </tr>
                 </thead>
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                 <tr>
                   <td>
-  
+
                     <label for="fibra_total" class="form-label">Fibra Total:</label>
                   </td>
                   <td>
@@ -117,7 +109,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="fosforo" class="form-label">Fosforo:</label>
                   </td>
                   <td>
@@ -126,7 +118,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="hierro" class="form-label">Hierro:</label>
                   </td>
                   <td>
@@ -135,7 +127,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="tiamina" class="form-label">Tiamina:</label>
                   </td>
                   <td>
@@ -144,7 +136,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="riboflavina" class="form-label">Riboflavina:</label>
                   </td>
                   <td>
@@ -153,7 +145,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="niacina" class="form-label">Niacina:</label>
                   </td>
                   <td>
@@ -170,7 +162,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="vitamina_a" class="form-label">Vitamina A:</label>
                   </td>
                   <td>
@@ -182,13 +174,13 @@
                     <label for="colesterol" class="form-label">Colesterol:</label>
                   </td>
                   <td>
-  
+
                     <input type="number" step="0.01" name="colesterol" class="form-control w-50" />
                   </td>
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="potasio" class="form-label">Potasio:</label>
                   </td>
                   <td>
@@ -197,7 +189,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="sodio" class="form-label">Sodio:</label>
                   </td>
                   <td>
@@ -206,7 +198,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="zinc" class="form-label">Zinc:</label>
                   </td>
                   <td>
@@ -215,7 +207,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="magnesio" class="form-label">Magnesio:</label>
                   </td>
                   <td>
@@ -224,7 +216,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="vit_b6" class="form-label">Vitamina B6:</label>
                   </td>
                   <td>
@@ -233,7 +225,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="vit_b12" class="form-label">Vitamina B12:</label>
                   </td>
                   <td>
@@ -242,7 +234,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="ac_folico" class="form-label">Ácido Fólico:</label>
                   </td>
                   <td>
@@ -251,7 +243,7 @@
                 </tr>
                 <tr>
                   <td>
-  
+
                     <label for="folato" class="form-label">Folato:</label>
                   </td>
                   <td>
@@ -259,18 +251,20 @@
                   </td>
                 </tr>
                 <tr>
+
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                   <td>
                     <input type="submit" value="Agregar Dieta" class="btn btn-primary" />
                   </td>
                   <td>
                     <a href="/admin/admindashboard/diets" class="btn btn-danger">Cancelar</a>
                   </td>
+
                 </tr>
-              </form>
-            </table>
+              </table>
+            </div>
           </div>
-        </div>
-      </div>
+      </form>
     </div>
 
     <%- include('includes/footAdmin.ejs') %>

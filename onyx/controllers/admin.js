@@ -203,62 +203,44 @@ exports.postAdminNuevaDieta = (req, res, next) => {
         proteinas: req.body.proteinas,
         grasas: req.body.grasas,
         carbohidratos: req.body.carbohidratos,
-        fibra_total: req.body.fibra_total,
-        ceniza: req.body.ceniza,
-        calcio: req.body.calcio,
-        fosforo: req.body.fosforo,
-        hierro: req.body.hierro,
-        tiamina: req.body.tiamina,
-        riboflavina: req.body.riboflavina,
-        niacina: req.body.niacina,
-        vitamina_c: req.body.vitamina_c,
-        vitamina_a: req.body.vitamina_a,
-        ac_graso_mono: req.body.ac_graso_mono,
-        ac_graso_poli: req.body.ac_graso_poli,
-        ac_graso_saturado: req.body.ac_graso_saturado,
-        colesterol: req.body.colesterol,
-        potasio: req.body.potasio,
-        sodio: req.body.sodio,
-        zinc: req.body.zinc,
-        magnesio: req.body.magnesio,
-        vit_b6: req.body.vit_b6,
-        vit_b12: req.body.vit_b12,
-        ac_folico: req.body.ac_folico,
-        folato: req.body.folato
+        fibra_total: req.body.fibra_total || 0,
+        ceniza: req.body.ceniza || 0,
+        calcio: req.body.calcio || 0,
+        fosforo: req.body.fosforo || 0,
+        hierro: req.body.hierro || 0,
+        tiamina: req.body.tiamina || 0,
+        riboflavina: req.body.riboflavina || 0,
+        niacina: req.body.niacina || 0,
+        vitamina_c: req.body.vitamina_c || 0,
+        vitamina_a: req.body.vitamina_a || 0,
+        ac_graso_mono: req.body.ac_graso_mono || 0,
+        ac_graso_poli: req.body.ac_graso_poli || 0,
+        ac_graso_saturado: req.body.ac_graso_saturado || 0,
+        colesterol: req.body.colesterol || 0,
+        potasio: req.body.potasio || 0,
+        sodio: req.body.sodio || 0,
+        zinc: req.body.zinc || 0,
+        magnesio: req.body.magnesio || 0,
+        vit_b6: req.body.vit_b6 || 0,
+        vit_b12: req.body.vit_b12 || 0,
+        ac_folico: req.body.ac_folico || 0,
+        folato: req.body.folato || 0,
     });
 
-    const alimento = new Alimento({
-        descripcion: req.body.descripcion_alimento,
-        unidad: req.body.unidad,
-        cantidad: req.body.cantidad,
-    });
-
-    Alimento.checkIfAlimentoExists(alimento.descripcion)
-        .then((alimentoExists) => {
-            if (alimentoExists) {
-                res.render("adminNuevoAlimento", {
-                    pagetitle: "Nueva dieta",
+    dieta
+        .save()
+        .then((result) => {
+            res.redirect("/admin/admindashboard/diets");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
-                    csrfToken: req.csrfToken(),
-                    Message: "Alimento ya existente"
                 });
             } else {
-                alimento.save()
-                    .then(() => {
-                        res.redirect("/admin/admindashboard/diets");
-                    })
-                    .catch((err) => {
-                        if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                            res.render("dbDown", {
-                                pagetitle: "Error",
-                                user: req.session.user || "",
-                                photo: req.session.photo || "",
-                            });
-                        } else {
-                            console.log(err);
-                        }
-                    });
+                console.log(err);
             }
         });
 };
