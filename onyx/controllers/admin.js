@@ -242,6 +242,83 @@ exports.postAdminNuevaDieta = async (req, res, next) => {
     }
 };
 
+exports.getAdminEditarDieta = (req, res, next) => {
+    const id_dieta = req.params.id_dieta;
+    Dieta.fetchById(id_dieta)
+        .then(([rows, fieldData]) => {
+            res.render("adminEditarDieta", {
+                pagetitle: "Editar Dieta",
+                user: req.session.user || "",
+                Message: "",
+                path: "adminEditarDieta",
+                csrfToken: req.csrfToken(),
+                photo: req.session.photo || "",
+                dieta: rows[0],
+            });
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+            } else {
+                console.log(err);
+            }
+        });
+};
+
+exports.postAdminEditarDieta = (req, res, next) => {
+    const dieta = new Dieta({
+        nombre_dieta: req.body.nombre_dieta,
+        calorias: req.body.no_calorias,
+        proteinas: req.body.proteinas,
+        grasas: req.body.grasas,
+        carbohidratos: req.body.carbohidratos,
+        fibra_total: req.body.fibra_total,
+        ceniza: req.body.ceniza,
+        calcio: req.body.calcio,
+        fosforo: req.body.fosforo,
+        hierro: req.body.hierro,
+        tiamina: req.body.tiamina,
+        riboflavina: req.body.riboflavina,
+        niacina: req.body.niacina,
+        vitamina_c: req.body.vitamina_c,
+        vitamina_a: req.body.vitamina_a,
+        ac_graso_mono: req.body.ac_graso_mono,
+        ac_graso_poli: req.body.ac_graso_poli,
+        ac_graso_saturado: req.body.ac_graso_saturado,
+        colesterol: req.body.colesterol,
+        potasio: req.body.potasio,
+        sodio: req.body.sodio,
+        zinc: req.body.zinc,
+        magnesio: req.body.magnesio,
+        vit_b6: req.body.vit_b6,
+        vit_b12: req.body.vit_b12,
+        ac_folico: req.body.ac_folico,
+        folato: req.body.folato,
+        alimento: req.body.alimento,
+        foto_dieta : req.file.filename,
+    });
+
+    dieta.update(req.params.id_dieta)
+        .then(() => {
+            res.redirect('/admin/admindashboard/diets');
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+            } else {
+                console.log(err);
+            }
+        });
+}
+
 exports.postAdminEliminarDieta = (req, res, next) => {
     const id_dieta = req.params.id_dieta;
 

@@ -1,0 +1,312 @@
+<%- include('includes/headAdmin.ejs') %>
+    <%- include('includes/sidebar.ejs') %>
+        <link rel="stylesheet" href="/css/adminStyle.css" />
+        <script
+            src='https://cdn.tiny.cloud/1/uz3ydfb6sutfqdre9fd9jk81pdjdml2kz44i2i5gphx1kbzj/tinymce/6/tinymce.min.js'>
+            </script>
+        <h1 style="margin-left: 300px">Modificar dieta</h1>
+
+        <div id="nuevadietacontainer" class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <form action="/admin/admindashboard/diets/edit/<%= dieta.id_dieta %>" method="POST" enctype="multipart/form-data">
+
+                            <table class="form-dieta">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Macronutrientes</th>
+                                        <th scope="col">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="nombre_dieta" class="form-label">Nombre dieta:</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="nombre_dieta" class="form-control w-50"
+                                                value="<%= dieta.nombre_dieta %>" required />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="no_calorias" class="form-label">No. de Calorías:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="no_calorias" class="form-control w-50"
+                                                value="<%= dieta.calorias %>" required />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="proteinas" class="form-label">Proteínas:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="proteinas" class="form-control w-50"
+                                                value="<%= dieta.proteinas %>" required />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="grasas" class="form-label">Grasas:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="grasas" class="form-control w-50"
+                                                value="<%= dieta.grasas %>" required />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="carbohidratos" class="form-label">Carbohidratos:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="carbohidratos" class="form-control w-50"
+                                                value="<%= dieta.carbohidratos %>" required />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="form-dieta">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Micronutrientes</th>
+                                        <th scope="col">Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="fibra_total" class="form-label">Fibra Total:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="fibra_total" class="form-control w-50" 
+                                                value="<%= dieta.fibra_total %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="ceniza" class="form-label">Ceniza:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="ceniza" class="form-control w-50"
+                                                value="<%= dieta.ceniza %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="calcio" class="form-label">Calcio:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="calcio" class="form-control w-50"
+                                                value="<%= dieta.calcio %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="fosforo" class="form-label">Fosforo:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="fosforo" class="form-control w-50"
+                                                value="<%= dieta.fosforo %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="hierro" class="form-label">Hierro:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="hierro" class="form-control w-50"
+                                                value="<%= dieta.hierro %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="tiamina" class="form-label">Tiamina:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="tiamina" class="form-control w-50"
+                                                value="<%= dieta.tiamina %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="riboflavina" class="form-label">Riboflavina:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="riboflavina" class="form-control w-50" 
+                                                value="<%= dieta.riboflavina %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="niacina" class="form-label">Niacina:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="niacina" class="form-control w-50"
+                                                value="<%= dieta.niacina %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="vitamina_c" class="form-label">Vitamina C:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="vitamina_c" class="form-control w-50"
+                                                value="<%= dieta.vitamina_c %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="vitamina_a" class="form-label">Vitamina A:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="vitamina_a" class="form-control w-50"
+                                                value="<%= dieta.vitamina_a %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="colesterol" class="form-label">Colesterol:</label>
+                                        </td>
+                                        <td>
+
+                                            <input type="number" step="0.01" name="colesterol"
+                                                class="form-control w-50" value="<%= dieta.colesterol %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="potasio" class="form-label">Potasio:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="potasio" class="form-control w-50"
+                                                value="<%= dieta.potasio %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="sodio" class="form-label">Sodio:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="sodio" class="form-control w-50"
+                                                value="<%= dieta.sodio %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="zinc" class="form-label">Zinc:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="zinc" class="form-control w-50"
+                                                value="<%= dieta.zinc %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="magnesio" class="form-label">Magnesio:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="magnesio"
+                                                class="form-control w-50" value="<%= dieta.magnesio %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="vit_b6" class="form-label">Vitamina B6:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="vit_b6" class="form-control w-50"
+                                                value="<%= dieta.vit_b6 %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="vit_b12" class="form-label">Vitamina B12:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="vit_b12" class="form-control w-50"
+                                                value="<%= dieta.vit_b12 %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="ac_folico" class="form-label">Ácido Fólico:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="ac_folico"
+                                                class="form-control w-50" value="<%= dieta.ac_folico %>" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+
+                                            <label for="folato" class="form-label">Folato:</label>
+                                        </td>
+                                        <td>
+                                            <input type="number" step="0.01" name="folato" class="form-control w-50"
+                                                value="<%= dieta.folato %>" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="mb-5">
+                                <thead>
+                                    <tr>
+                                        <th>Alimentos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <textarea id="myTextarea" name="alimento">
+                                                <%= dieta.alimento %>
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="photo" class="form-label">Imagen dieta</label>
+                                            <input type="file" class="form-control" id="user_pic" name="image"
+                                                value="registrar" accept=".jpg, .jpeg, .png, .gif" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                            <input type="submit" value="Añadir Dieta" class="btn btn-primary" />
+                                            <a href="/admin/admindashboard/diets" class="btn btn-danger">Cancelar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            tinymce.init({
+                selector: 'textarea#myTextarea',
+                plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                toolbar_mode: 'floating',
+            });
+        </script>
+
+
+        <%- include('includes/footAdmin.ejs') %>

@@ -29,9 +29,9 @@
           <tr>
             <th scope="col">Id dieta</th>
             <th scope="col">Nombre dieta</th>
+            <th scope="col">Calorías</th>
             <th scope="col">Grasas</th>
             <th scope="col">Proteínas</th>
-            <th scope="col">Calorías</th>
             <th scope="col">Carbohidratos</th>
             <th scope="col">Acciones</th>
           </tr>
@@ -46,19 +46,21 @@
                 <%= dieta[i].nombre_dieta %>
               </td>
               <td>
+                <%= dieta[i].calorias %>
+              </td>
+              <td>
                 <%= dieta[i].grasas %>
               </td>
               <td>
                 <%= dieta[i].proteinas %>
               </td>
               <td>
-                <%= dieta[i].calorias %>
-              </td>
-              <td>
                 <%= dieta[i].carbohidratos %>
               </td>
               <td>
-                <i class="fa-solid fa-pen-to-square fa-lg" style="color: #c1c1c1;"></i>
+                <a href="/admin/admindashboard/diets/edit/<%= dieta[i].id_dieta %>">
+                  <i class="fa-solid fa-pen-to-square fa-lg" style="color: #c1c1c1;"></i>
+                </a>
                 <i type="button" class="fa-sharp fa-solid fa-trash fa-lg" data-bs-toggle="modal"
                   data-bs-target="#dietaModal<%= i %>" style="color: #cdcdcd"></i>
 

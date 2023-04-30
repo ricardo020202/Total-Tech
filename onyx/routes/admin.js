@@ -51,6 +51,12 @@ router.get("/admindashboard/diets/add", csrfProtection, checkPrivilegio('Registr
 router.post("/admindashboard/diets/add", checkPrivilegio('Registrar dieta'),
              adminController.postAdminNuevaDieta);
 
+router.get("/admindashboard/diets/edit/:id_dieta", checkPrivilegio('Modificar dieta'),
+                adminController.getAdminEditarDieta);
+
+router.post("/admindashboard/diets/edit/:id_dieta", checkPrivilegio('Modificar dieta'),
+                adminController.postAdminEditarDieta);
+
 router.post("/admindashboard/diets/delete/:id_dieta", checkPrivilegio('Eliminar dieta'), 
             adminController.postAdminEliminarDieta);
 
