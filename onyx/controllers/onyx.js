@@ -185,7 +185,7 @@ exports.getDietaAlimento = (req, res, next) => {
 };
 
 exports.getDieta = async (req, res, next) => {
-    const numcal = req.params.numcal || "";
+    const numcal = req.params.numcal || 0;
     const consulta_total = await Dieta.getTotal(); // [rows, fieldData]
     const total = consulta_total[0][0].total;
     const start = req.params.start ? req.params.start : 0;
