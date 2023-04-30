@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -70,6 +71,7 @@
                                     class="nav-link"
                                     aria-current="page"
                                     href="/onyx"
+                                    id="navbarDropdown"
                                     >Home</a
                                 >
                             </li>
@@ -80,6 +82,7 @@
                                     role="button"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
+                                    id="navbarDropdown"
                                 >
                                     Workouts
                                 </a>
@@ -88,6 +91,7 @@
                                         <a
                                             class="dropdown-item"
                                             href="/onyx/catejercicios"
+                                            id="navbarDropdown"
                                             >Catalogo de ejercicios</a
                                         >
                                     </li>
@@ -95,6 +99,7 @@
                                         <a
                                             class="dropdown-item"
                                             href="/onyx/catentrenamientos"
+                                            id="navbarDropdown"
                                             >Catalogo de entrenamientos</a
                                         >
                                     </li>
@@ -102,34 +107,39 @@
                             </li>
                             <li id="navbaritem" class="nav-item">
                                 <a class="nav-link" href="/onyx/dietas"
+                                id="navbarDropdown"
                                     >Dietas</a
                                 >
                             </li>
                             <li id="navbaritem" class="nav-item">
                                 <a class="nav-link" href="/onyx/bitacora"
+                                id="navbarDropdown"
                                     >Bitácora</a
                                 >
                             </li>
                             <li id="navbaritem" class="nav-item">
                                 <a class="nav-link" href="/onyx/dashboard"
+                                id="navbarDropdown"
                                     >Dashboard</a
                                 >
                             </li>
                             <li id="navbaritem" class="nav-item">
                                 <a class="nav-link" href="/onyx/favoritos"
+                                id="navbarDropdown"
                                     >Favoritos</a
                                 >
                             </li>
                         </ul>
-                        <% if (user && rol === 'administrador') { %>
-                            <ul class="navbar-nav mb-2 mb-lg-0 ms-2">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/admin/adminDashboard">Admin dashboard</a>
-                                </li>
-                            </ul>
-                        <% } %>
-                        <% if (user) { %>
-                        
+                        <% if (user){ %>
+                            <% if (rol !== "cliente") { %>
+                                <ul class="navbar-nav mb-2 mb-lg-0 ms-2">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/admin/adminDashboard"
+                                            ><%= rol %></a
+                                        >
+                                    </li>
+                                </ul>
+                                <% } %>
                         <li id="navbaritem"  class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle text-dark"
@@ -187,6 +197,7 @@
                             class="nav-link active text-dark"
                             aria-current="page"
                             href="/users/login"
+                            id="navbarDropdown"
                             ><strong>Log in</strong></a
                         >
                         <a

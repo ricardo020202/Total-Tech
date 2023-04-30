@@ -215,8 +215,29 @@ button:active {
 }
 
 .spacer {
-    height: 100px;
+    height: 70px;
 }
+
+.spacer-nuevoprograma {
+    height: 40px;
+    justify-content: left;
+}
+
+.mb-3
+{
+    justify-content: left;
+}
+
+#descripcion_programa_text
+{
+    transition: transform 0.4s ease;
+}
+
+#descripcion_programa_text:focus
+{
+    transform: scale(1.5);
+}
+
 
 .bg-users {
     background-color: #1c2d38;
@@ -236,6 +257,10 @@ button:active {
 
 .bg-ejercicio {
     background-color: #2a1d31;
+}
+
+.bg-historial {
+    background-color: #38351c;
 }
 
 .card {
@@ -268,6 +293,11 @@ button:active {
 .icon-ejercicio {
     /* change the color of the icon */
     fill: #A8FF33;
+}
+
+.icon-historial {
+    /* change the color of the icon */
+    fill: #ffbb33;
 }
 
 
@@ -460,71 +490,13 @@ td, th {
 }
 
 
-
-
-
-
 /* =============== Nuevo Programa =============== */
-#nuevo-programa{
-    /* make that div a grid */
-    display: grid;
-    /* 2 columns */
-    grid-template-columns: 1fr 1fr;
-    /* 2 rows */
-    grid-template-rows: 1fr 1fr;
-    /* 1fr is
-    1fr = 1fr
-    1fr = 1fr
-    */
-    grid-template-areas:
-    "nombre nombre"
-    "descripcion descripcion";
-    /* 1fr is
-    1fr = 1fr
-    1fr = 1fr
-    */
-    grid-gap: 1rem;
-    /* 1rem = 16px */
-    display: flex;
-    margin-left: 10rem;
+#nuevoprograma-area {
+    width: 40%;
+    justify-content: left;
 
 }
-
-#nuevo-programa input {
-    /* white search bar */
-    background: #FFFFFF;
-    max-width: 100%;
-}
-
-#programa {
-    margin-left: 8rem;
-    margin-top: 15rem;
-    /* elements in a row */
-}
-
-#form-nuevo-programa {
-    /* make that div a grid */
-    display: grid;
-    /* 2 columns */
-    grid-template-columns: 1fr 1fr;
-    /* 2 rows */
-    grid-template-rows: 1fr 1fr;
-    /* 1fr is
-    1fr = 1fr
-    1fr = 1fr
-    */
-    grid-template-areas:
-    "nombre nombre"
-    "descripcion descripcion";
-    /* 1fr is
-    1fr = 1fr
-    1fr = 1fr
-    */
-    grid-gap: 1rem;
-    /* 1rem = 16px */
-    margin-top: 5rem;
-}
-
+  
 .nav-link2 {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -694,4 +666,31 @@ td, th {
 
 .modal-content{
     background-color: #2c343a;
+}
+
+#plotly-chart
+{
+    transition: transform 0.4 ease;
+}
+
+
+#plotly-chart
+{
+    transform: scale(1.1);
+}
+
+.form-dieta td input {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* #tablemacro
+{
+    margin-bottom: ;
+} */
+
+#nuevadietacontainer
+{
+    margin-left: 10px;
 }

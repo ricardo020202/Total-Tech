@@ -35,7 +35,6 @@ exports.getAdminDashboardEjercicios = async (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -61,7 +60,6 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -99,7 +97,7 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
         .save()
         .then((result) => {
             res.redirect("/admin/admindashboard/programas");
-            
+
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -108,7 +106,6 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -206,72 +203,53 @@ exports.postAdminNuevaDieta = (req, res, next) => {
         proteinas: req.body.proteinas,
         grasas: req.body.grasas,
         carbohidratos: req.body.carbohidratos,
-        fibra_total: req.body.fibra_total,
-        ceniza: req.body.ceniza,
-        calcio: req.body.calcio,
-        fosforo: req.body.fosforo,
-        hierro: req.body.hierro,
-        tiamina: req.body.tiamina,
-        riboflavina: req.body.riboflavina,
-        niacina: req.body.niacina,
-        vitamina_c: req.body.vitamina_c,
-        vitamina_a: req.body.vitamina_a,
-        ac_graso_mono: req.body.ac_graso_mono,
-        ac_graso_poli: req.body.ac_graso_poli,
-        ac_graso_saturado: req.body.ac_graso_saturado,
-        colesterol: req.body.colesterol,
-        potasio: req.body.potasio,
-        sodio: req.body.sodio,
-        zinc: req.body.zinc,
-        magnesio: req.body.magnesio,
-        vit_b6: req.body.vit_b6,
-        vit_b12: req.body.vit_b12,
-        ac_folico: req.body.ac_folico,
-        folato: req.body.folato
+        fibra_total: req.body.fibra_total || 0,
+        ceniza: req.body.ceniza || 0,
+        calcio: req.body.calcio || 0,
+        fosforo: req.body.fosforo || 0,
+        hierro: req.body.hierro || 0,
+        tiamina: req.body.tiamina || 0,
+        riboflavina: req.body.riboflavina || 0,
+        niacina: req.body.niacina || 0,
+        vitamina_c: req.body.vitamina_c || 0,
+        vitamina_a: req.body.vitamina_a || 0,
+        ac_graso_mono: req.body.ac_graso_mono || 0,
+        ac_graso_poli: req.body.ac_graso_poli || 0,
+        ac_graso_saturado: req.body.ac_graso_saturado || 0,
+        colesterol: req.body.colesterol || 0,
+        potasio: req.body.potasio || 0,
+        sodio: req.body.sodio || 0,
+        zinc: req.body.zinc || 0,
+        magnesio: req.body.magnesio || 0,
+        vit_b6: req.body.vit_b6 || 0,
+        vit_b12: req.body.vit_b12 || 0,
+        ac_folico: req.body.ac_folico || 0,
+        folato: req.body.folato || 0,
     });
 
-    const alimento = new Alimento({
-        descripcion: req.body.descripcion_alimento,
-        unidad: req.body.unidad,
-        cantidad: req.body.cantidad,
-    });
-
-    Alimento.checkIfAlimentoExists(alimento.descripcion)
-        .then((alimentoExists) => {
-            if (alimentoExists) {
-                res.render("adminNuevoAlimento", {
-                    pagetitle: "Nueva dieta",
+    dieta
+        .save()
+        .then((result) => {
+            res.redirect("/admin/admindashboard/diets");
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
-                    csrfToken: req.csrfToken(),
-                    Message: "Alimento ya existente"
                 });
             } else {
-                alimento.save()
-                    .then(() => {
-                        res.redirect("/admin/admindashboard/diets");
-                    })
-                    .catch((err) => {
-                        if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                            res.render("dbDown", {
-                                pagetitle: "Error",
-                                user: req.session.user || "",
-                                photo: req.session.photo || "",
-                            });
-                        } else {
-                            console.log(err);
-                        }
-                    });
+                console.log(err);
             }
         });
 };
 
 
-exports.postAdminEliminarDieta = (req, res, next) =>
-{
+exports.postAdminEliminarDieta = (req, res, next) => {
     const id_dieta = req.params.id_dieta;
-    
-        Dieta.deleteById(id_dieta)
+
+    Dieta.deleteById(id_dieta)
         .then(() => {
             res.redirect('/admin/admindashboard/diets');
         })
@@ -310,7 +288,6 @@ exports.postAdminNuevoEjercicio = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -334,7 +311,7 @@ exports.deleteAdminEjercicio = (req, res, next) => {
 
 exports.getAdminDashboardAddUser = (req, res, next) => {
     const id = req.params.email || "";
-    
+
     Rol.fetchAllButUsers()
         .then(([rows]) => {
             res.render("adminNuevoUsuario", {
@@ -375,7 +352,7 @@ exports.getAdminDashboardModUser = async (req, res, next) => {
                         roles: roles,
                     });
                 })
-                .catch((err) => {    
+                .catch((err) => {
                     console.log(err);
                     next(err);
                 });
@@ -438,7 +415,7 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
                         user: req.session.user || "",
                         photo: req.session.photo || "",
                     });
-                    return { medidas: [], fechas: [] };
+
                 } else {
                     console.log(err);
                 }
@@ -485,7 +462,7 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                             user: req.session.user || "",
                             photo: req.session.photo || "",
                         });
-                        return { medidas: [], fechas: [] };
+    
                     } else {
                         console.log(err);
                     }
@@ -498,7 +475,6 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -530,7 +506,6 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(error);
             }
@@ -566,74 +541,74 @@ exports.getAdminModRol = (req, res, next) => {
     let rolPrivilegio = [];
 
     Privilegio.fetchAll()
-      .then(privilegesRows => {
-        privileges = privilegesRows;
-        return Rol.fetchAll();
-      })
-      .then(rolesRows => {
-        roles = rolesRows;
-  
-        // Fetch all rolPrivilegio records
-        return RolPrivilegio.getByIdRol(rol);
-      })
-      .then(rolPrivilegioRows => {
-        rolPrivilegio = rolPrivilegioRows;
-  
-        res.render("modrol", {
-          roles: roles[0],
-          privileges: privileges[0],
-          rolPrivilegio: rolPrivilegio[0], // Pass the rolPrivilegio array to the view
-          id: rol,
-          pagetitle: "Modificar rol",
-          user: req.session.user || "",
-          csrfToken: req.csrfToken(),
-          photo: req.session.photo || "",
+        .then(privilegesRows => {
+            privileges = privilegesRows;
+            return Rol.fetchAll();
+        })
+        .then(rolesRows => {
+            roles = rolesRows;
+
+            // Fetch all rolPrivilegio records
+            return RolPrivilegio.getByIdRol(rol);
+        })
+        .then(rolPrivilegioRows => {
+            rolPrivilegio = rolPrivilegioRows;
+
+            res.render("modrol", {
+                roles: roles[0],
+                privileges: privileges[0],
+                rolPrivilegio: rolPrivilegio[0], // Pass the rolPrivilegio array to the view
+                id: rol,
+                pagetitle: "Modificar rol",
+                user: req.session.user || "",
+                csrfToken: req.csrfToken(),
+                photo: req.session.photo || "",
+            });
+        })
+        .catch(error => {
+            if (error.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                });
+            } else {
+                console.log(error);
+            }
         });
-      })
-      .catch(error => {
-        if (error.code === "PROTOCOL_CONNECTION_LOST") {
-          res.render("dbDown", {
-            pagetitle: "Error",
-            user: req.session.user || "",
-            photo: req.session.photo || "",
-          });
-        } else {
-          console.log(error);
-        }
-      });    
-  
+
 };
-  
+
 exports.postAdminModRol = (req, res, next) => {
     const id = req.params.id;
     let privileges = Array.isArray(req.body['privilege[]']) ? req.body['privilege[]'] : [req.body['privilege[]']];
     var rolPrivilegioNuevo;
-    
+
     // Set privileges to an empty array if it is undefined or null
     if (privileges && privileges[0] === undefined) {
         privileges = [];
-      } 
+    }
     // Delete existing RolPrivilegio records for the given idRol
     RolPrivilegio.deleteByRol(id)
-      .then(() => {
-        // Only continue if privileges have a length greater than 0
-        if (!privileges.length) {
-          res.redirect('/admin/adminDashboard/modrol/'+id);
-          return;
-        }
-        
-        // Insert new RolPrivilegio records for each privilege in the array
-        privileges.forEach((privilege) => {
-          rolPrivilegioNuevo = new RolPrivilegio(id, privilege);
-          rolPrivilegioNuevo.save();
+        .then(() => {
+            // Only continue if privileges have a length greater than 0
+            if (!privileges.length) {
+                res.redirect('/admin/adminDashboard/modrol/' + id);
+                return;
+            }
+
+            // Insert new RolPrivilegio records for each privilege in the array
+            privileges.forEach((privilege) => {
+                rolPrivilegioNuevo = new RolPrivilegio(id, privilege);
+                rolPrivilegioNuevo.save();
+            });
+            res.redirect('/admin/adminDashboard/modrol/' + id);
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
         });
-        res.redirect('/admin/adminDashboard/modrol/'+id);
-      })
-      .catch((err) => {
-        console.log(err);
-        next(err);
-      });
-  };
+};
 
 exports.getAdminModAlimento = (req, res, next) => {
     const id = req.params.id;
@@ -706,38 +681,38 @@ exports.getAdminDeleteAlimento = (req, res, next) => {
             next(err);
         });
 };
-  
+
 exports.getadminreg_rol = (req, res, next) => {
     const mensaje =
         req.query.mensaje === "success" ? "Rol registrado correctamente." : "";
 
     Rol.fetchAll()
-      .then(([rows]) => {
-        const csrfToken = req.csrfToken();
-        const roles = rows.map(row => {
-          return {id: row.id_rol, nombre: row.nombreRol};
-        });
-  
-        // Busca todos los privilegios
-        return Privilegio.fetchAll()
-          .then(([privilegios]) => {
-            // Renderiza la vista con los roles y los privilegios
-            res.render('reg_rol', {
-              pagetitle: 'Registrar Rol',
-              mensaje: mensaje,
-              user: req.session.user,
-              roles: rows,
-              privilegios: privilegios, // Añade los privilegios aquí
-              csrfToken: csrfToken,
-              photo: req.session.photo || "",
+        .then(([rows]) => {
+            const csrfToken = req.csrfToken();
+            const roles = rows.map(row => {
+                return { id: row.id_rol, nombre: row.nombreRol };
             });
-            res.locals.mensaje = "";
-          });
-      })
-      .catch(err => console.log(err));
-  };
 
-  exports.postadminreg_rol = function (req, res) {
+            // Busca todos los privilegios
+            return Privilegio.fetchAll()
+                .then(([privilegios]) => {
+                    // Renderiza la vista con los roles y los privilegios
+                    res.render('reg_rol', {
+                        pagetitle: 'Registrar Rol',
+                        mensaje: mensaje,
+                        user: req.session.user,
+                        roles: rows,
+                        privilegios: privilegios, // Añade los privilegios aquí
+                        csrfToken: csrfToken,
+                        photo: req.session.photo || "",
+                    });
+                    res.locals.mensaje = "";
+                });
+        })
+        .catch(err => console.log(err));
+};
+
+exports.postadminreg_rol = function (req, res) {
     const nombreRol = req.body.nombreRol;
     const { id_rol, privilegios } = req.body;
     const ids_casos_uso = Array.isArray(privilegios)
@@ -753,29 +728,26 @@ exports.getadminreg_rol = (req, res, next) => {
             req.app.locals.mensaje = "Rol Registrado Correctamente.";
             insertedIdRol = result.insertId;
             const promises = ids_casos_uso.map((id_caso_uso) => {
-                if (id_caso_uso) {
-                    const trimmedIdCasoUso = id_caso_uso.trim();
-                    const rolPrivilegio = new RolPrivilegio(
-                        insertedIdRol,
-                        trimmedIdCasoUso
-                    );
-                    console.log(
-                        `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${trimmedIdCasoUso}`
-                    );
-                    return rolPrivilegio
-                        .save()
-                        .then(() =>
-                            console.log(
-                                `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${trimmedIdCasoUso}`
-                            )
+                const rolPrivilegio = new RolPrivilegio(
+                    insertedIdRol,
+                    id_caso_uso.trim()
+                );
+                console.log(
+                    `Creando instancia de RolPrivilegio con id_rol=${insertedIdRol} y id_cu=${id_caso_uso.trim()}`
+                );
+                return rolPrivilegio
+                    .save()
+                    .then(() =>
+                        console.log(
+                            `Rol_Privilegio guardado correctamente para id_rol= ${insertedIdRol} e id_cu= ${id_caso_uso.trim()}`
                         )
-                        .catch((error) =>
-                            console.error(
-                                `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${trimmedIdCasoUso}:`,
-                                error
-                            )
-                        );
-                }
+                    )
+                    .catch((error) =>
+                        console.error(
+                            `Error al guardar Rol_Privilegio para id_rol=${insertedIdRol} e id_cu=${id_caso_uso.trim()}:`,
+                            error
+                        )
+                    );
             });
             return Promise.all(promises);
         })
@@ -831,25 +803,22 @@ exports.postAdminAddAlimento = (req, res, next) => {
 
 
 exports.getAdminInfoCliente = async (req, res, next) => {
-    const consulta_total_cliente = await Cliente.getTotal();
-    const totalClientes = consulta_total_cliente[0][0].total;
-    const consulta_total_mujeres = await Cliente.getTotalMujeres();
-    const clientesMujeres = consulta_total_mujeres[0][0].TotalMujeres;
-    const consulta_total_hombres = await Cliente.getTotalHombres();
-    const clienteHombres = consulta_total_hombres[0][0].TotalHombres;
+    const total = (await Cliente.getTotal())[0][0].total;
+    const clientesMujeres = (await Cliente.getTotalMujeres())[0][0].TotalMujeres;
+    const clienteHombres = (await Cliente.getTotalHombres())[0][0].TotalHombres;
 
     res.render("adminDashboardGrafClientes", {
         pagetitle: "Grafica Clientes",
         user: req.session.user || "",
-        totalClientes: totalClientes || "",
-        clientesMujeres: clientesMujeres || "",
-        clienteHombres: clienteHombres || "",
+        totalClientes: total || "",
+        mujeres: clientesMujeres || "",
+        hombres: clienteHombres || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
-        mujeres: consulta_total_mujeres,
-        hombres: consulta_total_hombres,
     });
 };
+
+
 
 exports.deleteAdminRol = (req, res, next) => {
     const idRol = req.params.idrol;
@@ -933,64 +902,21 @@ exports.postmodificarEjercicio = (req, res, next) => {
 
 exports.getGraficaEjercicios = async (req, res, next) => {
 
-    async function getHipertrofiaCount() {
-        const result = await EjercicioModel.getTotalHipertrofia();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getFuerzaCount() {
-        const result = await EjercicioModel.getTotalFuerza();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getResistenciaCount() {
-        const result = await EjercicioModel.getTotalResistencia();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getPushCount() {
-        const result = await EjercicioModel.getTotalPush();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getPullCount() {
-        const result = await EjercicioModel.getTotalPull();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-    async function getFullbodyCount() {
-        const result = await EjercicioModel.getTotalFullbody();
-        // get total count
-        const count = result[0][0].total;
-        return count;
-    }
-
-
     try {
-        const hipertrofiaCount = await getHipertrofiaCount();
-        const fuerzaCount = await getFuerzaCount();
-        const resistenciaCount = await getResistenciaCount();
-        const pushCount = await getPushCount();
-        const pullCount = await getPullCount();
-
+        const hipertrofiaCount = (await EjercicioModel.getTotalHipertrofia())[0][0].total;
+        const fuerzaCountQuery = (await EjercicioModel.getTotalFuerza())[0][0].total;
+        const resistenciaCount = (await EjercicioModel.getTotalPull())[0][0].total; 
+        const pushCount = (await EjercicioModel.getTotalPush())[0][0].total; 
+        const pullCount = (await EjercicioModel.getTotalPull())[0][0].total;
+  
         res.render("graficaEjercicios", {
             pagetitle: "Grafica Ejercicios",
-            user: req.session.user || "",
-            hipertrofiaCount: hipertrofiaCount || "",
-            fuerzaCount: fuerzaCount || "",
-            resistenciaCount: resistenciaCount || "",
-            pushCount: pushCount || "",
-            pullCount: pullCount || "",
+            user: req.session.user || 0,
+            hipertrofiaCount: hipertrofiaCount || 0,
+            fuerzaCount: fuerzaCountQuery || 0,
+            resistenciaCount: resistenciaCount || 0,
+            pushCount: pushCount || 0,
+            pullCount: pullCount || 0,
             photo: req.session.photo || "",
         });
     }

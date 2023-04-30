@@ -59,8 +59,32 @@ body {
 }
 
 #nutrient-chart2 {
-  width: 800px;
-  height: 600px;
+  width: 500px;
+  height: 300px;
+}
+
+#nutrient-table
+{
+  width: 600px;
+  transition: transform 0.4s ease;
+}
+
+#nutrient-table:hover
+{
+  transform: scale(1.05);
+
+}
+
+#nutrient-table2
+{
+  width: 600px;
+  transition: transform 0.4s ease;
+}
+
+#nutrient-table2:hover
+{
+  transform: scale(1.1);
+
 }
 
 .bg-custom {
@@ -163,6 +187,16 @@ footer {
 .nav-item {
   font-family: "DM Sans", sans-serif;
 }
+#navbarDropdown
+{
+  color: #151515;
+  transition: transform 0.4s ease;
+}
+#navbarDropdown:hover
+{
+  color: #151515;
+  transform: scale(1.1);
+}
 
 
 #navbaritem
@@ -171,9 +205,11 @@ footer {
 
 }
 
+
 #navbaritem:hover
 {
   transform: scale(1.1);
+  font-weight: bold;
 
 }
 
@@ -890,6 +926,7 @@ tbody {
   height: auto;
 }
 
+
 .table-dark {
   color: white;
 }
@@ -923,3 +960,21 @@ tbody {
   font-size: 8rem;
   color: #151515;
 }
+
+#detailstext
+{
+  font-family: italic;
+  font-size: 12px;
+}
+
+.spacer2
+{
+  height: 30px;
+}
+
+.btniniciarDE
+{
+  height: 50px;
+  width: 50px;
+}
+
