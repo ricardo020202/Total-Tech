@@ -41,4 +41,8 @@ module.exports = class Rol {
     static fetchName(){
         return db.execute('SELECT nombreRol FROM rol');
     }
+
+    static getTotal() {
+        return db.execute('SELECT COUNT(*) AS total FROM rol');
+    }
 }

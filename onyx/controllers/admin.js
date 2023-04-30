@@ -521,6 +521,8 @@ exports.getAdminDashboard = async (req, res, next) => {
     const total_cliente = consulta_total_cliente[0][0].total;
     const consulta_total_programa = await EntrenamientoModel.getTotal();
     const total_programa = consulta_total_programa[0][0].total;
+    const conslta_total_roles = await Rol.getTotal();
+    const total_roles = conslta_total_roles[0][0].total;
 
     res.render("admindashboard", {
         pagetitle: "Admin dashboard",
@@ -529,6 +531,7 @@ exports.getAdminDashboard = async (req, res, next) => {
         total_ejercicio: total_ejercicio || "",
         total_cliente: total_cliente || "",
         total_programa: total_programa || "",
+        total_roles: total_roles || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
     });

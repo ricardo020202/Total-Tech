@@ -1,6 +1,12 @@
 <%- include('includes/headAdmin.ejs') %>
     <%- include('includes/sidebar.ejs') %>
         <link rel="stylesheet" href="/css/adminStyle.css">
+
+        <script type="text/javascript"
+            src='https://cdn.tiny.cloud/1/uz3ydfb6sutfqdre9fd9jk81pdjdml2kz44i2i5gphx1kbzj/tinymce/6/tinymce.min.js'
+            referrerpolicy="origin">
+        </script>
+
         <br>
         <br>
         <h1 style="margin-left: 350px;">Editar Programa</h1>
@@ -14,18 +20,10 @@
                 <form action="/admin/admindashboard/programas/editar-programa/<%= programa.id_programa %>" method="POST">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
-                    <!-- Insertar doc txt insertar en adminEditarPrograma.ejs -->
-
                     <div class="mb-3">
                         <label for="nombre_programa" class="form-label">Nombre Programa</label>
                         <input type="text" class="form-control" id="nombre_programa" name="nombre_programa"
                             value="<%= programa.nombre_programa %>" required />
-                    </div>
-
-                    <label for="descripcion_programa" class="form-label">Descripción</label>
-                    <div class="input-group">
-                        <textarea class="form-control" aria-label="With textarea" id="descripcion_programa"
-                            name="descripcion_programa"><%= programa.descripcion_programa %></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -40,6 +38,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="myTextarea" class="form-label">Descripción</label>
+                        <textarea id="myTextarea" name="descripcion_programa">
+                            <%= programa.descripcion_programa %>
+                        </textarea>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="img_programa" class="form-label">Imagen Programa</label>
                         <input type="text" class="form-control" id="img_programa" name="img_programa"
                             value="<%= programa.img_programa %>" />
@@ -47,8 +52,15 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
-
             </div>
         </div>
+
+        <!-- JS TinyMCE -->
+        <script type="text/javascript">
+            tinymce.init({
+                selector: 'textarea#myTextarea',
+                height: 600,
+            });
+        </script>
 
 <%- include('includes/footAdmin.ejs') %>
