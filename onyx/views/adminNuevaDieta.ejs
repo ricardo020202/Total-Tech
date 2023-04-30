@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col">
           <div class="row">
-            <form action="/admin/admindashboard/diets/add" method="POST">
+            <form action="/admin/admindashboard/diets/add" method="POST" enctype="multipart/form-data">
 
               <table class="form-dieta">
                 <thead>
@@ -239,7 +239,7 @@
                   </tr>
                 </tbody>
               </table>
-              <table>
+              <table class="mb-5">
                 <thead>
                   <tr>
                     <th>Alimentos</th>
@@ -249,6 +249,13 @@
                   <tr>
                     <td>
                       <textarea id="myTextarea" name="alimento"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="photo" class="form-label">Imagen dieta</label>
+                      <input type="file" class="form-control" id="user_pic" name="image" value="registrar"
+                        accept=".jpg, .jpeg, .png, .gif" required>
                     </td>
                   </tr>
                   <tr>

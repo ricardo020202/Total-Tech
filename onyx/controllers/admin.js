@@ -186,7 +186,6 @@ exports.postAdminEliminarPrograma = (req, res, next) => {
 };
 
 exports.getAdminNuevaDieta = (req, res, next) => {
-    const csrfProctection = req.csrfToken();
     res.render("adminNuevaDieta", {
         pagetitle: "Nueva Dieta",
         user: req.session.user || "",
@@ -198,10 +197,6 @@ exports.getAdminNuevaDieta = (req, res, next) => {
 };
 
 exports.postAdminNuevaDieta = async (req, res, next) => {
-   
-
-    const alimentohtml = req.body.alimento;
-
     const dieta = new Dieta({
         nombre_dieta: req.body.nombre_dieta,
         calorias: req.body.no_calorias,
@@ -230,15 +225,14 @@ exports.postAdminNuevaDieta = async (req, res, next) => {
         vit_b12: req.body.vit_b12,
         ac_folico: req.body.ac_folico,
         folato: req.body.folato,
-        alimento: alimentohtml,
+        alimento: req.body.alimento,
+        foto_dieta : req.file.filename,
     });
 
 
     try {
         // Guarda la instancia de Dieta en la base de datos
         const dietaGuardada = await dieta.save();
-
-
         // Redirige al usuario a la página de dietas cuando se haya guardado correctamente
         res.redirect('/admin/admindashboard/diets');
     } catch (error) {
