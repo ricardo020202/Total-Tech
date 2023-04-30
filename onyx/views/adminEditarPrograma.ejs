@@ -56,11 +56,12 @@
         </div>
 
         <!-- JS TinyMCE -->
-        <script type="text/javascript">
+        <script>
             tinymce.init({
-                selector: 'textarea#myTextarea',
-                height: 600,
+              selector: 'textarea#myTextarea',
+              plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+              toolbar_mode: 'floating',
             });
-        </script>
+          </script>
 
 <%- include('includes/footAdmin.ejs') %>
