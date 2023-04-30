@@ -978,3 +978,13 @@ tbody {
   width: 50px;
 }
 
+.img_container {
+  width: 100%;
+  height: 50vh;
+}
+
+.img_programa {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,21 +1,29 @@
 <%- include('includes/head.ejs') %>
 
-<div class="container">
-    <div class="spacer"></div>
-  
-    <div class="container">
-      <h2 id="titulopagina"> <%= detalles.nombre_programa%></h2>
+  <div class="img_container">
+    <img class="img_programa" src="/uploads/<%= detalles.img_programa %>" alt="<%= detalles.ref_visual %>">
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="container mt-5 text-center">
+      <h1 id="titulopagina">
+        <%= detalles.nombre_programa%>
+      </h1>
     </div>
-  
+
     <div class="spacer"></div>
-  
+
     <div class="container">
-      <%- detalles.descripcion_programa%>
-      <p><%= detalles.frecuencia%> veces a la semana </p>
-      <div class="spacer"></div>
-      <a href="/onyx/bitacora" class="btn btn-custom">Registrar en Bitácora</a>
+      <div class="row">
+        <div class="col">
+          <%- detalles.descripcion_programa%>
+            <div class="spacer"></div>
+            <a href="/onyx/bitacora" class="btn btn-custom">Registrar en Bitácora</a>
+        </div>
+      </div>
     </div>
-  
+
     <br>
   </div>
-<%- include('includes/foot.ejs') %>
+  <%- include('includes/foot.ejs') %>

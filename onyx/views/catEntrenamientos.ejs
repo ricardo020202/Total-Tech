@@ -13,17 +13,17 @@
         <div class="container text-center">
             <div class="row align-items-start">
                 <% for (let i=0; i < programa.length; i++) { %>
-                    <% if (programa[i].id_programa !== 1) { %>
+                    <% if (programa[i].id_programa !==1) { %>
                         <div class="col">
                             <div class="cards" style="width: 18rem;">
-                                <img style="object-fit: cover;" src="<%programa[i].img_programa%>" class="card-img-top"
-                                    alt="<%programa[i].ref_visual%>">
+                                <img style="object-fit: cover;" src="/uploads/<%= programa[i].img_programa %>"
+                                    class="card-img-top" alt="<%= programa[i].ref_visual%>">
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <%= programa[i].nombre_programa%>
                                     </h4>
                                     <p style="text-align: left;" class="card-text">Frecuencia: <%=
-                                            programa[i].frecuencia%>
+                                            programa[i].frecuencia%> veces a la semana
                                     </p>
                                     <!-- que va a hacer el boton start -->
                                     <a href="/onyx/programa/<%= programa[i].id_programa%>" id="btnstart"
