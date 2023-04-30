@@ -29,12 +29,14 @@ module.exports = class Dieta {
         this.vit_b12 = dieta.vit_b12 || 0;
         this.ac_folico = dieta.ac_folico || 0;
         this.folato = dieta.folato || 0;
+        this.alimento = dieta.alimento;
     }
 
     save() {
-         return db.execute(`INSERT INTO dieta (nombre_dieta, calorias, proteinas, carbohidratos, grasas, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?)`,
-            [this.nombre_dieta, this.calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato]
+        console.log([this.nombre_dieta, this.calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato, this.alimento]);
+         return db.execute(`INSERT INTO dieta (nombre_dieta, calorias, proteinas, carbohidratos, grasas, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, alimento) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?)`,
+            [this.nombre_dieta, this.calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato, this.alimento]
         );
     }
     
