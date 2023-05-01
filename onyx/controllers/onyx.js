@@ -259,12 +259,7 @@ exports.postFavoritos = (req, res, next) => {
     favorito.save()
         .then(([rows, fieldData]) => {
             req.flash("success", "Se agrego a tus favoritos");
-            if (tipo == "dieta") {
-                res.redirect("/onyx/dietas");
-            }
-            if (tipo == "programa") {
-                res.redirect("/onyx/catentrenamientos");
-            }
+            res.redirect("/onyx/favoritos");
         })
         .catch((err) => {
             console.log(err);
@@ -279,12 +274,7 @@ exports.deleteFavoritos = (req, res, next) => {
     Favoritos.deleteById(id_dieta,id_programa,tipo)
         .then(([rows, fieldData]) => {
             req.flash("success", "Se elimino de tus favoritos");
-            if (tipo == "dieta") {
-                res.redirect("/onyx/dietas");
-            }
-            if (tipo == "programa") {
-                res.redirect("/onyx/catentrenamientos");
-            }
+            res.redirect("/onyx/favoritos");
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {

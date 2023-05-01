@@ -1,45 +1,44 @@
 <%- include('includes/head.ejs') %>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/77587b01e9.js" crossorigin="anonymous"></script>
 
-<script
-    src="https://kit.fontawesome.com/77587b01e9.js"
-    crossorigin="anonymous"
-></script>
-
-<!-- profile page -->
-<div class="p-lg-5">
-    <div class="row col-8 rounded mx-auto mt-5 p-2">
-        <div class="col-4">
-            <a href="/onyx/fotoperfil">
-            <img
-                src="/uploads/<%= usuario[0].user_pic %>"
-                alt="profile-pic"
-                class="img-fluid rounded-circle d-flex justify-content-center"
-                style="width: 180px; height: 180px; object-fit: cover"
-            />
-            </a>
-            <div class="text-center p-3">
-                <a href="/onyx/cambiarpassword"><i class="fas fa-key"></i></a>
+    <div class="p-lg-5">
+        <div class="row rounded mx-auto mt-5 p-2">
+            <div class="col mt-5">
+                <div class="row">
+                    <div class="col d-flex justify-content-center">
+                        <a href="/onyx/fotoperfil">
+                            <img src="/uploads/<%= usuario[0].user_pic %>" alt="foto de perfil"
+                                class="rounded-circle"
+                                style="width: 180px; height: 180px; object-fit: cover" />
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center p-3">
+                            <a href="/onyx/cambiarpassword"><i class="fas fa-key"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-8 mt-3 p-5 mx-auto">
-            <div class="usuario-info">
-                <h3 class="text-start fw-bold">
-                    <%= usuario[0].nombre %> <%= usuario[0].apellido %>
-                </h3>
-                <h3 class="text-start fw-bold">
-                    Email: <%= usuario[0].email %>
-                </h3>
-                <h3 class="text-start fw-bold">
-                    Objetivo: <%= cliente[0].objetivo %>
-                </h3>
+            <div class="col mt-3 p-5 mx-auto">
+                <div class="usuario-info">
+                    <h3 class="text-start fw-bold">
+                        <%= usuario[0].nombre %>
+                            <%= usuario[0].apellido %>
+                    </h3>
+                    <h3 class="text-start fw-bold">
+                        Email: <%= usuario[0].email %>
+                    </h3>
+                    <h3 class="text-start fw-bold">
+                        Objetivo: <%= cliente[0].objetivo %>
+                    </h3>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- modal upload photo -->
-</div>
-
-<%- include('includes/foot.ejs') %>
+    <%- include('includes/foot.ejs') %>

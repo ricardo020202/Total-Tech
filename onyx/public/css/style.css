@@ -187,6 +187,7 @@ footer {
 .nav-item {
   font-family: "DM Sans", sans-serif;
 }
+
 #navbarDropdown
 {
   color: #151515;
@@ -242,6 +243,20 @@ footer {
   color: #d2ca03;
 }
 
+@media screen and (max-width: 768px) {
+  .header {
+    font-size: 40px;
+  }
+}
+
+.user{
+  margin-right: 50px;
+}
+
+.cuenta-user{
+  margin-right: 50px;
+}
+
 @media (max-width: 992px) {
   .navbar-collapse {
     position: fixed;
@@ -273,6 +288,14 @@ footer {
     background-color: black;
     width: 100%;
     height: 35px;
+  }
+
+  .user{
+    margin-right: 0;
+  }
+
+  .cuenta-user{
+    margin-right: auto;
   }
 }
 
@@ -720,6 +743,14 @@ header .current-date {
   cursor: default;
 }
 
+@media screen and (max-width: 821px) {
+  .calendar .weeks li {
+    font-weight: 300;
+    cursor: default;
+    font-size: 14px;
+  }
+}
+
 .calendar .days li {
   z-index: 1;
   cursor: pointer;
@@ -870,7 +901,7 @@ tbody {
 }
 
 .input-talla {
-  margin: 2px;
+  margin-top: 2%;
   height: 4%;
   background: none;
   border: none;

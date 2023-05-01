@@ -12,12 +12,12 @@
             <%if (sexo=='Masculino' ) {%>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col">
                         <div class="image-tallas mt-5">
                             <img src="../assets/male-body-nobg.png" alt="male-body-nobg" class="talla">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col mt-5 text-center">
                         <form action="/onyx/tallas" method="POST">
                             <label for="inputcuello">Cuello:</label>
                             <input type="number" min="0" name="inputcuello" value="<%=cuello[cuello.length-1]%>"
@@ -62,12 +62,12 @@
                 </div>
             <%} else {%>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col">
                         <div class="image-tallas mt-5">
                             <img src="../assets/female-body-nobg.png" alt="male-body-nobg" class="talla">
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col mt-5 text-center">
                         <form action="/onyx/tallas" method="POST">
                             <label for="inputcuello">Cuello:</label>
                             <input type="number" min="0" name="inputcuello" value="<%=cuello[cuello.length-1]%>"

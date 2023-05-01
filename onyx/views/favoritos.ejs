@@ -6,11 +6,14 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1 id="titulopagina">Mis Favoritos</h1>
+        <h1 class="fw-bold text-start">Mis favoritos</h1>
+            <p class="lead text-start">
+                Aquí encontrarás tus dietas y programas favoritos
+            </p>
       </div>
     </div>
     <h3>Dietas Favoritas</h3>
-    <div class="row mt-5">
+    <div class="row">
       <% if(favoritos_dietas.length> 0) { %> <% favoritos_dietas.forEach(function(dieta) { %>
           <div class="col">
             <div class="cards" style="width: 18rem">
@@ -39,7 +42,7 @@
                 <p>No has agregado dietas a tus favoritos aún</p>
               </div>
               <% } %>
-                <h3>Ejercicios Favoritos</h3>
+                <h3>Programas Favoritos</h3>
                 <% if(favoritos_ejercicios.length> 0) { %> <% favoritos_ejercicios.forEach(function(ejercicio) { %>
                     <div class="col">
                       <div class="cards" style="width: 18rem;">

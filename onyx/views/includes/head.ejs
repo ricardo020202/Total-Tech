@@ -82,63 +82,64 @@
                                 </ul>
                             </li> -->
                         <li id="navbaritem" class="nav-item">
-                            <a href="/onyx/catentrenamientos" id="navbarDropdown">Entrenamientos</a>
+                            <a class="nav-link active" href="/onyx/catentrenamientos">Entrenamientos</a>
                         </li>
                         <li id="navbaritem" class="nav-item">
-                            <a class="nav-link" href="/onyx/dietas" id="navbarDropdown">Dietas</a>
+                            <a class="nav-link active" href="/onyx/dietas">Dietas</a>
                         </li>
                         <li id="navbaritem" class="nav-item">
-                            <a class="nav-link" href="/onyx/bitacora" id="navbarDropdown">Bitácora</a>
+                            <a class="nav-link active" href="/onyx/bitacora">Bitácora</a>
                         </li>
                         <li id="navbaritem" class="nav-item">
-                            <a class="nav-link" href="/onyx/dashboard" id="navbarDropdown">Dashboard</a>
+                            <a class="nav-link active" href="/onyx/dashboard">Dashboard</a>
                         </li>
                         <li id="navbaritem" class="nav-item">
-                            <a class="nav-link" href="/onyx/favoritos" id="navbarDropdown">Favoritos</a>
+                            <a class="nav-link active" href="/onyx/favoritos">Favoritos</a>
                         </li>
                     </ul>
-                    <% if (user){ %>
-                        <% if (rol !=="cliente" ) { %>
-                            <ul class="navbar-nav mb-2 mb-lg-0 ms-2">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/admin/adminDashboard">
+                    <ul class="navbar-nav user">
+                        <% if (user){ %>
+                            <% if (rol !=="cliente" ) { %>
+                                <li id="navbaritem" class="nav-item">
+                                    <a class="nav-link " href="/admin/adminDashboard">
                                         <%= rol %>
                                     </a>
                                 </li>
-                            </ul>
-                            <% } %>
-                                <li id="navbaritem" class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="/uploads/<%= photo %>" alt="user" class="rounded-circle"
-                                            style="width: 30px; height: 30px" />
-                                        Hola, <strong>
-                                            <%= user %>
-                                        </strong>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li id="navbaritem">
-                                            <a class="dropdown-item" href="/onyx/cuenta">
-                                                <img src="/uploads/<%= photo%>" alt="user" class="me-2 rounded-circle"
-                                                    style="width: 30px; height: 30px" />
-                                                Cuenta</a>
-                                        </li>
-                                        <li id="navbaritem">
-                                            <a class="dropdown-item" href="/onyx/datos-iniciales">Datos iniciales</a>
-                                        </li>
-                                        <li id="navbaritem">
-                                            <a class="dropdown-item" href="/onyx/tallas">Tallas</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <a class="btn btn-light rounded-pill text-dark" id="botonlogout" aria-current="page"
-                                    href="/users/logout"><strong>Log out</strong></a>
-                                <%} else { %>
-                                    <a class="nav-link active text-dark" aria-current="page" href="/users/login"
-                                        id="navbarDropdown"><strong>Log in</strong></a>
-                                    <a class="btn btn-light rounded-pill text-dark" id="botonsignup" aria-current="page"
-                                        href="/users/signUp"><strong>Sign up</strong></a>
-                                    <% } %>
+                                <% } %>
+                                    <li id="navbaritem" class="nav-item dropdown cuenta-user">
+                                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="/uploads/<%= photo %>" alt="user" class="rounded-circle"
+                                                style="width: 30px; height: 30px" />
+                                            Hola, <strong>
+                                                <%= user %>
+                                            </strong>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li id="navbaritem">
+                                                <a class="dropdown-item" href="/onyx/cuenta">
+                                                    <img src="/uploads/<%= photo%>" alt="user"
+                                                        class="me-2 rounded-circle" style="width: 30px; height: 30px" />
+                                                    Cuenta</a>
+                                            </li>
+                                            <li id="navbaritem">
+                                                <a class="dropdown-item" href="/onyx/datos-iniciales">Datos
+                                                    iniciales</a>
+                                            </li>
+                                            <li id="navbaritem">
+                                                <a class="dropdown-item" href="/onyx/tallas">Tallas</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <a class="btn btn-light rounded-pill text-dark" id="botonlogout" aria-current="page"
+                                        href="/users/logout"><strong>Log out</strong></a>
+                                    <%} else { %>
+                                        <a class="nav-link active text-dark" aria-current="page" href="/users/login"
+                                            id="navbarDropdown"><strong>Log in</strong></a>
+                                        <a class="btn btn-light rounded-pill text-dark" id="botonsignup"
+                                            aria-current="page" href="/users/signUp"><strong>Sign up</strong></a>
+                                        <% } %>
+                    </ul>
                 </div>
             </div>
         </nav>
