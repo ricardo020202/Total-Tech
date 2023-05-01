@@ -598,7 +598,7 @@ exports.getAdminDashboard = async (req, res, next) => {
     const conslta_total_roles = await Rol.getTotal();
     const total_roles = conslta_total_roles[0][0].total;
 
-    res.render("admindashboard", {
+    res.render("adminDashboard", {
         pagetitle: "Admin dashboard",
         user: req.session.user || "",
         total_dieta: total_dieta || "",
