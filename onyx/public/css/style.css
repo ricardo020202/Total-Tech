@@ -987,3 +987,24 @@ tbody {
   font-size: 20px;
   font-weight: bold;
 }	
+
+.icon-dietas {
+  fill: #ee95c5
+}
+
+.bg-dietas {
+  background-color: #633D51;
+  border: 1px solid #633D51;
+  color: #fff;
+}
+
+.icon-programas {
+  /* change the color of the icon */
+  fill: #F6C762;
+}
+
+.bg-programas {
+  background-color: #2d2020;
+  border: 1px solid #2d2020;
+  color: #fff;
+}
