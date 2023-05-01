@@ -22,10 +22,146 @@
 
             <div class="col m">
                 <div class="row">
-                    <h2>Tu nivel de gym</h2>
+                    <h3>Tu nivel de gym</h3>
                 </div>
-                <div class="row">
-                    <h2>Calorias para ti</h2>
+                <div class="row mt-5">
+                    <h3>Calorias recomendadas para ti:</h3>
+                    <% if (cliente.sexo === "Masculino"){ %>
+                        <% if (cliente.nivel_actividad === "Sedentario") { %>
+                            <% const objetivo = .1 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "2 por semana") { %>
+                            <% const objetivo = .2 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "Caminar diario") { %>
+                            <% const objetivo = .3 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "4-5 días gym") { %>
+                            <% const objetivo = .4 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "Alto rendimiento") { %>
+                            <% const objetivo = .5 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } %>
+
+                    <% } else { %>
+                        <% if (cliente.nivel_actividad === "Sedentario") { %>
+                            <% const objetivo = .1 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "2 por semana") { %>
+                            <% const objetivo = .2 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "Caminar diario") { %>
+                            <% const objetivo = .3 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "4-5 días gym") { %>
+                            <% const objetivo = .4 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } else if (cliente.nivel_actividad === "Alto rendimiento") { %>
+                            <% const objetivo = .5 %>
+                            <% const GMB = 9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161 %>
+                            <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
+                            <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
+
+                            <% if (cliente.objetivo === "Perder Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                            <% } else if (cliente.objetivo === "Ganar Peso") {%>
+                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                            <% } else {%>
+                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                            <% } %>
+                        <% } %>
+                    <% } %>
                 </div>
                 
             </div>

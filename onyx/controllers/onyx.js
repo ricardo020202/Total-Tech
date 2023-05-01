@@ -503,7 +503,10 @@ exports.getDashboard = (req, res, next) => {
         });
 };
 
-exports.getDatosIniciales = (req, res, next) => {
+exports.getDatosIniciales = async (req, res, next) => {
+    const consulta_peso = await TallaModel.getLast(req.session.email, "peso");
+    const peso = consulta_peso[0][0].medida;
+
     Cliente.fetchOne(req.session.email)
         .then(([rows, fieldData]) => {
             if (rows.length === 0) {
@@ -515,6 +518,7 @@ exports.getDatosIniciales = (req, res, next) => {
                     cliente: rows[0],
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
+                    peso: peso,
                 });
             }
         })
@@ -556,8 +560,18 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
         //peso: req.body.inputWeight,
     });
 
+    const talla = new TallaModel({
+        email: req.session.email,
+        extremidad: "peso",
+        medida: req.body.inputWeight,
+        fecha: new Date(),
+    });
+
     cliente
         .save()
+        .then(([rows, fieldData]) => {
+            talla.save();
+        })
         .then(([rows, fieldData]) => {
             res.redirect("/onyx/datos-iniciales");
         })
@@ -570,9 +584,13 @@ exports.postRegistrarDatosIniciales = (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                cliente.update().then(([rows, fieldData]) => {
-                    res.redirect("/onyx/datos-iniciales");
-                });
+                cliente.update()
+                .then(([rows, fieldData]) => {
+                    talla.save()
+                    .then(([rows, fieldData]) => {
+                        res.redirect("/onyx/datos-iniciales");
+                    });
+                })
             }
         });
 };
