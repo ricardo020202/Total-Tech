@@ -17,29 +17,29 @@ const ProgramaEjercicio = require("../models/programa_ejercicio");
 const db = require("../util/database");
 const { parse } = require("path");
 
-exports.getAdminDashboardEjercicios = async (req, res, next) => {
-    EjercicioModel.fetchAll()
-        .then(([rows, fieldData]) => {
-            res.render("adminDashboardEjercicio", {
-                ejercicio: rows,
-                pagetitle: "adminEjercicios",
-                user: req.session.user || "",
-                photo: req.session.photo || "",
-                csrfToken: req.csrfToken(),
-            });
-        })
-        .catch((err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                    photo: req.session.photo || "",
-                });
-            } else {
-                console.log(err);
-            }
-        });
-};
+// exports.getAdminDashboardEjercicios = async (req, res, next) => {
+//     EjercicioModel.fetchAll()
+//         .then(([rows, fieldData]) => {
+//             res.render("adminDashboardEjercicio", {
+//                 ejercicio: rows,
+//                 pagetitle: "adminEjercicios",
+//                 user: req.session.user || "",
+//                 photo: req.session.photo || "",
+//                 csrfToken: req.csrfToken(),
+//             });
+//         })
+//         .catch((err) => {
+//             if (err.code === "PROTOCOL_CONNECTION_LOST") {
+//                 res.render("dbDown", {
+//                     pagetitle: "Error",
+//                     user: req.session.user || "",
+//                     photo: req.session.photo || "",
+//                 });
+//             } else {
+//                 console.log(err);
+//             }
+//         });
+// };
 
 exports.getAdminDashboardProgramas = async (req, res, next) => {
     EntrenamientoModel.fetchAll()
@@ -66,15 +66,15 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
         });
 };
 
-exports.getAdminNuevoEjercicio = (req, res, next) => {
-    res.render("adminNuevoEjercicio", {
-        pagetitle: "Nuevo Ejercicio",
-        user: req.session.user || "",
-        path: "adminNuevoEjercicio",
-        csrfToken: req.csrfToken(),
-        photo: req.session.photo || "",
-    });
-};
+// exports.getAdminNuevoEjercicio = (req, res, next) => {
+//     res.render("adminNuevoEjercicio", {
+//         pagetitle: "Nuevo Ejercicio",
+//         user: req.session.user || "",
+//         path: "adminNuevoEjercicio",
+//         csrfToken: req.csrfToken(),
+//         photo: req.session.photo || "",
+//     });
+// };
 
 exports.getAdminNuevoPrograma = (req, res, next) => {
     res.render("adminNuevoPrograma", {
@@ -341,47 +341,47 @@ exports.postAdminEliminarDieta = (req, res, next) => {
 
 }
 
-exports.postAdminNuevoEjercicio = (req, res, next) => {
-    const ejercicio = new EjercicioModel({
-        categoria: req.body.categoria,
-        nivel_intensidad: req.body.nivel_intensidad,
-        referencia_visual: req.body.referencia_visual,
-        descripcion_ejercicio: req.body.descripcion_ejercicio,
-        nombre_ejercicio: req.body.nombre_ejercicio,
-        imagen_ejercicio: req.body.imagen_ejercicio,
-    });
-    ejercicio
-        .save()
-        .then((result) => {
-            res.redirect("/admin/admindashboard/ejercicios");
-        })
-        .catch((err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                    photo: req.session.photo || "",
-                });
-            } else {
-                console.log(err);
-            }
-        });
-};
+// exports.postAdminNuevoEjercicio = (req, res, next) => {
+//     const ejercicio = new EjercicioModel({
+//         categoria: req.body.categoria,
+//         nivel_intensidad: req.body.nivel_intensidad,
+//         referencia_visual: req.body.referencia_visual,
+//         descripcion_ejercicio: req.body.descripcion_ejercicio,
+//         nombre_ejercicio: req.body.nombre_ejercicio,
+//         imagen_ejercicio: req.body.imagen_ejercicio,
+//     });
+//     ejercicio
+//         .save()
+//         .then((result) => {
+//             res.redirect("/admin/admindashboard/ejercicios");
+//         })
+//         .catch((err) => {
+//             if (err.code === "PROTOCOL_CONNECTION_LOST") {
+//                 res.render("dbDown", {
+//                     pagetitle: "Error",
+//                     user: req.session.user || "",
+//                     photo: req.session.photo || "",
+//                 });
+//             } else {
+//                 console.log(err);
+//             }
+//         });
+// };
 
-exports.deleteAdminEjercicio = (req, res, next) => {
-    const id = req.params.id_ejercicio;
+// exports.deleteAdminEjercicio = (req, res, next) => {
+//     const id = req.params.id_ejercicio;
 
 
-    ProgramaEjercicio.deleteById(id)
-    EjercicioModel.deleteById(id)
-        .then(([rows, fieldData]) => {
-            req.flash("success", "Se elimino ejercicio");
-            res.redirect("/admin/admindashboard/ejercicios");
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-};
+//     ProgramaEjercicio.deleteById(id)
+//     EjercicioModel.deleteById(id)
+//         .then(([rows, fieldData]) => {
+//             req.flash("success", "Se elimino ejercicio");
+//             res.redirect("/admin/admindashboard/ejercicios");
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//         });
+// };
 
 exports.getAdminDashboardAddUser = (req, res, next) => {
     const id = req.params.email || "";
@@ -687,77 +687,77 @@ exports.postAdminModRol = (req, res, next) => {
         });
 };
 
-exports.getAdminModAlimento = (req, res, next) => {
-    const id = req.params.id;
-    Alimento.fetchOne(id)
-        .then(([rows]) => {
-            const alimento = rows[0];
-            res.render("adminModificarAlimento", {
-                pagetitle: "Modificar alimento",
-                user: req.session.user || "",
-                id: id,
-                csrfToken: req.csrfToken(),
-                Message: "",
-                photo: req.session.photo || "",
-                alimento: alimento
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
-        });
-};
+// exports.getAdminModAlimento = (req, res, next) => {
+//     const id = req.params.id;
+//     Alimento.fetchOne(id)
+//         .then(([rows]) => {
+//             const alimento = rows[0];
+//             res.render("adminModificarAlimento", {
+//                 pagetitle: "Modificar alimento",
+//                 user: req.session.user || "",
+//                 id: id,
+//                 csrfToken: req.csrfToken(),
+//                 Message: "",
+//                 photo: req.session.photo || "",
+//                 alimento: alimento
+//             });
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             next(err);
+//         });
+// };
 
 
-exports.postAdminModAlimento = (req, res, next) => {
-    const id = req.params.id;
-    const descripcion = req.body.descripcion_alimento;
-    const unidad = req.body.unidad;
-    const cantidad = req.body.cantidad;
+// exports.postAdminModAlimento = (req, res, next) => {
+//     const id = req.params.id;
+//     const descripcion = req.body.descripcion_alimento;
+//     const unidad = req.body.unidad;
+//     const cantidad = req.body.cantidad;
 
-    Alimento.update(id, descripcion, unidad, cantidad)
-        .then(() => {
-            const mensaje = "Alimento actualizado correctamente";
-            // Fetch the updated alimento from the database and render the view with its values as default content
-            Alimento.fetchOne(id)
-                .then(([rows]) => {
-                    const alimento = rows[0];
-                    res.render("adminModificarAlimento", {
-                        pagetitle: "Modificar alimento",
-                        user: req.session.user || "",
-                        id: id,
-                        csrfToken: req.csrfToken(),
-                        Message: mensaje,
-                        photo: req.session.photo || "",
-                        alimento: alimento  // Add the updated alimento to the view
-                    });
-                })
-                .catch((err) => {
-                    console.log(err);
-                    next(err);
-                });
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
-        });
-};
+//     Alimento.update(id, descripcion, unidad, cantidad)
+//         .then(() => {
+//             const mensaje = "Alimento actualizado correctamente";
+//             // Fetch the updated alimento from the database and render the view with its values as default content
+//             Alimento.fetchOne(id)
+//                 .then(([rows]) => {
+//                     const alimento = rows[0];
+//                     res.render("adminModificarAlimento", {
+//                         pagetitle: "Modificar alimento",
+//                         user: req.session.user || "",
+//                         id: id,
+//                         csrfToken: req.csrfToken(),
+//                         Message: mensaje,
+//                         photo: req.session.photo || "",
+//                         alimento: alimento  // Add the updated alimento to the view
+//                     });
+//                 })
+//                 .catch((err) => {
+//                     console.log(err);
+//                     next(err);
+//                 });
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             next(err);
+//         });
+// };
 
-exports.getAdminDeleteAlimento = (req, res, next) => {
-    const id = req.params.id;
+// exports.getAdminDeleteAlimento = (req, res, next) => {
+//     const id = req.params.id;
 
-    DietaAlimento.delete(id) // delete associated records in dieta_alimento table
-        .then(() => {
-            return Alimento.delete(id); // delete record from alimento table
-        })
-        .then(() => {
-            res.redirect("/admin/adminDashboard/diets");
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
-        });
-};
+//     DietaAlimento.delete(id) // delete associated records in dieta_alimento table
+//         .then(() => {
+//             return Alimento.delete(id); // delete record from alimento table
+//         })
+//         .then(() => {
+//             res.redirect("/admin/adminDashboard/diets");
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             next(err);
+//         });
+// };
 
 exports.getadminreg_rol = (req, res, next) => {
     const mensaje =
@@ -888,82 +888,82 @@ exports.activateAdminRol = (req, res, next) => {
 };
 
 
-exports.getmodificarEjercicio = (req, res, next) => {
-    const id_ejercicio = req.params.id_ejercicio;
+// exports.getmodificarEjercicio = (req, res, next) => {
+//     const id_ejercicio = req.params.id_ejercicio;
 
-    EjercicioModel.fetchById(id_ejercicio)
-        .then(([rows, fieldData]) => {
-            const mensaje = "";
-            res.render("modificarEjercicio", {
-                pagetitle: "Modificar ejercicio",
-                user: req.session.user || "",
-                ejercicio: rows[0],
-                csrfToken: req.csrfToken(),
-                mensaje: mensaje,
-                photo: req.session.photo || "",
-            });
-        })
-        .catch((err) => {
-            console.log(err);
-            next(err);
-        });
-}
+//     EjercicioModel.fetchById(id_ejercicio)
+//         .then(([rows, fieldData]) => {
+//             const mensaje = "";
+//             res.render("modificarEjercicio", {
+//                 pagetitle: "Modificar ejercicio",
+//                 user: req.session.user || "",
+//                 ejercicio: rows[0],
+//                 csrfToken: req.csrfToken(),
+//                 mensaje: mensaje,
+//                 photo: req.session.photo || "",
+//             });
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             next(err);
+//         });
+// }
 
-exports.postmodificarEjercicio = (req, res, next) => {
+// exports.postmodificarEjercicio = (req, res, next) => {
 
-    const id_ejercicio = req.params.id_ejercicio;
+//     const id_ejercicio = req.params.id_ejercicio;
 
-    const ejercicio = new EjercicioModel({
-        categoria: req.body.categoria,
-        nivel_intensidad: req.body.nivel_intensidad,
-        referencia_visual: req.body.referencia_visual,
-        descripcion_ejercicio: req.body.descripcion_ejercicio,
-        nombre_ejercicio: req.body.nombre_ejercicio,
-        imagen_ejercicio: req.body.imagen_ejercicio,
-    });
-    ejercicio
-        .updateById(id_ejercicio)
-        .then(([rows, fieldData]) => {
-            req.session.mensaje = "Ejercicio modificado correctamente.";
-            res.redirect("/admin/admindashboard/ejercicios");
-        })
-        .catch((err) => {
-            if (err.code === "PROTOCOL_CONNECTION_LOST") {
-                res.render("dbDown", {
-                    pagetitle: "Error",
-                    user: req.session.user || "",
-                    photo: req.session.photo || "",
-                });
-            } else {
-                console.log(err);
-            }
-        });
-};
+//     const ejercicio = new EjercicioModel({
+//         categoria: req.body.categoria,
+//         nivel_intensidad: req.body.nivel_intensidad,
+//         referencia_visual: req.body.referencia_visual,
+//         descripcion_ejercicio: req.body.descripcion_ejercicio,
+//         nombre_ejercicio: req.body.nombre_ejercicio,
+//         imagen_ejercicio: req.body.imagen_ejercicio,
+//     });
+//     ejercicio
+//         .updateById(id_ejercicio)
+//         .then(([rows, fieldData]) => {
+//             req.session.mensaje = "Ejercicio modificado correctamente.";
+//             res.redirect("/admin/admindashboard/ejercicios");
+//         })
+//         .catch((err) => {
+//             if (err.code === "PROTOCOL_CONNECTION_LOST") {
+//                 res.render("dbDown", {
+//                     pagetitle: "Error",
+//                     user: req.session.user || "",
+//                     photo: req.session.photo || "",
+//                 });
+//             } else {
+//                 console.log(err);
+//             }
+//         });
+// };
 
-exports.getGraficaEjercicios = async (req, res, next) => {
+// exports.getGraficaEjercicios = async (req, res, next) => {
 
-    try {
-        const hipertrofiaCount = (await EjercicioModel.getTotalHipertrofia())[0][0].total;
-        const fuerzaCountQuery = (await EjercicioModel.getTotalFuerza())[0][0].total;
-        const resistenciaCount = (await EjercicioModel.getTotalPull())[0][0].total; 
-        const pushCount = (await EjercicioModel.getTotalPush())[0][0].total; 
-        const pullCount = (await EjercicioModel.getTotalPull())[0][0].total;
+//     try {
+//         const hipertrofiaCount = (await EjercicioModel.getTotalHipertrofia())[0][0].total;
+//         const fuerzaCountQuery = (await EjercicioModel.getTotalFuerza())[0][0].total;
+//         const resistenciaCount = (await EjercicioModel.getTotalPull())[0][0].total; 
+//         const pushCount = (await EjercicioModel.getTotalPush())[0][0].total; 
+//         const pullCount = (await EjercicioModel.getTotalPull())[0][0].total;
   
-        res.render("graficaEjercicios", {
-            pagetitle: "Grafica Ejercicios",
-            user: req.session.user || 0,
-            hipertrofiaCount: hipertrofiaCount || 0,
-            fuerzaCount: fuerzaCountQuery || 0,
-            resistenciaCount: resistenciaCount || 0,
-            pushCount: pushCount || 0,
-            pullCount: pullCount || 0,
-            photo: req.session.photo || "",
-        });
-    }
-    catch (err) {
-        console.log(err);
-    }
-};
+//         res.render("graficaEjercicios", {
+//             pagetitle: "Grafica Ejercicios",
+//             user: req.session.user || 0,
+//             hipertrofiaCount: hipertrofiaCount || 0,
+//             fuerzaCount: fuerzaCountQuery || 0,
+//             resistenciaCount: resistenciaCount || 0,
+//             pushCount: pushCount || 0,
+//             pullCount: pullCount || 0,
+//             photo: req.session.photo || "",
+//         });
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// };
 
 // exports.getAdminAddAlimento = (req, res, next) => {
 //     res.render("adminNuevoAlimento", {

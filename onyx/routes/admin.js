@@ -27,20 +27,14 @@ router.post("/admindashboard/userprivileges/add", checkPrivilegio('Registrar usu
 router.post("/admindashboard/userprivileges/delete/:email", checkPrivilegio('Eliminar usuarios'),
              adminController.deleteAdminDashboardUser);
 
-router.post("/admindashboard/diets/deleteFood/:id", checkPrivilegio('Eliminar alimento'), 
-                adminController.getAdminDeleteAlimento);
+// router.post("/admindashboard/diets/deleteFood/:id", checkPrivilegio('Eliminar alimento'), 
+//                 adminController.getAdminDeleteAlimento);
 
-// router.get('/admindashboard/diets/Alimento/add', csrfProtection, checkPrivilegio('Consultar alimento'),
-//                 adminController.getAdminAddAlimento);
+// router.post("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar alimento'),
+//                 adminController.postAdminModAlimento);
 
-// router.post('/admindashboard/diets/Alimento/add',csrfProtection, checkPrivilegio('Registrar alimento'),
-//                 adminController.postAdminAddAlimento);
-
-router.post("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar alimento'),
-                adminController.postAdminModAlimento);
-
-router.get("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar alimento'),
-             adminController.getAdminModAlimento);
+// router.get("/admindashboard/diets/modAlimento/:id", checkPrivilegio('Modificar alimento'),
+//              adminController.getAdminModAlimento);
 
 router.get("/admindashboard/diets", checkPrivilegio('Consultar dieta'), checkPrivilegio('Registrar dieta'),
              adminController.getAdminDashboardDietas);
@@ -60,17 +54,17 @@ router.post("/admindashboard/diets/edit/:id_dieta", checkPrivilegio('Modificar d
 router.post("/admindashboard/diets/delete/:id_dieta", checkPrivilegio('Eliminar dieta'), 
             adminController.postAdminEliminarDieta);
 
-router.get("/admindashboard/ejercicios", checkPrivilegio('Consultar ejercicio'), checkPrivilegio('Registrar ejercicio'),
-             adminController.getAdminDashboardEjercicios);
+// router.get("/admindashboard/ejercicios", checkPrivilegio('Consultar ejercicio'), checkPrivilegio('Registrar ejercicio'),
+//              adminController.getAdminDashboardEjercicios);
 
-router.get('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registrar ejercicio'),
-             adminController.getAdminNuevoEjercicio);
+// router.get('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registrar ejercicio'),
+//              adminController.getAdminNuevoEjercicio);
 
-router.post('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registrar ejercicio'),
-             adminController.postAdminNuevoEjercicio);
+// router.post('/admindashboard/ejercicios/nuevoejercicio', checkPrivilegio('Registrar ejercicio'),
+//              adminController.postAdminNuevoEjercicio);
 
-router.post("/admindashboard/ejercicios/delete/:id_ejercicio", checkPrivilegio('Registrar ejercicio'),
-            adminController.deleteAdminEjercicio);
+// router.post("/admindashboard/ejercicios/delete/:id_ejercicio", checkPrivilegio('Registrar ejercicio'),
+//             adminController.deleteAdminEjercicio);
 
 router.get("/admindashboard/programas", checkPrivilegio('Consultar programa'), checkPrivilegio('Registrar programa'),
             adminController.getAdminDashboardProgramas);
@@ -111,13 +105,13 @@ router.get("/admindashboard/reg_rol/activate/:idrol", checkPrivilegio('Modificar
 router.get("/admindashboard/grafclientes", checkPrivilegio('Consultar usuarios'),
              adminController.getAdminInfoCliente);
 
-router.get("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
-                adminController.getmodificarEjercicio);
+// router.get("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
+//                 adminController.getmodificarEjercicio);
 
-router.post("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
-                adminController.postmodificarEjercicio);
+// router.post("/admindashboard/ejercicios/modificarejercicio/:id_ejercicio", checkPrivilegio('Modificar ejercicio'),
+//                 adminController.postmodificarEjercicio);
 
-router.get("/admindashboard/ejercicios/grafica", checkPrivilegio('Consultar ejercicio'),
-                adminController.getGraficaEjercicios);
+// router.get("/admindashboard/ejercicios/grafica", checkPrivilegio('Consultar ejercicio'),
+//                 adminController.getGraficaEjercicios);
 
 module.exports = router;

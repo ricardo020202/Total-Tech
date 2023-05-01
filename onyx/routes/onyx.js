@@ -4,7 +4,7 @@ const path = require("path");
 const onyxController = require("../controllers/onyx");
 const checkPrivilegio = require("../util/checkPrivilegios");
 
-router.get("/catejercicios", checkPrivilegio('Consultar ejercicio'), onyxController.getCatEjercicios);
+// router.get("/catejercicios", checkPrivilegio('Consultar ejercicio'), onyxController.getCatEjercicios);
 
 router.get("/catentrenamientos", checkPrivilegio('Consultar programa'), onyxController.getCatEntrenamientos);
 
