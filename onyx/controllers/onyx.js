@@ -505,6 +505,11 @@ exports.getDashboard = (req, res, next) => {
 
 exports.getDatosIniciales = async (req, res, next) => {
     const consulta_peso = await TallaModel.getLast(req.session.email, "peso");
+    
+    if (consulta_peso[0].length === 0) {
+        return res.redirect("/onyx/registrar-datos-iniciales");
+    }
+
     const peso = consulta_peso[0][0].medida;
 
     Cliente.fetchOne(req.session.email)
@@ -520,7 +525,7 @@ exports.getDatosIniciales = async (req, res, next) => {
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
                     sexo: req.session.sex,
-                    peso: peso,
+                    peso: peso ,
                 });
             }
         })
