@@ -15,7 +15,7 @@
                 </a>
                 <ul class="dropdown-menu" style="height: 120px; overflow-y: scroll;">
                     <li id="navbaritem">
-                        <a class="dropdown-item" href="/onyx/dietas/0/0">Eliminar Filtros</a>
+                        <a class="dropdown-item" href="/onyx/dietas">Eliminar Filtros</a>
                     </li>
                     <li id="navbaritem">
                         <a class="dropdown-item" href="/onyx/dietas/0/900">900 - Calorías</a>
@@ -123,40 +123,45 @@
     <div class="container text-center">
 
         <div class="row align-items-start">
-            <% for (let i=0; i < dietas.length; i++) { %>
-                <% if (dietas[i].id_dieta !== 1) { %>
-                    <div class="col">
-                        <div class="cards" style="width: 18rem">
-                            <img style="object-fit: cover;" src="/uploads/<%= dietas[i].foto_dieta%>" class="card-img-top"/>
-                            <div class="card-body">
+            <%if (dietas.length <= 0) {%>
+                <h5>¡Lo sentimos!</h5>
+                <p>No hay dietas con las especificaciones buscadas.</p>
+            <%} else {%>
+                <% for (let i=0; i < dietas.length; i++) { %>
+                    <% if (dietas[i].id_dieta !== 1) { %>
+                        <div class="col">
+                            <div class="cards" style="width: 18rem">
+                                <img style="object-fit: cover;" src="/uploads/<%= dietas[i].foto_dieta%>" class="card-img-top"/>
+                                <div class="card-body">
 
-                                <h3 class="card-title">
-                                    <%= dietas[i].nombre_dieta %>
-                                </h3>
-                                <p style="margin: -0.5px;">Proteinas: <%= dietas[i].proteinas%>
-                                </p>
-                                <p style="margin: -0.5px;">Carbohidratos: <%=dietas[i].carbohidratos%>
-                                </p>
-                                <p style="margin: -0.5px;">Grasas: <%=dietas[i].grasas%>
-                                </p>
-                                <br>
+                                    <h3 class="card-title">
+                                        <%= dietas[i].nombre_dieta %>
+                                    </h3>
+                                    <p style="margin: -0.5px;">Proteinas: <%= dietas[i].proteinas%>
+                                    </p>
+                                    <p style="margin: -0.5px;">Carbohidratos: <%=dietas[i].carbohidratos%>
+                                    </p>
+                                    <p style="margin: -0.5px;">Grasas: <%=dietas[i].grasas%>
+                                    </p>
+                                    <br>
 
-                                <a href="/onyx/dieta/<%= dietas[i].id_dieta%>" id="btnstart"
-                                    class="btn btn-primary">EMPEZAR</a>
-                                <br />
-                                <% if (favoritos.includes(dietas[i].id_dieta)) {%>
-                                    <a href="/onyx/favoritos/delete/<%= dietas[i].id_dieta%>/1/dieta" class="fav"><i
-                                            class="bi bi-star-fill"></i></a>
-                                    <% } else { %>
-                                        <a href="/onyx/favoritos/add/<%= dietas[i].id_dieta%>/1/dieta" class="fav"><i
-                                                class="bi bi-star"></i></a>
-                                        <% } %>
-                                            <!-- <i class="bi bi-star-fill fav"></i> -->
+                                    <a href="/onyx/dieta/<%= dietas[i].id_dieta%>" id="btnstart"
+                                        class="btn btn-primary">EMPEZAR</a>
+                                    <br />
+                                    <% if (favoritos.includes(dietas[i].id_dieta)) {%>
+                                        <a href="/onyx/favoritos/delete/<%= dietas[i].id_dieta%>/1/dieta" class="fav"><i
+                                                class="bi bi-star-fill"></i></a>
+                                        <% } else { %>
+                                            <a href="/onyx/favoritos/add/<%= dietas[i].id_dieta%>/1/dieta" class="fav"><i
+                                                    class="bi bi-star"></i></a>
+                                            <% } %>
+                                                <!-- <i class="bi bi-star-fill fav"></i> -->
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <% } %>
-                        <% } %>
+                <% } %>
+            <% } %>
         </div>
     </div>
     <br>
