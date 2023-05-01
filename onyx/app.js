@@ -19,20 +19,6 @@ const Rol = require('./models/rol');
 const Usuario = require('./models/usuario');
 const connection = require('./util/database');
 
-//app.use(cors());
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-  );
-  next();
-});
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -49,19 +35,6 @@ app.use(flash());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-async function verify(token) {
-  const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: CLIENT_ID,
-  });
-  const payload = ticket.getPayload();
-  const userid = payload['sub'];
-}
-
-
-
-
 
 const csrfProtection = csrf();
 
@@ -82,51 +55,13 @@ const fileStorage = multer.diskStorage({
 
 app.use(multer({ storage: fileStorage }).single("image"));
 
-app.post('/auth/google/callback', async (req, res) => {
-  const token = req.body.idtoken;
-  console.log('ID Token Recibido: ' + token);
-
-  try {
-    const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: CLIENT_ID,
-    });
-
-    const payload = ticket.getPayload();
-    const userId = payload['sub'];
-
-    
-    const [rolRows, rolFields] = await connection.execute('SELECT * FROM rol WHERE nombreRol = ?', ['cliente']);
-    if (rolRows.length === 0) {
-      throw new Error('Rol cliente no encontrado');
-    }
-    const rolClienteId = rolRows[0].id_rol;
-
-
-    const [rows, fields] = await connection.execute('SELECT * FROM usuario WHERE google_id = ?', [userId]);
-    let user = null;
-
-    if (rows.length == 0) {
-      const [insertedRow] = await connection.execute('INSERT INTO usuario (nombre, email) VALUES (?, ?)', [payload['name'], payload['email']]);
-      user = insertedRow.insertId;
-      await connection.execute('INSERT INTO rol_usuario (email, id_rol, fecha) VALUES (?, ?, NOW())', [payload['email'], 2]);
-
-    } else {
-      user = rows[0].id;
-    }
-
-    const [insertedRow] = await connection.execute('INSERT INTO sesiones (id_sesion, fecha) VALUES (?, NOW())', [user]);
-
-    req.session.isLoggedIn = true;
-    res.redirect('/onyx');
-  } catch (error) {
-    console.error(error);
-    res.status(404).send('Error al iniciar sesión con Google');
-  }
-});
 app.use(csrfProtection);
 
 app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (request, response, next) => {
+    response.redirect("/onyx");
+});
 
 const userRoutes = require("./routes/users");
 app.use("/users", userRoutes);
