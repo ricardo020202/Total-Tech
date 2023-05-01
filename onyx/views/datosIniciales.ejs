@@ -5,46 +5,25 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="fw-bold text-start">Datos personales</h1>
-                <div class="spacer2"></div>
-                <table>
-                    <tr>
-                      <th>Altura:</th>
-                      <td><%= cliente.altura %></td>
-                    </tr>
-                    <tr>
-                      <th>Edad:</th>
-                      <td><%= cliente.edad %></td>
-                    </tr>
-                    <tr>
-                      <th>Sexo:</th>
-                      <td><%= cliente.sexo %></td>
-                    </tr>
-                    <tr>
-                      <th>Actividad:</th>
-                      <td><%= cliente.nivel_actividad %></td>
-                    </tr>
-                    <tr>
-                      <th>Objetivo:</th>
-                      <td><%= cliente.objetivo %></td>
-                    </tr>
-                    <tr>
-                      <th>Bench Press:</th>
-                      <td><%= cliente.pr_BenchPress %></td>
-                    </tr>
-                    <tr>
-                      <th>Peso Muerto:</th>
-                      <td><%= cliente.pr_PesoMuerto %></td>
-                    </tr>
-                    <tr>
-                      <th>Sentadillas:</th>
-                      <td><%= cliente.pr_Sentadillas %></td>
-                    </tr>
-                    
-                  </table>
-                  <a class="btn btn-custom" href="/onyx/registrar-datos-iniciales" role="button">Modificar datos</a>
-                  
-                <div class="spacer2"></div>
+                <h4>Altura: <%= cliente.altura %></h4>
+                <h4>Edad: <%= cliente.edad %></h4>
+                <h4>Sexo: <%= cliente.sexo %></h4>
+                <h4>Actividad: <%= cliente.nivel_actividad %></h4>
+                <h4>Objetivo: <%= cliente.objetivo %></h4>
+                <h4>Bench Press: <%= cliente.pr_BenchPress %></h4>
+                <h4>Peso Muerto: <%= cliente.pr_PesoMuerto %></h4>
+                <h4>Sentadillas: <%= cliente.pr_Sentadillas %></h4>
+                <a class="btn btn-custom" href="/onyx/registrar-datos-iniciales" role="button">Modificar datos</a>
+            </div>
+
+            <div class="col m">
+                <div class="row">
+                    <h2>Tu nivel de gym</h2>
+                </div>
+                <div class="row">
+                    <h2>Calorias para ti</h2>
+                </div>
+                
             </div>
 
             <div class="col">

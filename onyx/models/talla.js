@@ -28,4 +28,8 @@ module.exports = class Talla {
     static getTotalMedidas(email, extremidad){
         return db.execute('SELECT COUNT(*) FROM talla WHERE email = ? AND extremidad = ?', [email, extremidad]);
     }
+
+    static getLast(email, extremidad){
+        return db.execute('SELECT medida FROM talla WHERE email = ? AND extremidad = ? ORDER BY fecha DESC LIMIT 1', [email, extremidad]);
+    }
 }
