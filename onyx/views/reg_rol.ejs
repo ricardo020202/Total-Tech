@@ -1,7 +1,7 @@
 <%- include('includes/sidebar.ejs') %>
   <%- include('includes/headAdmin.ejs') %>
     <link rel="stylesheet" href="/css/adminStyle.css">
-
+    <br>
     <div class="container">
       <h1 class="text-center mt-2">Registro de Roles - Onyx</h1>
       <div class="row justify-content-center">
@@ -27,7 +27,7 @@
           <label>Privilegios:</label>
           <div class="container">
             <div class="container privilegios-table-container">
-              <table class="table table-active table-striped" style="margin: 0 auto; height: 85px;">
+              <table class="table table-active" style="margin: 0 auto; height: 86px;">
                 <thead class="sticky-top">
                   <tr>
                     <th>ID</th>
@@ -46,8 +46,12 @@
                       </td>
                       <td>
                         <label class="switch">
-                          <input type="checkbox" class="input__check" id="flexSwitchCheckDefault" name="privilegios">
-                          <span class="slider"></span>
+                          <input type="checkbox" name="privilegios" value="<%= privilegio.id_cu %>">
+                          <div class="slider"></div>
+                          <div class="slider-card">
+                            <div class="slider-card-face slider-card-front"></div>
+                            <div class="slider-card-face slider-card-back"></div>
+                          </div>
                         </label>
                       </td>
                     </tr>
@@ -60,7 +64,7 @@
           <label>Roles Registrados:</label>
           <div class="col-md-10">
             <div class="container">
-              <table class="table table-active table-striped" style="margin: 0 auto;">
+              <table class="table table-active" style="margin: 0 auto;">
                 <thead class="sticky-top">
                   <tr>
                     <th>ID</th>
@@ -79,15 +83,15 @@
                       </td>
                       <td>
                         <a href="/admin/adminDashboard/modrol/<%= rol.id_rol %>"><i
-                            class="fa-solid fa-pen-to-square fa-lg" style="color: #000;"></i></a>
-                      <% if (rol.statusRol=='on' ) { %>
-                        <a href="/admin/adminDashboard/reg_rol/delete/<%= rol.id_rol %>"
-                          class="btn btn-custom">Desactivar</a>
-                      <% } else { %>
-                          <a href="/admin/adminDashboard/reg_rol/activate/<%= rol.id_rol %>"
-                            class="btn btn-custom">Activar</a>
-                        <% } %>
-                          </td>
+                            class="fa-solid fa-pen-to-square fa-lg" style="color: #cdcdcd;"></i></a>
+                        <% if (rol.statusRol=='on' ) { %>
+                          <a href="/admin/adminDashboard/reg_rol/delete/<%= rol.id_rol %>"
+                            class="btn btn-dark text-light">Desactivar</a>
+                          <% } else { %>
+                            <a href="/admin/adminDashboard/reg_rol/activate/<%= rol.id_rol %>"
+                              class="btn btn-custom">Activar</a>
+                            <% } %>
+                      </td>
                     </tr>
                     <% }); %>
                 </tbody>

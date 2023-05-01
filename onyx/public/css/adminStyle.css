@@ -215,23 +215,52 @@ button:active {
 }
 
 .spacer {
-    height: 100px;
+    height: 70px;
 }
 
+.spacer-nuevoprograma {
+    height: 40px;
+    justify-content: left;
+}
+
+.mb-3
+{
+    justify-content: left;
+}
+
+#descripcion_programa_text
+{
+    transition: transform 0.4s ease;
+}
+
+#descripcion_programa_text:focus
+{
+    transform: scale(1.5);
+}
+
+
 .bg-users {
-    background-color: #F0F9FF;
+    background-color: #1c2d38;
+}
+
+.bg-role {
+    background-color: #112111;
 }
 
 .bg-dietas {
-    background-color: #FEF6FB;
+    background-color: #322b2b;
 }
 
 .bg-programas {
-    background-color: #FEFBEC;
+    background-color: #2d2020;
 }
 
 .bg-ejercicio {
-    background-color: #F1FFDE;
+    background-color: #2a1d31;
+}
+
+.bg-historial {
+    background-color: #38351c;
 }
 
 .card {
@@ -242,6 +271,13 @@ button:active {
 .icon-users {
     /* change the color of the icon */
     fill: #74C1ED;
+}
+
+.icon-role {
+    /* change the color of the icon */
+    fill: #D2CA03;
+    width: 6rem;
+    height: 6rem;
 }
 
 .icon-dietas {
@@ -257,6 +293,11 @@ button:active {
 .icon-ejercicio {
     /* change the color of the icon */
     fill: #A8FF33;
+}
+
+.icon-historial {
+    /* change the color of the icon */
+    fill: #ffbb33;
 }
 
 
@@ -279,8 +320,8 @@ table {
 }
 
 tbody{
-    background-color: #F0F9FF;
-    color: #000000;
+    background-color: #2c343a;
+    color: #cdcdcd;
 }
 
 td, th {
@@ -333,6 +374,31 @@ td, th {
 }
 
 /* =============== Nuevo Ejericio =============== */
+#modifcar-ejercicio{
+    /* make that div a grid */
+    display: grid;
+    /* 2 columns */
+    grid-template-columns: 1fr 1fr;
+    /* 2 rows */
+    grid-template-rows: 1fr 1fr;
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-template-areas:
+    "nombre nombre"
+    "descripcion descripcion";
+    /* 1fr is
+    1fr = 1fr
+    1fr = 1fr
+    */
+    grid-gap: 1rem;
+    /* 1rem = 16px */
+    display: flex;
+    margin-left: 10rem;
+
+}
+
 #nuevo-ejercicio{
     /* make that div a grid */
     display: grid;
@@ -364,6 +430,13 @@ td, th {
     max-width: 100%;
 }
 
+#modifcar-ejercicio input {
+    /* white search bar */
+    background: #FFFFFF;
+    max-width: 100%;
+    width: 100%;
+}
+
 #ejercicio {
     margin-left: 8rem;
     margin-top: 15rem;
@@ -393,19 +466,13 @@ td, th {
     margin-top: 5rem;
 }
 
-
-
-
-
-
-/* =============== Nuevo Programa =============== */
-#nuevo-programa{
+#form-modificar-ejercicio {
     /* make that div a grid */
     display: grid;
     /* 2 columns */
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 10fr 10fr;
     /* 2 rows */
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 3fr 10fr;
     /* 1fr is
     1fr = 1fr
     1fr = 1fr
@@ -417,48 +484,19 @@ td, th {
     1fr = 1fr
     1fr = 1fr
     */
-    grid-gap: 1rem;
-    /* 1rem = 16px */
-    display: flex;
-    margin-left: 10rem;
-
-}
-
-#nuevo-programa input {
-    /* white search bar */
-    background: #FFFFFF;
-    max-width: 100%;
-}
-
-#programa {
-    margin-left: 8rem;
-    margin-top: 15rem;
-    /* elements in a row */
-}
-
-#form-nuevo-programa {
-    /* make that div a grid */
-    display: grid;
-    /* 2 columns */
-    grid-template-columns: 1fr 1fr;
-    /* 2 rows */
-    grid-template-rows: 1fr 1fr;
-    /* 1fr is
-    1fr = 1fr
-    1fr = 1fr
-    */
-    grid-template-areas:
-    "nombre nombre"
-    "descripcion descripcion";
-    /* 1fr is
-    1fr = 1fr
-    1fr = 1fr
-    */
-    grid-gap: 1rem;
+    grid-gap: 6rem;
     /* 1rem = 16px */
     margin-top: 5rem;
 }
 
+
+/* =============== Nuevo Programa =============== */
+#nuevoprograma-area {
+    width: 40%;
+    justify-content: left;
+
+}
+  
 .nav-link2 {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -546,8 +584,113 @@ td, th {
 .privilegios-table-container {
     max-height: 300px; /* Altura máxima del contenedor de la tabla. Ajusta según tus necesidades. */
     overflow-y: auto; /* Habilita el scroll vertical si el contenido excede la altura máxima. */
+    
   }
 
-.form-container {
-    margin-left: 10; /* adjust the margin as needed */
+
+  
+
+/* BOTON */
+
+/* The switch - the box around the slider */
+.switch {
+    --circle-dim: 1.4em;
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 3.3em;
+    height: 1.5em;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: .3em;
+    bottom: 0;
+    background-color: #cdcdcd;
+    transition: .6s;
+    border-radius: 50px;
+  }
+  
+  .slider-card {
+    position: absolute;
+    content: "";
+    height: var(--circle-dim);
+    width: var(--circle-dim);
+    border-radius: 0px;
+    left: 0.0em;
+    bottom: 0.05em;
+    transition: .6s;
+    pointer-events: none;
+  }
+  
+  .slider-card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    perspective: 900px;
+    border-radius: 100%;
+    transition: .4s transform;
+  }
+  
+  .slider-card-front {
+    background-color: #222227;
+  }
+  
+  .slider-card-back {
+    background-color: #ab9d00;
+    transform: rotateY(180deg);
+  }
+  
+  input:checked ~ .slider-card .slider-card-back {
+    transform: rotateY(0);
+  }
+  
+  input:checked ~ .slider-card .slider-card-front {
+    transform: rotateY(-180deg);
+  }
+  
+  input:checked ~ .slider-card {
+    transform: translateX(1.5em);
+  }
+
+.modal-content{
+    background-color: #2c343a;
+}
+
+#plotly-chart
+{
+    transition: transform 0.4 ease;
+}
+
+
+#plotly-chart
+{
+    transform: scale(1.1);
+}
+
+.form-dieta td input {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* #tablemacro
+{
+    margin-bottom: ;
+} */
+
+#nuevadietacontainer
+{
+    margin-left: 10px;
 }

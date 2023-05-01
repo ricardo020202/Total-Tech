@@ -29,75 +29,74 @@ module.exports = class Dieta {
         this.vit_b12 = dieta.vit_b12 || 0;
         this.ac_folico = dieta.ac_folico || 0;
         this.folato = dieta.folato || 0;
+        this.alimento = dieta.alimento;
+        this.foto_dieta = dieta.foto_dieta;
     }
 
     save() {
-         return db.execute(`INSERT INTO dieta (nombre_dieta, calorias, proteinas, carbohidratos, grasas, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?)`,
-            [this.nombre_dieta, this.calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato]
-        );
+        return db.execute(`INSERT INTO dieta (nombre_dieta, calorias, proteinas, carbohidratos, grasas, fibra_total, ceniza, calcio, fosforo, hierro, tiamina, riboflavina, niacina, vitamina_c, vitamina_a, ac_graso_mono, ac_graso_poli, ac_graso_saturado, colesterol, potasio, sodio, zinc, magnesio, vit_b6, vit_b12, ac_folico, folato, alimento, foto_dieta) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?, ?)`,
+            [this.nombre_dieta, this.calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato, this.alimento, this.foto_dieta]);
     }
-    
+
     static fetchAll(start) {
-        if(start > 0)
-        {
-            return db.execute('SELECT * FROM dieta ORDER BY calorias LIMIT ?, 9', [start]);  
+        if (start > 0) {
+            return db.execute('SELECT * FROM dieta ORDER BY calorias LIMIT ?, 9', [start]);
         }
 
-        else
-        {
+        else {
             return db.execute('SELECT * FROM dieta ORDER BY calorias');
-        } 
+        }
     }
- 
+
     static getTotal() {
         return db.execute('SELECT count(*) as total FROM dieta');
 
     }
-    
-    static fetchById(id_dieta)
-    {
-        return db.execute('SELECT * FROM dieta WHERE id_dieta = ?', [id_dieta]);
+
+    static fetchById(id_dieta) {
+        return db.execute(`SELECT * FROM dieta WHERE id_dieta = ?`, [id_dieta]);
     }
 
-    static fetchByCal(numcal, start)
-    {
-        if (numcal  == 0)
-        {
+    static fetchByCal(numcal, start) {
+        if (numcal == 0) {
             return db.execute('SELECT * FROM dieta ORDER BY calorias  LIMIT ?, 9', [start]);
         }
-        
-        if(numcal > 900 && numcal < 4000)
-        {
+
+        if (numcal > 900 && numcal < 4000) {
             return db.execute('SELECT * FROM dieta WHERE calorias = ? ORDER BY calorias  LIMIT ?, 9', [numcal, start]);
         }
 
-        if(numcal >= 4000)
-        {
+        if (numcal >= 4000) {
             return db.execute('SELECT * FROM dieta WHERE calorias BETWEEN ? AND ? + 1000 ORDER BY calorias  LIMIT ?, 9', [numcal, numcal, start]);
         }
 
-        if(numcal <= 900)
-        {
+        if (numcal <= 900) {
             return db.execute('SELECT * FROM dieta WHERE calorias BETWEEN ? AND ? - 500 ORDER BY calorias  LIMIT ?, 9', [numcal, numcal, start]);
         }
 
-        else
-        {
+        else {
             return db.execute('SELECT * FROM dieta ORDER BY calorias  LIMIT ?, 9', [start]);
         }
-        
+
     }
 
-    update() {
+    update(id) {
         return db.execute(
-            'UPDATE dieta SET nombre_dieta = ?, calorias = ?, proteinas = ?, carbohidratos = ?, grasas = ?, fibra_total = ?, ceniza = ?, calcio = ?, fosforo = ?, hierro = ?, tiamina = ?, riboflavina = ?, niacina = ?, vitamina_c = ?, vitamina_a = ?, ac_graso_mono = ?, ac_graso_poli = ?, ac_graso_saturado = ?, colesterol = ?, potasio = ?, sodio = ?, zinc = ?, magnesio = ?, vit_b6 = ?, vit_b12 = ?, ac_folico = ?, folato = ? WHERE id_dieta = ?',
-            [this.nombre_dieta, this.calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato, this.id_dieta]
+            'UPDATE dieta SET nombre_dieta = ?, calorias = ?, proteinas = ?, carbohidratos = ?, grasas = ?, fibra_total = ?, ceniza = ?, calcio = ?, fosforo = ?, hierro = ?, tiamina = ?, riboflavina = ?, niacina = ?, vitamina_c = ?, vitamina_a = ?, ac_graso_mono = ?, ac_graso_poli = ?, ac_graso_saturado = ?, colesterol = ?, potasio = ?, sodio = ?, zinc = ?, magnesio = ?, vit_b6 = ?, vit_b12 = ?, ac_folico = ?, folato = ?, alimento = ?, foto_dieta = ? WHERE id_dieta = ?',
+            [this.nombre_dieta, this.calorias, this.proteinas, this.carbohidratos, this.grasas, this.fibra_total, this.ceniza, this.calcio, this.fosforo, this.hierro, this.tiamina, this.riboflavina, this.niacina, this.vitamina_c, this.vitamina_a, this.ac_graso_mono, this.ac_graso_poli, this.ac_graso_saturado, this.colesterol, this.potasio, this.sodio, this.zinc, this.magnesio, this.vit_b6, this.vit_b12, this.ac_folico, this.folato, this.alimento, this.foto_dieta, id]
         );
     }
 
     static deleteById(id_dieta) {
         return db.execute('DELETE FROM dieta WHERE id_dieta = ?', [id_dieta]);
+    }
+
+    static deleteById(id_dieta) {
+        return db.execute('DELETE FROM dieta_alimento WHERE id_dieta = ?', [id_dieta])
+            .then(() => {
+                return db.execute('DELETE FROM dieta WHERE id_dieta = ?', [id_dieta]);
+            });
     }
 
     static isFavorite(email, tipo) {

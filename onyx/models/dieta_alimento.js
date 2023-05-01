@@ -16,6 +16,10 @@ module.exports = class DietaAlimento {
         return db.execute('SELECT * FROM dieta_alimento');
     }
 
+    static fetchById(id_dieta) {
+        return db.execute('SELECT* FROM alimento INNER JOIN dieta_alimento ON alimento.id_alimento = dieta_alimento.id_dieta AND id_dieta = ?', [id_dieta]);
+    }
+
     static delete(id) {
         return db.execute('DELETE FROM dieta_alimento WHERE id_alimento = ?', [id]);
     }

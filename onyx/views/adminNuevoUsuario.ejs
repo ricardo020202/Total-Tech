@@ -1,34 +1,56 @@
-<%- include('includes/headAdmin.ejs') %>
-<%- include('includes/sidebar.ejs') %> 
-<link rel="stylesheet" href="/css/adminStyle.css">
+<%- include('includes/headAdmin.ejs') %> <%- include('includes/sidebar.ejs') %>
+<link rel="stylesheet" href="/css/adminStyle.css" />
 <div class="container">
-<div class="spacer"></div>
+    <div class="spacer"></div>
 
-<div class="row">
-  <div class="col"></div>
+    <div class="row">
+        <div class="col"></div>
 
-  <div class="col">
-    <h1>Agregar usuarios</h1>
-    <h1><%= mensaje %></h1>
-    <br><br><br>
-    <form action="/admin/admindashboard/userprivileges/add" method="POST">
-      <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-      <label for="email">Email:</label>
-      <input type="text" name="email" required><br><br>
-      <label for="role">Rol:</label>
-      <select name="role">
-        <% for (let i = 0; i < roles.length; i++) { %>
-          <option value="<%= roles[i].id_rol %>"><%= roles[i].nombreRol %></option>
-        <% } %>
-      </select>      
-      <br><br>
+        <div class="col">
+            <h1>Agregar usuarios</h1>
+            <p><%= mensaje %></p>
+            <br /><br /><br />
 
+            
+            <% if (rol) { %>
+                <form 
+                action="/admin/admindashboard/userprivileges/add/<%= usuario.email %>"
+                method="POST"
+            >
+            <% } else { %>
+                <form 
+                action="/admin/admindashboard/userprivileges/add"
+                method="POST"
+            >
+            <% } %>
+            
 
-      <input type="submit" value="Registrar usuario">
-  </form>
-  </div>
-</div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <label for="email" class="form-label">Email:</label>
+                <input
+                    value="<%= usuario.email %>"
+                    type="text"
+                    name="email"
+                    class="form-control"
+                    required
+                /><br /><br />
+                <label for="role" class="form-label">Rol:</label>
+                <select name="role" class="form-select" required>
+                    <% if (rol) { %>
+                        <option value="<%= rol.nombreRol %>"> <%= rol.nombreRol %></option>
+                    <% } %>
+                    <% for (let i = 0; i < roles.length; i++) { %>
+                    <option value="<%= roles[i].id_rol %>">
+                        <%= roles[i].nombreRol %>
+                    </option>
+                    <% } %>
+                </select>
+                <br /><br />
 
+                <input type="submit" value="Registrar usuario"  class="btn btn-primary"/>
+            </form>
+        </div>
+    </div>
 </div>
 
 <%- include('includes/footAdmin.ejs') %>

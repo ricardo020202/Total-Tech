@@ -4,7 +4,7 @@ const path = require("path");
 const onyxController = require("../controllers/onyx");
 const checkPrivilegio = require("../util/checkPrivilegios");
 
-router.get("/catejercicios", checkPrivilegio('Consultar ejercicio'), onyxController.getCatEjercicios);
+// router.get("/catejercicios", checkPrivilegio('Consultar ejercicio'), onyxController.getCatEjercicios);
 
 router.get("/catentrenamientos", checkPrivilegio('Consultar programa'), onyxController.getCatEntrenamientos);
 
@@ -15,6 +15,12 @@ router.get("/programa", checkPrivilegio('Consultar programa'), onyxController.ge
 router.get("/programa/:id_programa", checkPrivilegio('Consultar programa'), onyxController.getDetallePrograma);
 
 router.get("/dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetalleDieta);
+
+router.get("/dieta/:id_dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetalleDieta);
+
+router.get("/dieta", checkPrivilegio('Consultar dieta'), onyxController.getDietaAlimento);
+
+router.get("/dieta/:id_dieta", checkPrivilegio('Consultar dieta'), onyxController.getDietaAlimento);
 
 router.get("/dieta/:id_dieta", checkPrivilegio('Consultar dieta'), onyxController.getDetalleDieta);
 

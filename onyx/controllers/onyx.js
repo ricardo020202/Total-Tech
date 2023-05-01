@@ -17,6 +17,7 @@ const Rol = require('../models/rol');
 const RolPrivilegio = require('../models/rol_privilegio');
 const db = require('../util/database');
 
+
 exports.getCatEjercicios = (req, res, next) => {
     EjercicioModel.fetchAll()
         .then(([rows, fieldData]) => {
@@ -26,6 +27,7 @@ exports.getCatEjercicios = (req, res, next) => {
                 user: req.session.user || "",
                 path: "/catEjercicios",
                 photo: req.session.photo || 'default.png',
+                rol: req.session.rol || "",
             });
         })
         .catch((err) => {
@@ -34,6 +36,7 @@ exports.getCatEjercicios = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -59,6 +62,7 @@ exports.getCatEntrenamientos = async (req, res, next) => {
                         total_programas: total,
                         favoritos: favArray,
                         photo: req.session.photo || 'default.png',
+                        rol: req.session.rol || "",
                     });
                 })
                 .catch((err) => {
@@ -67,6 +71,7 @@ exports.getCatEntrenamientos = async (req, res, next) => {
                             pagetitle: "Error",
                             user: req.session.user || "",
                             photo: req.session.photo || 'default.png',
+                            rol: req.session.rol || "",
                         });
                         return { medidas: [], fechas: [] };
                     } else {
@@ -80,6 +85,7 @@ exports.getCatEntrenamientos = async (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -94,12 +100,12 @@ exports.getDetallePrograma = (req, res, next) => {
 
     EntrenamientoModel.fetchById(id_programa)
         .then(([rows, fieldData]) => {
-            console.log(rows[0])
             res.render("programaDetallado", {
                 detalles: rows[0],
                 pagetitle: "Detalles de Programa",
                 user: req.session.user || "",
                 photo: req.session.photo || 'default.png',
+                rol: req.session.rol || "",
             });
             
         })
@@ -109,6 +115,7 @@ exports.getDetallePrograma = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
                 return { detalles: [] };
             } else {
@@ -123,12 +130,12 @@ exports.getDetalleDieta = (req, res, next) => {
 
     Dieta.fetchById(id_dieta)
         .then(([rows, fieldData]) => {
-            console.log(rows)
             res.render("dietaDetallada", {
                 detalles: rows[0],
                 pagetitle: "Detalles de dieta",
                 user: req.session.user || "",
                 photo: req.session.photo || 'default.png',
+                rol: req.session.rol || "",
             });
             
         })
@@ -138,6 +145,7 @@ exports.getDetalleDieta = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
                 return { detalles: [] };
             } else {
@@ -146,8 +154,38 @@ exports.getDetalleDieta = (req, res, next) => {
         });
 };
 
+exports.getDietaAlimento = (req, res, next) => {
+
+    const id_dieta = req.params.id_dieta;
+
+    DietaAlimento.fetchById(id_dieta)
+        .then(([rows, fieldData]) => {
+            res.render("dietaDetallada", {
+                alimentos: rows[0],
+                user: req.session.user || "",
+                photo: req.session.photo || 'default.png',
+                rol: req.session.rol || "",
+            });
+            
+        })
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+                return { detalles: [] };
+            } else {
+                console.log(err);
+            }
+        });
+
+};
+
 exports.getDieta = async (req, res, next) => {
-    const numcal = req.params.numcal || "";
+    const numcal = req.params.numcal || 0;
     const consulta_total = await Dieta.getTotal(); // [rows, fieldData]
     const total = consulta_total[0][0].total;
     const start = req.params.start ? req.params.start : 0;
@@ -165,6 +203,7 @@ exports.getDieta = async (req, res, next) => {
                         numcal: numcal,
                         favoritos: favArray,
                         photo: req.session.photo || 'default.png',
+                        rol: req.session.rol || "",
                     });
                 })
                 .catch((err) => {
@@ -173,6 +212,7 @@ exports.getDieta = async (req, res, next) => {
                             pagetitle: "Error",
                             user: req.session.user || "",
                             photo: req.session.photo || 'default.png',
+                            rol: req.session.rol || "",
                         });
                         return { medidas: [], fechas: [] };
                     } else {
@@ -186,6 +226,7 @@ exports.getDieta = async (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -199,6 +240,7 @@ exports.getFavoritos = async (req, res, next) => {
         pagetitle: "Favoritos",
         user: req.session.user || "",
         photo: req.session.photo || 'default.png',
+        rol: req.session.rol || "",
     });
 };
 
@@ -245,7 +287,16 @@ exports.deleteFavoritos = (req, res, next) => {
             }
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -274,6 +325,7 @@ exports.getBitacora = (req, res, next) => {
                     message: "Error deleting bitacora record",
                     error: err,
                     photo: req.session.photo || "",
+                    rol: req.session.rol || "",
                 });
             });
     } else {
@@ -292,6 +344,7 @@ exports.getBitacora = (req, res, next) => {
                             bit10: req.session.bit10,
                             csrfToken: req.csrfToken(),
                             photo: req.session.photo || 'default.png',
+                            rol: req.session.rol || "",
                         });
                     })
                     .catch((err) => {
@@ -300,6 +353,7 @@ exports.getBitacora = (req, res, next) => {
                                 pagetitle: "Error",
                                 user: req.session.user || "",
                                 photo: req.session.photo || 'default.png',
+                                rol: req.session.rol || "",
                             });
                             return { medidas: [], fechas: [] };
                         } else {
@@ -313,6 +367,7 @@ exports.getBitacora = (req, res, next) => {
                         pagetitle: "Error",
                         user: req.session.user || "",
                         photo: req.session.photo || 'default.png',
+                        rol: req.session.rol || "",
                     });
                 } else {
                     console.log(err);
@@ -330,7 +385,16 @@ exports.deleteBitacora = (req, res, next) => {
             res.redirect("/onyx/bitacora");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 
     res.locals.messeges = req.flash();
@@ -342,6 +406,7 @@ exports.getNuevaBitacora = (req, res, next) => {
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || 'default.png',
+        rol: req.session.rol || "",
     });
 };
 
@@ -364,8 +429,8 @@ exports.postNuevaBitacora = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -400,6 +465,7 @@ exports.getDashboard = (req, res, next) => {
                         pagetitle: "Error",
                         user: req.session.user || "",
                         photo: req.session.photo || 'default.png',
+                        rol: req.session.rol || "",
                     });
                     return { medidas: [], fechas: [] };
                 } else {
@@ -429,6 +495,7 @@ exports.getDashboard = (req, res, next) => {
                 pantorrillaD: req.session.pantorrilla_derecha || "",
                 cuello: req.session.cuello || "",
                 photo: req.session.photo || 'default.png',
+                rol: req.session.rol || "",
             });
         })
         .catch((err) => {
@@ -437,6 +504,7 @@ exports.getDashboard = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
                 return { medidas: [], fechas: [] };
             } else {
@@ -456,6 +524,7 @@ exports.getDatosIniciales = (req, res, next) => {
                     user: req.session.user || "",
                     cliente: rows[0],
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
             }
         })
@@ -465,8 +534,8 @@ exports.getDatosIniciales = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -479,6 +548,7 @@ exports.getRegistrarDatosIniciales = (req, res, next) => {
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || 'default.png',
+        rol: req.session.rol || "",
     });
 };
 
@@ -545,9 +615,8 @@ exports.getTallas = (req, res, next) => {
                         pagetitle: "Error",
                         user: req.session.user || "",
                         photo: req.session.photo || 'default.png',
-
+                        rol: req.session.rol || "",
                     });
-                    return { medidas: [], fechas: [] };
                 } else {
                     console.log(err);
                 }
@@ -581,6 +650,7 @@ exports.getTallas = (req, res, next) => {
                         sexo: req.session.sex || "",
                         csrfToken: req.csrfToken(),
                         photo: req.session.photo || "",
+                        rol: req.session.rol || "",
                     });
                 })
                 .catch((err) => {
@@ -589,8 +659,8 @@ exports.getTallas = (req, res, next) => {
                             pagetitle: "Error",
                             user: req.session.user || "",
                             photo: req.session.photo || 'default.png',
+                            rol: req.session.rol || "",
                         });
-                        return { medidas: [], fechas: [] };
                     } else {
                         console.log(err);
                     }
@@ -602,8 +672,8 @@ exports.getTallas = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -645,8 +715,8 @@ exports.postTallas = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
@@ -667,6 +737,7 @@ exports.getCuenta = (req, res, next) => {
                         cliente: req.session.cliente || "",
                         csrfToken: req.csrfToken(),
                         photo: req.session.photo || 'default.png',
+                        rol: req.session.rol || "",
                     });
                 })
                 .catch((err) => {
@@ -675,13 +746,12 @@ exports.getCuenta = (req, res, next) => {
                             pagetitle: "Error",
                             user: req.session.user || "",
                             photo: req.session.photo || 'default.png',
+                            rol: req.session.rol || "",
                         });
-                        return { medidas: [], fechas: [] };
                     } else {
                         console.log(err);
                     }
-                }
-                );
+                });
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -689,18 +759,17 @@ exports.getCuenta = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
-        }
-        );
+        });
 };
 
 exports.postCuenta = (req, res, next) => {
 
-    console.log(req.file);
+    
     const usuario = new Usuario({
         email: req.session.email,
         nombre: req.body.inputNombre,
@@ -710,14 +779,22 @@ exports.postCuenta = (req, res, next) => {
     usuario
         .save()
         .then((result) => {
-            console.log(rows);
-            console.log(result);
-            console.log("Usuario actualizado");
+            
+            
             res.redirect("/onyx/cuenta");
             res.status(300).redirect("/onyx/cuenta");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -727,6 +804,7 @@ exports.getCambiarPassword= (req, res, next) => {
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || 'default.png',
+        rol: req.session.rol || "",
     });
 };
 
@@ -748,8 +826,7 @@ exports.postCambiarPassword = (req, res, next) => {
                     if (doMatch) {
                         usuario.changePassword(req.session.email, newPassword)
                             .then((result) => {
-                                console.log(result);
-                                console.log("Password cambiada");
+                                
                                 res.redirect("/onyx/cuenta");
                             }
                             )
@@ -768,13 +845,12 @@ exports.postCambiarPassword = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
                 });
-                return { medidas: [], fechas: [] };
             } else {
                 console.log(err);
             }
-        }
-        );
+        });
 };
 
 exports.getFotoPerfil = (req, res, next) => {
@@ -783,6 +859,7 @@ exports.getFotoPerfil = (req, res, next) => {
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || 'default.png',
+        rol: req.session.rol || "",
     });
 };
 
@@ -794,13 +871,20 @@ exports.postFotoPerfil = (req, res, next) => {
     usuario
         .savePhoto(email, user_pic)
         .then((result) => {
-            console.log(result);
             req.session.photo = user_pic;
-            console.log("Foto de perfil actualizada");
             res.redirect("/onyx/cuenta");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                console.log(err);
+            }
         });
 };
 
@@ -825,6 +909,7 @@ exports.getConsultaFav = async (req, res, next) => {
             favoritos_ejercicios: ejercicios,
             csrfToken: req.csrfToken(),
             photo: req.session.photo || 'default.png',
+            rol: req.session.rol || "",
         });
     } catch (err) {
         if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -832,8 +917,8 @@ exports.getConsultaFav = async (req, res, next) => {
                 pagetitle: "Error",
                 user: req.session.user || "",
                 photo: req.session.photo || 'default.png',
+                rol: req.session.rol || "",
             });
-            return { medidas: [], fechas: [] };
         } else {
             console.log(err);
         }

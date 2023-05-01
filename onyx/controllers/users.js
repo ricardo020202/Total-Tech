@@ -10,7 +10,7 @@ exports.get_signup = (request, response, next) => {
         photo: request.session.photo || 'default.pn',
         csrfToken: request.csrfToken(),
         mensaje: request.session.mensaje || "",
-        
+
     });
 };
 
@@ -29,8 +29,8 @@ exports.post_signup = async (request, response, next) => {
             // Loguear al usuario recién registrado
             user.fetch(request.body.email)
                 .then(([rows, fieldData]) => {
-                    request.session.photo = rows[0].user_pic;
                     if (rows.length > 0) {
+                        request.session.photo = rows[0].user_pic;
                         bcrypt
                             .compare(request.body.password, rows[0].contraseña)
                             .then((doMatch) => {
@@ -40,35 +40,17 @@ exports.post_signup = async (request, response, next) => {
                                     request.session.email = rows[0].email;
                                     user.addRol(request.body.email, 2, new Date())
                                         .then(([rows, fieldData]) => {
-                                            user.getPrivilegiosOne(request.session.email)
-                                                .then(([consulta_privilegios, fieldData]) => {
-                                                    console.log(consulta_privilegios);
-                                                    const privilegios = [];
-                                                    for (let privilegio of consulta_privilegios) {
-                                                        privilegios.push(privilegio.nombrecu);
-                                                    }
-                                                    console.log(privilegios);
-                                                    request.session.privilegios = privilegios;
 
-                                                    return request.session.save((error) => {
-                                                        response.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
-                                                    });
+                                            user.getRol(request.session.email)
+                                                .then(([rows, fieldData]) => {
+                                                    request.session.rol = rows[0].nombreRol;
                                                 })
                                                 .catch((error) => {
                                                     console.log(error);
-                                                    if (error.code === "ER_DUP_ENTRY") {
-                                                        request.session.mensaje = "El correo electrónico ya está registrado.";
-                                                        response.redirect("/users/signup");
-                                                    } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                                        request.session.mensaje = "Error Completar Registro.";
-                                                        response.redirect("/users/signUp");
-                                                    } else {
-                                                        response.render("dbDown", {
-                                                            pagetitle: "Error",
-                                                            user: request.session.user || "",
-                                                        });
-                                                    }
                                                 });
+                                            return request.session.save((error) => {
+                                                response.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
+                                            });
                                         })
                                         .catch((error) => {
                                             console.log(error);
@@ -88,7 +70,7 @@ exports.post_signup = async (request, response, next) => {
                                 } else {
                                     request.session.mensaje = "Usuario y/o contraseña incorrecta.";
                                     response.redirect("/users/login");
-                                    console.log(rows);
+
                                 }
                             })
                             .catch((error) => {
@@ -107,7 +89,7 @@ exports.post_signup = async (request, response, next) => {
                                 }
                             });
                     } else {
-                        request.session.mensaje = "Usuario no registrado.";
+                        request.session.mensaje = "Usuario y/o contraseña incorrecta.";
                         response.redirect("/users/login");
                     }
                 })
@@ -139,7 +121,7 @@ exports.post_signup = async (request, response, next) => {
                 response.render("dbDown", {
                     pagetitle: "Error",
                     user: request.session.user || "",
-                    
+
                 });
             }
         });
@@ -163,18 +145,19 @@ exports.login = (request, response, next) => {
 };
 
 exports.post_login = (request, response, next) => {
-    user.getRol(request.body.email)
-        .then(([rows, fieldData]) => {
-            request.session.rol = rows[0].nombreRol;
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-
     user.fetch(request.body.email)
         .then(([rows, fieldData]) => {
-            request.session.photo = rows[0].user_pic;
             if (rows.length > 0) {
+                request.session.photo = rows[0].user_pic;
+
+                user.getRol(request.body.email)
+                    .then(([rows, fieldData]) => {
+                        request.session.rol = rows[0].nombreRol;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
                 bcrypt
                     .compare(request.body.password, rows[0].contraseña)
                     .then((doMatch) => {
@@ -182,61 +165,35 @@ exports.post_login = (request, response, next) => {
                             request.session.isLoggedIn = true;
                             request.session.user = rows[0].nombre;
                             request.session.email = rows[0].email;
-                            user.getPrivilegiosOne(rows[0].email)
-                                .then(([consulta_privilegios, fieldData]) => {
-                                    console.log(consulta_privilegios);
-                                    const privilegios = [];
-                                    for (let privilegio of consulta_privilegios) {
-                                        privilegios.push(privilegio.nombrecu);
-                                    }
-                                    console.log(privilegios);
-                                    request.session.privilegios = privilegios;
-
-                                    return request.session.save((error) => {
-                                        cliente.fetchOne(request.session.email)
-                                            .then(([rows, fieldData]) => {
-                                                if (rows.length === 0 && request.session.rol === "cliente") {
-                                                    return response.redirect("/onyx/registrar-datos-iniciales");
-                                                }
-                                                else if (request.session.rol === "administrador") {
-                                                    response.redirect("/admin/adminDashboard");
-                                                }
-                                                else {
-                                                    response.redirect("/onyx/");
-                                                }
-                                            })
-                                            .catch((err) => {
-                                                console.log(error);
-                                                if (error.code === "ER_DUP_ENTRY") {
-                                                    request.session.mensaje = "El correo electrónico ya está registrado.";
-                                                    response.redirect("/users/signup");
-                                                } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                                    request.session.mensaje = "Error Completar Registro.";
-                                                    response.redirect("/users/signUp");
-                                                } else {
-                                                    response.render("dbDown", {
-                                                        pagetitle: "Error",
-                                                        user: request.session.user || "",
-                                                    });
-                                                }
+                            return request.session.save((error) => {
+                                cliente.fetchOne(request.session.email)
+                                    .then(([rows, fieldData]) => {
+                                        if (rows.length === 0 && request.session.rol === "cliente") {
+                                            return response.redirect("/onyx/registrar-datos-iniciales");
+                                        }
+                                        else if (request.session.rol !== "cliente") {
+                                            response.redirect("/admin/adminDashboard");
+                                        }
+                                        else {
+                                            response.redirect("/onyx/");
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                        if (error.code === "ER_DUP_ENTRY") {
+                                            request.session.mensaje = "El correo electrónico ya está registrado.";
+                                            response.redirect("/users/signup");
+                                        } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
+                                            request.session.mensaje = "Error Completar Registro.";
+                                            response.redirect("/users/signUp");
+                                        } else {
+                                            response.render("dbDown", {
+                                                pagetitle: "Error",
+                                                user: request.session.user || "",
                                             });
+                                        }
                                     });
-                                })
-                                .catch((error) => {
-                                    console.log(error);
-                                    if (error.code === "ER_DUP_ENTRY") {
-                                        request.session.mensaje = "El correo electrónico ya está registrado.";
-                                        response.redirect("/users/signup");
-                                    } else if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                                        request.session.mensaje = "Error Completar Registro.";
-                                        response.redirect("/users/signUp");
-                                    } else {
-                                        response.render("dbDown", {
-                                            pagetitle: "Error",
-                                            user: request.session.user || "",
-                                        });
-                                    }
-                                });
+                            });
                         } else {
                             request.session.mensaje =
                                 "Usuario y/o contraseña incorrecta.";
@@ -245,7 +202,6 @@ exports.post_login = (request, response, next) => {
                             } else if (request.session.rol === "cliente") {
                                 response.redirect("/users/login");
                             }
-                            console.log(rows);
                         }
                     })
                     .catch((error) => {
@@ -264,7 +220,7 @@ exports.post_login = (request, response, next) => {
                         }
                     });
             } else {
-                request.session.mensaje = "Usuario no registrado.";
+                request.session.mensaje = "Usuario y/o contraseña incorrecta.";
                 response.redirect("/users/login");
             }
         })

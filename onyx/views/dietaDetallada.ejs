@@ -1,36 +1,231 @@
 <%- include('includes/head.ejs') %>
 
-
-<div class="container">
-    <div class="spacer">
+    <div class="img_container">
+        <img class="img_programa" src="/uploads/<%= detalles.foto_dieta %>" alt="<%= detalles.ref_visual %>">
     </div>
 
     <div class="container">
-        <h2 id="titulopagina">Detalles de Dieta</h2>
+        <div class="spacer"></div>
+        <div class="container">
+            <h2 id="titulopagina">
+                <%= detalles.nombre_dieta%>
+            </h2>
+            <div class="row my-5">
+                <table>
+                    <thead class="my-5">
+                        <tr>
+                            <th scope="col" class="bg-custom text-center numcal">Numero de calorías</th>
+                            <th>
+                                <%= detalles.calorias%>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col mx-1">
+                    <div class="row">
+                        <table class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="bg-custom">Macronutirentes</th>
+                                    <th scope="col" class="bg-custom">Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-dark">
+                                <tr>
+                                    <td>Proteinas</td>
+                                    <td>
+                                        <%= detalles.proteinas%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Carbohidratos</td>
+                                    <td>
+                                        <%= detalles.carbohidratos%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Grasas</td>
+                                    <td>
+                                        <%= detalles.grasas%>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="bg-custom text-center">Alimentos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <%- detalles.alimento%>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    </div>
-
-        <div class="container text-center">
-            <div class="row align-items-start">
-                <div class="col">
-                    <div class="cards" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre: <%= detalles.nombre_dieta%></h5>
-                            <p class="card-text">Número de Calorías: <%= detalles.calorias%></p>
-                            <br>
-                            <!--quitar el más info, no? -->
-                            <a href="/onyx/bitacora" class="btn btn-warning">Registrar en Bitácora</a>
-                            <br>
-                            <a href="/onyx/dietas" class="btn btn-warning">Regresar</a>
-                        </div>
+                <div class="col mx-1">
+                    <div class="row">
+                        <table class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="bg-custom">Micronutrientes</th>
+                                    <th scope="col" class="bg-custom">Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-dark">
+                                <tr>
+                                    <td>Sodio</td>
+                                    <td>
+                                        <%= detalles.sodio%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fibra</td>
+                                    <td>
+                                        <%= detalles.fibra_total%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ceniza</td>
+                                    <td>
+                                        <%= detalles.ceniza%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>calcio</td>
+                                    <td>
+                                        <%= detalles.calcio%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>fosforo</td>
+                                    <td>
+                                        <%= detalles.fosforo%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fibra</td>
+                                    <td>
+                                        <%= detalles.fibra_total%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>hierro</td>
+                                    <td>
+                                        <%= detalles.hierro%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>tiamina</td>
+                                    <td>
+                                        <%= detalles.tiamina%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>riboflavina</td>
+                                    <td>
+                                        <%= detalles.riboflavina%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>niacina</td>
+                                    <td>
+                                        <%= detalles.niacina%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>vitamina_c</td>
+                                    <td>
+                                        <%= detalles.vitamina_c%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>vitamina_a</td>
+                                    <td>
+                                        <%= detalles.vitamina_a%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ac_graso_mono</td>
+                                    <td>
+                                        <%= detalles.ac_graso_mono%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>ac_graso_poli</td>
+                                    <td>
+                                        <%= detalles.ac_graso_poli%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ac Graso Saturado</td>
+                                    <td>
+                                        <%= detalles.ac_graso_saturado%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Colesterol</td>
+                                    <td>
+                                        <%= detalles.colesterol%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Potasio</td>
+                                    <td>
+                                        <%= detalles.potasio%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Zinc</td>
+                                    <td>
+                                        <%= detalles.zinc%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Magnesio</td>
+                                    <td>
+                                        <%= detalles.magnesio%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vit B6</td>
+                                    <td>
+                                        <%= detalles.vit_b6%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vit B12</td>
+                                    <td>
+                                        <%= detalles.vit_b12%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ac Folico</td>
+                                    <td>
+                                        <%= detalles.ac_folico%>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Folato</td>
+                                    <td>
+                                        <%= detalles.folato%>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            
         </div>
+    </div>
 
-        <br>
-
-
-</div>
-<%- include('includes/foot.ejs') %>
+    <%- include('includes/foot.ejs') %>

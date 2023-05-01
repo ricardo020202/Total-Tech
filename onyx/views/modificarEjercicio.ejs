@@ -1,0 +1,88 @@
+<%- include('includes/headAdmin.ejs') %>
+<%- include('includes/sidebar.ejs') %> 
+<link rel="stylesheet" href="/css/adminStyle.css">
+
+<br>
+
+<h1 style="margin-left:300px ;">Modificar Ejercicio</h1>
+
+<!-- modified an exercise page -->
+
+<div class="container" id="modifcar-ejercicio">
+
+    <div class="container" id="form-modificar-ejercicio">
+        <form action="/admin/admindashboard/ejercicios/modificarejercicio/<%= ejercicio.id_ejercicio %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoría</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="categoria"
+                    name="categoria"
+                    value="<%= ejercicio.categoria %>"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="nivel_intensidad" class="form-label">Nivel de intensidad</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nivel_intensidad"
+                    name="nivel_intensidad"
+                    value="<%= ejercicio.nivel_intensidad %>"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="referencia_visual" class="form-label">Referencia Visual</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="referencia_visual"
+                    name="referencia_visual"
+                    value="<%= ejercicio.referencia_visual %>"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="descripcion_ejercicio" class="form-label">Descripción del ejercicio</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="descripcion_ejercicio"
+                    name="descripcion_ejercicio"
+                    value="<%= ejercicio.descripcion_ejercicio %>"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="nombre_ejercicio" class="form-label">Nombre del ejercicio</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="nombre_ejercicio"
+                    name="nombre_ejercicio"
+                    value="<%= ejercicio.nombre_ejercicio %>"
+                    required/>
+            </div>
+            <div class="mb-3">
+                <label for="imagen_ejercicio" class="form-label">Imagen Ejercicio</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="imagen_ejercicio"
+                    name="imagen_ejercicio"
+                    value="<%= ejercicio.imagen_ejercicio %>"
+                    required/>
+            </div>
+            <button type="submit" class="btn btn-primary" id="agregarenadmin">Modificar</button>
+            <!-- cancelar -->
+            <a href="/admin/admindashboard/ejercicios">
+                <button type="button" class="btn btn-danger">Cancelar</button>
+            </a>
+        </form>
+    </div>
+</div>
+
+
+
+
+<%- include('includes/footAdmin.ejs') %>

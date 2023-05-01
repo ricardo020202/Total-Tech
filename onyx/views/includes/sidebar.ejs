@@ -1,96 +1,109 @@
-<script
-    src="https://kit.fontawesome.com/77587b01e9.js"
-    crossorigin="anonymous"
-></script>
-<link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-        />
+<script src="https://kit.fontawesome.com/77587b01e9.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
 <aside>
     <div class="d-flex flex-column flex-shrink-0 p-3 sidebar">
         <ul class="nav nav-pills flex-column mb-auto mt-5 text-center">
-            <li class="nav-item mt-2">
-                <h4 class="text-center">Admin Dashboard</h4>
-            </li>
+            <!-- <a href="/onyx" style="margin-right: 5%; margin-bottom: 5%;"><i 
+            class="fa-solid fa-eye fa-lg"
+            style="color: #ffffff"></i></a> -->
             <li class="d-flex justify-content-center">
                 <a href="/onyx/fotoperfil">
-                <img
-                    src="/uploads/<%= photo %>"
-                    alt=""
-                    class="img-fluid rounded-circle d-flex justify-content-center"
-                    style="width: 180px; height: 180px; object-fit: cover"
-                />
+                    <img src="/uploads/<%= photo %>" alt=""
+                        class="img-fluid rounded-circle d-flex justify-content-center"
+                        style="width: 130px; height: 130px; object-fit: cover" />
                 </a>
             </li>
             <li>
-                <br/>
-                <h5><%=user%></h5>
+                <br />
+                <h5>
+                    <%=user%>
+                </h5>
             </li>
             <li>
                 <p class="admin-rol">Admin</p>
             </li>
             <li>
                 <div class="row ico_regrol">
-                <a href="/admin/admindashboard" class="nav-link2 text-white">
-                    <i class="fa-solid fa-house" data-bs-toggle="animation" data-bs-animation="bounce"></i>
-                    <span class="nav-link-text">Home</span>
-                </a>
-            </div>
+                    <a href="/admin/admindashboard" class="nav-link2 text-white">
+                        <i class="fa-solid fa-house" data-bs-toggle="animation" data-bs-animation="bounce"></i>
+                        <span class="nav-link-text">Home</span>
+                    </a>
+                </div>
             </li>
             <li>
                 <div class="row ico_regrol">
-                <a href="/admin/admindashboard/diets" class="nav-link2 text-white">
-                    <i class="fa-solid fa-utensils fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
-                    <span class="nav-link-text">Dietas</span>
-                </a>
-            </div>
+                    <a href="/admin/admindashboard/diets" class="nav-link2 text-white">
+                        <i class="fa-solid fa-utensils fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
+                        <span class="nav-link-text">Dietas</span>
+                    </a>
+                </div>
+            </li>
+            <!-- <li>
+                <div class="row ico_regrol">
+                    <a href="/admin/admindashboard/ejercicios" class="nav-link2 text-white">
+                        <i class="fa-solid fa-dumbbell fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
+                        <span class="nav-link-text">Ejercicios</span>
+                    </a>
+                </div>
+            </li> -->
+            <li>
+                <div class="row ico_regrol">
+                    <a href="/admin/admindashboard/programas" class="nav-link2 text-white">
+                        <i class="fa-solid fa-person-running fa-lg" data-bs-toggle="animation"
+                            data-bs-animation="bounce"></i>
+                        <span class="nav-link-text">Programas</span>
+                    </a>
+                </div>
             </li>
             <li>
                 <div class="row ico_regrol">
-                <a href="/admin/admindashboard/ejercicios" class="nav-link2 text-white">
-                    <i class="fa-solid fa-dumbbell fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
-                    <span class="nav-link-text">Ejercicios</span>
-                </a>
-            </div>
+                    <a href="/admin/admindashboard/grafclientes" class="nav-link2 text-white" id="ico_regrol">
+                        <i class="fa-solid fa-user fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
+                        <span class="nav-link-text">Clientes</span>
+                    </a>
+                </div>
             </li>
             <li>
                 <div class="row ico_regrol">
-                <a href="/admin/admindashboard/programas" class="nav-link2 text-white">
-                    <i class="fa-solid fa-person-running fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
-                    <span class="nav-link-text">Programas</span>
-                </a>
-            </div>
+                    <a href="/admin/adminDashboard/userprivileges" class="nav-link2 text-white">
+                        <i class="fa-solid fa-users fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
+                        <span class="nav-link-text">Usuarios</span>
+                    </a>
+                </div>
             </li>
             <li>
                 <div class="row ico_regrol">
-                <a href="/admin/adminDashboard/userprivileges" class="nav-link2 text-white">
-                    <i class="fa-solid fa-users fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
-                    <span class="nav-link-text">Usuarios</span>
-                </a>
-            </div>
+                    <a href="/admin/adminDashboard/reg_rol" class="nav-link2 text-white" id="ico_regrol">
+                        <i class="fa-regular fa-address-book fa-lg" data-bs-toggle="animation"
+                            data-bs-animation="bounce"></i>
+                        <span class="nav-link-text">Roles</span>
+                    </a>
+                </div>
             </li>
-            <li>
-                <div class="row ico_regrol">
-                <a href="/admin/adminDashboard/reg_rol" class="nav-link2 text-white" id="ico_regrol">
-                    <i class="fa-regular fa-address-book fa-lg" data-bs-toggle="animation" data-bs-animation="bounce"></i>
-                    <span class="nav-link-text">Roles</span>
-                </a>
-             </div>
-            </li>
-            
+
         </ul>
         <hr />
         <div class="row ">
-        <ul class="d-flex justify-content-center">
-            <li class="nav-item">
-                <a href="/users/logout" class="nav-link text-white">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span class="nav-link-text">Log Out</span>
-                </a>
-            </li>
-        </ul>
+            <ul class="d-flex justify-content-center">
+                <li class="nav-item">
+                    <a href="/onyx" class="nav-link text-white">
+                        <i class="fa-regular fa-eye"></i>
+                        <span class="nav-link-text">Vista Cliente</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="row ">
+            <ul class="d-flex justify-content-center">
+                <li class="nav-item">
+                    <a href="/users/logout" class="nav-link text-white">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-link-text">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
     </div>
-</div>
 </aside>

@@ -15,4 +15,10 @@ module.exports = class ProgramaEjercicio {
     static fetchAll() {
         return db.execute('SELECT * FROM programa_ejercicio');
     }
+
+    static deleteById(id_ejercicio) {
+        return db.execute("DELETE FROM programa_ejercicio WHERE id_ejercicio = ?", [
+            id_ejercicio,
+        ]);
+    }
 }

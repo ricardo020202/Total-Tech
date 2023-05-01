@@ -24,62 +24,58 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% usersArray.forEach(user=> { %>
-                        <% if (user.rol=="administrador" ) { %>
-                            <tr>
-                                <td>
-                                    <%= user.nombre %>
-                                </td>
-                                <td>
-                                    <%= user.email %>
-                                </td>
-                                <td>
-                                    <span class="user-role" data-toggle="tooltip" data-bs-placement="top"
-                                        title="<%= user.privileges %>">
-                                        <%= user.rol %>
-                                    </span>
-                                </td>
-                                <td>
-                                    <a href="/admin/admindashboard/userprivileges/add/<%= user.email %>"
-                                        class="btn btn-custom" role="button"> Editar
-                                    </a>
-                                    <br><br>
+                    <% for (let i=0; i < usersArray.length; i++) { %>
+                        <tr>
+                            <td>
+                                <%= usersArray[i].nombre %>
+                            </td>
+                            <td>
+                                <%= usersArray[i].email %>
+                            </td>
+                            <td>
+                                <span class="user-role" data-toggle="tooltip" data-bs-placement="top"
+                                    title="<%= usersArray[i].privileges %>">
+                                    <%= usersArray[i].rol %>
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/admin/admindashboard/userprivileges/add/<%= usersArray[i].email %>">
+                                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #cdcdcd"> </i>
+                                </a>
 
-                                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        Eliminar
-                                    </button>
+                                <i type="button" class="fa-sharp fa-solid fa-trash fa-lg" data-bs-toggle="modal"
+                                    data-bs-target="#userModal<%= i %>" style="color: #cdcdcd"></i>
 
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar eliminación</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <form id="delete-form" method="post"
-                                                    action="/admin/admindashboard/userprivileges/delete/<%= user.email %>">
-                                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-                                                    <div class="modal-body">
-                                                        ¿Deseas eliminar este usuario?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-success">Eliminar</button>
-                                                    </div>
-                                                </form>
+                                <div class="modal fade" id="userModal<%= i %>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar
+                                                    eliminación</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
                                             </div>
+                                            <form id="delete-form" method="post"
+                                                action="/admin/admindashboard/userprivileges/delete/<%= usersArray[i].email %>">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                                                <div class="modal-body">
+                                                    ¿Deseas eliminar el usuario <%= usersArray[i].nombre %>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-success">Eliminar</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            <% } %>
-                                <% }); %>
+                                </div>
+                            </td>
+                        </tr>
+                        <% } %>
                 </tbody>
             </table>
         </div>
 
-<%- include('includes/footAdmin.ejs') %>
+        <%- include('includes/footAdmin.ejs') %>

@@ -1,7 +1,7 @@
 /* Proyecto ONYX - Tecnologico de Monterrey - Campus Queretaro BASE DE DATOS DE ONYX */
 /* Creado por el equipo de desarrollo de bases de datos de Total-Tech*/
 
-DROP DATABASE Onyx;
+DROP DATABASE IF EXISTS Onyx;
 CREATE DATABASE Onyx;
 USE Onyx;
 
@@ -87,7 +87,7 @@ CREATE TABLE bitacora(
 CREATE TABLE programa (
     id_programa INT AUTO_INCREMENT NOT NULL,
     frecuencia INT NOT NULL,
-    descripcion_programa VARCHAR(200) NOT NULL,
+    descripcion_programa LONGTEXT NOT NULL,
     nombre_programa VARCHAR(100) NOT NULL,
     ref_visual VARCHAR(200),
     img_programa VARCHAR(200),
@@ -153,6 +153,8 @@ CREATE TABLE dieta(
     ac_folico FLOAT,
     folato FLOAT,
     nombre_dieta VARCHAR(100) NOT NULL,
+    alimento LONGTEXT NOT NULL,
+    foto_dieta VARCHAR(200),
     PRIMARY KEY(id_dieta)
 );
 
@@ -180,7 +182,15 @@ CREATE TABLE sesiones(
     id_sesion INT NOT NULL AUTO_INCREMENT,
     fecha DATE NOT NULL ,
     PRIMARY KEY(id_sesion)
-);    
+);
+
+CREATE TABLE password_resets (
+    email varchar(30) NOT NULL,
+    token varchar(200) NOT NULL,
+    expires date NOT NULL,
+    PRIMARY KEY (email, token),
+    FOREIGN KEY (email) REFERENCES usuario(email)
+);
 
 /*INSERTS - USUARIO*/
 
@@ -486,6 +496,7 @@ ALTER TABLE programa_ejercicio ADD CONSTRAINT fk_programa_ejercicio_ejercicio FO
 ALTER TABLE programa_ejercicio ADD CONSTRAINT fk_programa_ejercicio_programa FOREIGN KEY (id_programa) REFERENCES programa(id_programa);
 ALTER TABLE dieta_alimento ADD CONSTRAINT fk_dieta_alimento_dieta FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta);
 ALTER TABLE dieta_alimento ADD CONSTRAINT fk_dieta_alimento_alimento FOREIGN KEY (id_alimento) REFERENCES alimento(id_alimento);
-ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_dieta FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta);
-ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_programa FOREIGN KEY (id_programa) REFERENCES programa(id_programa);
+ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_dieta FOREIGN KEY (id_dieta) REFERENCES dieta(id_dieta) ON DELETE CASCADE;
+ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_programa FOREIGN KEY (id_programa) REFERENCES programa(id_programa) ON DELETE CASCADE;
 ALTER TABLE programa_dieta_cliente ADD CONSTRAINT fk_programa_dieta_cliente_cliente FOREIGN KEY (email) REFERENCES cliente(email);
+ALTER TABLE password_resets ADD CONSTRAINT fk_password_resets_usuario FOREIGN KEY (email) REFERENCES usuario(email);

@@ -1,5 +1,5 @@
 body {
-  background-color: #151515;
+  background-color: #181818;
   font-family: "DM Sans", sans-serif;
   color: #d4d4d4;
   height: 100vh;
@@ -41,6 +41,52 @@ body {
   transform: skew(25deg);
 }
 
+.form-control
+{
+  transition: transform 0.4s ease;
+}
+
+.form-control:focus
+{
+  transform: scale(1.1);
+}
+
+
+
+#nutrient-chart {
+  width: 800px;
+  height: 600px;
+}
+
+#nutrient-chart2 {
+  width: 500px;
+  height: 300px;
+}
+
+#nutrient-table
+{
+  width: 600px;
+  transition: transform 0.4s ease;
+}
+
+#nutrient-table:hover
+{
+  transform: scale(1.05);
+
+}
+
+#nutrient-table2
+{
+  width: 600px;
+  transition: transform 0.4s ease;
+}
+
+#nutrient-table2:hover
+{
+  transform: scale(1.1);
+
+}
+
 .bg-custom {
   background-color: #d2ca03;
   z-index: 2;
@@ -76,33 +122,25 @@ body {
 
 #btnlogin
 {
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease;
 }
 
 #btnlogin:hover
 {
-  transform: scale(1.1);
+  background-color: #3c4043;
 }
 
-.form-control 
+.btnreg:hover
+{
+  background-color: #3c4043;
+}
+
+
+.focus
 {
   transition: transform 0.4s ease;
 }
 
-.form-control:hover 
-{
-  transform: scale(1.1);
-}
-
-.form-select
-{
-  transition: transform 0.4s ease;  
-}
-
-.form-select:hover 
-{
-  transform: scale(1.1);
-}
 
 #btnregdatos
 {
@@ -148,12 +186,31 @@ footer {
 
 .nav-item {
   font-family: "DM Sans", sans-serif;
+}
+#navbarDropdown
+{
+  color: #151515;
   transition: transform 0.4s ease;
 }
-
-.nav-item:hover {
-  font-family: "DM Sans", sans-serif;
+#navbarDropdown:hover
+{
+  color: #151515;
   transform: scale(1.1);
+}
+
+
+#navbaritem
+{
+  transition: transform 0.4s ease;
+
+}
+
+
+#navbaritem:hover
+{
+  transform: scale(1.1);
+  font-weight: bold;
+
 }
 
 .bg-image {
@@ -528,7 +585,7 @@ a:hover {
   margin: 30px;
   
   border-radius: 20px;
-  background-color: #222222;
+  background-color: #262626;
   box-shadow: 0 0 10px #d2ca03;
   transform: scale(1.05);
 }
@@ -675,7 +732,7 @@ header .current-date {
 }
 
 .days li.active {
-  color: #d4d4d4;
+  color: #151515
 }
 
 .days li::before {
@@ -709,12 +766,6 @@ header .current-date {
   font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s;
-  /* esquina inferior derecha */
-  position: absolute;
-
-  right: 20%;
-  bottom: 30%;
-  margin: 20px;
 }
 
 #add-event:hover {
@@ -869,6 +920,7 @@ tbody {
   height: auto;
 }
 
+
 .table-dark {
   color: white;
 }
@@ -897,3 +949,41 @@ tbody {
   color: #000000;
   z-index: 100;
 }
+
+.bi-person-circle{
+  font-size: 8rem;
+  color: #151515;
+}
+
+#detailstext
+{
+  font-family: italic;
+  font-size: 12px;
+}
+
+.spacer2
+{
+  height: 30px;
+}
+
+.btniniciarDE
+{
+  height: 50px;
+  width: 50px;
+}
+
+.img_container {
+  width: 100%;
+  height: 50vh;
+}
+
+.img_programa {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.numcal {
+  font-size: 20px;
+  font-weight: bold;
+}	
