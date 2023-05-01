@@ -220,7 +220,7 @@
         const peso = createTrace(<%= JSON.stringify(peso) %>, 'Peso');
 
         const layout = {
-            autosize: true,
+            
             title: 'Medidas generales de <%= user%>',
             xaxis: {
                 title: 'Fecha(mes)',
@@ -231,8 +231,6 @@
             },
             paper_bgcolor: "rgb(17,17,17)",
             plot_bgcolor: "rgb(17,17,17)",
-            height: 600,
-            width: 900,
         };
         const data = [pecho, brazoIzq, brazoDer, cintura, cadera, piernaIzq, piernaDer,
             pantorillaIzq, pantorillaDer, cuello, peso];

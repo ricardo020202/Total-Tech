@@ -766,12 +766,6 @@ header .current-date {
   font-size: 1.1rem;
   cursor: pointer;
   transition: 0.3s;
-  /* esquina inferior derecha */
-  position: absolute;
-
-  right: 20%;
-  bottom: 30%;
-  margin: 20px;
 }
 
 #add-event:hover {
