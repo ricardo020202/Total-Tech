@@ -297,6 +297,8 @@ footer {
   .cuenta-user{
     margin-right: auto;
   }
+
+
 }
 
 .accordion {
@@ -1034,8 +1036,39 @@ tbody {
   fill: #F6C762;
 }
 
+.icon-ejercicio {
+  /* change the color of the icon */
+  fill: #A8FF33;
+}
+
 .bg-programas {
   background-color: #2d2020;
   border: 1px solid #2d2020;
   color: #fff;
+}
+
+.bg-ejercicio {
+  background-color: #2a1d31;
+  border: 1px solid #2a1d31;
+  color: #fff;
+}
+
+td, th {
+  border-top: #151515 5px solid;
+  border-bottom: #151515 5px solid;
+  border-left: #151515 1px solid;
+  padding: 10px;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-left: 0;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+tbody{
+  background-color: #2c343a;
+  color: #cdcdcd;
 }

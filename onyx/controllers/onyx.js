@@ -506,6 +506,7 @@ exports.getDashboard = (req, res, next) => {
 exports.getDatosIniciales = (req, res, next) => {
     Cliente.fetchOne(req.session.email)
         .then(([rows, fieldData]) => {
+            req.session.sex = rows[0].sexo;
             if (rows.length === 0) {
                 return res.redirect("/onyx/registrar-datos-iniciales");
             } else {
@@ -515,6 +516,7 @@ exports.getDatosIniciales = (req, res, next) => {
                     cliente: rows[0],
                     photo: req.session.photo || 'default.png',
                     rol: req.session.rol || "",
+                    sexo: req.session.sex,
                 });
             }
         })
