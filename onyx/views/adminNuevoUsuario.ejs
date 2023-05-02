@@ -37,7 +37,7 @@
                 <label for="role" class="form-label">Rol:</label>
                 <select name="role" class="form-select" required>
                     <% if (rol) { %>
-                        <option value="<%= rol.nombreRol %>"> <%= rol.nombreRol %></option>
+                        <option value="<%= rol.id_rol %>"> <%= rol.nombreRol %></option>
                     <% } %>
                     <% for (let i = 0; i < roles.length; i++) { %>
                     <option value="<%= roles[i].id_rol %>">
