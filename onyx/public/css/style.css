@@ -1,9 +1,11 @@
 body {
-  background-color: #181818;
+  background-color: #1c1c1c;
   font-family: "DM Sans", sans-serif;
   color: #d4d4d4;
   height: 100vh;
 }
+
+
 
 .rectangulo {
   background-color: #151515;
@@ -51,6 +53,10 @@ body {
   transform: scale(1.1);
 }
 
+#titulodatosiniciales
+{
+  color: #d2ca03;
+}
 
 
 #nutrient-chart {
@@ -1022,34 +1028,39 @@ tbody {
 }	
 
 .icon-dietas {
-  fill: #ee95c5
+  fill: #d2ca03;
 }
 
 .bg-dietas {
-  background-color: #633D51;
-  border: 1px solid #633D51;
+  background-color: #101010;
+  border: 1px solid #101010;
   color: #fff;
+}
+
+.card-title
+{
+  margin: 5px;
 }
 
 .icon-programas {
   /* change the color of the icon */
-  fill: #F6C762;
+  fill: #d2ca03;
 }
 
 .icon-ejercicio {
   /* change the color of the icon */
-  fill: #A8FF33;
+  fill: #d2ca03;
 }
 
 .bg-programas {
-  background-color: #2d2020;
-  border: 1px solid #2d2020;
+  background-color: #101010;
+  border: 1px solid #101010;
   color: #fff;
 }
 
 .bg-ejercicio {
-  background-color: #2a1d31;
-  border: 1px solid #2a1d31;
+  background-color: #101010;
+  border: 1px solid #101010;
   color: #fff;
 }
 

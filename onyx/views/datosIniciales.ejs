@@ -2,11 +2,12 @@
     
         <div class="spacer"></div>
 
+
     <div class="container">
         <div class="row">
             <div class="col">
                 <h1 class="fw-bold text-start">Datos personales</h1>
-                <div class="spacer2"></div>
+                <p id="titulodatosiniciales">Cambialos cuando quieras</p>
                 <table>
                     <tr>
                       <th>Altura:</th>
@@ -48,39 +49,42 @@
                 
             <div class="col m">
                 <div class="row">
-                    <h3>Tu nivel de gym</h3>
+                    <div class="spacer"></div>
+                    <div class="spacer2"></div>
+                    <div class="spacer2"></div>
+                    <h1 class="fw-bold text-start">Tu nivel actual de gym</h1>
                     <% if (cliente.sexo === "Masculino") { %>
                         <% if ((cliente.pr_Sentadillas < 61) || (cliente.pr_BenchPress < 43) || (cliente.pr_PesoMuerto < 102)) {%>
-                            <h4>Novato</h4>
+                            <h4 id="titulodatosiniciales">Novato</h4>
                         <% } else if ((cliente.pr_Sentadillas === peso*1.25) || (cliente.pr_BenchPress === peso) || (cliente.pr_PesoMuerto === peso*1.5)) {%>
-                            <h4>Principiante</h4>
+                            <h4 id="titulodatosiniciales">Principiante</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*1.25 && cliente.pr_Sentadillas < peso*1.75) || (cliente.pr_BenchPress > peso && cliente.pr_BenchPress < peso*1.5) || (cliente.pr_PesoMuerto > peso*1.5 && cliente.pr_PesoMuerto < peso*2.25)) {%>
-                            <h4>Intermedio</h4>
+                            <h4 id="titulodatosiniciales">Intermedio</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*1.75 && cliente.pr_Sentadillas < peso*2.5) || (cliente.pr_BenchPress > peso*1.5 && cliente.pr_BenchPress < peso*2) || (cliente.pr_PesoMuerto > peso*2.25 && cliente.pr_PesoMuerto < peso*3)) {%>
-                            <h4>Avanzado</h4>
+                            <h4 id="titulodatosiniciales">Avanzado</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*2.5 && cliente.pr_Sentadillas < peso*3) || (cliente.pr_BenchPress > peso*2 && cliente.pr_BenchPress < peso*2.25) || (cliente.pr_PesoMuerto > peso*3 && cliente.pr_PesoMuerto < peso*3.5)) {%>
-                            <h4>Experto</h4>
+                            <h4 id="titulodatosiniciales">Experto</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*3) || (cliente.pr_BenchPress > peso*2.25) || (cliente.pr_PesoMuerto > peso*3.5)) {%>
-                            <h4>Elite</h4>
+                            <h4 id="titulodatosiniciales">Elite</h4>
                         <% } %>
                     <% } else if (cliente.sexo === "Femenino") { %>
                         <% if ((cliente.pr_Sentadillas < 43) || (cliente.pr_BenchPress < 20) || (cliente.pr_PesoMuerto < 61)) {%>
-                            <h4>Novata</h4>
+                            <h4 id="titulodatosiniciales">Novata</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*.5 && cliente.pr_Sentadillas < peso) || (cliente.pr_BenchPress === peso*.5) || (cliente.pr_PesoMuerto > peso*.5 && cliente.pr_PesoMuerto < peso)) {%>
-                            <h4>Principiante</h4>
+                            <h4 id="titulodatosiniciales">Principiante</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso && cliente.pr_Sentadillas < peso*1.5) || (cliente.pr_BenchPress > peso*.5 && cliente.pr_BenchPress < peso*.75) || (cliente.pr_PesoMuerto > peso*1.25 && cliente.pr_PesoMuerto < peso*1.75)) {%>
-                            <h4>Intermedia</h4>
+                            <h4 id="titulodatosiniciales">Intermedia</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*1.5 && cliente.pr_Sentadillas < peso*1.75) || (cliente.pr_BenchPress > peso*.75 && cliente.pr_BenchPress < peso) || (cliente.pr_PesoMuerto > peso*1.75 && cliente.pr_PesoMuerto < peso*2.25)) {%>
-                            <h4>Avanzada</h4>
+                            <h4 id="titulodatosiniciales">Avanzada</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*1.75 && cliente.pr_Sentadillas < peso*2.25) || (cliente.pr_BenchPress > peso && cliente.pr_BenchPress < peso*1.25) || (cliente.pr_PesoMuerto > peso*2.25 && cliente.pr_PesoMuerto < peso*3)) {%>
-                            <h4>Experta</h4>
+                            <h4 id="titulodatosiniciales">Experta</h4>
                         <% } else if ((cliente.pr_Sentadillas > peso*2.25) || (cliente.pr_BenchPress > peso*1.25) || (cliente.pr_PesoMuerto > peso*3)) {%>
-                            <h4>Elite</h4>
+                            <h4 id="titulodatosiniciales">Elite</h4>
                         <% } %>
                     <% } %>
                 </div>
                 <div class="row mt-5">
-                    <h3>Calorias recomendadas para ti:</h3>
+                    <h1 class="fw-bold text-start">Kcal diarias recomendadas </h1>
                     <% if (cliente.sexo === "Masculino"){ %>
                         <% if (cliente.nivel_actividad === "Sedentario") { %>
                             <% const objetivo = .1 %>
@@ -88,11 +92,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "2 por semana") { %>
                             <% const objetivo = .2 %>
@@ -100,11 +104,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "Caminar diario") { %>
                             <% const objetivo = .3 %>
@@ -112,11 +116,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "4-5 días gym") { %>
                             <% const objetivo = .4 %>
@@ -124,11 +128,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "Alto rendimiento") { %>
                             <% const objetivo = .5 %>
@@ -136,11 +140,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) + 5) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } %>
                     <% } else { %>
@@ -150,11 +154,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "2 por semana") { %>
                             <% const objetivo = .2 %>
@@ -162,11 +166,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "Caminar diario") { %>
                             <% const objetivo = .3 %>
@@ -174,11 +178,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "4-5 días gym") { %>
                             <% const objetivo = .4 %>
@@ -186,11 +190,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } else if (cliente.nivel_actividad === "Alto rendimiento") { %>
                             <% const objetivo = .5 %>
@@ -198,11 +202,11 @@
                             <% const AF = (9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) -161) * objetivo %>
                             <% const TA = ((9.99 * peso + (6.25 * cliente.altura) - (4.92 * cliente.edad) - 161) * objetivo) * .1 %>
                             <% if (cliente.objetivo === "Perder Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) - 500).toFixed(2) %> </h4>
                             <% } else if (cliente.objetivo === "Ganar Peso") {%>
-                                <h4> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= ((GMB + AF + TA) + 500).toFixed(2) %> </h4>
                             <% } else {%>
-                                <h4> <%= (GMB + AF + TA).toFixed(2) %> </h4>
+                                <h4 id="titulodatosiniciales"> <%= (GMB + AF + TA).toFixed(2) %> </h4>
                             <% } %>
                         <% } %>
                     <% } %>
@@ -211,15 +215,16 @@
                 
             </div>
 
-            <div class="col">
+            <div class="row">
+
                 <% if(sexo == 'Masculino') { %>
-                    <h4>¿Listo para alcanzar tus metas?</h4>
-                    <p>¡Comienza tu entrenamiento hoy mismo!</p>
+                    <h1 class="fw-bold text-start">Empieza Ya</h1>
+                    <p id="titulodatosiniciales">¡Alcanza tus metas desde hoy!</p>
                 <% } else { %>
-                    <h4>¿Lista para alcanzar tus metas?</h4>
-                    <p>¡Comienza tu entrenamiento hoy mismo!</p>
+                    <h1 class="fw-bold text-start">Empieza Ya</h1>
+                    <p id="titulodatosiniciales">¡Alcanza tus metas desde hoy!</p>
                 <% } %>
-                <div class="row">
+                <div class="col">
                     <a href="/onyx/catentrenamientos">
                         <div class="card bg-programas">
                             <div class="card-body text-light">
@@ -233,7 +238,8 @@
                         </div>
                     </a>
                 </div>
-                <div class="row">
+
+                <div class="col">
                     <a href="/onyx/dietas">
                         <div class="card bg-dietas">
                             <div class="card-body text-light">
@@ -247,7 +253,8 @@
                         </div>
                     </a>
                 </div>
-                <div class="row">
+
+                <div class="col">
                     <a href="/onyx/tallas">
                         <div class="card bg-ejercicio">
                             <div class="card-body text-light">
@@ -255,12 +262,14 @@
                                     <path
                                         d="M96 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V224v64V448c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32H96V64zm448 0v64h32c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H544v64c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 64c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z" />
                                 </svg>
-                                <h5 class="card-title">Tallas</h5>
+                                <h5 class="card-title">Mis Tallas</h5>
                             </div>
                         </div>
                     </a>
+
                 </div>
-                
+
+
             </div>
 
         </div>
