@@ -49,7 +49,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mb-2 mb-lg-0 ms-2">
                         <li id="navbaritem" class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/onyx" id="navbarDropdown">Home</a>
+                            <a class="nav-link" aria-current="page" href="/onyx" id="navbarDropdown">Inicio</a>
                         </li>
                         <!-- <li id="navbaritem" class="nav-item dropdown">
                                 <a
@@ -88,14 +88,43 @@
                             <a class="nav-link active" href="/onyx/dietas">Dietas</a>
                         </li>
                         <li id="navbaritem" class="nav-item">
-                            <a class="nav-link active" href="/onyx/bitacora">Bitácora</a>
-                        </li>
-                        <li id="navbaritem" class="nav-item">
-                            <a class="nav-link active" href="/onyx/dashboard">Dashboard</a>
-                        </li>
-                        <li id="navbaritem" class="nav-item">
                             <a class="nav-link active" href="/onyx/favoritos">Favoritos</a>
                         </li>
+                        <li id="navbaritem" class="nav-item">
+                            <a class="nav-link active" href="/onyx/bitacora">Bitácora</a>
+                        </li>
+                        <li id="navbaritem" class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle wk-css"
+                                href="#"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                id="navbarDropdown"
+                            >
+                                Progreso
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li id="navbaritem">
+                                    <a
+                                        class="dropdown-item"
+                                        href="/onyx/dashboard"
+                                        id="navbarDropdown"
+                                        >Gráfica de progreso</a
+                                    >
+                                </li>
+                                <li id="navbaritem">
+                                    <a
+                                        class="dropdown-item"
+                                        href="/onyx/tallas"
+                                        id="navbarDropdown"
+                                        >Modificar Tallas</a
+                                    >
+                                </li>
+                            </ul>
+                        </li>
+
+                        
                     </ul>
                     <ul class="navbar-nav user">
                         <% if (user){ %>
@@ -111,7 +140,7 @@
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             <img src="/uploads/<%= photo %>" alt="user" class="rounded-circle"
                                                 style="width: 30px; height: 30px" />
-                                            Hola, <strong>
+                                            Hola <strong>
                                                 <%= user %>
                                             </strong>
                                         </a>
@@ -124,10 +153,7 @@
                                             </li>
                                             <li id="navbaritem">
                                                 <a class="dropdown-item" href="/onyx/datos-iniciales">Datos
-                                                    iniciales</a>
-                                            </li>
-                                            <li id="navbaritem">
-                                                <a class="dropdown-item" href="/onyx/tallas">Tallas</a>
+                                                    Personales</a>
                                             </li>
                                         </ul>
                                     </li>
