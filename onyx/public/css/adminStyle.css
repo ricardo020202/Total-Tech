@@ -306,13 +306,13 @@ button:active {
     font-weight: 700;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
 /* ================= ADMIN DIETA ================= */
 table {
-    width: 80%;
+    width: 65%;
     border-collapse: collapse;
     margin-left: 300px;
     margin-top: 50px;
