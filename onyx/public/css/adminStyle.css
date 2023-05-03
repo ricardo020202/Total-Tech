@@ -516,7 +516,7 @@ td, th {
 }
 
 .dash{
-    margin-left: 200px;
+    margin-left: 25%;
 }
 
 .ico_regrol{
@@ -693,4 +693,9 @@ td, th {
 #nuevadietacontainer
 {
     margin-left: 10px;
+}
+
+#nuevo-programa{
+    margin-left: 25% ;
+    width: 60%;
 }
