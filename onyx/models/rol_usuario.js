@@ -33,5 +33,9 @@ module.exports = class RolUsuario {
     static deleteById(email) {
         return db.execute(`UPDATE rol_usuario SET id_rol = 2 WHERE rol_usuario.email = ?`, [email]);
     }
+
+    static getStatusRol(email) {
+        return db.execute('SELECT statusRol FROM rol WHERE rol.id_rol = (SELECT rol_usuario.id_rol FROM rol_usuario WHERE email = ?)', [email]);
+    }
 }
 

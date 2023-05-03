@@ -51,6 +51,7 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                 path: "/adminDashboardProgramas",
                 photo: req.session.photo || "",
                 csrfToken: req.csrfToken(),
+                rol: req.session.rol,
             });
         })
         .catch((err) => {
@@ -59,6 +60,7 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -82,6 +84,7 @@ exports.getAdminNuevoPrograma = (req, res, next) => {
         user: req.session.user || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
+        rol: req.session.rol,
     });
 };
 
@@ -105,6 +108,7 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -122,6 +126,7 @@ exports.getAdminEditarPrograma = (req, res, next) => {
                 programa: rows[0],
                 csrfToken: req.csrfToken(),
                 photo: req.session.photo || "",
+                rol: req.session.rol,
             });
         })
         .catch((err) => {
@@ -130,6 +135,7 @@ exports.getAdminEditarPrograma = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -157,6 +163,7 @@ exports.postAdminEditarPrograma = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -178,6 +185,7 @@ exports.postAdminEliminarPrograma = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -193,6 +201,7 @@ exports.getAdminNuevaDieta = (req, res, next) => {
         path: "adminNuevaDieta",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
+        rol: req.session.rol,
     });
 };
 
@@ -254,6 +263,7 @@ exports.getAdminEditarDieta = (req, res, next) => {
                 csrfToken: req.csrfToken(),
                 photo: req.session.photo || "",
                 dieta: rows[0],
+                rol: req.session.rol,
             });
         })
         .catch((err) => {
@@ -262,6 +272,7 @@ exports.getAdminEditarDieta = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -312,6 +323,7 @@ exports.postAdminEditarDieta = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -333,6 +345,7 @@ exports.postAdminEliminarDieta = (req, res, next) => {
                     user: req.session.user || "",
                     photo: req.session.photo || "",
                     csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -399,6 +412,7 @@ exports.getAdminDashboardAddUser = (req, res, next) => {
                 id: id || "",
                 rol: "",
                 usuario: "",
+                rol: req.session.rol,
             });
         })
         .catch((err) => console.log(err));
@@ -424,6 +438,7 @@ exports.getAdminDashboardModUser = async (req, res, next) => {
                         mensaje: mensaje,
                         photo: req.session.photo || "",
                         roles: roles,
+                        rol: req.session.rol,
                     });
                 })
                 .catch((err) => {
@@ -468,7 +483,7 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
                 csrfToken: req.csrfToken(),
                 mensaje: "Usuario no registrado",
                 photo: req.session.photo || "",
-                rol: "",
+                rol: req.session.rol,
                 usuario: "",
             });
         }
@@ -488,6 +503,7 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
                         pagetitle: "Error",
                         user: req.session.user || "",
                         photo: req.session.photo || "",
+                        rol: req.session.rol,
                     });
 
                 } else {
@@ -527,6 +543,7 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                         user: req.session.user || "",
                         path: "/adminDashboardDietas",
                         photo: req.session.photo || "",
+                        rol: req.session.rol,
                     });
                 })
                 .catch((err) => {
@@ -548,6 +565,7 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(err);
@@ -571,6 +589,7 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
                 user: req.session.user || "",
                 csrfToken: req.csrfToken(),
                 photo: req.session.photo || "",
+                rol: req.session.rol,
             });
         })
         .catch((error) => {
@@ -579,6 +598,7 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(error);
@@ -608,6 +628,7 @@ exports.getAdminDashboard = async (req, res, next) => {
         total_roles: total_roles || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
+        rol: req.session.rol,
     });
 };
 
@@ -640,6 +661,7 @@ exports.getAdminModRol = (req, res, next) => {
                 user: req.session.user || "",
                 csrfToken: req.csrfToken(),
                 photo: req.session.photo || "",
+                rol: req.session.rol,
             });
         })
         .catch(error => {
@@ -648,6 +670,7 @@ exports.getAdminModRol = (req, res, next) => {
                     pagetitle: "Error",
                     user: req.session.user || "",
                     photo: req.session.photo || "",
+                    rol: req.session.rol,
                 });
             } else {
                 console.log(error);
@@ -787,6 +810,7 @@ exports.getadminreg_rol = (req, res, next) => {
                         privilegios: privilegios, // Añade los privilegios aquí
                         csrfToken: csrfToken,
                         photo: req.session.photo || "",
+                        rol: req.session.rol,
                     });
                     res.locals.mensaje = "";
                 });
@@ -860,6 +884,7 @@ exports.getAdminInfoCliente = async (req, res, next) => {
         hombres: clienteHombres || "",
         csrfToken: req.csrfToken(),
         photo: req.session.photo || "",
+        rol: req.session.rol,
     });
 };
 
