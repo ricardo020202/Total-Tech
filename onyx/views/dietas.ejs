@@ -137,12 +137,14 @@
                                     <h3 class="card-title">
                                         <%= dietas[i].nombre_dieta %>
                                     </h3>
+                                    <p style="margin: -0.5px;">Kcal:  <%= dietas[i].calorias%></p>
                                     <p style="margin: -0.5px;">Proteinas: <%= dietas[i].proteinas%>
                                     </p>
                                     <p style="margin: -0.5px;">Carbohidratos: <%=dietas[i].carbohidratos%>
                                     </p>
                                     <p style="margin: -0.5px;">Grasas: <%=dietas[i].grasas%>
                                     </p>
+                                    
                                     <br>
 
                                     <a href="/onyx/dieta/<%= dietas[i].id_dieta%>" id="btnstart"
