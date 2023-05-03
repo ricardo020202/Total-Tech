@@ -64,7 +64,7 @@ module.exports = class Dieta {
         }
     
         if (numcal > 1000 && numcal < 4000) {
-            return db.execute('SELECT * FROM dieta WHERE calorias  BETWEEN ? AND ? + 99 ORDER BY calorias LIMIT ?, 9', [numcal, start]);
+            return db.execute('SELECT * FROM dieta WHERE calorias  BETWEEN ? AND ? + 99 ORDER BY calorias LIMIT ?, 9', [numcal, numcal, start]);
         }
     
         if (numcal >= 4000) {

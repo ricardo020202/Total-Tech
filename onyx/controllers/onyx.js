@@ -722,7 +722,7 @@ exports.postTallas = (req, res, next) => {
 
     Promise.all(promises)
         .then((resultados) => {
-            res.redirect("/onyx/tallas");
+            res.redirect("/onyx/dashboard");
         })
         .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
