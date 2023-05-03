@@ -10,13 +10,16 @@
                 <p id="titulodatosiniciales">Cambialos cuando quieras</p>
                 <table>
                     <tr>
+                        <th>Edad:</th>
+                        <td><%= cliente.edad %></td>
+                    </tr>
+                    <tr>
                       <th>Altura:</th>
                       <td><%= cliente.altura %></td>
                     </tr>
                     <tr>
-                      <th>Edad:</th>
-                      <td><%= cliente.edad %></td>
-                    </tr>
+                      <th>Peso:</th>
+                      <td><%= peso %></td>
                     <tr>
                       <th>Sexo:</th>
                       <td><%= cliente.sexo %></td>
@@ -54,32 +57,88 @@
                     <div class="spacer2"></div>
                     <h1 class="fw-bold text-start">Tu nivel actual de gym</h1>
                     <% if (cliente.sexo === "Masculino") { %>
-                        <% if ((cliente.pr_Sentadillas < 61) || (cliente.pr_BenchPress < 43) || (cliente.pr_PesoMuerto < 102)) {%>
-                            <h4 id="titulodatosiniciales">Novato</h4>
-                        <% } else if ((cliente.pr_Sentadillas === peso*1.25) || (cliente.pr_BenchPress === peso) || (cliente.pr_PesoMuerto === peso*1.5)) {%>
-                            <h4 id="titulodatosiniciales">Principiante</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*1.25 && cliente.pr_Sentadillas < peso*1.75) || (cliente.pr_BenchPress > peso && cliente.pr_BenchPress < peso*1.5) || (cliente.pr_PesoMuerto > peso*1.5 && cliente.pr_PesoMuerto < peso*2.25)) {%>
-                            <h4 id="titulodatosiniciales">Intermedio</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*1.75 && cliente.pr_Sentadillas < peso*2.5) || (cliente.pr_BenchPress > peso*1.5 && cliente.pr_BenchPress < peso*2) || (cliente.pr_PesoMuerto > peso*2.25 && cliente.pr_PesoMuerto < peso*3)) {%>
-                            <h4 id="titulodatosiniciales">Avanzado</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*2.5 && cliente.pr_Sentadillas < peso*3) || (cliente.pr_BenchPress > peso*2 && cliente.pr_BenchPress < peso*2.25) || (cliente.pr_PesoMuerto > peso*3 && cliente.pr_PesoMuerto < peso*3.5)) {%>
-                            <h4 id="titulodatosiniciales">Experto</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*3) || (cliente.pr_BenchPress > peso*2.25) || (cliente.pr_PesoMuerto > peso*3.5)) {%>
-                            <h4 id="titulodatosiniciales">Elite</h4>
+                        <% if ((cliente.pr_Sentadillas < 61)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Novato</h4>
+                        <% } else if ((cliente.pr_Sentadillas === peso*1.25)){%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Principiante</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*1.25 && cliente.pr_Sentadillas < peso*1.75)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Intermedio</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*1.75 && cliente.pr_Sentadillas < peso*2.5)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Avanzado</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*2.5 && cliente.pr_Sentadillas < peso*3)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Experto</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*3) || (cliente.pr_BenchPress > peso*2.25)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Elite</h4>
+                        <% } %>
+
+                        <% if ((cliente.pr_BenchPress < 43)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Novato</h4>
+                        <% } else if ((cliente.pr_BenchPress === peso)){%>
+                            <h4 id="titulodatosiniciales">Bench Press: Principiante</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso && cliente.pr_BenchPress < peso*1.5)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Intermedio</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso*1.5 && cliente.pr_BenchPress < peso*2)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Avanzado</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso*2 && cliente.pr_BenchPress < peso*2.25)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Experto</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso*2.25)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Elite</h4>
+                        <% } %>
+
+                        <% if ((cliente.pr_PesoMuerto < 102)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Novato</h4>
+                        <% } else if ((cliente.pr_PesoMuerto === peso*1.5)){%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Principiante</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*1.5 && cliente.pr_PesoMuerto < peso*2.25)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Intermedio</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*2.25 && cliente.pr_PesoMuerto < peso*3)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Avanzado</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*3 && cliente.pr_PesoMuerto < peso*3.5)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Experto</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*3.5)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Elite</h4>
                         <% } %>
                     <% } else if (cliente.sexo === "Femenino") { %>
-                        <% if ((cliente.pr_Sentadillas < 43) || (cliente.pr_BenchPress < 20) || (cliente.pr_PesoMuerto < 61)) {%>
-                            <h4 id="titulodatosiniciales">Novata</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*.5 && cliente.pr_Sentadillas < peso) || (cliente.pr_BenchPress === peso*.5) || (cliente.pr_PesoMuerto > peso*.5 && cliente.pr_PesoMuerto < peso)) {%>
-                            <h4 id="titulodatosiniciales">Principiante</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso && cliente.pr_Sentadillas < peso*1.5) || (cliente.pr_BenchPress > peso*.5 && cliente.pr_BenchPress < peso*.75) || (cliente.pr_PesoMuerto > peso*1.25 && cliente.pr_PesoMuerto < peso*1.75)) {%>
-                            <h4 id="titulodatosiniciales">Intermedia</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*1.5 && cliente.pr_Sentadillas < peso*1.75) || (cliente.pr_BenchPress > peso*.75 && cliente.pr_BenchPress < peso) || (cliente.pr_PesoMuerto > peso*1.75 && cliente.pr_PesoMuerto < peso*2.25)) {%>
-                            <h4 id="titulodatosiniciales">Avanzada</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*1.75 && cliente.pr_Sentadillas < peso*2.25) || (cliente.pr_BenchPress > peso && cliente.pr_BenchPress < peso*1.25) || (cliente.pr_PesoMuerto > peso*2.25 && cliente.pr_PesoMuerto < peso*3)) {%>
-                            <h4 id="titulodatosiniciales">Experta</h4>
-                        <% } else if ((cliente.pr_Sentadillas > peso*2.25) || (cliente.pr_BenchPress > peso*1.25) || (cliente.pr_PesoMuerto > peso*3)) {%>
-                            <h4 id="titulodatosiniciales">Elite</h4>
+                        <% if ((cliente.pr_Sentadillas < 43)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Novata</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*.5 && cliente.pr_Sentadillas < peso)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Principiante</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso && cliente.pr_Sentadillas < peso*1.5)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Intermedia</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*1.5 && cliente.pr_Sentadillas < peso*1.75)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Avanzada</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*1.75 && cliente.pr_Sentadillas < peso*2.25)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Experta</h4>
+                        <% } else if ((cliente.pr_Sentadillas > peso*2.25)) {%>
+                            <h4 id="titulodatosiniciales">Sentadilla: Elite</h4>
+                        <% } %>
+
+                        <% if ((cliente.pr_BenchPress < 20)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Novata</h4>
+                        <% } else if ((cliente.pr_BenchPress === peso*.5)){%>
+                            <h4 id="titulodatosiniciales">Bench Press: Principiante</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso*.5 && cliente.pr_BenchPress < peso*.75)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Intermedia</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso*.75 && cliente.pr_BenchPress < peso)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Avanzada</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso && cliente.pr_BenchPress < peso*1.25)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Experta</h4>
+                        <% } else if ((cliente.pr_BenchPress > peso*1.25)) {%>
+                            <h4 id="titulodatosiniciales">Bench Press: Elite</h4>
+                        <% } %>
+
+                        <% if ((cliente.pr_PesoMuerto < 61)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Novata</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*.5 && cliente.pr_PesoMuerto < peso)){%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Principiante</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*1.25 && cliente.pr_PesoMuerto < peso*1.75)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Intermedia</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*1.75 && cliente.pr_PesoMuerto < peso*2.25)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Avanzada</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*2.25 && cliente.pr_PesoMuerto < peso*3)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Experta</h4>
+                        <% } else if ((cliente.pr_PesoMuerto > peso*3)) {%>
+                            <h4 id="titulodatosiniciales">Peso Muerto: Elite</h4>
                         <% } %>
                     <% } %>
                 </div>

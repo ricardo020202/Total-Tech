@@ -745,15 +745,19 @@ exports.getCuenta = (req, res, next) => {
             Cliente.fetchOne(req.session.email)
             .then(([rows, fieldData]) => {
                     req.session.cliente = rows
-                    res.render("cuenta", {
-                        pagetitle: "Cuenta",
-                        user: req.session.user || "",
-                        usuario: req.session.usuario || "",
-                        cliente: req.session.cliente || "",
-                        csrfToken: req.csrfToken(),
-                        photo: req.session.photo || 'default.png',
-                        rol: req.session.rol || "",
-                    });
+                    if (rows.length > 0) {
+                        res.render("cuenta", {
+                            pagetitle: "Cuenta",
+                            user: req.session.user || "",
+                            usuario: req.session.usuario || "",
+                            cliente: req.session.cliente || "",
+                            csrfToken: req.csrfToken(),
+                            photo: req.session.photo || 'default.png',
+                            rol: req.session.rol || "",
+                        });
+                    } else {
+                        res.redirect("/onyx/registrar-datos-iniciales");
+                    }
                 })
                 .catch((err) => {
                     if (err.code === "PROTOCOL_CONNECTION_LOST") {
