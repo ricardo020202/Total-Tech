@@ -22,7 +22,7 @@
                     <% checked = true; %>
                   <% } %>
                 <% }); %>
-                <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privilege[]" value="<%= privilege.id_cu %>" class="form-check-input" <% if (checked) { %>checked<% } %>>
+                <input type="checkbox" id="privilege_<%= privilege.id_cu %>" name="privileges" value="<%= privilege.id_cu %>" class="form-check-input" <% if (checked) { %>checked<% } %>>
                 <label for="privilege_<%= privilege.id_cu %>" class="form-check-label"><%= privilege.nombrecu %></label>
                 <br>
               <% }); %>

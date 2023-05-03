@@ -658,16 +658,21 @@ exports.getAdminModRol = (req, res, next) => {
 
 exports.postAdminModRol = (req, res, next) => {
     const id = req.params.id;
-    let privileges = Array.isArray(req.body['privilege[]']) ? req.body['privilege[]'] : [req.body['privilege[]']];
+    let privilegesB = req.body.privileges;
+    let privileges = Array.isArray(privilegesB)
+    ? privilegesB
+    : [privilegeosB];
     var rolPrivilegioNuevo;
 
     // Set privileges to an empty array if it is undefined or null
     if (privileges && privileges[0] === undefined) {
+        console.log(privileges);
         privileges = [];
     }
     // Delete existing RolPrivilegio records for the given idRol
     RolPrivilegio.deleteByRol(id)
         .then(() => {
+            console.log(privileges);
             // Only continue if privileges have a length greater than 0
             if (!privileges.length) {
                 res.redirect('/admin/adminDashboard/modrol/' + id);
