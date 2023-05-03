@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div class="col">
-                    <h2 id="titulopagina" style="cursor: default; margin-left: 5%;">Tallas</h2>
+                    <h1 id="titulopagina" style="cursor: default; margin-left: 5%;" class="fw-bold text-start">Tallas</h1>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                             <input type="number" min="0" name="inputpeso" value="<%=peso[peso.length-1]%>"
                                 placeholder="peso" class="input-talla"required> <br>
                             <input type="hidden" name="_csrf" value="<%=csrfToken%>"> <br>
-                            <button type="submit" class="btn-custom">Modificar</button>
+                            <button id="btnregdatos" type="submit" class="btn btn-custom" id="registrarDatos">Modificar Tallas</button>
                         </form>
                     </div>
 

@@ -16,19 +16,20 @@
             <form action="/onyx/nuevabitacora" method="POST">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="mb-3">
-                    <label for="fecha" class="form-label">Fecha</label>
+                    <label id="labelBitacora" for="fecha" class="form-label">Fecha</label>
                     <input type="date" class="form-control" id="fecha" name="fecha"
                         value="<%= new Date().toISOString().slice(0, 10) %>" />
                 </div>
 
-                <label for="contenido" class="form-label">Contenido</label>
+                <label id="labelBitacora" for="contenido" class="form-label">Contenido</label>
+                <p id="detailstext">describe cómo te sentiste o algun comentario sobre algo que sientas que sea importante</p>
                 <div class="input-group">
                     <textarea class="form-control" aria-label="Contenido" id="contenido" name="contenido"></textarea>
                 </div>
                 <br>
 
                 <div class="mb-3">
-                    <label for="entreno" class="form-label">Entreno</label>
+                    <label id="labelBitacora" for="entreno" class="form-label">Entreno</label>
                     <input type="text" class="form-control" id="entreno" name="entreno" required />
                 </div>
                 <button type="submit" class="btn btn-primary text-dark" id="nuevabitacora">Agregar</button>

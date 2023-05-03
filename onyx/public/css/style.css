@@ -1083,3 +1083,9 @@ tbody{
   background-color: #2c343a;
   color: #cdcdcd;
 }
+
+#labelBitacora
+{
+  font-size: 20px;
+  font-weight: bolder;
+}
