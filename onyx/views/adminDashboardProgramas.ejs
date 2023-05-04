@@ -1,9 +1,8 @@
 <%- include('includes/headAdmin.ejs') %>
-    <%- include('includes/sidebar.ejs') %>
+  <%- include('includes/sidebar.ejs') %>
+    <link rel="stylesheet" href="/css/adminStyle.css">
+
         <link rel="stylesheet" href="/css/adminStyle.css">
-
-
-        <!-- Admin Dashboard Programa -->
         <div class="table-responsive">
             <div class="table-title">
                 <div class="row">
@@ -21,8 +20,8 @@
                 <thead class="table-header">
                     <tr>
                         <th scope="col">Id Programa</th>
-                        <th scope="col">Descripción</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
                         <th scope="col">Frecuencia</th>
                         <th scope="col">Referencia Visual</th>
                         <th scope="col">Imagen Programa</th>
@@ -32,19 +31,18 @@
                 <tbody>
                     <% for (let i=0; i < programa.length; i++) { %>
                         <tr>
-                            <th scope="row">
+                            <td>
                                 <%= programa[i].id_programa %>
-                            </th>
-                            <td class="cell-class">
-                                <%= programa[i].descripcion_programa %>
                             </td>
                             <td>
                                 <%= programa[i].nombre_programa %>
                             </td>
+                            <td class="cell-class">
+                                <%= programa[i].descripcion_programa %>
+                            </td>
                             <td>
                                 <%= programa[i].frecuencia %>
                             </td>
-                            <!-- dont show all the text -->
                             <td class="cell-class">
                                 <%= programa[i].ref_visual %>
                             </td>

@@ -40,14 +40,6 @@ exports.post_signup = async (request, response, next) => {
                                     request.session.email = rows[0].email;
                                     user.addRol(request.body.email, 2, new Date())
                                         .then(([rows, fieldData]) => {
-
-                                            user.getRol(request.session.email)
-                                                .then(([rows, fieldData]) => {
-                                                    request.session.rol = rows[0].nombreRol;
-                                                })
-                                                .catch((error) => {
-                                                    console.log(error);
-                                                });
                                             return request.session.save((error) => {
                                                 response.redirect("/onyx/registrar-datos-iniciales"); // redirigir al usuario a la página de /onyx/registrar-datos-iniciales
                                             });
@@ -149,15 +141,6 @@ exports.post_login = (request, response, next) => {
         .then(([rows, fieldData]) => {
             if (rows.length > 0) {
                 request.session.photo = rows[0].user_pic;
-
-                user.getRol(request.body.email)
-                    .then(([rows, fieldData]) => {
-                        request.session.rol = rows[0].nombreRol;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-
                 bcrypt
                     .compare(request.body.password, rows[0].contraseña)
                     .then((doMatch) => {

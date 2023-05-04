@@ -17,7 +17,7 @@
 
             <!-- form for new programa -->
             <div class="container" id="form-nuevo-programa">
-                <form action="/admin/admindashboard/programas/editar-programa/<%= programa.id_programa %>" method="POST">
+                <form action="/admin/admindashboard/programas/editar-programa/<%= programa.id_programa %>" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
                     <div class="mb-3">
@@ -45,9 +45,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="img_programa" class="form-label">Imagen Programa</label>
-                        <input type="text" class="form-control" id="img_programa" name="img_programa"
-                            value="<%= programa.img_programa %>" />
+                        <label for="photo" class="form-label">Imagen programa</label>
+                        <input type="file" class="form-control" id="user_pic" name="image" value="registrar" accept=".jpg, .jpeg, .png, .gif" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

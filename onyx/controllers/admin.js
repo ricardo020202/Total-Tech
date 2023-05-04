@@ -150,7 +150,7 @@ exports.postAdminEditarPrograma = (req, res, next) => {
         descripcion_programa: req.body.descripcion_programa,
         nombre_programa: req.body.nombre_programa,
         ref_visual: req.body.ref_visual || null,
-        img_programa: req.body.img_programa || null,
+        img_programa: req.file.filename || null,
     });
     programa
         .update(idPrograma)

@@ -7,6 +7,13 @@ module.exports = (privilegio) => {
             .then(([consulta_privilegios, fieldData]) => {
                 rolUsuario.getStatusRol(request.session.email)
                     .then(([consulta_rol, fieldData]) => {
+                        user.getRol(request.session.email)
+                            .then(([rows, fieldData]) => {
+                                request.session.rol = rows[0].nombreRol;
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
                         const status = consulta_rol[0].statusRol;
                         const privilegios = [];
                         for (let privilegio of consulta_privilegios) {
@@ -16,11 +23,13 @@ module.exports = (privilegio) => {
                             next();
                         }
                         else {
+                            response.status(404);
                             return response.render("404", {
                                 pagetitle: "Error",
                                 user: request.session.user || "",
                                 rol: request.session.rol || "",
                                 photo: request.session.photo || 'default.png',
+                                rol : request.session.rol || '',
                             });
                         }
                     })
@@ -33,6 +42,8 @@ module.exports = (privilegio) => {
                             response.render("dbDown", {
                                 pagetitle: "Error",
                                 user: request.session.user || "",
+                                rol: request.session.rol || "",
+                                photo: request.session.photo || 'default.png',
                             });
                         }
                     });
@@ -46,6 +57,8 @@ module.exports = (privilegio) => {
                     response.render("dbDown", {
                         pagetitle: "Error",
                         user: request.session.user || "",
+                        rol: request.session.rol || "",
+                        photo: request.session.photo || 'default.png',
                     });
                 }
             });
