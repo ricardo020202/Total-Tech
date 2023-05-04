@@ -601,7 +601,12 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(error);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: request.session.user || "",
+                    rol: request.session.rol || "",
+                    photo: request.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -673,7 +678,12 @@ exports.getAdminModRol = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(error);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: request.session.user || "",
+                    rol: request.session.rol || "",
+                    photo: request.session.photo || 'default.png',
+                });
             }
         });
 

@@ -45,7 +45,6 @@ exports.post_signup = async (request, response, next) => {
                                             });
                                         })
                                         .catch((error) => {
-                                            console.log(error);
                                             if (error.code === "ER_DUP_ENTRY") {
                                                 request.session.mensaje = "El correo electrónico ya está registrado.";
                                                 response.redirect("/users/signup");
@@ -56,6 +55,8 @@ exports.post_signup = async (request, response, next) => {
                                                 response.render("dbDown", {
                                                     pagetitle: "Error",
                                                     user: request.session.user || "",
+                                                    rol: request.session.rol || "",
+                                                    photo: request.session.photo || 'default.png',
                                                 });
                                             }
                                         });
@@ -66,7 +67,6 @@ exports.post_signup = async (request, response, next) => {
                                 }
                             })
                             .catch((error) => {
-                                console.log(error);
                                 if (error.code === "ER_DUP_ENTRY") {
                                     request.session.mensaje = "El correo electrónico ya está registrado.";
                                     response.redirect("/users/signup");
@@ -77,6 +77,8 @@ exports.post_signup = async (request, response, next) => {
                                     response.render("dbDown", {
                                         pagetitle: "Error",
                                         user: request.session.user || "",
+                                        rol: request.session.rol || "",
+                                        photo: request.session.photo || 'default.png',
                                     });
                                 }
                             });
@@ -86,7 +88,6 @@ exports.post_signup = async (request, response, next) => {
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
                     if (error.code === "ER_DUP_ENTRY") {
                         request.session.mensaje = "El correo electrónico ya está registrado.";
                         response.redirect("/users/signup");
@@ -97,12 +98,13 @@ exports.post_signup = async (request, response, next) => {
                         response.render("dbDown", {
                             pagetitle: "Error",
                             user: request.session.user || "",
+                            rol: request.session.rol || "",
+                            photo: request.session.photo || 'default.png',
                         });
                     }
                 });
         })
         .catch((error) => {
-            console.log(error);
             if (error.code === "ER_DUP_ENTRY") {
                 request.session.mensaje = "El correo electrónico ya está registrado.";
                 response.redirect("/users/signup");
@@ -113,7 +115,8 @@ exports.post_signup = async (request, response, next) => {
                 response.render("dbDown", {
                     pagetitle: "Error",
                     user: request.session.user || "",
-
+                    rol: request.session.rol || "",
+                    photo: request.session.photo || 'default.png',
                 });
             }
         });
@@ -162,7 +165,6 @@ exports.post_login = (request, response, next) => {
                                         }
                                     })
                                     .catch((error) => {
-                                        console.log(error);
                                         if (error.code === "ER_DUP_ENTRY") {
                                             request.session.mensaje = "El correo electrónico ya está registrado.";
                                             response.redirect("/users/signup");
@@ -173,6 +175,8 @@ exports.post_login = (request, response, next) => {
                                             response.render("dbDown", {
                                                 pagetitle: "Error",
                                                 user: request.session.user || "",
+                                                rol: request.session.rol || "",
+                                                photo: request.session.photo || 'default.png',
                                             });
                                         }
                                     });
@@ -188,7 +192,6 @@ exports.post_login = (request, response, next) => {
                         }
                     })
                     .catch((error) => {
-                        console.log(error);
                         if (error.code === "ER_DUP_ENTRY") {
                             request.session.mensaje = "El correo electrónico ya está registrado.";
                             response.redirect("/users/signup");
@@ -199,6 +202,8 @@ exports.post_login = (request, response, next) => {
                             response.render("dbDown", {
                                 pagetitle: "Error",
                                 user: request.session.user || "",
+                                rol: request.session.rol || "",
+                                photo: request.session.photo || 'default.png',
                             });
                         }
                     });
@@ -208,7 +213,6 @@ exports.post_login = (request, response, next) => {
             }
         })
         .catch((error) => {
-            console.log(error);
             if (error.code === "ER_DUP_ENTRY") {
                 request.session.mensaje = "El correo electrónico ya está registrado.";
                 response.redirect("/users/signup");
@@ -219,6 +223,8 @@ exports.post_login = (request, response, next) => {
                 response.render("dbDown", {
                     pagetitle: "Error",
                     user: request.session.user || "",
+                    rol: request.session.rol || "",
+                    photo: request.session.photo || 'default.png',
                 });
             }
         });
