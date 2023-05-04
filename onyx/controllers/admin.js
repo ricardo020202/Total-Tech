@@ -42,7 +42,7 @@ const { parse } = require("path");
 // };
 
 exports.getAdminDashboardProgramas = async (req, res, next) => {
-    EntrenamientoModel.fetchAll()
+    EntrenamientoModel.fetchAll2()
         .then(([rows, fieldData]) => {
             res.render("adminDashboardProgramas", {
                 programa: rows,
