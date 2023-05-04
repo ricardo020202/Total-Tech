@@ -1,0 +1,1091 @@
+body {
+  background-color: #1c1c1c;
+  font-family: "DM Sans", sans-serif;
+  color: #d4d4d4;
+  height: 100vh;
+}
+
+
+
+.rectangulo {
+  background-color: #151515;
+  width: 105px;
+  height: 10px;
+  position: absolute;
+  top: 10px;
+  left: 7px;
+  z-index: 3;
+  rotate: -65.84deg;
+  transform: skew(25deg);
+}
+
+.rectangulo1 {
+  background-color: #151515;
+  width: 105px;
+  height: 10px;
+  position: absolute;
+  top: 10px;
+  left: -13px;
+  z-index: 3;
+  rotate: -65.84deg;
+  transform: skew(25deg);
+}
+
+.rectangulo2 {
+  background-color: #151515;
+  width: 82px;
+  height: 30px;
+  position: absolute;
+  top: 10px;
+  left: -38px;
+  z-index: 3;
+  rotate: -65.84deg;
+  transform: skew(25deg);
+}
+
+.form-control
+{
+  transition: transform 0.4s ease;
+}
+
+.form-control:focus
+{
+  transform: scale(1.1);
+}
+
+#titulodatosiniciales
+{
+  color: #d2ca03;
+}
+
+
+#nutrient-chart {
+  width: 800px;
+  height: 600px;
+}
+
+#nutrient-chart2 {
+  width: 500px;
+  height: 300px;
+}
+
+#nutrient-table
+{
+  width: 600px;
+  transition: transform 0.4s ease;
+}
+
+#nutrient-table:hover
+{
+  transform: scale(1.05);
+
+}
+
+#nutrient-table2
+{
+  width: 600px;
+  transition: transform 0.4s ease;
+}
+
+#nutrient-table2:hover
+{
+  transform: scale(1.1);
+
+}
+
+.bg-custom {
+  background-color: #d2ca03;
+  z-index: 2;
+}
+
+.bg-input {
+  z-index: 1;
+}
+
+.bg-custom-login {
+  background-color: #d2ca03;
+}
+
+#botonsignup
+{
+  transition: transform 0.4s ease;
+}
+
+#botonsignup:hover
+{
+  transform: scale(1.1);
+}
+
+#botonlogout
+{
+  transition: transform 0.4s ease;
+}
+
+#botonlogout:hover
+{
+  transform: scale(1.1);
+}
+
+#btnlogin
+{
+  transition: transform 0.3s ease;
+}
+
+#btnlogin:hover
+{
+  background-color: #3c4043;
+}
+
+.btnreg:hover
+{
+  background-color: #3c4043;
+}
+
+
+.focus
+{
+  transition: transform 0.4s ease;
+}
+
+
+#btnregdatos
+{
+  transition: transform 0.4s ease;
+}
+
+#btnregdatos:hover
+{
+  transform: scale(1.2);
+}
+
+
+
+.bg-custom1 {
+  background-color: #151515;
+  z-index: 2;
+}
+
+.bg-signUp {
+  background-color: #151515;
+  z-index: 1;
+}
+
+.bg-footer {
+  background-color: black;
+  z-index: 2;
+}
+
+footer {
+  bottom: 0;
+  width: 100%;
+  position: static;
+}
+
+.text-custom {
+  color: #d2ca03;
+}
+
+.navbar-brand {
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
+}
+
+.nav-item {
+  font-family: "DM Sans", sans-serif;
+}
+
+#navbarDropdown
+{
+  color: #151515;
+  transition: transform 0.4s ease;
+}
+#navbarDropdown:hover
+{
+  color: #151515;
+  transform: scale(1.1);
+}
+
+
+#navbaritem
+{
+  transition: transform 0.4s ease;
+
+}
+
+
+#navbaritem:hover
+{
+  transform: scale(1.1);
+  font-weight: bold;
+
+}
+
+.bg-image {
+  background-image: url(../assets/cover.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  filter: blur(5px);
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: start;
+  color: #ffffff;
+  z-index: 1;
+}
+
+.header {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.subHeader {
+  font-weight: 700;
+  color: #d2ca03;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    font-size: 40px;
+  }
+}
+
+.user{
+  margin-right: 50px;
+}
+
+.cuenta-user{
+  margin-right: 50px;
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    width: 75%;
+    height: 100%;
+    background-color: #d2ca03;
+  }
+
+  .navbar-collapse.collapsing {
+    left: -75%;
+    transition: height 0s ease;
+  }
+
+  .navbar-collapse.show {
+    left: 0;
+    transition: left 300ms ease-in-out;
+  }
+
+  .navbar-toggler.collapsed~.navbar-collapse {
+    transition: left 500ms ease-in-out;
+  }
+
+  .search-bar {
+    background-color: black;
+    width: 100%;
+    height: 35px;
+  }
+
+  .user{
+    margin-right: 0;
+  }
+
+  .cuenta-user{
+    margin-right: auto;
+  }
+
+
+}
+
+.accordion {
+  color: #d4d4d4;
+}
+
+.accordion-item {
+  background-color: #151515;
+  color: #d4d4d4;
+}
+
+.accordion-button {
+  background-color: rgb(43, 43, 43);
+  color: #d4d4d4;
+  font-weight: 700;
+}
+
+.accordion-button:hover {
+  background-color: #151515;
+  color: #d4d4d4;
+}
+
+.accordion-button:focus {
+  background-color: rgb(43, 43, 43);
+  color: #d4d4d4;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: rgb(43, 43, 43);
+  color: #d4d4d4;
+}
+
+li {
+  list-style: none;
+  color: #d4d4d4;
+}
+
+.buttonChido {
+  background-color: #d2ca03;
+  color: black;
+  border-radius: 10em;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 1em 2em;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid black;
+  box-shadow: 0 0 0 0 white;
+  position: absolute;
+  top: 12%;
+  left: 85%;
+}
+
+.buttonChido:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 white;
+}
+
+.buttonChido:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 black;
+}
+
+.spacer {
+  height: 100px;
+}
+
+.bitspacer {
+  height: 55px;
+}
+
+.calspacer {
+  height: 5px;
+}
+
+.containerBitacora {
+  padding: 1%;
+  background-color: grey;
+  border: solid;
+  border-radius: 10px;
+  border-bottom: 1px solid black;
+  height: 50%;
+  width: 70%;
+  position: relative;
+  left: 2%;
+}
+
+.card-container {
+  height: 100%;
+  /* Altura del contenedor */
+  overflow-y: auto;
+  /* Desplazamiento vertical */
+  color: #000000;
+}
+
+.card {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.createButton {
+  border: 2px solid #000000;
+  background-color: #d2ca03;
+  border-radius: 0.9em;
+  padding: 0.8em 1.2em 0.8em 1em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+  position: relative;
+  float: right;
+  margin-right: 4%;
+}
+
+.createButton span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d4d4d4;
+  font-weight: 600;
+}
+
+.createButton:hover {
+  background-color: #b2ac06;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+a {
+  color: #d2ca03;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #b2ac06;
+}
+
+.ig {
+  width: 40px;
+}
+
+.fb {
+  width: 60px;
+}
+
+.tw {
+  width: 45px;
+}
+
+.icon {
+  width: 20px;
+}
+
+.graphs {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-custom {
+  background-color: #d2ca03;
+  color: #000000;
+}
+
+.datos {
+  width: 50%;
+}
+
+/* CSS de calendario */
+* {
+  margin: auto;
+}
+
+/*cabecera de la página*/
+/*div principal del calendario*/
+#calendario {
+  border: 4px double black;
+  max-width: 536px;
+  background-color: #d4d4d4;
+  text-align: center;
+}
+
+/*tabla del calendario*/
+#diasc {
+  border: 1px solid black;
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+
+#diasc th,
+#diasc td {
+  font: normal 16pt arial;
+  width: 70px;
+  height: 38px;
+  cursor: default;
+}
+
+#diasc th {
+  color: #000000;
+  background-color: #d2ca03;
+}
+
+#diasc td {
+  color: #492736;
+  background-color: #9bf5ff;
+}
+
+/*línea de la fecha actual*/
+#fechaactual {
+  font: bold 16pt arial;
+  padding: 0.4em;
+}
+
+#fechaactual i {
+  cursor: pointer;
+}
+
+#fechaactual i:hover {
+  color: #b2ac06;
+  text-decoration: none;
+}
+
+/*formulario de busqueda de fechas*/
+#buscafecha {
+  background-color: #d2ca03;
+  color: #000000;
+  padding: 5px;
+}
+
+#buscafecha select,
+#buscafecha input {
+  background-color: #d4d4d4;
+  color: #000000;
+  font: bold 12pt arial;
+}
+
+#buscafecha [type="text"] {
+  text-align: center;
+}
+
+#buscafecha [type="button"] {
+  cursor: pointer;
+}
+
+/*cabecera del calendario*/
+#anterior {
+  float: left;
+  width: 100px;
+  font: bold 16pt arial;
+  padding: 0.5em 0.1em;
+  cursor: pointer;
+}
+
+#posterior {
+  float: right;
+  width: 100px;
+  font: bold 16pt arial;
+  padding: 0.5em 0.1em;
+  cursor: pointer;
+}
+
+#anterior:hover {
+  color: #b2ac06;
+  text-decoration: none;
+}
+
+#posterior:hover {
+  color: #b2ac06;
+  text-decoration: none;
+}
+
+#titulos {
+  font: normal 20pt "arial black";
+  padding: 0.2em;
+}
+
+/* ENTRENAMIENTOS Y DIETAS */
+.cards {
+  margin: 30px;
+  background-color: #151515;
+  border-radius: 20px;
+  transition: transform 0.4s ease;
+  
+}
+
+.cards:hover {
+  margin: 30px;
+  
+  border-radius: 20px;
+  background-color: #262626;
+  box-shadow: 0 0 10px #d2ca03;
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  border-radius: 20px 20px 0px 0px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+#btnstart {
+  background-color: #d2ca03;
+  color: #000000;
+  margin: 10px;
+  border-radius: 40px;
+  width: 65%;
+  transition: transform 0.4s ease;
+}
+
+#btnstart:hover {
+  background-color: #151515;
+  color: #d2ca03;
+  box-shadow: 0 0 12px #000000;
+  transform: scale(1.1);
+}
+
+.masinfo {
+  color: #d2ca03;
+  font-size: 12px;
+}
+
+.masinfo:hover {
+  color: #d4d4d4;
+}
+
+/*card body center*/
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}*/
+
+.ejercicio-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15%;
+}
+
+/* CSS CALENADARIO */
+
+.wrapper {
+  width: 75%;
+
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+
+  margin: 0 auto;
+}
+
+.wrapper header {
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+  color: #d4d4d4;
+  font-weight: 1000;
+  font-size: 1.5rem;
+}
+
+header .icons {
+  display: flex;
+}
+
+header .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+
+.icons span:last-child {
+  margin-right: -10px;
+}
+
+header .icons span:hover {
+  background: #f2f2f2;
+}
+
+header .current-date {
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.calendar {
+  padding: 20px;
+}
+
+.calendar ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+
+.calendar .days {
+  margin-bottom: 20px;
+}
+
+.calendar li {
+  color: #d4d4d4;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+
+.calendar .weeks li {
+  font-weight: 500;
+  cursor: default;
+}
+
+@media screen and (max-width: 821px) {
+  .calendar .weeks li {
+    font-weight: 300;
+    cursor: default;
+    font-size: 14px;
+  }
+}
+
+.calendar .days li {
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+}
+
+.days li.inactive {
+  color: #aaa;
+}
+
+.days li.active {
+  color: #151515
+}
+
+.days li::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.days li.active::before {
+  background: #d2ca03;
+}
+
+.days li:not(.active):hover::before {
+  background: #d4d4d4;
+}
+
+/*  button in the right side of the calendar */
+
+#add-event {
+  background: #d2ca03;
+  color: #151515;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#add-event:hover {
+  background: #d4d4d4;
+  color: #000000;
+}
+
+/* buttun for submit new event */
+#nuevabitacora {
+  background: #d2ca03;
+  color: #d4d4d4;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#changePassword {
+  background: #d2ca03;
+  color: #d4d4d4;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#cancelar {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#cancelar:hover {
+  background: #d4d4d4;
+  color: #000000;
+}
+
+#nuevabitacora:hover {
+  background: #d4d4d4;
+  color: #000000;
+}
+
+thead {
+  background-color: #d2ca03;
+  color: #000000;
+}
+
+tbody {
+  background-color: #d4d4d4;
+  color: #000000;
+}
+
+#orderbybtn {
+  color: #d2ca03;
+}
+
+#containerdietas {
+  background-color: #000000;
+  border-radius: 50px;
+}
+
+#containerprogramas {
+  background-color: #000000;
+  border-radius: 50px;
+}
+
+.btn-talla {
+  background-color: #d2ca03;
+  color: #000000;
+  margin: 5px;
+  border-radius: 40px;
+}
+
+.btn-talla:hover {
+  background-color: #222222;
+  color: #d4d4d4;
+}
+
+.posAb {
+  position: absolute;
+  width: 10vw;
+}
+
+.image-tallas {
+  width: 30%;
+  height: 100%;
+}
+
+.talla{
+  filter: drop-shadow(0 0px 3px rgba(210, 202, 3, 0.7)); 
+}
+
+.inp-i {
+  margin-right: 100%;
+}
+
+.input-talla {
+  margin-top: 2%;
+  height: 4%;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 9999px;
+  box-shadow: inset 2px 5px 10px rgb(0, 0, 0);
+  color: #d4d4d4;
+}
+
+/* Dropdown chido para la parte de workouts En proceso... Ayudenme si se les ocurre algo pls xd
+.wk-css {
+  background-color: #d2ca03;
+  color: #000000;
+}
+
+.wk-css:after {
+  background-color: #d2ca03;
+  color: #000000;
+  transition: transform 200ms linear;
+} */
+
+#delete-bitacora {
+  /*center the button*/
+  margin: 0 auto;
+  /*display as block*/
+  display: block;
+  /*set the width*/
+  width: 100%;
+  /*set the height*/
+  height: 100%;
+  /*set the background color*/
+  /*set the border*/
+  border: 1px solid #d2ca03;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 200px;
+  height: 50%;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: auto;
+}
+
+
+.table-dark {
+  color: white;
+}
+
+.table-dark th,
+.table-dark td {
+  color: rgb(255, 255, 255);
+}
+
+.fav{
+  color: #d2ca03;
+  font-size: 120%;
+  margin-right: 0;
+  transition: transform 0.4s ease;
+}
+
+.fav:hover{
+  transform: scale(1.5);
+
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #d2ca03;
+  color: #000000;
+  z-index: 100;
+}
+
+.bi-person-circle{
+  font-size: 8rem;
+  color: #151515;
+}
+
+#detailstext
+{
+  font-family: italic;
+  font-size: 12px;
+}
+
+.spacer2
+{
+  height: 30px;
+}
+
+.btniniciarDE
+{
+  height: 50px;
+  width: 50px;
+}
+
+.img_container {
+  width: 100%;
+  height: 50vh;
+}
+
+.img_programa {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.numcal {
+  font-size: 20px;
+  font-weight: bold;
+}	
+
+.icon-dietas {
+  fill: #d2ca03;
+}
+
+.bg-dietas {
+  background-color: #101010;
+  border: 1px solid #101010;
+  color: #fff;
+}
+
+.card-title
+{
+  margin: 5px;
+}
+
+.icon-programas {
+  /* change the color of the icon */
+  fill: #d2ca03;
+}
+
+.icon-ejercicio {
+  /* change the color of the icon */
+  fill: #d2ca03;
+}
+
+.bg-programas {
+  background-color: #101010;
+  border: 1px solid #101010;
+  color: #fff;
+}
+
+.bg-ejercicio {
+  background-color: #101010;
+  border: 1px solid #101010;
+  color: #fff;
+}
+
+td, th {
+  border-top: #151515 5px solid;
+  border-bottom: #151515 5px solid;
+  border-left: #151515 1px solid;
+  padding: 10px;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-left: 0;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+tbody{
+  background-color: #2c343a;
+  color: #cdcdcd;
+}
+
+#labelBitacora
+{
+  font-size: 20px;
+  font-weight: bolder;
+}
