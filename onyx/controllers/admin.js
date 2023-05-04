@@ -63,7 +63,12 @@ exports.getAdminDashboardProgramas = async (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -111,7 +116,12 @@ exports.postAdminNuevoPrograma = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -138,7 +148,12 @@ exports.getAdminEditarPrograma = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -166,7 +181,12 @@ exports.postAdminEditarPrograma = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -188,7 +208,12 @@ exports.postAdminEliminarPrograma = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -275,7 +300,12 @@ exports.getAdminEditarDieta = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -326,7 +356,12 @@ exports.postAdminEditarDieta = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 }
@@ -348,7 +383,12 @@ exports.postAdminEliminarDieta = (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 
@@ -415,7 +455,24 @@ exports.getAdminDashboardAddUser = (req, res, next) => {
                 rol: req.session.rol,
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
+                });
+            } else {
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            }
+        });   
 };
 
 exports.getAdminDashboardModUser = async (req, res, next) => {
@@ -442,12 +499,42 @@ exports.getAdminDashboardModUser = async (req, res, next) => {
                     });
                 })
                 .catch((err) => {
-                    console.log(err);
+                    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                        res.render("dbDown", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            photo: req.session.photo || "",
+                            csrfToken: req.csrfToken(),
+                            rol: req.session.rol,
+                        });
+                    } else {
+                        response.render("error", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            rol: req.session.rol || "",
+                            photo: req.session.photo || 'default.png',
+                        });
+                    }
                     next(err);
                 });
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
+                });
+            } else {
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            }
             next(err);
         });
 };
@@ -462,7 +549,22 @@ exports.postAdminDashboardModUser = (req, res, next) => {
             res.redirect("/admin/admindashboard/userprivileges");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
+                });
+            } else {
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            }
             next(err);
         });
 };
@@ -507,11 +609,31 @@ exports.postAdminDashboardAddUser = async (req, res, next) => {
                     });
 
                 } else {
-                    console.log(err);
+                    response.render("error", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        rol: req.session.rol || "",
+                        photo: req.session.photo || 'default.png',
+                    });
                 }
             });
     } catch (err) {
-        console.log(err);
+        if (err.code === "PROTOCOL_CONNECTION_LOST") {
+            res.render("dbDown", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+                photo: req.session.photo || "",
+                csrfToken: req.csrfToken(),
+                rol: req.session.rol,
+            });
+        } else {
+            response.render("error", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+                rol: req.session.rol || "",
+                photo: req.session.photo || 'default.png',
+            });
+        }
         res.redirect("/");
     }
 };
@@ -526,7 +648,12 @@ exports.deleteAdminDashboardUser = (req, res, next) => {
             res.redirect("/admin/admindashboard/userprivileges");
         })
         .catch((err) => {
-            console.log(err);
+            response.render("error", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+                rol: req.session.rol || "",
+                photo: req.session.photo || 'default.png',
+            });
         });
 };
 
@@ -555,7 +682,12 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                         });
     
                     } else {
-                        console.log(err);
+                        response.render("error", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            rol: req.session.rol || "",
+                            photo: req.session.photo || 'default.png',
+                        });
                     }
                 });
         })
@@ -568,7 +700,12 @@ exports.getAdminDashboardDietas = async (req, res, next) => {
                     rol: req.session.rol,
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -603,9 +740,9 @@ exports.getAdminDashboardPrivileges = (req, res, next) => {
             } else {
                 response.render("error", {
                     pagetitle: "Error",
-                    user: request.session.user || "",
-                    rol: request.session.rol || "",
-                    photo: request.session.photo || 'default.png',
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
                 });
             }
         });
@@ -680,9 +817,9 @@ exports.getAdminModRol = (req, res, next) => {
             } else {
                 response.render("error", {
                     pagetitle: "Error",
-                    user: request.session.user || "",
-                    rol: request.session.rol || "",
-                    photo: request.session.photo || 'default.png',
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
                 });
             }
         });
@@ -720,7 +857,22 @@ exports.postAdminModRol = (req, res, next) => {
             res.redirect('/admin/adminDashboard/modrol/' + id);
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
+                });
+            } else {
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            }
             next(err);
         });
 };
@@ -825,7 +977,24 @@ exports.getadminreg_rol = (req, res, next) => {
                     res.locals.mensaje = "";
                 });
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
+                });
+            } else {
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            } 
+        });
 };
 
 exports.postadminreg_rol = function (req, res) {
@@ -909,7 +1078,22 @@ exports.deleteAdminRol = (req, res, next) => {
             res.redirect("/admin/admindashboard/reg_rol");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
+                });
+            } else {
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            }
         });
 
 };
@@ -923,7 +1107,22 @@ exports.activateAdminRol = (req, res, next) => {
             res.redirect("/admin/admindashboard/reg_rol");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || "",
+                    csrfToken: req.csrfToken(),
+                    rol: req.session.rol,
+                });
+            } else {
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            }
         });
 };
 
