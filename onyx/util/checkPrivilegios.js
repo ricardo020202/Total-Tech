@@ -12,7 +12,21 @@ module.exports = (privilegio) => {
                                 request.session.rol = rows[0].nombreRol;
                             })
                             .catch((error) => {
-                                console.log(error);
+                                if (error.code === "PROTOCOL_CONNECTION_LOST") {
+                                    response.render("dbDown", {
+                                        pagetitle: "Error",
+                                        user: request.session.user || "",
+                                        rol: request.session.rol || "",
+                                        photo: request.session.photo || 'default.png',
+                                    });
+                                } else {
+                                    response.render("error", {
+                                        pagetitle: "Error",
+                                        user: request.session.user || "",
+                                        rol: request.session.rol || "",
+                                        photo: request.session.photo || 'default.png',
+                                    });
+                                }
                             });
                         const status = consulta_rol[0].statusRol;
                         const privilegios = [];
@@ -29,17 +43,20 @@ module.exports = (privilegio) => {
                                 user: request.session.user || "",
                                 rol: request.session.rol || "",
                                 photo: request.session.photo || 'default.png',
-                                rol : request.session.rol || '',
+                                rol: request.session.rol || '',
                             });
                         }
                     })
                     .catch((error) => {
-                        console.log(error);
                         if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                            request.session.mensaje = "Error Completar Registro.";
-                            response.redirect("/users/signUp");
-                        } else {
                             response.render("dbDown", {
+                                pagetitle: "Error",
+                                user: request.session.user || "",
+                                rol: request.session.rol || "",
+                                photo: request.session.photo || 'default.png',
+                            });
+                        } else {
+                            response.render("error", {
                                 pagetitle: "Error",
                                 user: request.session.user || "",
                                 rol: request.session.rol || "",
@@ -49,12 +66,15 @@ module.exports = (privilegio) => {
                     });
             })
             .catch((error) => {
-                console.log(error);
                 if (error.code === "PROTOCOL_CONNECTION_LOST") {
-                    request.session.mensaje = "Error Completar Registro.";
-                    response.redirect("/users/signUp");
-                } else {
                     response.render("dbDown", {
+                        pagetitle: "Error",
+                        user: request.session.user || "",
+                        rol: request.session.rol || "",
+                        photo: request.session.photo || 'default.png',
+                    });
+                } else {
+                    response.render("error", {
                         pagetitle: "Error",
                         user: request.session.user || "",
                         rol: request.session.rol || "",
