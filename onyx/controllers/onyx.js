@@ -40,7 +40,12 @@ exports.getCatEjercicios = (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -75,7 +80,12 @@ exports.getCatEntrenamientos = async (req, res, next) => {
                         });
                         return { medidas: [], fechas: [] };
                     } else {
-                        console.log(err);
+                        res.render("error", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            rol: req.session.rol || "",
+                            photo: req.session.photo || 'default.png',
+                        });
                     }
                 });
         })
@@ -89,7 +99,12 @@ exports.getCatEntrenamientos = async (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -119,7 +134,12 @@ exports.getDetallePrograma = (req, res, next) => {
                 });
                 return { detalles: [] };
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -149,7 +169,12 @@ exports.getDetalleDieta = (req, res, next) => {
                 });
                 return { detalles: [] };
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -178,7 +203,12 @@ exports.getDietaAlimento = (req, res, next) => {
                 });
                 return { detalles: [] };
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 
@@ -216,7 +246,12 @@ exports.getDieta = async (req, res, next) => {
                         });
                         return { medidas: [], fechas: [] };
                     } else {
-                        console.log(err);
+                        res.render("error", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            rol: req.session.rol || "",
+                            photo: req.session.photo || 'default.png',
+                        });
                     }
                 });
         })
@@ -230,7 +265,12 @@ exports.getDieta = async (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -262,7 +302,21 @@ exports.postFavoritos = (req, res, next) => {
             res.redirect("/onyx/favoritos");
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                res.render("dbDown", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    photo: req.session.photo || 'default.png',
+                    rol: req.session.rol || "",
+                });
+            } else {
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
+            }
         });
 };
 
@@ -285,7 +339,12 @@ exports.deleteFavoritos = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -310,12 +369,11 @@ exports.getBitacora = (req, res, next) => {
                 res.redirect(`/bitacora/${fecha}`);
             })
             .catch((err) => {
-                console.log(err);
                 res.render("error", {
-                    message: "Error deleting bitacora record",
-                    error: err,
-                    photo: req.session.photo || "",
+                    pagetitle: "Error",
+                    user: req.session.user || "",
                     rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
                 });
             });
     } else {
@@ -347,7 +405,12 @@ exports.getBitacora = (req, res, next) => {
                             });
                             return { medidas: [], fechas: [] };
                         } else {
-                            console.log(err);
+                            res.render("error", {
+                                pagetitle: "Error",
+                                user: req.session.user || "",
+                                rol: req.session.rol || "",
+                                photo: req.session.photo || 'default.png',
+                            });
                         }
                     });
             })
@@ -360,7 +423,12 @@ exports.getBitacora = (req, res, next) => {
                         rol: req.session.rol || "",
                     });
                 } else {
-                    console.log(err);
+                    res.render("error", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        rol: req.session.rol || "",
+                        photo: req.session.photo || 'default.png',
+                    });
                 }
             });
     }
@@ -383,7 +451,12 @@ exports.deleteBitacora = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 
@@ -422,7 +495,12 @@ exports.postNuevaBitacora = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -459,7 +537,12 @@ exports.getDashboard = (req, res, next) => {
                     });
                     return { medidas: [], fechas: [] };
                 } else {
-                    console.log(err);
+                    res.render("error", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        rol: req.session.rol || "",
+                        photo: req.session.photo || 'default.png',
+                    });
                 }
             })
     );
@@ -498,7 +581,12 @@ exports.getDashboard = (req, res, next) => {
                 });
                 return { medidas: [], fechas: [] };
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -538,7 +626,12 @@ exports.getDatosIniciales = async (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -633,7 +726,12 @@ exports.getTallas = (req, res, next) => {
                         rol: req.session.rol || "",
                     });
                 } else {
-                    console.log(err);
+                    res.render("error", {
+                        pagetitle: "Error",
+                        user: req.session.user || "",
+                        rol: req.session.rol || "",
+                        photo: req.session.photo || 'default.png',
+                    });
                 }
             })
     );
@@ -677,7 +775,12 @@ exports.getTallas = (req, res, next) => {
                             rol: req.session.rol || "",
                         });
                     } else {
-                        console.log(err);
+                        res.render("error", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            rol: req.session.rol || "",
+                            photo: req.session.photo || 'default.png',
+                        });
                     }
                 });
         })
@@ -690,7 +793,12 @@ exports.getTallas = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -733,7 +841,12 @@ exports.postTallas = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -768,7 +881,12 @@ exports.getCuenta = (req, res, next) => {
                             rol: req.session.rol || "",
                         });
                     } else {
-                        console.log(err);
+                        res.render("error", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            rol: req.session.rol || "",
+                            photo: req.session.photo || 'default.png',
+                        });
                     }
                 });
         })
@@ -781,7 +899,12 @@ exports.getCuenta = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -812,7 +935,12 @@ exports.postCuenta = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -850,7 +978,21 @@ exports.postCambiarPassword = (req, res, next) => {
                             }
                             )
                             .catch((err) => {
-                                console.log(err);
+                                if (err.code === "PROTOCOL_CONNECTION_LOST") {
+                                    res.render("dbDown", {
+                                        pagetitle: "Error",
+                                        user: req.session.user || "",
+                                        photo: req.session.photo || 'default.png',
+                                        rol: req.session.rol || "",
+                                    });
+                                } else {
+                                    res.render("error", {
+                                        pagetitle: "Error",
+                                        user: req.session.user || "",
+                                        rol: req.session.rol || "",
+                                        photo: req.session.photo || 'default.png',
+                                    });
+                                }
                             });
                     } else {
                         res.redirect("/onyx/cambiarPassword");
@@ -867,7 +1009,12 @@ exports.postCambiarPassword = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -902,7 +1049,12 @@ exports.postFotoPerfil = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                res.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -939,7 +1091,12 @@ exports.getConsultaFav = async (req, res, next) => {
                 rol: req.session.rol || "",
             });
         } else {
-            console.log(err);
+            res.render("error", {
+                pagetitle: "Error",
+                user: req.session.user || "",
+                rol: req.session.rol || "",
+                photo: req.session.photo || 'default.png',
+            });
         }
     }
 };
