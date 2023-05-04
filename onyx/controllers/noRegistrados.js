@@ -75,7 +75,7 @@ exports.postForgotPassword = async (req, res, next) => {
 
             return transporter.sendMail(mailOptions);
         })
-        .catch(err => {
+        .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
                 res.render("dbDown", {
                     pagetitle: "Error",
@@ -84,7 +84,12 @@ exports.postForgotPassword = async (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
@@ -111,7 +116,7 @@ exports.postResetPassword = (req, res, next) => {
                 .then(([rows, fieldData]) => {
                     res.redirect('/onyx');
                 })
-                .catch(err => {
+                .catch((err) => {
                     if (err.code === "PROTOCOL_CONNECTION_LOST") {
                         res.render("dbDown", {
                             pagetitle: "Error",
@@ -120,11 +125,16 @@ exports.postResetPassword = (req, res, next) => {
                             rol: req.session.rol || "",
                         });
                     } else {
-                        console.log(err);
+                        response.render("error", {
+                            pagetitle: "Error",
+                            user: req.session.user || "",
+                            rol: req.session.rol || "",
+                            photo: req.session.photo || 'default.png',
+                        });
                     }
                 });
         })
-        .catch(err => {
+        .catch((err) => {
             if (err.code === "PROTOCOL_CONNECTION_LOST") {
                 res.render("dbDown", {
                     pagetitle: "Error",
@@ -133,7 +143,12 @@ exports.postResetPassword = (req, res, next) => {
                     rol: req.session.rol || "",
                 });
             } else {
-                console.log(err);
+                response.render("error", {
+                    pagetitle: "Error",
+                    user: req.session.user || "",
+                    rol: req.session.rol || "",
+                    photo: req.session.photo || 'default.png',
+                });
             }
         });
 };
